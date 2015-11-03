@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" lang="en" ng-app="cronos">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Gerenciador de Sentenças">
+    <meta name="author" content="TJRS and Powerlogic S.A.">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <base href="#{contextUrl}" />
+
+    <title>Cronos</title>
+
+    <!-- lib -->
+    //= include includes/lib-head.html
+
+</head>
+
+<body data-ng-app="cronos" data-ng-controller="AppController as appCt" data-ng-show="appCt.isLogged()" data-ng-cloak>
+
+    <!-- HEADER AND NAVBAR -->
+    <header data-ng-if="appCt.isLogged()">
+        <div data-ng-include src="'./views/templates/navbar.html'"></div>
+    </header>
+
+    <!-- APP ACTIONS BODY -->
+    <div class="container-fluid main-container" data-ng-if="appCt.isLogged()">
+
+        <!-- TREEVIEW MENU -->
+        <div id="side-navbar-collapse" class="sidebar-navmenu collapse" data-ng-class="{'in' : appCt.menuIsOpen()}" data-ng-controller="MenuController as menuCt" aria-expanded="true">
+            <div data-ng-include src="'./views/templates/sidemenu.html'"></div>
+        </div>
+
+        <!-- MAIN VIEW -->
+        <div app-view-loading></div>
+        <div class="main-panel-view collapse" data-ng-class="{'in' : appCt.menuIsOpen(), 'sentenca-is-open' : appCt.sentencaIsOpen()}" aria-expanded="true"  data-ng-if="appCt.isLogged()">
+            <div id="main-app-view" class="main-view view-animate" data-ng-view></div>
+        </div>
+
+        <!-- ABAS -->
+        <div id="sentenca-sidebar-collapse" class="sentenca-sidebar collapse" aria-expanded="true" data-ng-class="{'in' : appCt.sentencaIsOpen() }">
+            <div data-ng-include="'./views/pages/sentenca/sidebar-sentenca-view.html'"></div>
+        </div>
+
+        <!-- FLOATING ACTION BUTTON -->
+        <div app-fab></div>
+    </div>
+
+    <div app-modal></div>
+<!-- Placed at the end of the document so the pages load faster -->
+//= include includes/lib-footer.html
+
+</body>
+
+</html>

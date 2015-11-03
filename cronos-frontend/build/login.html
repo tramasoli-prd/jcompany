@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Gerenciador de Sentenças">
+    <meta name="author" content="TJRS and Powerlogic S.A.">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <base href="/" />
+
+    <title>Cronos</title>
+
+    <!-- lib -->
+    <!--[if lte IE 9]>
+    <script>
+        document.createElement('ng-include');
+        document.createElement('ng-pluralize');
+        document.createElement('ng-view');
+    
+        // Optionally these for CSS
+        document.createElement('ng:include');
+        document.createElement('ng:pluralize');
+        document.createElement('ng:view');
+    </script>
+    <![endif]-->
+    
+    <!-- assets -->
+    
+    <link href="assets/bootstrap-3.3.5/css/bootstrap-tjrs.min.css" rel="stylesheet">
+    <link href="assets/bootstrap-3.3.5/css/colorpicker.min.css" rel="stylesheet">
+    
+    <link href="assets/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/font-custom/css/font-custom.css" rel="stylesheet">
+    <link href="assets/angular-modules/angular-ui-notification-0.0.11/angular-ui-notification.min.css" rel="stylesheet">
+    <link href="assets/textAngular-1.4.4/textAngular.css" rel="stylesheet">
+    <!-- app -->
+    <link href="styles/app.css?v=1.0.0-1445256023090" rel="stylesheet">
+    
+
+
+</head>
+
+<body class="notification-center" ng-app="cronos" ng-controller="LoginController as loginCt" ng-cloak>
+
+    <div class="container container-signin">
+
+        <div class="row">
+            <div class="form-signin-wrapper text-center col-xs-12">
+                <alert ng-repeat="msg in messages" type="{{msg.type}}" close="closeMessage($index)">{{msg.message}}</alert>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="form-signin">
+                            <i class="logo-tjrs"></i>
+                            <h2 class="form-signin-header text-center">Cronos</h2>
+                            <label for="inputUsername" class="sr-only">Usu&aacute;rio</label>
+                            <input type="text" id="inputUsername" class="form-control" autofocus="" required="" placeholder="Usu&aacute;rio" ng-model="username" maxlength="20">
+                            <label for="inputPassword" class="sr-only">Senha</label>
+                            <input type="password" id="inputPassword" class="form-control" required="" placeholder="Senha" ng-model="password" maxlength="20">
+                            <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="isLoading()" ng-click="login($event)">Acessar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /container -->
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- assets -->
+    <script src="assets/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+    <script src="assets/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+    <script src="assets/underscore-1.8.3/underscore-min.js"></script>
+    
+    <script src="assets/angular-1.4.1/angular.min.js"></script>
+    <script src="assets/angular-1.4.1/angular-mocks.js"></script>
+    <script src="assets/angular-1.4.1/angular-animate.min.js"></script>
+    <script src="assets/angular-1.4.1/angular-cookies.min.js"></script>
+    <script src="assets/angular-1.4.1/angular-route.min.js"></script>
+    
+    <script src="assets/angular-modules/ui-sortable-0.1.js"></script>
+    <script src="assets/angular-modules/ng-context-menu.js"></script>
+    <script src="assets/angular-modules/angular-ui-notification-0.0.11/angular-ui-notification.min.js"></script>
+    <script src="assets/angular-modules/angular-base64-upload-master-0.1.11/angular-base64-upload.min.js"></script>
+    <script src="assets/angular-modules/ng-mask-3.0.16/ngMask.min.js"></script>
+    
+    <script src="assets/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script src="assets/bootstrap-3.3.5/js/bootstrap-colorpicker-module.min.js"></script>
+    <script src="assets/ui-bootstrap-tpls-0.13.0/ui-bootstrap-tpls-0.13.0.min.js"></script>
+    <script src="assets/textAngular-1.4.4/textAngular-sanitize.min.js"></script>
+    <script src="assets/textAngular-1.4.4/textAngular-rangy.min.js"></script>
+    <script src="assets/textAngular-1.4.4/textAngular.min.js"></script>
+    <script src="assets/ngDraggable-master/ngDraggable.js"></script>
+    
+    <!-- app -->
+    <script src="scripts/app.js?v=1.0.0-1445256023090"></script>
+    
+
+
+</body>
+
+</html>

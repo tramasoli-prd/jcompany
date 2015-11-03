@@ -1,0 +1,22 @@
+<div class="tags-wrapper">
+    <div class="row margin-bottom-10" data-ng-show="hasWriteAccess">
+        <div class="col-xs-12 col-sm-4">
+            <input type="text" placeholder="Adicionar Etiqueta" title="Utilizada para classifica&ccedil;&atilde;o e pesquisa" id="etiqueta" class="form-control obrigatorioEtiqueta" autofocus
+                data-ng-blur="clearSuggestions()" ng-keydown="checkKeyDown($event)" ng-model="searchText" ng-change="search()" />
+        </div>
+    </div>
+    <div id="tagsList" class="row tags-cloud col-sm-12 margin-bottom-10">
+        <div ng-repeat="selectedTag in listaEtiqueta" class="tag">
+            <span class="tagName" title="Utilizada para classifica&ccedil;&atilde;o e pesquisa"><i class="fa fa-tag {{selectedTag.icone}} {{ selectedTag.idIcone != null ? 'iconespersonal_' + selectedTag.idIcone : ''}}" style="{{ selectedTag.cor != null ? 'color:' + selectedTag.cor + ';' : '' }}"></i>&nbsp;{{selectedTag.etiqueta}}</span>
+            <span data-ng-if="hasWriteAccess">&nbsp;
+                <b ng-click="removeTag(selectedTag)" class="fa fa-times cross"></b>
+            </span>
+        </div>
+    </div>
+    <ul id="suggestions" class="suggestions-list" data-ng-if="hasWriteAccess">
+       <li ng-repeat="suggestion in suggestions" class="blockSpan" ng-click="addToSelectedTags($index)" ng-mouseover="trocaSelecionado($index)" ng-class="{active : isActive($index)}">
+           <i class="fa fa-tag {{suggestion.icone}} {{ suggestion.idIcone != null ? 'iconespersonal_' + suggestion.idIcone : ''}}" style="{{ suggestion.cor != null ? 'color:' + suggestion.cor + ';' : '' }}"></i>
+           {{suggestion.etiqueta}}
+       </li>
+     </ul>
+</div>

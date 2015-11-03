@@ -1,0 +1,148 @@
+/*
+ * Base APP structure
+ */
+::selection, ::-moz-selection {
+	background: #4db6ac;
+	color: #ffffff;
+}
+::-webkit-scrollbar {
+    width: 9px;
+}
+::-webkit-scrollbar-track {
+  	background-color: #ddd;
+    -webkit-box-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+::-webkit-scrollbar-thumb {
+  background-color: #bbb !important;
+  outline: none;
+}
+
+* {
+	outline: 0 !important;
+}
+a {
+	font: inherit;
+	color: inherit;
+	outline: none;
+	text-decoration: none;
+}
+html, body {
+    width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+	overflow: hidden;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  min-height: 60px;
+  background-color: #f9f9f9;
+}
+.logo-tjrs {
+    background: url('../images/logo-tjrs.png') no-repeat;
+	width: 100%;
+	padding-bottom: 30%;
+	background-size: cover;
+    display: inline-block;
+	position: relative;
+}
+.f-left {
+	float: left;
+}
+.f-right {
+	float: right;
+}
+.position-fixed {
+	position: fixed;
+}
+.margin-top-20 {
+	margin-top: 20px;
+}
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+.margin-bottom-20 {
+	margin-bottom: 20px;
+}
+.margin-bottom-30 {
+	margin-bottom: 30px;
+}
+.margin-bottom-40 {
+	margin-bottom: 40px;
+}
+.margin-bottom-50 {
+	margin-bottom: 50px;
+}
+.margin-bottom-60 {
+	margin-bottom: 60px;
+}
+.padding-bottom {
+	padding-bottom: 30px;
+}
+.padding-right-0 {
+	padding-right: 0;
+}
+
+/* MAIN CONTENT */
+.main-container {
+	position: absolute;
+	height:auto;
+	width: 100%;
+	min-width: 450px;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+	margin-top: 52px;
+	/*padding-top: 15px;*/
+	/*padding-bottom: 15px;*/
+    /*overflow: auto;*/
+    padding: 0;
+	overflow: hidden;
+	/*overflow-x: hidden;*/
+}
+.main-view {
+	position: relative;
+	height: 100% !important;
+}
+.main-panel-view {
+	transition: all 0.3s ease-in-out;
+	height: 100% !important;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    margin: 0;
+    min-width: 594px;
+}
+.main-panel-view.collapse,
+.main-panel-view.collapsing,
+.main-panel-view.collapse.in {
+	/*height: auto !important;*/
+	display: block !important;
+}
+.main-panel-view.collapse {
+	margin-left: 0;
+}
+.main-panel-view.collapsing,
+.main-panel-view.collapse.in {
+	margin-left: 300px;
+}
+@media (min-width:450px){
+	html, body {
+		min-width: 450px;
+		overflow: auto;
+	}
+}
+@media (max-width:768px){
+	.main-container {
+		overflow: auto;
+	}
+	.main-panel-view.collapsing, .main-panel-view.collapse.in {
+		margin-left: 0;
+	}
+}

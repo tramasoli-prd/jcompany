@@ -1,0 +1,42 @@
+*{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+[ng-drag]{
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+[ng-drag]{
+    display: inline-block;
+    cursor: move;
+}
+[ng-drag].drag-over{
+    border:solid 1px black;
+    z-index: 9999999999;
+}
+[ng-drag].dragging{
+    opacity: 0.5;
+    background-color: black;
+    z-index: 9999999999 !important;
+    overflow: hidden;
+}
+[ng-drop]{
+    display: block;
+    cursor: hand !important;
+    background-color: #E4FFE9;
+}
+[ng-drop].drag-enter{
+    border:solid 2px black;
+}
+[ng-drop] span.title{
+    display: block;
+    position: absolute;
+}
+[ng-drop] div{
+    position: relative;
+    z-index: 2;
+}

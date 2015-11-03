@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="container-fluid">
+        <table class="display table table-striped table-bordered" data-height="400">
+            <tbody>
+                <tr class="repeat-animation" data-ng-repeat="parte in contentPreviewModel">
+                    <td>{{parte.nome}}</td>
+                </tr>
+                <tr data-ng-if="!contentPreviewModel.length">
+                    <td>N&atilde;o existem partes cadastrados.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

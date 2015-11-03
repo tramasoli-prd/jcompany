@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Gerenciador de Sentenças">
+    <meta name="author" content="TJRS and Powerlogic S.A.">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <base href="#{contextUrl}" />
+
+    <title>Cronos</title>
+
+    <!-- lib -->
+    //= include includes/lib-head.html
+
+</head>
+
+<body class="notification-center" data-ng-app="cronos" data-ng-controller="GrupoTrabalhoLoginController as grupoLoginCt" ng-cloak>
+    <div class="container ">
+        <div class="row">
+            <div class="form-gtlogin-wrapper text-center col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3 data-ng-show="grupoLoginCt.itens.length > 1">Grupo de Trabalho:</h3>
+                        <table class="display table table-striped" data-height="400">
+        					<tbody>
+        						<tr class="repeat-animation" data-ng-repeat="item in grupoLoginCt.itens">
+        							<td class="text-left">
+        								<label class="radio radio-inline" for="item{{item.idGrupoTrabalho}}">
+        									<input id="item{{item.idGrupoTrabalho}}" type="radio" name="grupoPadrao" data-ng-checked="item.padrao == 'S'" data-ng-click="grupoLoginCt.setGrupoPadrao(item)">
+                                            <i></i> {{item.nomeMagistrado}}
+        								</label>
+        							</td>
+        						</tr>
+        					</tbody>
+        				</table>
+                        <div app-loading loading="grupoLoginCt.loadingGTLogin()"></div>
+                        <button class="btn btn-lg btn-primary btn-block" type="button"
+                            data-ng-disabled="grupoLoginCt.loadingGTLogin()" data-ng-click="grupoLoginCt.selecionaGrupo()" data-ng-show="grupoLoginCt.itens.length > 1">Selecionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /container -->
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    //= include includes/lib-footer.html
+
+</body>
+
+</html>

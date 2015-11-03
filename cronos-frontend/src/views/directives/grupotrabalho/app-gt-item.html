@@ -1,0 +1,66 @@
+<div class="context-menu-wrapper" data-ng-if="node.tipoArvore != 'S'" data-ng-controller="ModalMenuController as modalCt">
+    <div class="dropdown context-menu" id="menu-{{ node.idNodo }}"
+        data-ng-if="isAdmin || (hasWriteAccess && modalCt.isAllowed())">
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <button class="btn btn-flat pointer" role="menuitem" tabindex="1"
+                   data-ng-click="modalCt.openModalIcones( node.tipo, node.id, node.label)">Definir &iacute;cone</button>
+            </li>
+            <li data-ng-if="isAdmin && modalCt.isAllowed()">
+                <button class="btn btn-flat pointer" role="menuitem" tabindex="2"
+                   data-ng-click="modalCt.changeAccessContextMenu( 'N' )">N&atilde;o permitir edi&ccedil;&atilde;o</button>
+            </li>
+            <li data-ng-if="isAdmin && !modalCt.isAllowed()">
+                <button class="btn btn-flat pointer" role="menuitem" tabindex="2"
+                   data-ng-click="modalCt.changeAccessContextMenu( 'S' )">Permitir edi&ccedil;&atilde;o</button>
+            </li>
+            <li data-ng-if="modalCt.modeloOpen() && node.tipo == 'I' && node.tipoArvore == 'T'">
+                <button class="btn btn-flat pointer" role="menuitem" tabindex="3"
+                   data-ng-click="modalCt.addTopico( node )">Inserir no Modelo</button>
+            </li>
+            <li data-ng-if="modalCt.sentencaVisible() && node.tipo == 'I'">
+                <button class="btn btn-flat pointer" role="menuitem" tabindex="4"
+                   data-ng-click="modalCt.addSentenca( node )">Inserir na Senten&ccedil;a</button>
+            </li>
+        </ul>
+    </div>
+</div>
+<span data-ng-controller="DragDropController as ddCt">
+<div ng-if="node.tipo == 'I'">
+    <!-- TODO "código a ser adicionado quando a arvore estiver normalizada no banco" ng-drop="true" ng-drop-success="ddCt.moveItem($data, node)" -->
+    <span context-menu data-ng-if="node.tipoArvore != 'S'"
+        context-menu-wrapper-width="300"
+        ng-drag="ddCt.hasWriteAccess()" ng-drag-data="node"
+        id="node-{{ node.idNodo }}"
+        data-target="menu-{{ node.idNodo }}">
+        <i class="fa fa-file-o {{node.icone}} {{ node.idIcone != null ? 'iconespersonal_' + node.idIcone : ''}}" style="{{ node.iconeCor != null ? 'color:' + node.iconeCor + ';' : '' }}"></i>
+        <a href="#/grupo-trabalho/{{node.tipoArvore}}/{{node.id}}">{{appCt.isAllowed()}}{{node.label}}</a>
+    </span>
+    <span data-ng-if="node.tipoArvore == 'S'" id="node-{{ node.idNodo }}">
+        <i class="fa fa-file-o {{node.icone}} {{ node.idIcone != null ? 'iconespersonal_' + node.idIcone : ''}}" style="{{ node.iconeCor != null ? 'color:' + node.iconeCor + ';' : '' }}"></i>
+        <a href="#/sentenca/{{node.id}}">{{node.label}}</a>
+    </span>
+</div>
+<!-- ng-drop="true" ng-drop-success="ddCt.isTeste($index,$data,$event)"-->
+<div ng-if="node.tipo == 'E'" data-toggle="collapse" data-target="#col-{{ node.idNodo }}">
+    <span context-menu
+        context-menu-wrapper-width="300"
+        id="node-{{ node.idNodo }}"
+        data-target="menu-{{ node.idNodo }}">
+
+        <i class="fa fa-tag {{node.icone}} {{ node.idIcone != null ? 'iconespersonal_' + node.idIcone : ''}}" style="{{ node.iconeCor != null ? 'color:' + node.iconeCor + ';' : '' }}"></i>
+        {{node.label}}
+    </span>
+
+</div>
+<div ng-if="node.tipo == 'N'" data-toggle="collapse" data-target="#col-{{ node.idNodo }}" data-ng-init="isOpen = !isOpen;" data-ng-click="isOpen = !isOpen">
+    <span>
+        <i class="fa" data-ng-class="!isOpen ? 'fa-folder-o' : 'fa-folder-open-o'"></i>
+        {{node.label}}
+    </span>
+</div>
+
+<div id="col-{{ node.idNodo }}" class="collapse"
+    data-ng-class="node.tipo == 'N' ? 'in' : ''"
+    data-ng-include src="'views/directives/grupotrabalho/app-gt-items.html'"></div>
+</span>

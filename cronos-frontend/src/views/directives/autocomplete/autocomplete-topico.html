@@ -1,0 +1,38 @@
+<div class="row" data-ng-show="hasWriteAccess()">
+    <div class="col-xs-12 {{classe}}">
+        <input type="text" placeholder="Adicionar Tópico" id="topicoModelo" class="form-control obrigatorioEtiqueta"
+        ng-drop="true" ng-drop-success="addTopico($data, chamador)"
+            data-ng-blur="clearSuggestions()" data-ng-keydown="checkKeyDown($event)" data-ng-model="vinculoTM" data-ng-change="search()" />
+    </div>
+</div>
+
+<ul id="suggestions" class="suggestions-list" data-ng-if="hasWriteAccess()">
+    <li data-ng-repeat="suggestion in suggestions" class="blockSpan" ng-click="addToSelectedLinks($index)" ng-mouseover="trocaSelecionado($index)" ng-class="{active : selectedIndex===$index}">
+       {{suggestion.titulo}}
+    </li>
+</ul>
+<table class="display table table-striped margin-top-20" data-height="400">
+    <tr class="repeat-animation" data-ng-repeat="selectedLink in vinculoTMmodel">
+        <td data-ng-if="hasWriteAccess()">
+            <a href="javascript:void(0);" data-ng-click="swap(selectedLink,1)" title="Sobe"><i class="fa fa-caret-up"></i></a>
+            <a href="javascript:void(0);" data-ng-click="swap(selectedLink,0)" title="Desce"><i class="fa fa-caret-down"></i></a>
+        </td>
+        <td>{{selectedLink.titulo}}</td>
+        <td class="text-right" nowrap data-ng-show="!isPreviewMode()">
+            <button class="btn btn-xs btn-info"
+                data-ng-click="preview(selectedLink)" title="Visualizar">
+                <i class="fa fa-eye"></i>
+            </button>
+            <button class="btn btn-xs btn-danger"
+                data-ng-click="removeVinculoTM(selectedLink)" title="Excluir"
+                data-ng-if="hasWriteAccess()">
+                <i class="fa fa-times"></i>
+            </button>
+        </td>
+    </tr>
+    <tr class="repeat-animation" data-ng-if="!vinculoTMmodel.length">
+        <td>
+            <p>N&atilde;o existem t&oacute;picos informados.</p>
+        </td>
+    </tr>
+</table>

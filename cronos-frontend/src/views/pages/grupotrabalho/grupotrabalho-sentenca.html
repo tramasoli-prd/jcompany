@@ -1,0 +1,57 @@
+<div class="panel panel-primary panel-sentenca"
+    data-ng-show="!sentencaCt.isLoading()"
+    data-ng-if="sentencaCt.getSentenca().sentencaGerada">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span>Senten&ccedil;a</span>
+            <em style="font-size: 18px;" data-ng-show="sentencaCt.isSentencaFinalizada();"> - {{sentencaCt.getDadosProcesso().numeroCNJ}}</em>
+            <em style="font-size: 14px;" data-ng-show="!sentencaCt.isSentencaFinalizada();"> - Pr&eacute;via</em>
+        </h3>
+    </div>
+    <div class="panel-body sentenca-preview">
+        <div text-angular data-ng-cloak
+            name="textoRichEditor"
+            class="editor-preview"
+            ta-toolbar="[['expandArea'],['bold','italics','underline'],['ul','ol'],['redo','undo'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['fontName'], ['fontSize'], ['fontColor']]"
+            ta-toolbar-class="custom-ta-toolbar"
+            ta-unsafe-sanitizer="false"
+            ta-disabled="!sentencaCt.isSentencaFinalizada();"
+            ta-paste="sanitizePastedData($html)"
+            data-ng-copy="sanitizeCopiedData($event)"
+            data-ng-show="!sentencaCt.isLoading()"
+            data-ng-if="sentencaCt.getSentenca().sentencaGerada"
+            data-ng-model="sentencaCt.getSentenca().sentencaGerada"></div>
+    </div>
+    <div class="buttons-area">
+        <div class="container-fluid">
+            <button class="btn btn-primary f-right" data-ng-click="sentencaCt.finalizarSentenca()" data-ng-show="!sentencaCt.isSentencaFinalizada();">
+                <i class="fa fa-check-square-o fa-md"></i>&nbsp;Finalizar
+            </button>
+            <button class="btn btn-primary f-right" data-ng-click="sentencaCt.salvarSentencaFinalizada()" data-ng-show="sentencaCt.isSentencaFinalizada();">
+                <i class="fa fa-floppy-o fa-md"></i>&nbsp;Salvar
+            </button>
+            <button class="btn btn-primary f-right" data-ng-click="sentencaCt.copiarParaAreaDeTransferencia()" >
+                <i class="fa fa-files-o fa-md"></i>&nbsp;Copiar
+            </button>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle f-right" type="button" id="dropdownMenuExportar"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                    data-ng-show="sentencaCt.isSentencaFinalizada();">
+                    <i class="fa fa-paper-plane-o fa-md"></i>&nbsp;Exportar&nbsp;&nbsp;<i class="open fa fa-caret-up" style="visibility:hidden"></i>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <!-- <li role="presentation"> -->
+                        <!-- <button type="button" class="btn btn-flat checked-dropdown" role="menuitem" tabindex="-1" data-ng-click="sentencaCt.exportarParaArquivo('pdf')">Para PDF</button> -->
+                    <!-- </li> -->
+                    <li role="presentation">
+                        <button type="button" class="btn btn-flat checked-dropdown" role="menuitem" tabindex="-1" data-ng-click="sentencaCt.exportarParaArquivo('doc')">Para DOC</button>
+                    </li>
+                    <li role="presentation">
+                        <button type="button" class="btn btn-flat checked-dropdown" role="menuitem" tabindex="-1" data-ng-click="sentencaCt.exportarParaArquivo('odt')">Para ODT</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div app-loading loading="sentencaCt.isLoading()"></div>

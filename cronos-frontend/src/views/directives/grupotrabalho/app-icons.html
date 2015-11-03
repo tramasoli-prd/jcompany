@@ -1,0 +1,24 @@
+<div data-ng-controller="ModalMenuController as modalCt">
+    <div class="modal-header">
+        <h3 class="modal-title">{{modalOptions.headerText}}<small>{{modalOptions.headerLabel}}</small></h3><br>
+        {{modalOptions.headerTextIn}}
+    </div>
+    <div class="modal-body">
+        <ul class="lista-icones">
+            <li data-ng-repeat="item in modalCt.items"
+                data-ng-class="{ 'selected' : modalCt.selected == item }"
+                class="icone">
+                <a data-ng-click="modalCt.selected = item">
+                    <i style="color:{{modalCt.color}}" class="fa {{ item }} fa-lg"></i>
+                </a>
+            </li>
+        </ul>
+        <button colorpicker class="btn" type="button" colorpicker-position="top" data-ng-model="modalCt.color">Selecionar cor</button>
+        <br><br>
+        <input id="imageUpload" name="imageUpload" type="file" class="form-control" accept="image/*" data-ng-model="modalCt.imagem" base-sixty-four-input><br>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-ng-click="modalOptions.ok( modalCt );">{{modalOptions.actionButtonText}}</button>
+        <button type="button" class="btn" data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+    </div>
+</div>

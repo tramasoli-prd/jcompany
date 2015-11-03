@@ -1,0 +1,33 @@
+                <div data-ng-show="!sentencaCt.isLoadingCPU()" class="view-animate">
+                    <div class="form-group">
+                        <div class="panel panel-slim panel-default">
+                            <a class="panel-heading" href="javascript:void(0);" data-toggle="collapse" data-target="#collapseModelo" data-ng-click="activem = !activem" aria-expanded="false" aria-controls="collapseModelo">
+                                <h3 class="panel-title">Modelos
+                                    <i class="icon fa" data-ng-class="{'fa-chevron-up': !activem, 'fa-chevron-down': activem}" title="{{!activem ? 'Mostrar' : 'Ocultar'}}"></i>
+                                </h3>
+                            </a>
+                            <div id="collapseModelo" class="panel-body panel-collapse in">
+                                <div class="row">
+                                    <div auto-complete-modelo class="col-xs-12" classe="col-sm-6" modelo="sentencaCt.getModelos()" readonly="sentencaCt.isSentencaFinalizada()" data-ng-show="!sentencaCt.isLoading()" data-ng-cloak></div>
+                                    <div app-loading loading="sentencaCt.isLoading()"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="panel panel-slim panel-default">
+                            <a class="panel-heading" href="javascript:void(0);" data-toggle="collapse" data-target="#collapseTopicos" data-ng-click="activet = !activet" aria-expanded="false" aria-controls="collapseTopicos">
+                                <h3 class="panel-title">T&oacute;picos
+                                    <i class="icon fa" data-ng-class="{'fa-chevron-up': !activet, 'fa-chevron-down': activet}" title="{{!activet ? 'Mostrar' : 'Ocultar'}}"></i>
+                                </h3>
+                            </a>
+                            <div id="collapseTopicos" class="panel-body panel-collapse in">
+                                <div class="row">
+                                    <div auto-complete-topico class="col-xs-12" classe="col-sm-6" chamador="sentenca" model="sentencaCt.getTopicos()" readonly="sentencaCt.isSentencaFinalizada()" data-ng-show="!sentencaCt.isLoading()" data-ng-cloak></div>
+                                    <div app-loading loading="sentencaCt.isLoading()"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>

@@ -1,0 +1,100 @@
+﻿<!-- BEGIN: Modals Layout. -->
+<div class="modal-backdrop fade in" ng-show="modalOpen"></div>
+<div class="app-modal modal fade in" tabindex="-1" role="dialog" ng-show="modalOpen" ng-switch="subview" data-ng-if="subview">
+    <div class="modal-dialog" data-ng-class="{'modal-lg': (subview != 'alert' && subview != 'confirm') }" >
+        <div class="modal-content">
+            <!-- BEGIN: Alert Modal. -->
+            <div ng-switch-when="alert" ng-controller="AlertModalController">
+                <div class="modal-header" data-ng-if="headerText">
+                    <h4 data-ng-bind-html="headerText"></h4>
+                </div>
+                <div class="modal-body text-center h4">
+                    <p data-ng-bind-html="message"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-ng-click="cancel()" autofocus data-ng-bind-html="confirmButton"></button>
+                </div>
+            </div>
+            <!-- END: Alert Modal. -->
+
+            <!-- BEGIN: Confirm Modal. -->
+            <div ng-switch-when="confirm" ng-controller="ConfirmModalController">
+                <div class="modal-header" data-ng-if="headerText">
+                    <h4 data-ng-bind-html="headerText"></h4>
+                </div>
+                <div class="modal-body text-center h4">
+                    <p data-ng-bind-html="message"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-ng-click="abort()" data-ng-bind-html="abortButton" data-ng-show="abortButtonActive"></button>
+                    <button type="button" class="btn" data-ng-click="cancel()" data-ng-bind-html="cancelButton" autofocus></button>
+                    <button type="button" class="btn btn-danger" data-ng-click="confirm()" data-ng-bind-html="confirmButton"></button>
+                </div>
+            </div>
+            <!-- END: Confirm Modal. -->
+
+            <!-- BEGIN: Preview Modal. -->
+            <div data-ng-switch-when="preview" data-ng-controller="PreviewModalController" class="preview-modal">
+                <div class="modal-header" data-ng-if="headerText">
+                    <h4 data-ng-bind-html="headerText"></h4>
+                </div>
+                <div class="modal-body">
+                    <div data-ng-if="!contentPreviewModel" data-ng-cloak data-ng-include="contentPreviewPath"></div>
+                    <div data-ng-if="contentPreviewModel" data-ng-cloak data-ng-model="contentPreviewModel" data-ng-include="contentPreviewPath"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-ng-click="cancel()" autofocus data-ng-bind-html="confirmButton"></button>
+                    <button type="button" class="btn" data-ng-click="cancel()" data-ng-if="cancelButton" data-ng-bind-html="cancelButton"></button>
+                </div>
+            </div>
+            <!-- END: Preview Modal. -->
+
+            <!-- BEGIN: RichEditor Modal. -->
+            <!-- TODO: Implementar modal com editor dentro -->
+            <!-- END: RichEditor Modal. -->
+
+            <!-- BEGIN: Termo de Aceite Modal. -->
+            <div data-ng-switch-when="termoAceite" data-ng-controller="PreviewModalController" class="preview-modal">
+                <div class="modal-body">
+                    <div data-ng-cloak
+                        data-ng-model="contentPreviewModel"
+                        data-ng-include="contentPreviewPath"></div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-xs-9">
+    					<label class="checkbox f-left" style="padding-top:5px;">
+    						<input type="checkbox" class="form-control" id="autorizar" data-ng-model="concordoTermo">
+                            <i></i> Li, concordo e aceito o termo acima.
+    					</label>
+                    </div>
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-primary"
+                            data-ng-show="concordoTermo"
+                            data-ng-disabled="!concordoTermo"
+                            data-ng-click="confirm()" data-ng-bind-html="confirmButton"></button>
+                        <button type="button" class="btn"
+                            data-ng-show="!concordoTermo"
+                            data-ng-click="cancel()" data-ng-bind-html="cancelButton"></button>
+                    </div>
+                </div>
+            </div>
+            <!-- END: Termo de Aceite Modal. -->
+
+            <!-- BEGIN: Preview GrupoTrabalho Modal. -->
+            <div ng-switch-when="previewGt" ng-controller="PreviewGtModalController" class="preview-modal">
+                <div class="modal-body">
+                    <div data-ng-cloak
+                        data-ng-include="'./views/pages/grupotrabalho/grupotrabalho-preview.html'"
+                        data-ng-controller="GtPreviewController as gtPrevCt"
+                        onload="gtPrevCt.carregaElementoPadrao(previewGtId)">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-ng-click="cancel()" autofocus data-ng-bind-html="confirmButton"></button>
+                </div>
+            </div>
+            <!-- END: Preview GrupoTrabalho Modal. -->
+        </div>
+    </div>
+</div>
+<!-- END: Modals Layout.

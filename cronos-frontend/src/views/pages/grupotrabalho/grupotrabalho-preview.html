@@ -1,0 +1,53 @@
+﻿<div class="panel panel-primary" data-ng-show="!gtPrevCt.isLoading()">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<span data-ng-bind-html="gtPrevCt.item.descricaoArvore">Cronos</span>
+			<em style="font-size: 12px;"> - Visualiza&ccedil;&atilde;o - Acesso somente leitura</em>
+		</h3>
+	</div>
+    <div class="panel-body">
+		<div class="row">
+		    <div class="col-xs-12">
+		    	<label for="titulo">Categoria:</label><br>
+		        <input type="text" class="form-control"
+		        	data-ng-if="gtPrevCt.categoriaItem.pai"
+					data-ng-model="gtPrevCt.categoriaItem.pai.titulo"
+					data-ng-disabled="true">
+				<input type="text" class="form-control"
+					data-ng-if="!gtPrevCt.categoriaItem.pai"
+					data-ng-model="gtPrevCt.categoriaItem.paiGeral.titulo"
+					data-ng-disabled="true"><br>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="col-xs-12">
+		    	<label for="titulo">Título:</label><br>
+		        <input type="text" class="form-control" placeholder="Preencha o Título"
+		        	data-ng-model="gtPrevCt.item.titulo" data-ng-disabled="true"><br>
+		    </div>
+		</div>
+        <div class="row margin-bottom-10">
+        	<div class="col-xs-12">
+        		<label for="titulo">Etiquetas:</label><br>
+        	</div>
+			<div auto-complete class="col-sm-12" model="gtPrevCt.etiquetas" readonly="true"></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div app-gt-topicos ng-if="gtPrevCt.item.arvore == 'T'" item="gtPrevCt.item" readonly="true" preview="true"></div>
+				<div app-gt-modelos ng-if="gtPrevCt.item.arvore == 'M'" item="gtPrevCt.item" topicos="gtPrevCt.topicos" readonly="true" preview="true"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="checkbox">
+					<label class="checkbox small">
+						<input type="checkbox" class="form-control" id="autorizar" data-ng-model="gtPrevCt.compartilhar"
+							data-ng-disabled="true"><i></i>Autorizo disponibilizar este conte&uacute;do para os demais usu&aacute;rios do sistema.
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div app-loading loading="gtPrevCt.isLoading()"></div>

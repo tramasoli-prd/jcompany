@@ -1,0 +1,63 @@
+<div class="panel panel-primary margin-bottom-60" ng-controller="GtFormController as gtFormCt">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<span data-ng-bind-html="gtFormCt.item.descricaoArvore">Cronos</span>
+			<label class="checkbox" data-ng-if="appCt.hasWriteAccess()">
+				<input type="checkbox" class="form-control" ng-model="gtFormCt.excluir" id="txtEtiquetas"><i></i>Excluir
+			</label>
+			<span data-ng-show="!appCt.hasWriteAccess()" style="font-size: 12px;"> - <em>Acesso somente leitura</em></span>
+		</h3>
+	</div>
+    <div class="panel-body">
+	    <div class="row">
+		    <div class="col-sm-4 col-xs-12">
+		        <div class="form-group" data-ng-if="gtFormCt.item.arvore == 'M'">
+		            <label for="categoria">Categoria:</label><br>
+		            <select class="form-control"
+		             	data-ng-disabled="!appCt.hasWriteAccess()"
+		            	data-ng-model="gtFormCt.item.idPai"
+		            	data-ng-class="{ 'obrigatorio': gtFormCt.item.arvore == 'M' }"
+		            	data-ng-options="categoria.id as categoria.titulo for categoria in gtFormCt.categorias">
+		                <option value="" selected>Selecione</option>
+		            </select>
+		        </div>
+				<div class="form-group" data-ng-if="gtFormCt.item.arvore == 'T'">
+					<label for="categoriaTopico">Categoria:</label><br>
+		            <div auto-complete-categoria-topico class="col-sm-12" model="gtFormCt.categoriasTopicos"></div>
+		        </div>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="col-xs-12">
+		    	<label for="titulo">Título:</label><br>
+		        <input type="text" class="form-control obrigatorio" placeholder="Preencha o Título" ng-model="gtFormCt.item.titulo" autofocus required data-ng-disabled="!appCt.hasWriteAccess()"><br>
+		    </div>
+		</div>
+        <div class="row margin-bottom-10">
+        	<div class="col-xs-12">
+        		<label for="titulo">Etiquetas:</label><br>
+        	</div>
+			<div auto-complete class="col-sm-12" model="gtFormCt.etiquetas"></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div app-gt-topicos ng-if="gtFormCt.item.arvore == 'T'" item="gtFormCt.item"></div>
+				<div app-gt-modelos ng-if="gtFormCt.item.arvore == 'M'" item="gtFormCt.item" topicos="gtFormCt.topicos"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-9">
+				<div class="checkbox">
+					<label class="checkbox small">
+						<input type="checkbox" class="form-control" id="autorizar" data-ng-model="gtFormCt.compartilhar"
+							data-ng-disabled="!appCt.hasWriteAccess()"><i></i>Autorizo disponibilizar este conte&uacute;do para os demais usu&aacute;rios do sistema.
+					</label>
+				</div>
+				<div app-loading loading="gtFormCt.isLoading()"></div>
+			</div>
+		    <div class="col-xs-3 text-right">
+		        <button type="button" class="btn btn-primary btn-block" data-ng-disabled="gtFormCt.isLoading()" ng-click="gtFormCt.salvar()" data-ng-if="appCt.hasWriteAccess()"><i class="fa fa-save"></i> Salvar</button>
+		    </div>
+		</div>
+	</div>
+</div>

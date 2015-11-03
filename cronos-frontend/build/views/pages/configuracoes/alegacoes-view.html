@@ -1,0 +1,58 @@
+<div class="panel panel-default panel-primary" data-ng-controller="AlegacaoController as alegaCt" >
+	<div class="panel-heading" data-toggle="collapse" data-target="#alegacao-form"
+			data-ng-click="active = !active" aria-expanded="true" aria-controls="alegacao-form">
+		<h3 class="panel-title">
+			    Alega&ccedil;&otilde;es
+			<i class="icon fa" data-ng-class="{'fa-chevron-up': !active, 'fa-chevron-down': active}"></i>
+		</h3>
+	</div>
+	<div id="alegacao-form" class="panel-body panel-collapse collapse in">
+		<div class="row">
+			<div class="col-xs-12">
+				<table class="display table table-striped">
+					<thead>
+						<tr>
+							<th class="text-left" style="width: 190px;">Quem alega?</th>
+							<th>Alega&ccedil;&atilde;o</th>
+							<th class="text-right" style="width: 20px;"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="repeat-animation"
+							data-ng-if="alegaCt.alegacoes.length > 0"
+							data-ng-repeat="alegacao in alegaCt.alegacoes track by $index">
+							<td class="text-left" style="padding:8px 0 0 15px;">
+								<strong><em>
+									<span data-ng-bind="alegacao.tipoAlegacao.quemAlega"></span>
+								</em></strong>
+							</td>
+							<td class="text-left">
+								<input type="text" class="form-control input-sm obrigatorio" placeholder="Insira aqui o texto da alega&ccedil;&atilde;o"
+									data-ng-model="alegacao.textoAlegacao" data-ng-disabled="!appCt.hasWriteAccess()"/>
+							</td>
+							<td class="text-right" style="padding:8px 10px;">
+								<a class="btn btn-xs btn-default" data-ng-click="alegaCt.clean(alegacao)" data-ng-if="appCt.hasWriteAccess()" title="Limpar Alega&ccedil;&atilde;o">
+									<i class="fa fa-eraser"></i>
+								</a>
+							</td>
+						</tr>
+						<tr data-ng-if="!alegaCt.alegacoes.length">
+							<td colspan="3">
+								<p>N&atilde;o existem alega&ccedil;&otilde;es cadastradas.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<hr/>
+		    <div class="col-xs-9 text-left">
+				<div app-loading loading="alegaCt.isLoading()"></div>
+			</div>
+		    <div class="col-xs-3 text-right">
+		        <button type="submit" class="btn btn-primary btn-block" data-ng-disabled="alegaCt.isLoading()" data-ng-click="alegaCt.save()"><i class="fa fa-save"></i> Salvar</button>
+		    </div>
+		</div>
+	</div>
+</div>

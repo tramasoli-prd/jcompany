@@ -1,0 +1,10 @@
+div.ui-notification {
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+    border: solid 1px white;
+    z-index: 9999999;
+}
+
+.notification-center .ui-notification {
+	left: 50%;
+	margin-left: -150px;
+}
