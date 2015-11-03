@@ -39,6 +39,8 @@
     $scope.clear = function(){
       $scope.departamentoArg = new Object();
       $scope.gridOptions.data = [];
+      $scope.departamentoPai = '';
+      $scope.departamentoPaiDescricao = '';
     };
 
     $scope.edit = function(id){
@@ -63,7 +65,11 @@
     };
 
     $scope.save = function(){
-      $scope.departamento.departamentoPai =  $scope.departamentoPai;
+      
+      if ($scope.departamentoPai != ''){
+        $scope.departamento.departamentoPai =  $scope.departamentoPai;
+      }
+      
       DepartamentoService.save($scope.departamento).then( function (response) {
           $rootScope.departamento = response.data;
           notificationService.success("DADOS_SALVOS_SUCESSO_000");
@@ -79,6 +85,8 @@
 
     $scope.new = function () {
       $rootScope.departamento = new Object();
+      $rootScope.departamentoPai = '';
+      $rootScope.departamentoPaiDescricao = '';
       $state.go( 'departamentoman' );
     };
 
