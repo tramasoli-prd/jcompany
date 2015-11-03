@@ -21,7 +21,7 @@
 	<div class="row" ng-repeat="row in funcionario.dependente">
 
 		<div class="col-md-6">
-			<input type="text" ng-model="row.nome" required ="" ng-required="true" maxlength="2" 		class="form-control obrigatorio">
+			<input type="text" ng-model="row.nome" required ="" ng-required="true" maxlength="40" 		class="form-control obrigatorio">
 			<input type="hidden" ng-model="row.id" >
 		    
 		</div>
@@ -33,6 +33,14 @@
           	<label class="radio-inline c-radio">
            		<input id="inlineradio2" type="radio" ng-model="row.sexo" name="i-radio" value="{{staticLookupSexo[1].sexo}}" />
            		<span class="fa fa-circle"></span>{{staticLookupSexo[1].descricao}}</label> 
+		</div>
+
+		<div class="col-sd-2">
+
+			<button type="submit" class="btn btn-danger" ng-click="removeRowDependente($index);" >
+			  <i class="glyphicon glyphicon-erase"></i>
+			</button>
+
 		</div>
 
 	</div>

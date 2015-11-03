@@ -71,9 +71,9 @@
             
           <label>Estado Civil:</label>
   			  
-          <select name="estadoCivil" ng-model="funcionario.estadoCivil" class="form-control">
-
-              <option ng-selected="funcionario.estadoCivil == item.estadoCivil" ng-repeat="item in staticLookupEstadoCivil" ng-value="item.estadoCivil">{{item.descricao}}</option>
+         
+           <select ng-model="funcionario.estadoCivil" class="form-control" ng-options="i.estadoCivil as (i.descricao) for i in staticLookupEstadoCivil">
+            <option></option>
            </select>
            
         </div>

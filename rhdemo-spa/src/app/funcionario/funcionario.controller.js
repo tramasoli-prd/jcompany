@@ -98,10 +98,8 @@
       $rootScope.funcionario = new Object();
 
       $rootScope.funcionario.dependente = [];
-      $rootScope.funcionario.dependente.push(new Object());
 
       $rootScope.funcionario.historicoProfissional = [];
-      $rootScope.funcionario.historicoProfissional.push(new Object());
 
       $state.go( 'funcionariomdt' );
     };
@@ -144,6 +142,15 @@
         $rootScope.funcionario.historicoProfissional = [];
       }
       $rootScope.funcionario.historicoProfissional.push(new Object());
+    };
+
+
+    $scope.removeRowDependente = function(index){
+        $rootScope.funcionario.dependente.splice(index, 1);
+    };
+
+    $scope.removeRowHistoricoProfissional = function(index){
+        $rootScope.funcionario.historicoProfissional.splice(index, 1);
     };
 
     $scope.gridOptions = {
