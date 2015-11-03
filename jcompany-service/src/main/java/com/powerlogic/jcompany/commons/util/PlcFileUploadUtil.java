@@ -12,15 +12,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import javax.activation.MimetypesFileTypeMap;
+import java.net.FileNameMap;
+import java.net.URLConnection;
 
 import org.apache.commons.io.FileUtils;
 
 public class PlcFileUploadUtil {
 
 	public void saveFile(String filename, InputStream inputStream) {
-		
+
 		try{
 			// write the inputStream to a FileOutputStream
 			FileOutputStream outputStream = 
@@ -35,34 +35,40 @@ public class PlcFileUploadUtil {
 
 			outputStream.flush();
 			outputStream.close();
-			
-				
+
+
 		} catch (SecurityException | IllegalArgumentException | IOException e) {
 			e.printStackTrace();
 		} 
 
 	}
-	
+
 	public PlcFileDTO getFile(String filename) {
-		
+
 		try{
 			PlcFileDTO fileDTO = new PlcFileDTO();
-			
+
 			File file = new File(System.getProperty("java.io.tmpdir").concat(File.separator).concat(filename));
 			byte[] binaryContent = FileUtils.readFileToByteArray(file);
-			
+
 			fileDTO.setNome(filename);
 			fileDTO.setTamanho(binaryContent.length);
-			fileDTO.setTipo(new MimetypesFileTypeMap().getContentType(file));
+
+			FileNameMap fileNameMap = URLConnection.getFileNameMap();
+			String type = fileNameMap.getContentTypeFor(System.getProperty("java.io.tmpdir").concat(File.separator).concat(filename));
+
+			fileDTO.setTipo(type);
 			fileDTO.setBinaryContent(binaryContent);
-			
+
+			file.delete();
+
 			return fileDTO;
-			
+
 		} catch (SecurityException | IllegalArgumentException | IOException e) {
 			e.printStackTrace();
 			return null;
 		} 
-		
+
 
 	}
 
