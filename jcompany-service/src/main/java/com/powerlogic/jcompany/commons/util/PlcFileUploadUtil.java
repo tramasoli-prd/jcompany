@@ -19,12 +19,15 @@ import org.apache.commons.io.FileUtils;
 
 public class PlcFileUploadUtil {
 
-	public void saveFile(String filename, InputStream inputStream) {
+	public void saveFile(String subdiretorio, String filename, InputStream inputStream) {
 
 		try{
+			File f = new File(System.getProperty("java.io.tmpdir").concat(File.separator).concat(subdiretorio));
+			f.mkdirs();
+			
 			// write the inputStream to a FileOutputStream
 			FileOutputStream outputStream = 
-					new FileOutputStream(System.getProperty("java.io.tmpdir").concat(File.separator).concat(filename));
+					new FileOutputStream(System.getProperty("java.io.tmpdir").concat(File.separator).concat(subdiretorio).concat(File.separator).concat(filename));
 
 			int read = 0;
 			byte[] bytes = new byte[1024];
@@ -43,12 +46,12 @@ public class PlcFileUploadUtil {
 
 	}
 
-	public PlcFileDTO getFile(String filename) {
+	public PlcFileDTO getFile(String subdiretorio, String filename) {
 
 		try{
 			PlcFileDTO fileDTO = new PlcFileDTO();
 
-			File file = new File(System.getProperty("java.io.tmpdir").concat(File.separator).concat(filename));
+			File file = new File(System.getProperty("java.io.tmpdir").concat(File.separator).concat(subdiretorio).concat(File.separator).concat(filename));
 			byte[] binaryContent = FileUtils.readFileToByteArray(file);
 
 			fileDTO.setNome(filename);
@@ -60,7 +63,7 @@ public class PlcFileUploadUtil {
 			fileDTO.setTipo(type);
 			fileDTO.setBinaryContent(binaryContent);
 
-			file.delete();
+			file.deleteOnExit();
 
 			return fileDTO;
 

@@ -51,7 +51,7 @@
         },
 
         save: function(data) {
-            return this._post('/save', data);
+            return this._post('/savefunc', data);
         },
 
         remove: function(data) {

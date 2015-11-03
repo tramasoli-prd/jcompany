@@ -20,7 +20,8 @@
     $scope.dynamicLookupDepartamento = [];
     $scope.uploader = new FileUploader({
         url: 'http://localhost:7001/rhdemo-service/uploadFiles',
-        queueLimit: 1
+        queueLimit: 1,
+        withCredentials: true
     });
 
     // FILTERS

@@ -1,5 +1,6 @@
 package com.powerlogic.jcompany.core.fileupload;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -31,6 +32,11 @@ import com.powerlogic.jcompany.commons.util.PlcFileUploadUtil;
 public class PlcFileUploadServlet extends HttpServlet {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Inject
 	private PlcFileUploadUtil fileUploadUtil;
 	
@@ -49,8 +55,13 @@ public class PlcFileUploadServlet extends HttpServlet {
 			try {
 				Field fileName = part.getClass().getDeclaredField("fileName");
 				fileName.setAccessible(true);
+				
+				String subDiretorio = request.getContextPath().substring(request.getContextPath().indexOf("/")+1);
+				if (request.getUserPrincipal()!=null) {
+					subDiretorio = subDiretorio.concat(File.separator).concat(request.getUserPrincipal().getName()); 
+				}
 
-				fileUploadUtil.saveFile((String) fileName.get(part), inputStrem);
+				fileUploadUtil.saveFile(subDiretorio, (String) fileName.get(part), inputStrem);
 				
 			} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
 				e.printStackTrace();
@@ -68,9 +79,9 @@ public class PlcFileUploadServlet extends HttpServlet {
 		
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		response.setHeader("Access-Control-Allow-Headers", "GET, POST, OPTIONS");
-		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.setHeader("Access-Control-Max-Age", "true");
-		response.setHeader("Access-Control-Allow-Credentials", "0");
+		
 	}
 
 	
@@ -84,9 +95,9 @@ public class PlcFileUploadServlet extends HttpServlet {
 		
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		response.setHeader("Access-Control-Allow-Headers", "GET, POST, OPTIONS");
-		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.setHeader("Access-Control-Max-Age", "true");
-		response.setHeader("Access-Control-Allow-Credentials", "0");
+		
 
 		super.doOptions(request, response);
 	}

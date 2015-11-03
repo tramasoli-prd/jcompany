@@ -24,9 +24,6 @@ public class FuncionarioServiceImpl extends PlcAbstractServiceEntity<Long, Funci
 	private FuncionarioRepository funcionarioRepository;
 
 
-	@Inject
-	private PlcFileUploadUtil fileUploadUtil;
-
 	@Override
 	protected PlcEntityRepository<Long, FuncionarioEntity> getEntityRepository() {
 		return funcionarioRepository;
@@ -34,16 +31,6 @@ public class FuncionarioServiceImpl extends PlcAbstractServiceEntity<Long, Funci
 
 	@Override
 	public FuncionarioEntity save(@Valid FuncionarioEntity entity) throws PlcException {
-		if (entity.getFoto()!=null && entity.getFoto().getId()==null &&  entity.getFoto().getNome()!=null) {
-			PlcFileDTO fileDTO = fileUploadUtil.getFile(entity.getFoto().getNome());
-			if (fileDTO!=null) {
-				entity.getFoto().setNome(fileDTO.getNome());
-				entity.getFoto().setTamanho(fileDTO.getTamanho());
-				entity.getFoto().setTipo(fileDTO.getTipo());
-				entity.getFoto().setConteudo(new FotoConteudoEntity());
-				entity.getFoto().getConteudo().setBinaryContent(fileDTO.getBinaryContent());
-			}
-		}
 		return super.save(entity);
 	}
 

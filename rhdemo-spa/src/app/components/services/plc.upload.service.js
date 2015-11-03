@@ -9,16 +9,17 @@
         .module('rhdemo')
         .factory('fileUploadService', FileUploadService);
 
-    FileUploadService.$inject = ['FileUploader'];
+    FileUploadService.$inject = ['FileUploader', '$cookies'];
     
-    function FileUploadService(FileUploader) {
+    function FileUploadService(FileUploader, $cookies) {
 
         var FileUploadService = $class({
 
             constructor: function(config) {
 
               this.uploader = new FileUploader({
-                url: 'http://localhost:7001/rhdemo-service/uploadFiles'
+                url: 'http://localhost:7001/rhdemo-service/uploadFiles',
+                withCredentials: true
               });
 
               // FILTERS
@@ -45,6 +46,7 @@
                 };
                 uploader.onBeforeUploadItem = function(item) {
                     console.info('onBeforeUploadItem', item);
+                    uploader.headers.Cookie = $cookies.get('JSESSIONID') ;
                 };
                 uploader.onProgressItem = function(fileItem, progress) {
                     console.info('onProgressItem', fileItem, progress);
