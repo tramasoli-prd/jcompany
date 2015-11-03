@@ -5,10 +5,10 @@
     .module('rhdemo')
     .factory('funcionarioService', FuncionarioService);
 
-  FuncionarioService.$inject = ['EntityService'];
+  FuncionarioService.$inject = ['EntityService', 'Utils'];
 
   /** @ngInject */
-  function FuncionarioService(EntityService) {
+  function FuncionarioService(EntityService, Utils) {
 
   	 
   	var Service = $class(EntityService, {
@@ -20,8 +20,9 @@
         },
 
         /* METODOS REST */
-        _all: function() {
-            return this._get('/all');
+        _all: function(funcionario) {
+            var url = Utils.encodeURIParams(funcionario);
+            return this._get('/all?'+url);
         },
 
         find: function(filter, pagination) {

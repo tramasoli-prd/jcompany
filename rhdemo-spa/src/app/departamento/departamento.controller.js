@@ -16,11 +16,8 @@
    
 
     $scope.init = function(){
-      console.log('init');
-     
+      
       if ($state.current.name === 'departamentoman' && $stateParams.id){ 
-        console.log($rootScope);
-        console.log($scope);
         $scope.edit($stateParams.id);    
       } 
        
@@ -39,12 +36,13 @@
     $scope.clear = function(){
       $scope.departamentoArg = new Object();
       $scope.gridOptions.data = [];
+      $scope.departamentoPai = '';
+      $scope.departamentoPaiDescricao = '';
     };
 
     $scope.edit = function(id){
       DepartamentoService.edit(id).then( function (response) {
-        console.log('edit response');
-     
+             
         $rootScope.departamento = response.data;
         if (response.data.departamentoPai){
            $rootScope.departamentoPai = response.data.departamentoPai.id;
@@ -63,7 +61,11 @@
     };
 
     $scope.save = function(){
-      $scope.departamento.departamentoPai =  $scope.departamentoPai;
+
+      if ($scope.departamentoPai != ''){
+        $scope.departamento.departamentoPai =  $scope.departamentoPai;
+      }
+      
       DepartamentoService.save($scope.departamento).then( function (response) {
           $rootScope.departamento = response.data;
           notificationService.success("DADOS_SALVOS_SUCESSO_000");
@@ -79,6 +81,8 @@
 
     $scope.new = function () {
       $rootScope.departamento = new Object();
+      $rootScope.departamentoPai = '';
+      $rootScope.departamentoPaiDescricao = '';
       $state.go( 'departamentoman' );
     };
 
@@ -95,10 +99,8 @@
         preCloseCallback: 'preCloseCallbackOnScope',
         scope: $scope
       }).then(function (value) {
-        console.log('Modal promise resolved. Value: ', value);
         $scope.ehVinculado = false;
       }, function (reason) {
-        console.log('Modal promise rejected. Reason: ', reason);
         $scope.ehVinculado = false;
       });
     };

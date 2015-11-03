@@ -34,8 +34,8 @@
 	    <div class="col-md-2">
 		    <div ng-controller="datepickerController as dpick" class="form-group">
 	           
-	            <label>Data de Nasc.:</label>
-				<p class="input-group">
+	          <label>Data de Nasc.:</label>
+				    <p class="input-group">
 	              <input type="text" name="date" required="" datepicker-popup="{{dpick.format}}" ng-model="funcionario.dataNascimento" is-open="dpick.opened" max-date="'2019-12-22'" datepicker-options="dpick.dateOptions" date-disabled="dpick.disabled(date, mode)"
 	              close-text="Close" class="form-control" />
 	              <span class="input-group-btn">
@@ -49,13 +49,13 @@
 
         <div class="col-md-6">
             <label>E-mail:</label>
-			<input type="text" ng-model="funcionario.email" class="form-control">
+			<input type="text" ng-model="funcionario.temCursoSuperior" class="form-control">
         </div>
 
         <div class="col-md-4">
             <div class="checkbox c-checkbox needsclick">
                 <label class="needsclick">
-                	<input type="checkbox" value="" class="needsclick" />
+                	<input type="checkbox" ng-model="funcionario.email" class="needsclick" />
                     <span class="fa fa-check"></span>
                     Tem curso superior
                 </label>
@@ -69,20 +69,18 @@
 
 	    <div class="col-md-4">
             
-          	<label>Estado Civil:</label>
-  			<select name="estadoCivil" ng-model="funcionario.estadoCivil" class="form-control">
-
-  				<option ng-selected="funcionario.estadoCivil == item.estadoCivil" ng-repeat="item in staticLookupEstadoCivil" ng-value="item.estadoCivil">{{item.descricao}}</option>
-		    </select>
+          <label>Estado Civil:</label>
+  			  
+          <select ng-model="funcionario.estadoCivil"  class="form-control" ng-options="item.descricao for item in  staticLookupEstadoCivil track by item.estadoCivil">
+          </select>
            
         </div>
 
         <div class="col-md-4">
             
           	<label>Departamento:</label>
-  			<select name="departamento" ng-model="funcionario.departamento" class="form-control">
-
-            <select ng-model="funcionario.departamento" class="form-control" ng-options="item.descricao for item in dynamicLookupDepartamento">
+  		
+            <select ng-model="funcionario.departamento"  class="form-control" ng-options="item.descricao for item in  dynamicLookupDepartamento track by item.id">
             </select>
            
         </div>
@@ -92,7 +90,7 @@
           	<label class="col-sm-2 control-label">Sexo:</label>
                <div class="col-sm-10">
                   <label class="radio-inline c-radio">
-                     <input id="inlineradio1" type="radio" ng-model="funcionario.sexo" name="i-radio" checked="checked"  value="{{staticLookupSexo[0].sexo}}" />
+                     <input id="inlineradio1" type="radio" ng-model="funcionario.sexo" name="i-radio"  value="{{staticLookupSexo[0].sexo}}" />
                      <span class="fa fa-circle"></span>{{staticLookupSexo[0].descricao}}</label>
                   <label class="radio-inline c-radio">
                      <input id="inlineradio2" type="radio" ng-model="funcionario.sexo" name="i-radio" value="{{staticLookupSexo[1].sexo}}" />
@@ -130,15 +128,15 @@
 
   			<br/>
 
-  			 <p ng-if="!uploader.queue.length" class="lead text-center">Nenhum arquivo adicionado!</p>
+  			 <p ng-if="!uploader.queue.length" class="lead text-center"></p>
                   <div ng-if="uploader.queue.length">
                      <table ng-if="uploader.queue.length" class="table">
                         <thead>
                            <tr>
-                              <th ng-show="uploader.isHTML5">Size</th>
-                              <th ng-show="uploader.isHTML5">Progress</th>
+                              <th ng-show="uploader.isHTML5">Tamanho</th>
+                              <th ng-show="uploader.isHTML5">Progresso</th>
                               <th>Status</th>
-                              <th>Actions</th>
+                              <th>Ações</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -166,7 +164,7 @@
                                  <button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs">
                                     <span class="icon-close mr"></span>Cancel</button>
                                  <button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs">
-                                    <span class="icon-trash mr"></span>Remove</button>
+                                    <span class="icon-trash mr"></span>Excluir</button>
                               </td>
                            </tr>
                         </tbody>
@@ -176,11 +174,6 @@
         </div>
 
     </div>
-
-
-
-    
-     
 
     <br/>
 

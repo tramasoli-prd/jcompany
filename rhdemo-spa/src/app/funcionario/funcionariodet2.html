@@ -4,19 +4,19 @@
 
 	<div class="row header" >
 
-        <div class="col-md-2">
+        <div class="col-md-4">
    
             <label>Descrição</label>
             
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-2">
            
             <label>Data Inicio</label>
 			
         </div>
 
-         <div class="col-md-6">
+         <div class="col-md-2">
            
             <label>Salário</label>
 			
@@ -24,36 +24,36 @@
 
 	</div>
 
-	<div class="row" ng-repeat="row in rows">
+	<div class="row" ng-repeat="row in funcionario.historicoFuncionario">
 
-		<div class="col-md-2">
-			<input type="text" ng-model="row.historicoProfissional.descricao" required ="" ng-required="true" maxlength="2" 		class="form-control obrigatorio">
-			<input type="hidden" ng-model="row.uf.id" >
+		<div class="col-md-4">
+			<input type="text" ng-model="row.descricao" required ="" ng-required="true" maxlength="2" 		class="form-control obrigatorio">
+			<input type="hidden" ng-model="row.id" >
 		    
 		</div>
 
-		<div class="col-md-4">    
-			<input type="text" ng-model="row.historicoProfissional.datainicio" required ="" ng-required="true" maxlength="50" class="form-control obrigatorio">     
+		<div class="col-md-2">    
+			<div ng-controller="datepickerController as dpick" class="form-group">
+		    <p class="input-group">
+              <input type="text" name="date" required="" datepicker-popup="{{dpick.format}}" ng-model="row.dataNascimento" is-open="dpick.opened" max-date="'2019-12-22'" datepicker-options="dpick.dateOptions" date-disabled="dpick.disabled(date, mode)"
+              close-text="Close" class="form-control" />
+              <span class="input-group-btn">
+                 <button type="button" ng-click="dpick.open($event)" class="btn btn-default">
+                    <em class="fa fa-calendar"></em>
+                 </button>
+              </span>
+            </p>  
+           </div>
 		</div>
 
 		<div class="col-md-2">    
-			<input type="text" ng-model="row.historicoProfissional.salario" required ="" ng-required="true" maxlength="50" class="form-control obrigatorio">     
-		</div>
-
-		<div class="col-sd-2">
-
-		   	<button type="submit" class="btn btn-primary" ng-click="saveRow($index);">
-			  <i class="glyphicon glyphicon-save-file"></i>
-			</button>
-
-			<button type="submit" class="btn btn-danger" ng-click="removeRow($index);" ng-if="row.dependente.id">
-			  <i class="glyphicon glyphicon-erase"></i>
-			</button>
-
+			<input type="number" ng-model="row.salario" required =""  pattern="[0-9]+([\.|,][0-9]+)?" step="0.01" ng-required="true" max="50" class="form-control obrigatorio">     
 		</div>
 
 	</div>
 	<br/>
+
+	<button type="button" class="btn btn-default" ng-click="addItemHistoricoFuncionario();" >Adicionar</button>
 
 	
 </div>

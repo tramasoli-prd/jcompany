@@ -6,10 +6,10 @@
     .module('rhdemo')
     .controller('funcionarioController', FuncionarioController );
 
-  FuncionarioController.$inject = ['$rootScope', '$scope', '$state', 'funcionarioService', 'notificationService', 'appLookupSexoService', 'appLookupEstadoCivilService', 'appLookupDepartamentoService', 'FileUploader'];
+  FuncionarioController.$inject = ['$rootScope', '$scope', '$state', 'funcionarioService', 'notificationService', 'appLookupSexoService', 'appLookupEstadoCivilService', 'appLookupDepartamentoService', 'FileUploader', '$stateParams'];
 
   /** @ngInject */
-  function FuncionarioController($rootScope, $scope, $state, funcionarioService, notificationService, appLookupSexoService, appLookupEstadoCivilService, appLookupDepartamentoService,  FileUploader) {
+  function FuncionarioController($rootScope, $scope, $state, funcionarioService, notificationService, appLookupSexoService, appLookupEstadoCivilService, appLookupDepartamentoService,  FileUploader, $stateParams) {
 
 
     /* ------------------
@@ -51,10 +51,19 @@
       appLookupDepartamentoService._all().then( function (response) {
         $scope.dynamicLookupDepartamento = response.data;
       });
+
+      if ($state.current.name === 'funcionariomdt' && $stateParams.id){ 
+        $scope.edit($stateParams.id);    
+      } 
     }
 
     $scope.find = function(){
-      funcionarioService._all().then( function (response) {
+      funcionarioService._all($scope.funcionarioArg).then( function (response) {
+
+        if (response.data.length == 0){
+          notificationService.info("NENHUM_REGISTRO_ENCONTRADO_022");
+        }
+
         $scope.gridOptions.data = response.data;
       });
     };
@@ -63,17 +72,15 @@
        $scope.gridOptions.data = [];
     };
 
-    $scope.edit = function(row){
-      funcionarioService.edit(row.entity.id).then( function (response) {
+    $scope.edit = function(id){
+      funcionarioService.edit(id).then( function (response) {
         $state.go( 'funcionariomdt' );
         $rootScope.funcionario = response.data;
       });
     };
 
     $scope.save = function(){
-      console.log($scope.funcionario);
       $scope.funcionario.foto = $scope.foto;
-      console.log($scope.funcionario.foto);
       funcionarioService.save($scope.funcionario).then( function (response) {
           $rootScope.funcionario = response.data;
           notificationService.success("DADOS_SALVOS_SUCESSO_000");
@@ -88,6 +95,14 @@
     };
 
     $scope.new = function () {
+      $rootScope.funcionario = new Object();
+
+      $rootScope.funcionario.dependente = [];
+      $rootScope.funcionario.dependente.push(new Object());
+
+      $rootScope.funcionario.historicoFuncionario = [];
+      $rootScope.funcionario.historicoFuncionario.push(new Object());
+
       $state.go( 'funcionariomdt' );
     };
 
@@ -97,7 +112,7 @@
 
     
     function rowTemplate() {
-      return '<div ng-click="grid.appScope.edit(row)" >' +
+      return '<div ui-sref="funcionariomdt({id: row.entity.id})" >' +
              '  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }"  ui-grid-cell></div>' +
              '</div>';
     }
@@ -116,9 +131,19 @@
     ];
 
 
-    $scope.addItem = function() {
-      var newItemNo = $scope.items.length + 1;
-     // $scope.items.push('Camera ' + newItemNo);
+    $scope.addItemDependente = function() {
+      if(!$rootScope.funcionario.dependente){
+        $rootScope.funcionario.dependente = [];
+      }
+
+      $rootScope.funcionario.dependente.push(new Object());
+    };
+
+    $scope.addItemHistoricoFuncionario = function() {
+      if(!$rootScope.funcionario.historicoFuncionario){
+        $rootScope.funcionario.historicoFuncionario = [];
+      }
+      $rootScope.funcionario.historicoFuncionario.push(new Object());
     };
 
     $scope.gridOptions = {
@@ -127,7 +152,11 @@
       rowTemplate: rowTemplate(),
       columnDefs: [
         { field: 'id', displayName: 'Id', width: '10%'},
-        { field: 'nome', displayName: 'nome', width: '90%'}
+        { field: 'nome', displayName: 'Nome', width: '25%'},
+        { field: 'email', displayName: 'E-mail', width: '20%'},
+        { field: 'cpf', displayName: 'CPF', width: '15%'},
+        { field: 'dataNascimento', displayName: 'Nascimento', width: '10%', cellFilter: 'date:\'dd/MM/yyyy\''},
+        { field: 'departamento.descricao', displayName: 'Departamento', width: '20%'}
       ]
     };
 
