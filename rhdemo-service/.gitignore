@@ -2,3 +2,4 @@
 .settings/
 .classpath
 /.apt_generated/
+/bin/

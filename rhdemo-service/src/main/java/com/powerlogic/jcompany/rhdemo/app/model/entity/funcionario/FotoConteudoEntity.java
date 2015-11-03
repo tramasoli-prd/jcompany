@@ -39,7 +39,7 @@ public class FotoConteudoEntity extends PlcVersionedEntity<Long> implements PlcL
 
 	@Column(name = "CONTEUDO_BINARIO", length = Integer.MAX_VALUE)
 	protected byte[] binaryContent;
-
+	
 	public byte[] getBinaryContent() {
 		return binaryContent;
 	}

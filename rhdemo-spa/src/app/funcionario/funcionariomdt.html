@@ -34,7 +34,7 @@
 	    <div class="col-md-2">
 		    <div ng-controller="datepickerController as dpick" class="form-group">
 	           
-	            <label>Data de Nascimento:</label>
+	            <label>Data de Nasc.:</label>
 				<p class="input-group">
 	              <input type="text" name="date" required="" datepicker-popup="{{dpick.format}}" ng-model="funcionario.dataNascimento" is-open="dpick.opened" min-date="dpick.minDate" max-date="'2019-12-22'" datepicker-options="dpick.dateOptions" date-disabled="dpick.disabled(date, mode)"
 	              close-text="Close" class="form-control" />
@@ -80,7 +80,7 @@
         <div class="col-md-4">
             
           	<label>Departamento:</label>
-  			<select name="estadoCivil" ng-model="funcionario.departamento" class="form-control">
+  			<select name="departamento" ng-model="funcionario.departamento" class="form-control">
 
   				<option ng-selected="funcionario.departamento == item" ng-repeat="item in dynamicLookupDepartamento" ng-value="item.id">{{item.descricao}}</option>
 		    </select>
@@ -107,7 +107,7 @@
 
     <div class="row">
 
-    	 <div class="col-md-8">
+    	 <div class="col-md-12">
             
           	<label>Observação:</label>
   			<textarea class="form-control" ng-model="funcionario.observacao" rows="3"></textarea>

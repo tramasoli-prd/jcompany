@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -35,6 +36,18 @@ import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 @SequenceGenerator(name = "FOTO_ID_GENERATOR", sequenceName = "SE_FOTO")
 public class FotoEntity extends PlcVersionedEntity<Long>implements PlcLogicalExclusion {
 
+	public FotoEntity() {
+	}
+	
+	public FotoEntity(Long id) {
+		this.id = id;
+	}
+	
+	public FotoEntity(String nome) {
+		this.nome = nome;
+	}
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FOTO_ID_GENERATOR")
 	@Column(name = "PK_FOTO", unique = true, nullable = false, precision = 10)
@@ -49,8 +62,9 @@ public class FotoEntity extends PlcVersionedEntity<Long>implements PlcLogicalExc
 	@Column(name = "TAMANHO")
 	protected Integer tamanho;
 
-	@OneToOne(targetEntity = CurriculoConteudoEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	protected CurriculoConteudoEntity conteudo;
+	@OneToOne(targetEntity = FotoConteudoEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
+	@PrimaryKeyJoinColumn
+	protected FotoConteudoEntity conteudo;
 
 	protected String url;
 
@@ -86,11 +100,11 @@ public class FotoEntity extends PlcVersionedEntity<Long>implements PlcLogicalExc
 		this.tamanho = tamanho;
 	}
 
-	public CurriculoConteudoEntity getConteudo() {
+	public FotoConteudoEntity getConteudo() {
 		return conteudo;
 	}
 
-	public void setConteudo(CurriculoConteudoEntity conteudo) {
+	public void setConteudo(FotoConteudoEntity conteudo) {
 		this.conteudo = conteudo;
 	}
 

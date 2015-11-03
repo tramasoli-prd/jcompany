@@ -1,12 +1,11 @@
-package com.powerlogic.jcompany.rhdemo.app.servlet;
+package com.powerlogic.jcompany.core.fileupload;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import com.powerlogic.jcompany.commons.util.PlcFileUploadUtil;
 
 
 /** Servlet responsavel pelo upload de arquivos.
@@ -27,8 +28,11 @@ import javax.servlet.http.Part;
 		maxFileSize         = 1024 * 1024 * 10, // 10 MB
 		maxRequestSize      = 1024 * 1024 * 15 // 15 MB
 		)
-public class FileUploadServlet extends HttpServlet {
+public class PlcFileUploadServlet extends HttpServlet {
 
+	
+	@Inject
+	private PlcFileUploadUtil fileUploadUtil;
 	
 	/*
 	 * (non-Javadoc)
@@ -46,19 +50,8 @@ public class FileUploadServlet extends HttpServlet {
 				Field fileName = part.getClass().getDeclaredField("fileName");
 				fileName.setAccessible(true);
 
-				// write the inputStream to a FileOutputStream
-				FileOutputStream outputStream = 
-						new FileOutputStream(System.getProperty("java.io.tmpdir").concat(File.separator).concat((String) fileName.get(part)));
-
-				int read = 0;
-				byte[] bytes = new byte[1024];
-
-				while ((read = inputStrem.read(bytes)) != -1) {
-					outputStream.write(bytes, 0, read);
-				}
-
-				outputStream.flush();
-				outputStream.close();
+				fileUploadUtil.saveFile((String) fileName.get(part), inputStrem);
+				
 			} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
 				e.printStackTrace();
 			}
