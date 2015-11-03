@@ -15,18 +15,6 @@
 		 */
 		var mobileView = 992;
 
-		$scope.init = function(){
-
-			console.log($state.current);
-
-	      if ($state.current.name === 'departamentoman' && $stateParams.id){ 
-	      	console.log($rootScope);
-	      	console.log($scope);
-	        $scope.edit($stateParams.id);    
-	      } 
-	     
-	    }
-
 		$scope.getWidth = function() {
 			return window.innerWidth;
 		};

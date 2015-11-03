@@ -13,7 +13,18 @@
 
     $scope.ehVinculado = false;
 
-    $scope.init();
+   
+
+    $scope.init = function(){
+      console.log('init');
+     
+      if ($state.current.name === 'departamentoman' && $stateParams.id){ 
+        console.log($rootScope);
+        console.log($scope);
+        $scope.edit($stateParams.id);    
+      } 
+       
+    }
 
 
     $scope.find = function(){
@@ -32,6 +43,8 @@
 
     $scope.edit = function(id){
       DepartamentoService.edit(id).then( function (response) {
+        console.log('edit response');
+     
         $rootScope.departamento = response.data;
         if (response.data.departamentoPai){
            $rootScope.departamentoPai = response.data.departamentoPai.id;
@@ -110,6 +123,8 @@
         { field: 'departamentoPai.descricao', displayName: 'Departamento Pai', width: '40%'}
       ]
     };
+
+    $scope.init();
 
   }
 
