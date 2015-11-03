@@ -6,7 +6,6 @@ import javax.inject.Inject;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -16,7 +15,6 @@ import com.powerlogic.jcompany.core.PlcException;
 import com.powerlogic.jcompany.core.rest.PlcSearchBuilder;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.core.rest.entity.PlcAbstractEntityRest;
-import com.powerlogic.jcompany.rhdemo.app.model.dto.UnidadeFederativaDTO;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.UnidadeFederativaEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.service.UnidadeFederativaService;
 
@@ -42,19 +40,7 @@ public class UnidadeFederativaRest extends PlcAbstractEntityRest<Long, UnidadeFe
       return getEntityService().findByNome(nome);
    }
 
-   @POST
-   @Path("/salvarUnidadeFederativa")
-   public UnidadeFederativaDTO salvarUsuario(UnidadeFederativaDTO uf) throws PlcException
-   {
-      return getEntityService().salvar(uf);
-   }
 
-   @POST
-   @Path("/removerUnidadeFederativa")
-   public boolean removerUsuario(UnidadeFederativaDTO uf) throws PlcException
-   {
-      return getEntityService().remover(uf);
-   }
 
    @Override
    protected UnidadeFederativaService getEntityService()
