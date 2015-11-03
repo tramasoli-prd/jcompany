@@ -118,11 +118,11 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements PlcLo
 	@Size(max = 1) @Column
 	private String sitHistoricoPlc="A";
 	
-	@OneToMany (targetEntity = HistoricoProfissionalEntity.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="funcionario")
+	@OneToMany (targetEntity = HistoricoProfissionalEntity.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="funcionario", orphanRemoval=true)
 	@Valid
 	private List<HistoricoProfissionalEntity> historicoProfissional;
 	
-	@OneToMany (targetEntity = DependenteEntity.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="funcionario")
+	@OneToMany (targetEntity = DependenteEntity.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="funcionario", orphanRemoval=true)
 	@Valid
 	private List<DependenteEntity> dependente;
 	
