@@ -98,7 +98,7 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements PlcLo
 	@Column(length=1)
 	private Boolean temCursoSuperior = false;
 	
-	@ManyToOne (targetEntity = DepartamentoEntity.class, fetch = FetchType.LAZY)
+	@ManyToOne (targetEntity = DepartamentoEntity.class)
 	@JoinColumn
 	private DepartamentoEntity departamento;
 	
@@ -110,7 +110,7 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements PlcLo
     @Valid
     private List<CurriculoEntity> curriculo;
 
-    @OneToOne (targetEntity = FotoEntity.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)    
+    @OneToOne (targetEntity = FotoEntity.class, cascade=CascadeType.ALL)    
     @JoinColumn(name="ID_FOTO")
     private FotoEntity foto;
 	
