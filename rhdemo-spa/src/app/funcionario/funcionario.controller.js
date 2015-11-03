@@ -53,7 +53,12 @@
     }
 
     $scope.find = function(){
-      funcionarioService._all().then( function (response) {
+      funcionarioService._all($scope.funcionarioArg).then( function (response) {
+
+        if (response.data.length == 0){
+          notificationService.info("NENHUM_REGISTRO_ENCONTRADO_022");
+        }
+
         $scope.gridOptions.data = response.data;
       });
     };
@@ -126,7 +131,11 @@
       rowTemplate: rowTemplate(),
       columnDefs: [
         { field: 'id', displayName: 'Id', width: '10%'},
-        { field: 'nome', displayName: 'nome', width: '90%'}
+        { field: 'nome', displayName: 'Nome', width: '25%'},
+        { field: 'email', displayName: 'E-mail', width: '20%'},
+        { field: 'cpf', displayName: 'CPF', width: '15%'},
+        { field: 'dataNascimento', displayName: 'Nascimento', width: '10%', cellFilter: 'date:\'dd/MM/yyyy\''},
+        { field: 'departamento.descricao', displayName: 'Departamento', width: '20%'}
       ]
     };
 
