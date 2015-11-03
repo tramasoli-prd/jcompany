@@ -21,6 +21,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
@@ -54,6 +55,7 @@ public class DependenteEntity extends PlcVersionedEntity<Long> implements PlcLog
 	@ManyToOne (targetEntity = FuncionarioEntity.class, fetch = FetchType.LAZY)
 	@NotNull
 	@JoinColumn
+	@XmlTransient
 	private FuncionarioEntity funcionario;	
  	
     /*

@@ -27,6 +27,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
@@ -53,6 +54,7 @@ public class HistoricoProfissionalEntity extends PlcVersionedEntity<Long> implem
 	@ManyToOne (targetEntity = FuncionarioEntity.class, fetch = FetchType.LAZY)
 	@NotNull
 	@JoinColumn
+	@XmlTransient
 	private FuncionarioEntity funcionario;
 	
 	@Size(max = 40)
@@ -74,14 +76,13 @@ public class HistoricoProfissionalEntity extends PlcVersionedEntity<Long> implem
 	 * @return true Se funcionário não tiver curso superior ou tiver e salario for maior que 1.000,000
 	 */
 	@AssertTrue(message="{funcionario.valida.salario}")
-	@Transient
 	public boolean isSalarioValido() {
 		
-		if (!this.funcionario.getTemCursoSuperior() || this.salario == null) {
+		if ((this.funcionario!=null && !this.funcionario.getTemCursoSuperior()) || this.salario == null) {
 			return true;
 		}
 		
-		return this.funcionario.getTemCursoSuperior() && this.salario.compareTo(new BigDecimal(SAL_MIN_CURSO_SUPERIOR)) >= 0;
+		return this.funcionario!=null && this.funcionario.getTemCursoSuperior() && this.salario.compareTo(new BigDecimal(SAL_MIN_CURSO_SUPERIOR)) >= 0;
 		
 	}	
  	

@@ -1,6 +1,8 @@
 package com.powerlogic.jcompany.rhdemo.app.rest.entity;
 
 import java.io.File;
+import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -23,8 +25,10 @@ import org.apache.commons.lang3.StringUtils;
 import com.powerlogic.jcompany.commons.util.PlcFileDTO;
 import com.powerlogic.jcompany.commons.util.PlcFileUploadUtil;
 import com.powerlogic.jcompany.core.PlcException;
+import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.core.rest.entity.PlcAbstractEntityRest;
+import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.DependenteEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoConteudoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FuncionarioEntity;
@@ -90,6 +94,15 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 	@POST
 	@Path("/savefunc")
 	public FuncionarioEntity save(@Context HttpServletRequest request, @Context UriInfo ui, FuncionarioEntity entity) throws PlcException {
+		setMasterIntoDetails(entity, entity.getDependente(), "funcionario");
+		setMasterIntoDetails(entity, entity.getHistoricoProfissional(), "funcionario");
+		recuperaFotoDoDisco(request, entity);
+		return super.save(entity);
+	}
+
+
+
+	private void recuperaFotoDoDisco(HttpServletRequest request, FuncionarioEntity entity) {
 		if (entity.getFoto()!=null && entity.getFoto().getId()==null &&  entity.getFoto().getNome()!=null) {
 
 			String subDiretorio = request.getContextPath();
@@ -105,7 +118,6 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 				entity.getFoto().getConteudo().setBinaryContent(fileDTO.getBinaryContent());
 			}
 		}
-		return super.save(entity);
 	}
 
 

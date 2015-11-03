@@ -54,6 +54,7 @@ public class PlcValidationInterceptor  {
 			}catch(PlcException ePlc){
 				throw ePlc;
 			} catch (Exception e) {
+				e.printStackTrace();
 				throw PlcBeanMessages.FALHA_OPERACAO_003.create();
 			}	
 		}	

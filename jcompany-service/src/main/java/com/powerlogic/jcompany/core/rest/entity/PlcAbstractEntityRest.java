@@ -1,6 +1,7 @@
 package com.powerlogic.jcompany.core.rest.entity;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.List;
 
 import com.powerlogic.jcompany.core.PlcException;
@@ -42,5 +43,19 @@ public abstract class PlcAbstractEntityRest <PK extends Serializable, E extends 
 	@Override
 	public PlcPagedResult<E> find(A searchBuilder) throws PlcException {
 		throw new UnsupportedOperationException();
+	}
+	
+	protected void setMasterIntoDetails(Object entity, List list, String property) {
+		
+		for(Object o: list) {
+			try {
+				Field f = o.getClass().getDeclaredField(property);
+				f.setAccessible(true);
+				f.set(o, entity);
+			} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 }
