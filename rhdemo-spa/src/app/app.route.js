@@ -66,7 +66,7 @@
 
     $stateProvider
       .state('funcionariomdt', {
-        url: '/funcionariomdt',
+        url: '/funcionariomdt/:id',
         templateUrl: 'app/funcionario/funcionariomdt.html',
         controller: 'funcionarioController',
         controllerAs: 'funcionarioController'

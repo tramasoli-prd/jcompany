@@ -4,13 +4,13 @@
 
 	<div class="row header" >
 
-        <div class="col-md-2">
+        <div class="col-md-6">
    
             <label>Nome</label>
             
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
            
             <label>Sexo</label>
 			
@@ -18,32 +18,27 @@
 
 	</div>
 
-	<div class="row" ng-repeat="row in rows">
+	<div class="row" ng-repeat="row in funcionario.dependente">
 
-		<div class="col-md-2">
-			<input type="text" ng-model="row.dependente.nome" required ="" ng-required="true" maxlength="2" 		class="form-control obrigatorio">
-			<input type="hidden" ng-model="row.uf.id" >
+		<div class="col-md-6">
+			<input type="text" ng-model="row.nome" required ="" ng-required="true" maxlength="2" 		class="form-control obrigatorio">
+			<input type="hidden" ng-model="row.id" >
 		    
 		</div>
 
-		<div class="col-md-6">    
-			<input type="text" ng-model="row.dependente.sexo" required ="" ng-required="true" maxlength="50" class="form-control obrigatorio">     
-		</div>
-
-		<div class="col-sd-2">
-
-		   	<button type="submit" class="btn btn-primary" ng-click="saveRow($index);">
-			  <i class="glyphicon glyphicon-save-file"></i>
-			</button>
-
-			<button type="submit" class="btn btn-danger" ng-click="removeRow($index);" ng-if="row.dependente.id">
-			  <i class="glyphicon glyphicon-erase"></i>
-			</button>
-
+		<div class="col-md-4">    
+			<label class="radio-inline c-radio">
+            	<input id="inlineradio1" type="radio" ng-model="row.sexo" name="i-radio"  value="{{staticLookupSexo[0].sexo}}" />
+            	<span class="fa fa-circle"></span>{{staticLookupSexo[0].descricao}}</label>
+          	<label class="radio-inline c-radio">
+           		<input id="inlineradio2" type="radio" ng-model="row.sexo" name="i-radio" value="{{staticLookupSexo[1].sexo}}" />
+           		<span class="fa fa-circle"></span>{{staticLookupSexo[1].descricao}}</label> 
 		</div>
 
 	</div>
 	<br/>
+
+	<button type="button" class="btn btn-default" ng-click="addItemDependente();" >Adicionar</button>
 
 	
 </div>
