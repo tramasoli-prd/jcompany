@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.powerlogic.jcompany.core.PlcException;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.core.rest.entity.PlcAbstractEntityRest;
+import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FuncionarioEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.service.FuncionarioService;
 
@@ -57,5 +61,23 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 	protected FuncionarioService getEntityService() {
 		return funcionarioService;
 	}
+
+	@GET
+	@Path("/foto/{id}")
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public Response getTextFile(@PathParam("id") Long idFoto) {
+
+		FotoEntity fotoEntity = funcionarioService.getFoto(idFoto);
+		
+		ResponseBuilder response = Response.ok(fotoEntity.getConteudo().getBinaryContent());
+
+		response.header("Content-Disposition", "inline; filename=\""+fotoEntity.getNome()+"\"; size=\""+fotoEntity.getTamanho()+"\"");
+		response.header("Content-Type", fotoEntity.getTipo());
+		response.header("Content-Length", fotoEntity.getTamanho());
+
+		return response.build();
+
+	}
+
 
 }
