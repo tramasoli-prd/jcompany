@@ -12,6 +12,7 @@ import com.powerlogic.jcompany.core.PlcException;
 import com.powerlogic.jcompany.core.model.repository.PlcEntityRepository;
 import com.powerlogic.jcompany.core.model.service.PlcAbstractServiceEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoConteudoEntity;
+import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FuncionarioEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.repository.FuncionarioRepository;
 
@@ -44,5 +45,10 @@ public class FuncionarioServiceImpl extends PlcAbstractServiceEntity<Long, Funci
 			}
 		}
 		return super.save(entity);
+	}
+
+	@Override
+	public FotoEntity getFoto(Long idFoto) {
+		return funcionarioRepository.getFoto(idFoto);
 	}
 }

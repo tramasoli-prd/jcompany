@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -16,6 +17,7 @@ import com.powerlogic.jcompany.core.exception.PlcBeanMessages;
 import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 import com.powerlogic.jcompany.core.model.repository.PlcAbstractRepository;
 import com.powerlogic.jcompany.core.util.ConstantUtil;
+import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FuncionarioEntity;
 
 @ApplicationScoped
@@ -66,6 +68,12 @@ public class FuncionarioRepository extends PlcAbstractRepository<Long, Funcionar
 		}
 		
 	
+	}
+
+	public FotoEntity getFoto(Long idFoto) {
+		FotoEntity fe= getEntityManager().find(FotoEntity.class, idFoto);
+		fe.getConteudo(); // inicializando o conteudo
+		return fe;
 	}
 
 }
