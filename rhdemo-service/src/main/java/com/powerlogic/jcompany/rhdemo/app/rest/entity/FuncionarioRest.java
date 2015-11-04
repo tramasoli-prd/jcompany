@@ -99,14 +99,17 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 
 
 	private void recuperaFotoDoDisco(HttpServletRequest request, FuncionarioEntity entity) {
-		if (entity.getFoto()!=null && entity.getFoto().getId()==null &&  entity.getFoto().getNome()!=null) {
+		if (StringUtils.isNotEmpty(entity.getFotoFileName())) {
 
 			String subDiretorio = request.getContextPath();
 			if (request.getUserPrincipal()!=null) {
 				subDiretorio = subDiretorio.concat(File.separator).concat(request.getUserPrincipal().getName()); 
 			}			
-			PlcFileDTO fileDTO = fileUploadUtil.getFile(subDiretorio, entity.getFoto().getNome());
+			PlcFileDTO fileDTO = fileUploadUtil.getFile(subDiretorio, entity.getFotoFileName());
 			if (fileDTO!=null) {
+				//if (entity.getFoto() == null){
+					entity.setFoto(new FotoEntity());
+				//}
 				entity.getFoto().setNome(fileDTO.getNome());
 				entity.getFoto().setTamanho(fileDTO.getTamanho());
 				entity.getFoto().setTipo(fileDTO.getTipo());
