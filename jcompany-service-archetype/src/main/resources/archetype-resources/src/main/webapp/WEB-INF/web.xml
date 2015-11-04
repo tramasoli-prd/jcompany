@@ -21,7 +21,7 @@
 		</init-param>
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>com.powerlogic.jcompany.core.rest, com.powerlogic.jcompany.rhdemo.app.rest</param-value>
+			<param-value>com.powerlogic.jcompany.core.rest, ${package}.app.rest</param-value>
 		</init-param>
 		
 		<load-on-startup>1</load-on-startup>

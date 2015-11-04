@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>powerlogic.jaguar.jcompany</groupId>
-  <artifactId>rhdemo-service-archetype</artifactId>
+  <artifactId>jcompany-service-archetype</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
-  <name>rhdemo-service-archetype</name>
+  <name>jcompany-service-archetype</name>
 
   <build>
     <extensions>
