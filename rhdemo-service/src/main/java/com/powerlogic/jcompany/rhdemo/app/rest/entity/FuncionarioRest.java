@@ -1,8 +1,6 @@
 package com.powerlogic.jcompany.rhdemo.app.rest.entity;
 
 import java.io.File;
-import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,10 +23,8 @@ import org.apache.commons.lang3.StringUtils;
 import com.powerlogic.jcompany.commons.util.PlcFileDTO;
 import com.powerlogic.jcompany.commons.util.PlcFileUploadUtil;
 import com.powerlogic.jcompany.core.PlcException;
-import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.core.rest.entity.PlcAbstractEntityRest;
-import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.DependenteEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoConteudoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FuncionarioEntity;

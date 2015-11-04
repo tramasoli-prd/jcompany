@@ -17,14 +17,14 @@
         <div class="col-md-6">
            
             <label>Nome:</label>
-			<input type="text" ng-model="funcionario.nome" class="form-control">
+			      <input type="text" ng-model="funcionario.nome" class="form-control">
             
         </div>
 
         <div class="col-md-2">
            
             <label>CPF:</label>
-			<input type="text" ng-model="funcionario.cpf" class="form-control">
+			      <input type="text" ng-model="funcionario.cpf" class="form-control">
             
         </div>
 	</div>
@@ -92,10 +92,10 @@
           	<label class="col-sm-2 control-label">Sexo:</label>
                <div class="col-sm-10">
                   <label class="radio-inline c-radio">
-                     <input id="inlineradio1" type="radio" ng-model="funcionario.sexo" name="i-radio"  ng-value="staticLookupSexo[0].sexo" />
+                     <input id="inlineradio1" type="radio" ng-model="funcionario.sexo" name="radio-sexo"  ng-value="staticLookupSexo[0].sexo" />
                      <span class="fa fa-circle"></span>{{staticLookupSexo[0].descricao}}</label>
                   <label class="radio-inline c-radio">
-                     <input id="inlineradio2" type="radio" ng-model="funcionario.sexo" name="i-radio" ng-value="staticLookupSexo[1].sexo" />
+                     <input id="inlineradio2" type="radio" ng-model="funcionario.sexo" name="radio-sexo" ng-value="staticLookupSexo[1].sexo" />
                      <span class="fa fa-circle"></span>{{staticLookupSexo[1].descricao}}</label>
      
                </div>
@@ -118,15 +118,20 @@
 
      <div class="row">
 
-    	 <div class="col-md-12">
+    	 <div class="col-md-6">
             
 
           	<label>Foto:</label>
 
           	<div nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
-  				<input filestyle="" type="file" ng-model="funcionario.foto" data-button-text="Selecione" data-class-button="btn btn-default" data-classinput="form-control inline" nv-file-select="" uploader="uploader" class="form-control" />
+  				<input filestyle="" type="file"  data-button-text="Selecione" data-class-button="btn btn-default" data-classinput="form-control inline" nv-file-select="" uploader="uploader" class="form-control" />
+           <a href="{{backendUrl}}/rest/entity/funcionario/foto/{{funcionario.foto.id}}">{{funcionario.foto.nome}}</a>
+
+           <input type="hidden" ng-model="funcionario.foto" class="form-control">
   			    
   			</div>
+
+       
 
   			<br/>
 
