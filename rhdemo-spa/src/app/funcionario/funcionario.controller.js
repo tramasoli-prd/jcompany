@@ -6,10 +6,10 @@
     .module('rhdemo')
     .controller('funcionarioController', FuncionarioController );
 
-  FuncionarioController.$inject = ['$rootScope', '$scope', '$state', 'funcionarioService', 'notificationService', 'appLookupSexoService', 'appLookupEstadoCivilService', 'appLookupDepartamentoService', 'FileUploader', '$stateParams'];
+  FuncionarioController.$inject = ['$rootScope', '$scope', '$state', '$backendUrl', 'funcionarioService', 'notificationService', 'appLookupSexoService', 'appLookupEstadoCivilService', 'appLookupDepartamentoService', 'FileUploader', '$stateParams'];
 
   /** @ngInject */
-  function FuncionarioController($rootScope, $scope, $state, funcionarioService, notificationService, appLookupSexoService, appLookupEstadoCivilService, appLookupDepartamentoService,  FileUploader, $stateParams) {
+  function FuncionarioController($rootScope, $scope, $state, $backendUrl, funcionarioService, notificationService, appLookupSexoService, appLookupEstadoCivilService, appLookupDepartamentoService,  FileUploader, $stateParams) {
 
 
     /* ------------------
@@ -18,8 +18,9 @@
     $scope.staticLookupSexo = [];
     $scope.staticLookupEstadoCivil = [];
     $scope.dynamicLookupDepartamento = [];
+    $scope.backendUrl = $backendUrl;
     $scope.uploader = new FileUploader({
-        url: 'http://localhost:7001/rhdemo-service/uploadFiles',
+        url: $backendUrl+'/uploadFiles',
         queueLimit: 1,
         withCredentials: true
     });
@@ -35,7 +36,7 @@
 
     // CALLBACKS
     $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {              
-        $scope.foto = fileItem._file.name;
+        $scope._fotoFileName = fileItem._file.name;
     };
           
 
@@ -55,6 +56,7 @@
       if ($state.current.name === 'funcionariomdt' && $stateParams.id){ 
         $scope.edit($stateParams.id);    
       } 
+
     }
 
     $scope.find = function(){
@@ -80,9 +82,10 @@
     };
 
     $scope.save = function(){
-      $scope.funcionario.foto = $scope.foto;
+      $scope.funcionario.fotoFileName = $scope._fotoFileName;
       funcionarioService.save($scope.funcionario).then( function (response) {
           $rootScope.funcionario = response.data;
+          $scope.uploader.clearQueue();
           notificationService.success("DADOS_SALVOS_SUCESSO_000");
       });
     };
