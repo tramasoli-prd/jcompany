@@ -26,7 +26,7 @@ import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 
 /**
- * Arquivo de Fotos
+ * Entidade Foto
  */
 @SuppressWarnings("serial")
 @Entity
@@ -35,85 +35,105 @@ import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 @XmlAccessorType(XmlAccessType.FIELD)
 @SequenceGenerator(name = "FOTO_ID_GENERATOR", sequenceName = "SE_FOTO")
 public class FotoEntity extends PlcVersionedEntity<Long>implements PlcLogicalExclusion {
-
-	public FotoEntity() {
-	}
 	
-	public FotoEntity(Long id) {
-		this.id = id;
-	}
-	
-	public FotoEntity(String nome) {
-		this.nome = nome;
-	}
-	
-	
+	/** atributo PK
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FOTO_ID_GENERATOR")
 	@Column(name = "PK_FOTO", unique = true, nullable = false, precision = 10)
 	private Long id;
 
+	/** atributo nome foto
+	 */
 	@Column(name = "NOME")
 	private String nome;
 
+	/** atributo tipo de arquivo
+	 */
 	@Column(name = "TIPO")
-	protected String tipo;
+	private String tipo;
 
+	/** atributo tamanho arquivo
+	 */
 	@Column(name = "TAMANHO")
-	protected Integer tamanho;
+	private Integer tamanho;
 
+	/** atributo conteudo da arquivo
+	 */
 	@OneToOne(targetEntity = FotoConteudoEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false, mappedBy="foto")
 	@XmlTransient
-	protected FotoConteudoEntity conteudo;
+	private FotoConteudoEntity conteudo;
 
-	protected String url;
+	
 
+	/**
+	 * @return the id
+	 */
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the nome
+	 */
 	public String getNome() {
 		return nome;
 	}
 
+	/**
+	 * @param nome the nome to set
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
+	/**
+	 * @return the tipo
+	 */
 	public String getTipo() {
 		return tipo;
 	}
 
+	/**
+	 * @param tipo the tipo to set
+	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
+	/**
+	 * @return the tamanho
+	 */
 	public Integer getTamanho() {
 		return tamanho;
 	}
 
+	/**
+	 * @param tamanho the tamanho to set
+	 */
 	public void setTamanho(Integer tamanho) {
 		this.tamanho = tamanho;
 	}
 
+	/**
+	 * @return the conteudo
+	 */
 	public FotoConteudoEntity getConteudo() {
 		return conteudo;
 	}
 
+	/**
+	 * @param conteudo the conteudo to set
+	 */
 	public void setConteudo(FotoConteudoEntity conteudo) {
 		this.conteudo = conteudo;
 	}
 
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	
 }

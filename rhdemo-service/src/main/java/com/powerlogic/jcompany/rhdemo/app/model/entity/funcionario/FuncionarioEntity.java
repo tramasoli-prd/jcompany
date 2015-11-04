@@ -1,6 +1,5 @@
 package com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +25,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
@@ -55,9 +55,11 @@ import com.powerlogic.jcompany.rhdemo.app.model.entity.DepartamentoEntity;
 })
 public class FuncionarioEntity extends PlcVersionedEntity<Long> implements PlcLogicalExclusion {
 
-	public static final int MAIORIDADE = 18;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 867075439636862292L;
 
-	public static final BigDecimal SALARIO_MINIMO_SUPERIOR = new BigDecimal(1000);
 	
 	@Id 
  	@GeneratedValue(strategy=GenerationType.AUTO, generator = "SE_FUNCIONARIO")
@@ -110,7 +112,7 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements PlcLo
     @Valid
     private List<CurriculoEntity> curriculo;
 
-    @OneToOne (targetEntity = FotoEntity.class, cascade=CascadeType.ALL)    
+    @OneToOne (targetEntity = FotoEntity.class, cascade=CascadeType.ALL, orphanRemoval=true)    
     @JoinColumn(name="ID_FOTO")
     private FotoEntity foto;
 	
@@ -125,6 +127,11 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements PlcLo
 	@OneToMany (targetEntity = DependenteEntity.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="funcionario", orphanRemoval=true)
 	@Valid
 	private List<DependenteEntity> dependente;
+	
+	/** atributo para repassar o nome do arquivo vindo do upload
+	 */
+	@Transient
+	private String fotoFileName; 
 	
 	@AssertTrue(message="{funcionario.valida.maioridade}")
 	public boolean isMaiorDeIdade() {
@@ -258,6 +265,20 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements PlcLo
 
 	public void setDependente(List<DependenteEntity> dependente) {
 		this.dependente = dependente;
+	}
+	
+	/**
+	 * @return the fotoFileName
+	 */
+	public String getFotoFileName() {
+		return fotoFileName;
+	}
+
+	/**
+	 * @param fotoFileName the fotoFileName to set
+	 */
+	public void setFotoFileName(String fotoFileName) {
+		this.fotoFileName = fotoFileName;
 	}
 
 }
