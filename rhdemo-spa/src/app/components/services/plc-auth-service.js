@@ -167,13 +167,17 @@ angular
             var auth = this;
             var loginPage = 'plc-login.html';
             var currentPage = $window.location.toString();
+            
+            if (currentPage.indexOf(loginPage) === -1) {
+            	document.body.setAttribute('style', 'display:none');
+            }
 
             if (currentPage.indexOf('/index.html') === -1) {
                 // execute auth check and fire events LOGIN
                 auth.check()
                     .then(function(userInfo) {
                         // login ok
-                
+                    	document.body.setAttribute('style', 'display:block');
                     }, function() {
                         // not logged
                         if (currentPage.indexOf(loginPage) === -1) {
@@ -183,6 +187,9 @@ angular
                         auth.loaded = true;
                     });
             }
+            
+            
+            
             // Cada troca de view faz checagem de permissao.
             $rootScope.$on('$routeChangeStart', function(event, nextRoute, currRoute) {
 
