@@ -95,7 +95,6 @@
       $scope.ehVinculado = true;
       ngDialog.openConfirm({
         template: 'app/departamento/departamentosel.html',
-        className: 'ngdialog-theme-default',
         preCloseCallback: 'preCloseCallbackOnScope',
         scope: $scope
       }).then(function (value) {
@@ -104,7 +103,6 @@
         $scope.ehVinculado = false;
       });
     };
-
     
     $scope.rowTemplate =  function() {
       return '<div ng-if="!grid.appScope.ehVinculado" ui-sref="departamentoman({id: row.entity.id})" >' +
