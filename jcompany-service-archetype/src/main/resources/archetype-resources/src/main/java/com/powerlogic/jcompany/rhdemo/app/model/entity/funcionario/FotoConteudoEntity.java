@@ -1,3 +1,6 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
 /*  																													
 	    			       Jaguar-jCompany Developer Suite.																		
 			    		        Powerlogic 2010-2014.
