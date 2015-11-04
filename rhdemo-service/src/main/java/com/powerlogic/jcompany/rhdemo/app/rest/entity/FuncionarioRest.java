@@ -116,6 +116,7 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 				entity.getFoto().setTipo(fileDTO.getTipo());
 				entity.getFoto().setConteudo(new FotoConteudoEntity());
 				entity.getFoto().getConteudo().setBinaryContent(fileDTO.getBinaryContent());
+				entity.getFoto().getConteudo().setFoto(entity.getFoto());
 			}
 		}
 	}
