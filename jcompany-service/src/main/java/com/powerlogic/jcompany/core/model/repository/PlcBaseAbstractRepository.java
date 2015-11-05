@@ -1,10 +1,15 @@
 package com.powerlogic.jcompany.core.model.repository;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OptimisticLockException;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -75,6 +80,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 	@Override
 	public void remove(E entity) {
 		try {
+			checkConstraintsBeforeRemove(entity);
 			if (entity instanceof PlcLogicalExclusion) {
 				logicalRemove(entity);
 			} else {
@@ -215,6 +221,78 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		} catch (Exception e) {
 			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
 		}
+	}
+	
+
+	protected void checkConstraintsBeforeRemove( E entity)  {
+
+
+		List<NamedQuery> checkConstraintsBeforeRemove = getNamedQueriesCheckConstraintsBeforeRemove(entity.getClass());
+
+		if (checkConstraintsBeforeRemove == null || checkConstraintsBeforeRemove.size()==0) {
+			return;
+		}
+
+		Iterator j = checkConstraintsBeforeRemove.iterator();
+				
+		String query = "";
+		Long totalResultados = 0L;
+
+		while (j.hasNext()) {
+
+			query = "";
+			totalResultados = 0L;
+			
+			NamedQuery nqcCheckConstraintsBeforeRemove = (NamedQuery) j.next();
+			query = nqcCheckConstraintsBeforeRemove.query();
+			
+			//query = query + " and id <> :id";
+			
+			if (entity instanceof PlcLogicalExclusion) {
+				query = query + " and o.situacao = :situacao";
+			}
+
+			Query q = getEntityManager().createQuery(query);
+			q.setParameter("id", entity.getId());
+			if (entity instanceof PlcLogicalExclusion) {
+				q.setParameter("situacao", PlcSituacao.A);
+			}
+			
+			totalResultados = (Long) q.getSingleResult();
+
+			if (totalResultados>0) {
+				throw PlcBeanMessages.FALHA_CHECK_CONSTRAINT_BEFORE_REMOVE_025.create("{app.falha.check.constraint.before.remove."+entity.getClass().getSimpleName()+"}");
+			}
+
+		}
+
+	}
+	
+	public List<NamedQuery> getNamedQueriesCheckConstraintsBeforeRemove(Class<? extends Object> classe)  {
+		
+		List<NamedQuery> anotacoesCheckConstraintsBeforeRemove = new ArrayList<NamedQuery>();
+		
+		String nomeClasseSemPackage = classe.getName().substring(classe.getName().lastIndexOf(".")+1);
+		NamedQueries nqs = (NamedQueries) classe.getAnnotation(NamedQueries.class);
+		
+		if (nqs == null) {
+			NamedQuery nq = (NamedQuery) classe.getAnnotation(NamedQuery.class);
+			if (nq != null && nq.name().indexOf(nomeClasseSemPackage+"."+"checkConstraintsBeforeRemove")>-1){
+				anotacoesCheckConstraintsBeforeRemove.add(nq);
+			}
+		} else {
+			
+			for (int i = 0; i < nqs.value().length; i++) {
+				NamedQuery nq = nqs.value()[i];
+				if (nq.name().indexOf(nomeClasseSemPackage+"."+"checkConstraintsBeforeRemove")>-1) {
+					anotacoesCheckConstraintsBeforeRemove.add(nq);
+				}
+			}
+			
+		}
+		
+		return anotacoesCheckConstraintsBeforeRemove;
+		
 	}
 
 }

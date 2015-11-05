@@ -57,6 +57,8 @@ public abstract class PlcAbstractServiceEntity <PK extends Serializable, E exten
 			novo.setUsuarioAtualizacao(entity.getUsuarioAtualizacao());
 			novo.setVersao(entity.getVersao());
 			getEntityRepository().remove(novo);
+		} catch (PlcException e) {
+			throw e;
 		} catch (Exception e) {
 			throw PlcBeanMessages.FALHA_OPERACAO_003.create();
 		}
@@ -69,6 +71,8 @@ public abstract class PlcAbstractServiceEntity <PK extends Serializable, E exten
 			novo.setUsuarioAtualizacao(entity.getUsuarioAtualizacao());
 			novo.setVersao(entity.getVersao());
 			getEntityRepository().inative(novo);
+		} catch (PlcException e) {
+			throw e;			
 		} catch (Exception e) {
 			throw PlcBeanMessages.FALHA_OPERACAO_003.create();
 		}
