@@ -21,7 +21,8 @@
                        'tmh.dynamicLocale',// angular-dynamic-locale
                        'angularFileUpload', // upload de arquivos
                        'ngDialog', // modal
-                       'jcompany-view'
+                       'jcompany-view',
+                       'blockUI'
                        ]
     		);
 
