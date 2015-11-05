@@ -5,23 +5,23 @@
     .module('rhdemo')
     .factory('DepartamentoService', DepartamentoService);
 
-  DepartamentoService.$inject = ['EntityService', 'Utils'];
+  DepartamentoService.$inject = ['PlcEntityService', 'PlcUtils'];
 
   /** @ngInject */
-  function DepartamentoService(EntityService, Utils) {
+  function DepartamentoService(PlcEntityService, PlcUtils) {
 
   	 
-  	var Service = $class(EntityService, {
+  	var Service = $class(PlcEntityService, {
 
         constructor: function() {
-            EntityService.call(this, {
+            PlcEntityService.call(this, {
                  type: 'departamento'
             });
         },
 
         /* METODOS REST */
         _all: function(departamento) {
-            var url = Utils.encodeURIParams(departamento);
+            var url = PlcUtils.encodeURIParams(departamento);
             return this._get('/all?'+url);
         },
 

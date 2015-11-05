@@ -6,10 +6,10 @@
     .module('rhdemo')
     .controller('DepartamentoController', DepartamentoController );
 
-  DepartamentoController.$inject = ['$rootScope', '$scope', '$state', 'ngDialog', 'DepartamentoService', 'notificationService', '$stateParams'];
+  DepartamentoController.$inject = ['$rootScope', '$scope', '$state', 'ngDialog', 'DepartamentoService', 'PlcNotificationService', '$stateParams'];
 
   /** @ngInject */
-  function DepartamentoController($rootScope, $scope, $state, ngDialog, DepartamentoService, notificationService, $stateParams) {
+  function DepartamentoController($rootScope, $scope, $state, ngDialog, DepartamentoService, PlcNotificationService, $stateParams) {
 
     $scope.ehVinculado = false;
 
@@ -27,7 +27,7 @@
     $scope.find = function(){
       DepartamentoService._all($scope.departamentoArg).then( function (response) {
         if (response.data.length == 0){
-          notificationService.info("NENHUM_REGISTRO_ENCONTRADO_022");
+          PlcNotificationService.info("NENHUM_REGISTRO_ENCONTRADO_022");
         }
         $scope.gridOptions.data = response.data;
       });
@@ -68,14 +68,14 @@
       
       DepartamentoService.save($scope.departamento).then( function (response) {
           $rootScope.departamento = response.data;
-          notificationService.success("DADOS_SALVOS_SUCESSO_000");
+          PlcNotificationService.success("DADOS_SALVOS_SUCESSO_000");
       });
     };
 
     $scope.remove = function(){
       DepartamentoService.remove($scope.departamento).then( function (response) {
           $rootScope.departamento = response.data;
-          notificationService.success("REGISTRO_EXCLUIDO_SUCESSO_021");
+          PlcNotificationService.success("REGISTRO_EXCLUIDO_SUCESSO_021");
       });
     };
 

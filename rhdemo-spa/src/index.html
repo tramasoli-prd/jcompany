@@ -8,6 +8,7 @@
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
 
+
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
@@ -41,12 +42,6 @@
             <li class="sidebar-title"><span>Menu</span></li>
             <li class="sidebar-list">
               <a ui-sref="inicial">{{"label.pagina.inicial" | translate}}<span class="menu-icon fa fa-tachometer"></span></a>
-            </li>
-            <li class="sidebar-list">
-              <a ui-sref="dashboard">Painel de Exemplos <span class="menu-icon fa fa-tachometer"></span></a>
-            </li>
-            <li class="sidebar-list">
-              <a ui-sref="tables">Tabelas Exemplo <span class="menu-icon fa fa-table"></span></a>
             </li>
             <li class="sidebar-list">
               <a ui-sref="departamentosel">Departamento <span class="menu-icon fa fa-table"></span></a>
@@ -102,7 +97,7 @@
                       </li-->
                       <li class="divider"></li>
                       <li class="dropdown-header">
-                        <div ng-translate-language-select></div>
+                        <div plc-language-select></div>
                       </li>
                       <li class="divider"></li>
                       <li class="link">

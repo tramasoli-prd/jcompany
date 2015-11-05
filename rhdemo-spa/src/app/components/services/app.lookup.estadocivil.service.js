@@ -9,15 +9,15 @@
     .module('rhdemo')
     .factory('appLookupEstadoCivilService', AppLookupEstadoCivilService);
 
-  AppLookupEstadoCivilService.$inject = ['EntityService'];
+  AppLookupEstadoCivilService.$inject = ['PlcEntityService'];
 
   /** @ngInject */
-  function AppLookupEstadoCivilService(EntityService) {
+  function AppLookupEstadoCivilService(PlcEntityService) {
   	 
-  	var service = $class(EntityService, {
+  	var service = $class(PlcEntityService, {
 
         constructor: function() {
-            EntityService.call(this, {
+            PlcEntityService.call(this, {
                  type: 'lookup/estadocivil'
             });
         },

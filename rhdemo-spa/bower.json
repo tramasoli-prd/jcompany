@@ -15,7 +15,7 @@
     "moment": "~2.10.6",
     "jquery": "~2.1.4",
     "animate.css": "~3.4.0",
-    "angular": "~1.4.2",
+    "angular": "~1.4.7",
     "rdash-ui": "~1.0.1",
     "angular-ui-router": "~0.2.15",
     "bootstrap": "~3.3.5",
@@ -24,7 +24,6 @@
     "angular-ui-grid": "~3.0.7",
     "angular-file-upload": "~2.2.0",
     "bootstrap-filestyle": "~1.2.1",
-    "jquery-ui": "~1.11.4",
     "jquery.inputmask": "~3.2.2",
     "jquery-classyloader": "http://vox.space/files/jquery-classyloader.zip",
     "jquery.browser": "~0.0.8",
@@ -35,7 +34,8 @@
     "angular-dynamic-locale": "~0.1.28",
     "angular-i18n": "~1.4.7",
     "angular-translate-loader-url": "~2.8.1",
-    "ng-dialog": "~0.5.5"
+    "ng-dialog": "~0.5.5",
+    "jcompany-view": "~0.0.26"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.2"
@@ -53,8 +53,7 @@
     }
   },
   "resolutions": {
-    "jquery-ui": "~1.11.4",
     "jquery": "~2.1.4",
-    "angular": "~1.4.2"
+    "angular": "~1.4.7"
   }
 }

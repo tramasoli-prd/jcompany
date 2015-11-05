@@ -6,9 +6,9 @@
 	.module('rhdemo')
 	.controller('AppController', AppController);
 
-	AppController.$inject = ['$rootScope', '$scope', '$cookies','$state', '$window', 'authService', '$stateParams'];
+	AppController.$inject = ['$rootScope', '$scope', '$cookies','$state', '$window', 'PlcAuthService', '$stateParams'];
 	
-	function AppController($rootScope, $scope, $cookies, $state, $window, authService, $stateParams) {
+	function AppController($rootScope, $scope, $cookies, $state, $window, PlcAuthService, $stateParams) {
 
 		/**  
 		 * Sidebar Toggle & Cookie Control
@@ -42,7 +42,7 @@
 		};
 
 		$scope.logout = function() {  
-			authService.logout()  
+			PlcAuthService.logout()  
 			.then(function() { // not logged
 				$window.location.href = '/';   
 			});

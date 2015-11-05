@@ -5,16 +5,16 @@
     .module('rhdemo')
     .factory('ufService', UfService);
 
-  UfService.$inject = ['EntityService'];
+  UfService.$inject = ['PlcEntityService'];
 
   /** @ngInject */
-  function UfService(EntityService) {
+  function UfService(PlcEntityService) {
 
   	 
-  	var Service = $class(EntityService, {
+  	var Service = $class(PlcEntityService, {
 
         constructor: function() {
-            EntityService.call(this, {
+            PlcEntityService.call(this, {
                  type: 'unidadefederativa'
             });
         },

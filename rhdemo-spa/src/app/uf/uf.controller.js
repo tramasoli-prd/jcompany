@@ -6,10 +6,10 @@
     .module('rhdemo')
     .controller('ufController', UfController );
 
-  UfController.$inject = ['$rootScope', '$scope', '$location', 'ufService', 'notificationService', 'Utils'];
+  UfController.$inject = ['$rootScope', '$scope', '$location', 'ufService', 'PlcNotificationService', 'PlcUtils'];
 
   /** @ngInject */
-  function UfController($rootScope, $scope, $location, ufService, notificationService, Utils) {
+  function UfController($rootScope, $scope, $location, ufService, PlcNotificationService, PlcUtils) {
 
     $scope.all = function(){
       ufService._all().then( function (response) {
@@ -26,9 +26,9 @@
 
     $scope.saveRow = function(index){
       var rowElement = document.querySelectorAll('.row.ng-scope')[index];
-      var temErro = Utils.validaObrigatorio(rowElement);
+      var temErro = PlcUtils.validaObrigatorio(rowElement);
       if (temErro) {    
-        notificationService.error("CAMPOS_OBRIGATORIOS_TOPICO_024");
+        PlcNotificationService.error("CAMPOS_OBRIGATORIOS_TOPICO_024");
         return;
       }
 
@@ -38,14 +38,14 @@
             $scope.rows.push(new Object());
           }
           $scope.rows[index].uf  = response.data;
-          notificationService.success("DADOS_SALVOS_SUCESSO_000");
+          PlcNotificationService.success("DADOS_SALVOS_SUCESSO_000");
          
       });
     };
 
     $scope.removeRow = function(index){
       ufService.remove($scope.rows[index].uf).then( function (response) {
-          notificationService.success("REGISTRO_EXCLUIDO_SUCESSO_021");
+          PlcNotificationService.success("REGISTRO_EXCLUIDO_SUCESSO_021");
           $scope.rows.splice(index, 1);
       });
     };

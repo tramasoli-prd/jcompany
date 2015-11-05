@@ -6,10 +6,10 @@
     .module('rhdemo')
     .controller('funcionarioController', FuncionarioController );
 
-  FuncionarioController.$inject = ['$rootScope', '$scope', '$state', '$backendUrl', 'funcionarioService', 'notificationService', 'appLookupSexoService', 'appLookupEstadoCivilService', 'appLookupDepartamentoService', 'FileUploader', '$stateParams'];
+  FuncionarioController.$inject = ['$rootScope', '$scope', '$state', '$backendUrl', 'funcionarioService', 'PlcNotificationService', 'appLookupSexoService', 'appLookupEstadoCivilService', 'appLookupDepartamentoService', 'FileUploader', '$stateParams'];
 
   /** @ngInject */
-  function FuncionarioController($rootScope, $scope, $state, $backendUrl, funcionarioService, notificationService, appLookupSexoService, appLookupEstadoCivilService, appLookupDepartamentoService,  FileUploader, $stateParams) {
+  function FuncionarioController($rootScope, $scope, $state, $backendUrl, funcionarioService, PlcNotificationService, appLookupSexoService, appLookupEstadoCivilService, appLookupDepartamentoService,  FileUploader, $stateParams) {
 
 
     /* ------------------
@@ -63,7 +63,7 @@
       funcionarioService._all($scope.funcionarioArg).then( function (response) {
 
         if (response.data.length == 0){
-          notificationService.info("NENHUM_REGISTRO_ENCONTRADO_022");
+          PlcNotificationService.info("NENHUM_REGISTRO_ENCONTRADO_022");
         }
 
         $scope.gridOptions.data = response.data;
@@ -86,14 +86,14 @@
       funcionarioService.save($scope.funcionario).then( function (response) {
           $rootScope.funcionario = response.data;
           $scope.uploader.clearQueue();
-          notificationService.success("DADOS_SALVOS_SUCESSO_000");
+          PlcNotificationService.success("DADOS_SALVOS_SUCESSO_000");
       });
     };
 
     $scope.remove = function(){
       funcionarioService.remove($scope.funcionario).then( function (response) {
           $rootScope.funcionario = response.data;
-          notificationService.success("REGISTRO_EXCLUIDO_SUCESSO_021");
+          PlcNotificationService.success("REGISTRO_EXCLUIDO_SUCESSO_021");
       });
     };
 

@@ -20,7 +20,8 @@
                        'pascalprecht.translate', // angular-translate
                        'tmh.dynamicLocale',// angular-dynamic-locale
                        'angularFileUpload', // upload de arquivos
-                       'ngDialog' // modal
+                       'ngDialog', // modal
+                       'jcompany-view'
                        ]
     		);
 

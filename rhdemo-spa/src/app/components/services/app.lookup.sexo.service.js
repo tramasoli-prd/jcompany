@@ -9,15 +9,15 @@
     .module('rhdemo')
     .factory('appLookupSexoService', AppLookupSexoService);
 
-  AppLookupSexoService.$inject = ['EntityService'];
+  AppLookupSexoService.$inject = ['PlcEntityService'];
 
   /** @ngInject */
-  function AppLookupSexoService(EntityService) {
+  function AppLookupSexoService(PlcEntityService) {
   	 
-  	var service = $class(EntityService, {
+  	var service = $class(PlcEntityService, {
 
         constructor: function() {
-            EntityService.call(this, {
+            PlcEntityService.call(this, {
                  type: 'lookup/sexo'
             });
         },

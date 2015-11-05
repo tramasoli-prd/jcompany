@@ -5,13 +5,9 @@
 	angular
 	.module('rhdemo')
 	.constant('moment', moment)
-	.constant('$contextUrl', '/')
-	.constant('$backendUrl', 'http://localhost:7001/rhdemo-service')
-	.constant('LOCALES', {
-		'locales': {
-			'pt_BR': 'Português',
-			'en_US': 'English'
-		},
-		'preferredLocale': 'pt_BR'
-	});
+	.constant('$contextUrl', '/');
+
+	angular
+	.module('jcompany-view')
+	.constant('$backendUrl', 'http://localhost:7001/rhdemo-service');
 })();

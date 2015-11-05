@@ -17,22 +17,6 @@
       });
 
     $stateProvider
-      .state('tables', {
-        url: '/tables',
-        templateUrl: 'templates/tables.html',
-        controller: '',
-        controllerAs: ''
-      });
-
-    $stateProvider
-      .state('dashboard', {
-        url: '/dashboard',
-        templateUrl: 'templates/dashboard.html',
-        controller: '',
-        controllerAs: ''
-      });
-
-    $stateProvider
       .state('departamentosel', {
         url: '/departamentosel',
         templateUrl: 'app/departamento/departamentosel.html',
