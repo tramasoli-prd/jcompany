@@ -35,7 +35,7 @@
     "angular-i18n": "~1.4.7",
     "angular-translate-loader-url": "~2.8.1",
     "ng-dialog": "~0.5.5",
-    "jcompany-view": "~0.0.26",
+    "jcompany-view": "~0.0.27",
     "angular-block-ui": "~0.2.2"
   },
   "devDependencies": {

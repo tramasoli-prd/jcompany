@@ -6,9 +6,9 @@
 	.module('rhdemo')
 	.controller('AppController', AppController);
 
-	AppController.$inject = ['$rootScope', '$scope', '$cookies','$state', '$window', 'PlcAuthService', '$stateParams'];
+	AppController.$inject = ['$rootScope', '$scope', '$cookies','$state', '$window', 'PlcAuthService', '$stateParams', 'PlcMenuLoader'];
 	
-	function AppController($rootScope, $scope, $cookies, $state, $window, PlcAuthService, $stateParams) {
+	function AppController($rootScope, $scope, $cookies, $state, $window, PlcAuthService, $stateParams, PlcMenuLoader) {
 
 		/**  
 		 * Sidebar Toggle & Cookie Control
@@ -49,22 +49,25 @@
 
 		};
 
-        $scope.profileA = function() {  
-             document.getElementById('profile').className= "item dropdown open";
-        };
+		activate();
 
-        $scope.profileI = function() {  
-            document.getElementById('profile').className= "item dropdown";
-        };
+        ////////////////
 
-         $scope.notificationA = function() {  
-             document.getElementById('notification').className= "item dropdown open";
-        };
+        function activate() {
+        	// Load menu from json file
+	        // ----------------------------------- 
 
-        $scope.notificationI = function() {  
-            document.getElementById('notification').className= "item dropdown";
-        };
+	        PlcMenuLoader.getMenu(menuReady);
+	          
+	        function menuReady(items) {
+	           $scope.menuItems = items;
+	        }
+        }
 
+		
+
+
+       
         
 		
 	}

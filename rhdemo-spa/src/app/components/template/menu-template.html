@@ -1,0 +1,8 @@
+<!-- Inline template Menu -->
+<li ng-if="item.heading" class="sidebar-title"><span>{{item.text}}</span></li>
+
+<li ng-if="!item.heading" class="sidebar-list">
+ <a ui-sref="{{item.sref}}">{{item.translate | translate}}<span class="{{item.icon}}"></span></a>
+</li>
+
+

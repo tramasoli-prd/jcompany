@@ -1,0 +1,31 @@
+[
+  {
+    "text": "Menu",
+    "heading": "true",
+    "translate": "label.menu"
+  },
+  {
+    "text": "Pagina Inicial",
+    "sref": "inicial",
+    "icon": "menu-icon fa fa-tachometer",
+    "translate": "label.menu.inicial"
+  },
+  {
+    "text": "Departamento",
+    "sref": "departametnosel",
+    "icon": "menu-icon fa fa-table",
+    "translate": "label.menu.departamento"
+  },
+  {
+    "text": "Unidade Federativa",
+    "sref": "uf",
+    "icon": "menu-icon fa fa-compass",
+    "translate": "label.menu.uf"
+  },
+  {
+    "text": "Funcionário",
+    "sref": "funcionariosel",
+    "icon": "menu-icon fa fa-paperclip",
+    "translate": "label.menu.funcionario"
+  }
+]
