@@ -1,14 +1,24 @@
 package com.powerlogic.jcompany.core.model.repository;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OptimisticLockException;
+import javax.persistence.Parameter;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
+import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.PropertyUtilsBean;
 
 import com.powerlogic.jcompany.core.PlcException;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
@@ -21,13 +31,15 @@ import com.powerlogic.jcompany.core.util.ConstantUtil;
 
 public abstract class PlcBaseAbstractRepository<PK extends Serializable, E extends PlcVersionedEntity<PK>> implements PlcEntityRepository<PK, E> {
 
+	private static PropertyUtilsBean propertyUtilsBean = BeanUtilsBean.getInstance().getPropertyUtils();
+
 	protected abstract EntityManager getEntityManager();
 
 	public abstract Class<E> getEntityType();
 
 	@Override
 	public E get(PK id) {
-		
+
 		try {
 			return getEntityManager().find(getEntityType(), id);
 		} catch (PlcException e) {
@@ -39,7 +51,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 
 	@Override
 	public E getDetached(PK id) {
-		
+
 		try {
 			E ent = getEntityManager().find(getEntityType(), id);
 			getEntityManager().detach(ent);
@@ -55,7 +67,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 	public E save(E entity) {
 		// Implementar Listener JPA
 		try {
-
+			checkConstraintsBeforeRemoveOrSave(entity, "Save");
 			if (entity.getId() == null) {
 				getEntityManager().persist(entity);
 			} else {
@@ -75,6 +87,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 	@Override
 	public void remove(E entity) {
 		try {
+			checkConstraintsBeforeRemoveOrSave(entity, "Remove");
 			if (entity instanceof PlcLogicalExclusion) {
 				logicalRemove(entity);
 			} else {
@@ -88,7 +101,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 	}
 
 	protected void logicalRemove(E entity) {
-		
+
 		try {
 			entity.setSituacao(PlcSituacao.E);
 			getEntityManager().merge(entity);
@@ -111,12 +124,12 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 
 	@Override
 	public void inative(E entity) {
-		
+
 		try {
-			
+
 			entity.setSituacao(PlcSituacao.I);
 			getEntityManager().merge(entity);
-			
+
 		} catch (PlcException e) {
 			throw e;
 		} catch (Exception e) {
@@ -145,7 +158,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 
 	@Override
 	public PlcPagedResult<E> find(PlcPagination<E> config) {
-		
+
 		try {
 			CriteriaQuery<E> query = criteriaBuilder().createQuery(getEntityType());
 
@@ -164,7 +177,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 	public List<E> findAll(E entity) throws PlcException {
 
 		try {
-			
+
 			CriteriaBuilder builder = criteriaBuilder();
 
 			CriteriaQuery<E> query = builder.createQuery(getEntityType());
@@ -174,7 +187,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 			query.select(from).where(builder.equal(from.get(ConstantUtil.QUERY_PARAM_SITUACAO), PlcSituacao.A));
 
 			return createQuery(query).getResultList();
-			
+
 		} catch( PlcException e){
 			throw e;
 		} catch( Exception e){ 
@@ -183,14 +196,14 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 	}
 
 	protected <T> PlcPagedResult<T> getPagedResult(PlcPagination<T> config, TypedQuery<T> query) {
-		
+
 		try {
-		
+
 			query.setFirstResult(config.getOffset());
 			query.setMaxResults(config.getLimit());
 
 			return new PlcPagedResult<>(config, config.getLimit(), query.getResultList());
-			
+
 		} catch( PlcException e){
 			throw e;
 		} catch( Exception e){ 
@@ -199,22 +212,106 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 	}
 
 	protected CriteriaBuilder criteriaBuilder() {
-		
+
 		try {
 			return getEntityManager().getCriteriaBuilder();
 		} catch (Exception e) {
 			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
 		}
-		
+
 	}
 
 	protected <T> TypedQuery<T> createQuery(CriteriaQuery<T> query) {
-		
+
 		try {
 			return getEntityManager().createQuery(query);
 		} catch (Exception e) {
 			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
 		}
+	}
+
+
+	protected void checkConstraintsBeforeRemoveOrSave( E entity, String removeOrSave)  {
+
+
+		List<NamedQuery> checkConstraintsBeforeRemoveOrSabe = getNamedQueriesCheckConstraintsBeforeRemoveOrSave(entity.getClass(), removeOrSave);
+
+		if (checkConstraintsBeforeRemoveOrSabe == null || checkConstraintsBeforeRemoveOrSabe.size()==0) {
+			return;
+		}
+
+		Iterator j = checkConstraintsBeforeRemoveOrSabe.iterator();
+
+		String query = "";
+		Long totalResultados = 0L;
+
+		while (j.hasNext()) {
+
+			query = "";
+			totalResultados = 0L;
+
+			NamedQuery nqcCheckConstraintsBeforeRemove = (NamedQuery) j.next();
+			query = nqcCheckConstraintsBeforeRemove.query();
+
+			if (entity instanceof PlcLogicalExclusion) {
+				query = query + " and o.situacao = :situacao";
+			}
+
+			Query q = getEntityManager().createQuery(query);
+
+			Set<Parameter<?>> parameters = q.getParameters();
+
+			try{
+				for (Parameter<?> parameter : parameters) {
+					if(propertyUtilsBean.isReadable(entity, parameter.getName())) {
+						if (parameter.getName().equals("situacao")) {
+							q.setParameter(parameter.getName(), PlcSituacao.A);
+						} else if (parameter.getName().equals("id") && entity.getId()==null) {
+							q.setParameter(parameter.getName(), 0);
+						} else {
+							q.setParameter(parameter.getName(), propertyUtilsBean.getProperty(entity, parameter.getName()));
+						}
+					}
+				}
+			} catch (Exception e ){
+				throw PlcBeanMessages.FALHA_OPERACAO_003.create(e.getMessage());
+			}
+
+			totalResultados = (Long) q.getSingleResult();
+
+			if (totalResultados>0) {
+				throw PlcBeanMessages.FALHA_CHECK_CONSTRAINT_BEFORE_REMOVE_025.create("{app.falha."+nqcCheckConstraintsBeforeRemove.name()+"}");
+			}
+
+		}
+
+	}
+
+	public List<NamedQuery> getNamedQueriesCheckConstraintsBeforeRemoveOrSave(Class<? extends Object> classe, String removeOrSave)  {
+
+		List<NamedQuery> anotacoesCheckConstraintsBeforeRemoveOrSave = new ArrayList<NamedQuery>();
+
+		String nomeClasseSemPackage = classe.getName().substring(classe.getName().lastIndexOf(".")+1);
+		NamedQueries nqs = (NamedQueries) classe.getAnnotation(NamedQueries.class);
+
+		if (nqs == null) {
+			NamedQuery nq = (NamedQuery) classe.getAnnotation(NamedQuery.class);
+			if (nq != null && nq.name().indexOf(nomeClasseSemPackage+"."+"checkConstraintsBefore"+removeOrSave)>-1){
+				anotacoesCheckConstraintsBeforeRemoveOrSave.add(nq);
+			}
+		} else {
+
+			for (int i = 0; i < nqs.value().length; i++) {
+				NamedQuery nq = nqs.value()[i];
+				if (nq.name().indexOf(nomeClasseSemPackage+"."+"checkConstraintsBefore"+removeOrSave)>-1) {
+					anotacoesCheckConstraintsBeforeRemoveOrSave.add(nq);
+				}
+			}
+
+		}
+
+		return anotacoesCheckConstraintsBeforeRemoveOrSave;
+
 	}
 
 }

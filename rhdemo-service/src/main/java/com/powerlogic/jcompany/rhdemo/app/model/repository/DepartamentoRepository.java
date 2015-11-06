@@ -41,10 +41,11 @@ public class DepartamentoRepository extends PlcAbstractRepository<Long, Departam
 
 			Root<DepartamentoEntity> from = query.from(getEntityType());
 
-			query.select(from).where(builder.equal(from.get(ConstantUtil.QUERY_PARAM_SITUACAO), PlcSituacao.A));
-			
 			//TODO: Colocar generico no framework...
 			List<Predicate> predicates= new ArrayList<Predicate>();
+
+			Predicate situacao = builder.equal(from.get(ConstantUtil.QUERY_PARAM_SITUACAO), PlcSituacao.A);
+		    predicates.add(situacao);
 			
 			if(StringUtils.isNoneBlank(departamento.getDescricao())) {
 			    Predicate nome = builder.like(from.<String>get("descricao"), departamento.getDescricao());

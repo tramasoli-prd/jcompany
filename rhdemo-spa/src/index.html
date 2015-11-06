@@ -39,19 +39,10 @@
                 <span class="menu-icon glyphicon glyphicon-transfer"></span>
               </a>
             </li>
-            <li class="sidebar-title"><span>Menu</span></li>
-            <li class="sidebar-list">
-              <a ui-sref="inicial">{{"label.pagina.inicial" | translate}}<span class="menu-icon fa fa-tachometer"></span></a>
-            </li>
-            <li class="sidebar-list">
-              <a ui-sref="departamentosel">Departamento <span class="menu-icon fa fa-table"></span></a>
-            </li>
-            <li class="sidebar-list">
-              <a ui-sref="uf">Unidade Federativa<span class="menu-icon fa fa-compass"></span></a>
-            </li>
-            <li class="sidebar-list">
-              <a ui-sref="funcionariosel">Funcion&aacute;rio<span class="menu-icon fa fa-paperclip"></span></a>
-            </li>
+
+            <li ng-class="getMenuItemPropClasses(item)" ng-repeat="item in menuItems" ng-init="pIndex = $index" ng-include="'assets/template/menu-template.html'" ng-click="toggleCollapse(pIndex, true)"></li>
+
+           
           </ul> 
           <div class="sidebar-footer">
             <div class="col-xs-4">

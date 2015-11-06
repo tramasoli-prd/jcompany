@@ -28,7 +28,9 @@ import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @NamedQueries({
-	@NamedQuery(name = "DepartamentoEntity.find", query = "SELECT u FROM DepartamentoEntity u WHERE u.descricao = :nome AND u.situacao = :situacao order by u.descricao") 
+	@NamedQuery(name = "DepartamentoEntity.find", query = "SELECT u FROM DepartamentoEntity u WHERE u.descricao = :nome AND u.situacao = :situacao order by u.descricao"),
+	@NamedQuery(name = "DepartamentoEntity.checkConstraintsBeforeRemove.departamentoPai", query = "SELECT count(o.id) FROM DepartamentoEntity o WHERE o.departamentoPai.id = :id"),
+	@NamedQuery(name = "DepartamentoEntity.checkConstraintsBeforeSave.nomeUnico", query = "SELECT count(o.id) FROM DepartamentoEntity o WHERE o.descricao like :descricao and o.id <> :id")
 })
 public class DepartamentoEntity extends PlcVersionedEntity<Long> implements PlcLogicalExclusion {
 

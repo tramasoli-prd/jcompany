@@ -4,10 +4,12 @@
 
 	angular
 	.module('rhdemo')
-	.constant('moment', moment)
 	.constant('$contextUrl', '/');
 
 	angular
 	.module('jcompany-view')
+	.constant('$menuPath', 'app/components/json/menu.json')
 	.constant('$backendUrl', 'http://localhost:7001/rhdemo-service');
+
+	
 })();
