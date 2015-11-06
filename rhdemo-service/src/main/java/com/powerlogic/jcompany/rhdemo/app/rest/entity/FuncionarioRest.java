@@ -2,6 +2,7 @@ package com.powerlogic.jcompany.rhdemo.app.rest.entity;
 
 import java.io.File;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,6 +13,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
@@ -45,20 +47,14 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 
 	@GET
 	@Path("/all")
-	public List<FuncionarioEntity> findAll(@Context HttpServletRequest request, @Context UriInfo ui) throws PlcException {
-
-		MultivaluedMap<String, String> queryParams = ui.getQueryParameters();
+	public List<FuncionarioEntity> findAll(@Context HttpServletRequest request, @Context UriInfo ui,
+			 @QueryParam("nome") String nome,
+			 @QueryParam("cpf") String cpf,
+			 @QueryParam("email") String email,
+			 @QueryParam("dataNascimento") Date dataNascimento) throws PlcException {
 
 		FuncionarioEntity funcionario = new FuncionarioEntity();
 
-		String nome = queryParams.getFirst("nome");
-
-		String cpf = queryParams.getFirst("cpf");
-		
-		String dataNascimento = queryParams.getFirst("dataNascimento");
-		
-		String email = queryParams.getFirst("email");
-		
 		if (StringUtils.isNoneBlank(nome)) {
 			funcionario.setNome(nome);
 		}
@@ -67,9 +63,8 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 			funcionario.setCpf(cpf);
 		}
 
-		if (StringUtils.isNoneBlank(dataNascimento)) {
-			Date dataReferencia = new Date(new Long(dataNascimento));
-			funcionario.setDataNascimento(dataReferencia);
+		if (dataNascimento != null) {
+			funcionario.setDataNascimento(dataNascimento);
 		}
 		
 		if (StringUtils.isNoneBlank(email)) {
