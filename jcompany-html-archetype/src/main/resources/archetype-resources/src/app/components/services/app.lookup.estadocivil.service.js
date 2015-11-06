@@ -1,3 +1,6 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
 /**=========================================================
  * Provides a static lookup from a EstadoCivil Enum
  * @leandro.lima

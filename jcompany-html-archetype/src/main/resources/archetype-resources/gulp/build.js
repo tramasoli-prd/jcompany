@@ -1,10 +1,13 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
 'use strict';
 
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
 
-var $ = require('gulp-load-plugins')({
+var ${symbol_dollar} = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
 
@@ -13,12 +16,12 @@ gulp.task('partials', function () {
     path.join(conf.paths.src, '/app/**/*.html'),
     path.join(conf.paths.tmp, '/serve/app/**/*.html')
   ])
-    .pipe($.minifyHtml({
+    .pipe(${symbol_dollar}.minifyHtml({
       empty: true,
       spare: true,
       quotes: true
     }))
-    .pipe($.angularTemplatecache('templateCacheHtml.js', {
+    .pipe(${symbol_dollar}.angularTemplatecache('templateCacheHtml.js', {
       module: '${artifactId}',
       root: 'app'
     }))
@@ -33,32 +36,32 @@ gulp.task('html', ['inject', 'partials'], function () {
     addRootSlash: false
   };
 
-  var htmlFilter = $.filter('*.html', { restore: true });
-  var jsFilter = $.filter('**/*.js', { restore: true });
-  var cssFilter = $.filter('**/*.css', { restore: true });
+  var htmlFilter = ${symbol_dollar}.filter('*.html', { restore: true });
+  var jsFilter = ${symbol_dollar}.filter('**/*.js', { restore: true });
+  var cssFilter = ${symbol_dollar}.filter('**/*.css', { restore: true });
   var assets;
 
   return gulp.src(path.join(conf.paths.tmp, '/serve/*.html'))
-    .pipe($.inject(partialsInjectFile, partialsInjectOptions))
-    .pipe(assets = $.useref.assets())
-    .pipe($.rev())
+    .pipe(${symbol_dollar}.inject(partialsInjectFile, partialsInjectOptions))
+    .pipe(assets = ${symbol_dollar}.useref.assets())
+    .pipe(${symbol_dollar}.rev())
     .pipe(jsFilter)
-    .pipe($.sourcemaps.init())
-    .pipe($.ngAnnotate())
-    .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
-    .pipe($.sourcemaps.write('maps'))
+    .pipe(${symbol_dollar}.sourcemaps.init())
+    .pipe(${symbol_dollar}.ngAnnotate())
+    .pipe(${symbol_dollar}.uglify({ preserveComments: ${symbol_dollar}.uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
+    .pipe(${symbol_dollar}.sourcemaps.write('maps'))
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
-    .pipe($.sourcemaps.init())
-    .pipe($.replace('../../bower_components/bootstrap-sass/assets/fonts/bootstrap/', '../fonts/'))
-    .pipe($.minifyCss({ processImport: false }))
-    .pipe($.sourcemaps.write('maps'))
+    .pipe(${symbol_dollar}.sourcemaps.init())
+    .pipe(${symbol_dollar}.replace('../../bower_components/bootstrap-sass/assets/fonts/bootstrap/', '../fonts/'))
+    .pipe(${symbol_dollar}.minifyCss({ processImport: false }))
+    .pipe(${symbol_dollar}.sourcemaps.write('maps'))
     .pipe(cssFilter.restore)
     .pipe(assets.restore())
-    .pipe($.useref())
-    .pipe($.revReplace())
+    .pipe(${symbol_dollar}.useref())
+    .pipe(${symbol_dollar}.revReplace())
     .pipe(htmlFilter)
-    .pipe($.minifyHtml({
+    .pipe(${symbol_dollar}.minifyHtml({
       empty: true,
       spare: true,
       quotes: true,
@@ -66,20 +69,20 @@ gulp.task('html', ['inject', 'partials'], function () {
     }))
     .pipe(htmlFilter.restore)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
-    .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
+    .pipe(${symbol_dollar}.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
   });
 
 // Only applies for fonts from bower dependencies
 // Custom fonts are handled by the "other" task
 gulp.task('fonts', function () {
-  return gulp.src($.mainBowerFiles())
-    .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
-    .pipe($.flatten())
+  return gulp.src(${symbol_dollar}.mainBowerFiles())
+    .pipe(${symbol_dollar}.filter('**/*.{eot,svg,ttf,woff,woff2}'))
+    .pipe(${symbol_dollar}.flatten())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
 });
 
 gulp.task('other', function () {
-  var fileFilter = $.filter(function (file) {
+  var fileFilter = ${symbol_dollar}.filter(function (file) {
     return file.stat.isFile();
   });
 
@@ -92,7 +95,7 @@ gulp.task('other', function () {
 });
 
 gulp.task('clean', function () {
-  return $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')]);
+  return ${symbol_dollar}.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')]);
 });
 
 gulp.task('build', ['html', 'fonts', 'other']);
