@@ -7,12 +7,40 @@
 	</div>
 
 	<div class="row">
-        <div class="col-md-8">
-           
-            <label>Nome:</label>
-			<input type="text" ng-model="funcionarioArg.nome" class="form-control">
-            
-        </div>
+    <div class="col-md-2">
+      <label>Nome:</label>
+      <input type="text" ng-model="funcionarioArg.nome" class="form-control">
+    </div>
+
+    <div class="col-md-2">
+      <label>CPF:</label>
+      <input type="text" ng-model="funcionarioArg.cpf" class="form-control">
+    </div>
+
+    <div class="col-md-3">
+      <div ng-controller="PlcDatepickerController as dpickArg" class="form-group">
+        <label>Data de Nasc.:</label>
+        <p class="input-group">
+          <input type="text" name="date" required="" datepicker-popup="{{dpickArg.format}}" ng-model="funcionarioArg.dataNascimento"
+                 is-open="dpickArg.opened" max-date="'2019-12-22'" datepicker-options="dpickArg.dateOptions"
+                 date-disabled="dpickArg.disabled(date, mode)" close-text="Close" class="form-control" />
+
+	              <span class="input-group-btn">
+	                 <button type="button" ng-click="dpickArg.open($event)" class="btn btn-default">
+                     <em class="fa fa-calendar"></em>
+                   </button>
+	              </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label>E-mail:</label>
+      <input type="text" ng-model="funcionarioArg.email" class="form-control">
+    </div>
+
+
+
 	</div>
 
 	<div id="grid1" ui-grid="gridOptions" ui-grid-pagination class="grid"></div>
@@ -27,5 +55,5 @@
 	    </div>
 	</div>
 
-	
+
 </div>

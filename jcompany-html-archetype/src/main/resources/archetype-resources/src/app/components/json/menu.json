@@ -1,0 +1,13 @@
+[
+  {
+    "text": "Menu",
+    "heading": "true",
+    "translate": "label.menu"
+  },
+  {
+    "text": "Pagina Inicial",
+    "sref": "inicial",
+    "icon": "menu-icon fa fa-tachometer",
+    "translate": "label.menu.inicial"
+  }
+]

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" name="rhdemo-spa"
+    xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    
+  <requiredProperties>
+    <requiredProperty key="BACKEND-URL"/>
+  </requiredProperties>
+      
+  <fileSets>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>src</directory>
+      <includes>
+        <include>**/*.html</include>
+        <include>**/*.js</include>
+        <include>**/*.json</include>        
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>src/app</directory>
+      <includes>
+        <include>**/*.html</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>src/assets</directory>
+      <includes>
+        <include>**/*.html</include>
+      </includes>
+    </fileSet>
+    <fileSet  encoding="UTF-8">
+      <directory>gulp</directory>
+      <includes>
+        <include>**/*.eslintrc</include>
+        <include>**/*.js</include>
+      </includes>
+      <excludes>
+        <exclude>build.js</exclude>
+      </excludes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>gulp</directory>
+      <includes>
+        <include>build.js</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>src</directory>
+      <includes>
+        <include>**/*.ico</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>e2e</directory>
+      <includes>
+        <include>**/*.eslintrc</include>
+        <include>**/*.js</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>src/app</directory>
+      <includes>
+        <include>**/*.otf</include>
+        <include>**/*.css</include>
+        <include>**/*.scss</include>
+        <include>**/*.svg</include>
+        <include>**/*.ttf</include>
+        <include>**/*.woff2</include>
+        <include>**/*.eot</include>
+        <include>**/*.woff</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>src/assets</directory>
+      <includes>
+        <include>**/*.jpg</include>
+        <include>**/*.png</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>.project</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>.bowerrc</include>
+        <include>.editorconfig</include>
+        <include>.eslintrc</include>
+        <include>.gitignore</include>
+        <include>.yo-rc.json</include>
+        <include>bower.json</include>
+        <include>gulpfile.js</include>
+        <include>karma.conf.js</include>
+        <include>package.json</include>
+        <include>protractor.conf.js</include>
+        <include>README</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</archetype-descriptor>

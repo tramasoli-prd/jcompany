@@ -1,10 +1,10 @@
 package com.powerlogic.jcompany.rhdemo.app.model.repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -58,6 +58,16 @@ public class FuncionarioRepository extends PlcAbstractRepository<Long, Funcionar
 			    predicates.add(cpf);
 			}
 			 
+			if(StringUtils.isNoneBlank(funcionario.getEmail())) {
+			    Predicate email = builder.like(from.<String>get("email"), funcionario.getEmail());
+			    predicates.add(email);
+			}
+			
+			if(funcionario.getDataNascimento() != null) {
+			    Predicate dataNascimento = builder.equal(from.<Date>get("dataNascimento"), funcionario.getDataNascimento());
+			    predicates.add(dataNascimento);
+			}			
+			
 			query.where(predicates.toArray(new Predicate[]{}));
 			
 			return createQuery(query).getResultList();
