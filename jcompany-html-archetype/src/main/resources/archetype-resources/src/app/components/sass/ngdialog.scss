@@ -1,0 +1,21 @@
+/* ========================================================================
+   Component: ngdialog
+  ========================================================================== */
+
+.ngdialog {
+
+  &.ngdialog-theme-default {
+
+    .ngdialog-content {
+      background-color: #fff !important;
+      border-radius: $border-radius-base !important;
+      font-family: inherit !important;
+      font-size: inherit !important;
+      line-height: inherit !important;
+    }
+
+  }
+
+
+  .ngdialog-content{width :75% !important;}
+}
