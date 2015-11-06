@@ -68,6 +68,21 @@
         }
 
 		
+		$scope.profileA = function() {  
+			document.getElementById('profile').className= "item dropdown open";
+		};
+
+		$scope.profileI = function() {  
+			document.getElementById('profile').className= "item dropdown";
+		};
+
+		$scope.notificationA = function() {  
+			document.getElementById('notification').className= "item dropdown open";
+		};
+
+		$scope.notificationI = function() {  
+			document.getElementById('notification').className= "item dropdown";
+		};
 
 
        
