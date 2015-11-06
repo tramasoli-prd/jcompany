@@ -1,6 +1,7 @@
 package com.powerlogic.jcompany.rhdemo.app.rest.entity;
 
 import java.io.File;
+import java.sql.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -53,7 +54,11 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 		String nome = queryParams.getFirst("nome");
 
 		String cpf = queryParams.getFirst("cpf");
-
+		
+		String dataNascimento = queryParams.getFirst("dataNascimento");
+		
+		String email = queryParams.getFirst("email");
+		
 		if (StringUtils.isNoneBlank(nome)) {
 			funcionario.setNome(nome);
 		}
@@ -61,6 +66,16 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 		if (StringUtils.isNoneBlank(cpf)) {
 			funcionario.setCpf(cpf);
 		}
+
+		if (StringUtils.isNoneBlank(dataNascimento)) {
+			Date dataReferencia = new Date(new Long(dataNascimento));
+			funcionario.setDataNascimento(dataReferencia);
+		}
+		
+		if (StringUtils.isNoneBlank(email)) {
+			funcionario.setEmail(email);
+		}
+		
 
 		return getEntityService().findAll(funcionario);
 	}
