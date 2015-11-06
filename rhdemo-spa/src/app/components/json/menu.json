@@ -12,7 +12,7 @@
   },
   {
     "text": "Departamento",
-    "sref": "departametnosel",
+    "sref": "departamentosel",
     "icon": "menu-icon fa fa-table",
     "translate": "label.menu.departamento"
   },
