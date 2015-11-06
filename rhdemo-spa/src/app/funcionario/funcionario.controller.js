@@ -35,10 +35,10 @@
     });
 
     // CALLBACKS
-    $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {              
+    $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
         $scope._fotoFileName = fileItem._file.name;
     };
-          
+
 
     var init = function(){
       appLookupSexoService._all().then( function (response) {
@@ -53,9 +53,9 @@
         $scope.dynamicLookupDepartamento = response.data;
       });
 
-      if ($state.current.name === 'funcionariomdt' && $stateParams.id){ 
-        $scope.edit($stateParams.id);    
-      } 
+      if ($state.current.name === 'funcionariomdt' && $stateParams.id){
+        $scope.edit($stateParams.id);
+      }
 
     }
 
@@ -71,6 +71,7 @@
     };
 
     $scope.clear = function(){
+       $scope.funcionarioArg =  new Object();
        $scope.gridOptions.data = [];
     };
 
@@ -108,10 +109,11 @@
     };
 
     $scope.list = function () {
+      $scope.funcionarioArg =  new Object();
       $state.go( 'funcionariosel' );
     };
 
-    
+
     function rowTemplate() {
       return '<div ui-sref="funcionariomdt({id: row.entity.id})" >' +
              '  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }"  ui-grid-cell></div>' +

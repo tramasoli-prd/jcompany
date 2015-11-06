@@ -8,24 +8,24 @@
 
 	<div class="row">
         <div class="col-md-2">
-            
+
           	<label>Id:</label>
   			<input type="text" ng-model="funcionario.id" class="form-control" disabled="disabled">
-           
+
         </div>
 
         <div class="col-md-6">
-           
+
             <label>Nome:</label>
 			      <input type="text" ng-model="funcionario.nome" class="form-control">
-            
+
         </div>
 
         <div class="col-md-2">
-           
+
             <label>CPF:</label>
 			      <input type="text" ng-model="funcionario.cpf" class="form-control">
-            
+
         </div>
 	</div>
 
@@ -33,7 +33,7 @@
 
 	    <div class="col-md-2">
 		    <div ng-controller="PlcDatepickerController as dpick" class="form-group">
-	           
+
 	          <label>Data de Nasc.:</label>
 				    <p class="input-group">
 	              <input type="text" name="date" required="" datepicker-popup="{{dpick.format}}" ng-model="funcionario.dataNascimento" is-open="dpick.opened" max-date="'2019-12-22'" datepicker-options="dpick.dateOptions" date-disabled="dpick.disabled(date, mode)"
@@ -48,8 +48,8 @@
 	    </div>
 
         <div class="col-md-6">
-            <label>E-mail:</label>
-			<input type="text" ng-model="funcionario.email" class="form-control">
+          <label>E-mail:</label>
+			    <input type="text" ng-model="funcionario.email" class="form-control">
         </div>
 
         <div class="col-md-4">
@@ -68,23 +68,23 @@
     <div class="row">
 
 	    <div class="col-md-4">
-            
+
           <label>Estado Civil:</label>
-  			  
-         
+
+
            <select ng-model="funcionario.estadoCivil" class="form-control" ng-options="i.estadoCivil as (i.descricao) for i in staticLookupEstadoCivil">
             <option></option>
            </select>
-           
+
         </div>
 
         <div class="col-md-4">
-            
+
           	<label>Departamento:</label>
-  		
+
             <select ng-model="funcionario.departamento" ng-value="item.estadoCivil" class="form-control" ng-options="item.descricao for item in  dynamicLookupDepartamento track by item.id">
             </select>
-           
+
         </div>
 
         <div class="col-sm-4" style="margin-top: 30px;">
@@ -97,9 +97,9 @@
                   <label class="radio-inline c-radio">
                      <input id="inlineradio2" type="radio" ng-model="funcionario.sexo" name="radio-sexo" ng-value="staticLookupSexo[1].sexo" />
                      <span class="fa fa-circle"></span>{{staticLookupSexo[1].descricao}}</label>
-     
+
                </div>
-           
+
         </div>
 
     </div>
@@ -108,10 +108,10 @@
     <div class="row">
 
     	 <div class="col-md-12">
-            
+
           	<label>Observação:</label>
   			<textarea class="form-control" ng-model="funcionario.observacao" rows="3"></textarea>
-           
+
         </div>
 
     </div>
@@ -119,7 +119,7 @@
      <div class="row">
 
     	 <div class="col-md-6">
-            
+
 
           	<label>Foto:</label>
 
@@ -128,10 +128,10 @@
            <a target="_blank" href="{{backendUrl}}/rest/entity/funcionario/foto/{{funcionario.foto.id}}">{{funcionario.foto.nome}}</a>
 
            <input type="hidden" ng-model="funcionario.foto" class="form-control">
-  			    
+
   			</div>
 
-       
+
 
   			<br/>
 
@@ -177,7 +177,7 @@
                         </tbody>
                      </table>
                   </div>
-           
+
         </div>
 
     </div>
@@ -193,7 +193,7 @@
 	  </accordion>
 
   	</div>
-   
+
     <br/>
 
 	<div class="form-group">
@@ -206,5 +206,5 @@
 
 	</div>
 
-	
+
 </div>
