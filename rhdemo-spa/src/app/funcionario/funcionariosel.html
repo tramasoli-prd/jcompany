@@ -18,20 +18,9 @@
     </div>
 
     <div class="col-md-3">
-      <div ng-controller="PlcDatepickerController as dpickArg" class="form-group">
-        <label>Data de Nasc.:</label>
-        <p class="input-group">
-          <input type="text" name="date" required="" datepicker-popup="{{dpickArg.format}}" ng-model="funcionarioArg.dataNascimento"
-                 is-open="dpickArg.opened" max-date="'2019-12-22'" datepicker-options="dpickArg.dateOptions"
-                 date-disabled="dpickArg.disabled(date, mode)" close-text="Close" class="form-control" />
-
-	              <span class="input-group-btn">
-	                 <button type="button" ng-click="dpickArg.open($event)" class="btn btn-default">
-                     <em class="fa fa-calendar"></em>
-                   </button>
-	              </span>
-        </p>
-      </div>
+     
+        <plc-date-picker ng-model="funcionarioArg.dataNascimento" label="Data Nasc.:"  />
+     
     </div>
 
     <div class="col-md-4">
