@@ -7,10 +7,15 @@
 
 		<description>RH Demo Persistence Unit</description>
 
+		<!-- Weblogic e Websphere Liberty -->
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-
 		<jta-data-source>jdbc/rhdemo</jta-data-source>
 		
+		<!-- JBOSS
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/jdbc/rhdemo</jta-data-source>
+		 -->
+		 
 		<mapping-file>META-INF/orm.xml</mapping-file>
 
 		<!-- Entities -->
@@ -31,8 +36,10 @@
 		<shared-cache-mode>NONE</shared-cache-mode>
 
 		<properties>
-
-			<!-- ORACLE -->
+			<!-- Websphere Liberty  
+			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.OraclePlatform" />
+			 -->
+			<!-- Weblogic  -->
 			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.oracle.Oracle11Platform" />
 			<property name="eclipselink.target-server" value="WebLogic" />
 			<property name="eclipselink.logging.logger" value="DefaultLogger" />
