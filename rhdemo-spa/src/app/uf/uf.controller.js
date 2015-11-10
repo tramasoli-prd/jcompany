@@ -14,7 +14,7 @@
     $scope.all = function(){
       ufService._all().then( function (response) {
         $scope.rows = [];
-        angular.forEach(response.data, function(value, key) {
+        angular.forEach(response.data.entity, function(value, key) {
           var o = new Object();
           o.uf = value;
           $scope.rows.push(o);
@@ -37,15 +37,13 @@
           if (!incluiNovo){
             $scope.rows.push(new Object());
           }
-          $scope.rows[index].uf  = response.data;
-          PlcNotificationService.success("DADOS_SALVOS_SUCESSO_000");
+          $scope.rows[index].uf  = response.data.entity;
          
       });
     };
 
     $scope.removeRow = function(index){
       ufService.remove($scope.rows[index].uf).then( function (response) {
-          PlcNotificationService.success("REGISTRO_EXCLUIDO_SUCESSO_021");
           $scope.rows.splice(index, 1);
       });
     };

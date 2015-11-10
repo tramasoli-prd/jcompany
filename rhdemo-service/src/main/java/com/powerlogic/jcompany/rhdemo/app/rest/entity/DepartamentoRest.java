@@ -21,6 +21,7 @@ import com.powerlogic.jcompany.core.PlcException;
 import com.powerlogic.jcompany.core.rest.PlcSearchBuilder;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.core.rest.entity.PlcAbstractEntityRest;
+import com.powerlogic.jcompany.core.rest.messages.PlcMessageIntercept;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.DepartamentoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.service.DepartamentoService;
 
@@ -28,6 +29,7 @@ import com.powerlogic.jcompany.rhdemo.app.model.service.DepartamentoService;
 @Path("/entity/departamento")
 @Produces({ MediaType.APPLICATION_JSON })
 @Consumes({ MediaType.APPLICATION_JSON })
+@PlcMessageIntercept
 public class DepartamentoRest extends PlcAbstractEntityRest<Long, DepartamentoEntity, Object> {
 	
    @Inject

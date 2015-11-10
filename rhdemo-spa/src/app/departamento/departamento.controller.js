@@ -26,10 +26,7 @@
 
     $scope.find = function(){
       DepartamentoService._all($scope.departamentoArg).then( function (response) {
-        if (response.data.length == 0){
-          PlcNotificationService.info("NENHUM_REGISTRO_ENCONTRADO_022");
-        }
-        $scope.gridOptions.data = response.data;
+        $scope.gridOptions.data = response.data.entity;
       });
     };
 
@@ -43,10 +40,10 @@
     $scope.edit = function(id){
       DepartamentoService.edit(id).then( function (response) {
              
-        $rootScope.departamento = response.data;
-        if (response.data.departamentoPai){
-           $rootScope.departamentoPai = response.data.departamentoPai.id;
-           $rootScope.departamentoPaiDescricao = response.data.departamentoPai.descricao;
+        $rootScope.departamento = response.data.entity;
+        if (response.data.entity.departamentoPai){
+           $rootScope.departamentoPai = response.data.entity.departamentoPai.id;
+           $rootScope.departamentoPaiDescricao = response.data.entity.departamentoPai.descricao;
         }else{
            $rootScope.departamentoPai = null;
            $rootScope.departamentoPaiDescricao = null;
@@ -67,15 +64,13 @@
       }
       
       DepartamentoService.save($scope.departamento).then( function (response) {
-          $rootScope.departamento = response.data;
-          PlcNotificationService.success("DADOS_SALVOS_SUCESSO_000");
+          $rootScope.departamento = response.data.entity;
       });
     };
 
     $scope.remove = function(){
       DepartamentoService.remove($scope.departamento).then( function (response) {
-          $rootScope.departamento = response.data;
-          PlcNotificationService.success("REGISTRO_EXCLUIDO_SUCESSO_021");
+          $rootScope.departamento = response.data.entity;
       });
     };
 

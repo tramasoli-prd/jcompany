@@ -28,6 +28,7 @@ import com.powerlogic.jcompany.commons.util.PlcFileUploadUtil;
 import com.powerlogic.jcompany.core.PlcException;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.core.rest.entity.PlcAbstractEntityRest;
+import com.powerlogic.jcompany.core.rest.messages.PlcMessageIntercept;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoConteudoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FuncionarioEntity;
@@ -37,6 +38,7 @@ import com.powerlogic.jcompany.rhdemo.app.model.service.FuncionarioService;
 @Path("/entity/funcionario")
 @Produces({ MediaType.APPLICATION_JSON })
 @Consumes({ MediaType.APPLICATION_JSON })
+@PlcMessageIntercept
 public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEntity, Object> {
 
 	@Inject

@@ -61,12 +61,7 @@
 
     $scope.find = function(){
       funcionarioService._all($scope.funcionarioArg).then( function (response) {
-
-        if (response.data.length == 0){
-          PlcNotificationService.info("NENHUM_REGISTRO_ENCONTRADO_022");
-        }
-
-        $scope.gridOptions.data = response.data;
+        $scope.gridOptions.data = response.data.entity;
       });
     };
 
@@ -78,23 +73,21 @@
     $scope.edit = function(id){
       funcionarioService.edit(id).then( function (response) {
         $state.go( 'funcionariomdt' );
-        $rootScope.funcionario = response.data;
+        $rootScope.funcionario = response.data.entity;
       });
     };
 
     $scope.save = function(){
       $scope.funcionario.fotoFileName = $scope._fotoFileName;
       funcionarioService.save($scope.funcionario).then( function (response) {
-          $rootScope.funcionario = response.data;
+          $rootScope.funcionario = response.data.entity;
           $scope.uploader.clearQueue();
-          PlcNotificationService.success("DADOS_SALVOS_SUCESSO_000");
       });
     };
 
     $scope.remove = function(){
       funcionarioService.remove($scope.funcionario).then( function (response) {
-          $rootScope.funcionario = response.data;
-          PlcNotificationService.success("REGISTRO_EXCLUIDO_SUCESSO_021");
+          $rootScope.funcionario = response.data.entity;
       });
     };
 

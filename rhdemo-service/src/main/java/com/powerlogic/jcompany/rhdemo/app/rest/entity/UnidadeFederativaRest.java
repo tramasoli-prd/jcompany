@@ -11,10 +11,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.powerlogic.jcompany.commons.util.PlcMsgUtil;
 import com.powerlogic.jcompany.core.PlcException;
+import com.powerlogic.jcompany.core.exception.PlcBeanMessages;
+import com.powerlogic.jcompany.core.messages.PlcMessageType;
 import com.powerlogic.jcompany.core.rest.PlcSearchBuilder;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.core.rest.entity.PlcAbstractEntityRest;
+import com.powerlogic.jcompany.core.rest.messages.PlcMessageIntercept;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.UnidadeFederativaEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.service.UnidadeFederativaService;
 
@@ -22,30 +26,39 @@ import com.powerlogic.jcompany.rhdemo.app.model.service.UnidadeFederativaService
 @Path("/entity/unidadefederativa")
 @Produces({ MediaType.APPLICATION_JSON })
 @Consumes({ MediaType.APPLICATION_JSON })
+@PlcMessageIntercept
 public class UnidadeFederativaRest extends PlcAbstractEntityRest<Long, UnidadeFederativaEntity, Object> {
-   @Inject
-   private UnidadeFederativaService unidadeFederativaService;
 
-   @GET
-   @Path("/all")
-   public List<UnidadeFederativaEntity> findAll() throws PlcException
-   {
-      return getEntityService().findAll();
-   }
+	@Inject
+	private UnidadeFederativaService unidadeFederativaService;
 
-   @GET
-   @Path("/findByNome")
-   public UnidadeFederativaEntity find(@BeanParam PlcSearchBuilder searchBuilder, @QueryParam("nome") String nome) throws PlcException
-   {
-      return getEntityService().findByNome(nome);
-   }
+	@Inject
+	private PlcMsgUtil msgUtil;
+	
+	
+	@GET
+	@Path("/all")
+	public List<UnidadeFederativaEntity> findAll() throws PlcException
+	{
+		msgUtil.msg(PlcBeanMessages.ELEMENTOS_OBRIGATORIOS_015, PlcMessageType.ERROR);
+		msgUtil.msg(PlcBeanMessages.DADOS_SALVOS_SUCESSO_000, PlcMessageType.SUCCESS);
+		msgUtil.msg(PlcBeanMessages.CAMPOS_OBRIGATORIOS_TOPICO_007, PlcMessageType.INFO);
+		return getEntityService().findAll();
+	}
+
+	@GET
+	@Path("/findByNome")
+	public UnidadeFederativaEntity find(@BeanParam PlcSearchBuilder searchBuilder, @QueryParam("nome") String nome) throws PlcException
+	{
+		return getEntityService().findByNome(nome);
+	}
 
 
 
-   @Override
-   protected UnidadeFederativaService getEntityService()
-   {
-      return unidadeFederativaService;
-   }
+	@Override
+	protected UnidadeFederativaService getEntityService()
+	{
+		return unidadeFederativaService;
+	}
 
 }

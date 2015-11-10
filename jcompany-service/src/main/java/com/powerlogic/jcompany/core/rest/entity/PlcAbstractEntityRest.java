@@ -4,8 +4,13 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import com.powerlogic.jcompany.commons.util.PlcMsgUtil;
 import com.powerlogic.jcompany.core.PlcException;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
+import com.powerlogic.jcompany.core.exception.PlcBeanMessages;
+import com.powerlogic.jcompany.core.messages.PlcMessageType;
 import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
 import com.powerlogic.jcompany.core.model.service.PlcEntityService;
 import com.powerlogic.jcompany.core.rest.PlcAbstractRest;
@@ -15,8 +20,15 @@ public abstract class PlcAbstractEntityRest <PK extends Serializable, E extends 
 
 	protected abstract PlcEntityService<PK, E> getEntityService();
 
+	@Inject
+	private PlcMsgUtil msgUtil;
+	
 	protected List<E> findAll() throws PlcException {
-		return getEntityService().findAll();
+		List<E> lista = getEntityService().findAll();
+		if (lista==null || lista.size()==0) {
+			msgUtil.msg(PlcBeanMessages.NENHUM_REGISTRO_ENCONTRADO_022, PlcMessageType.INFO);
+		}
+		return lista;
 	}
 
 	@Override
@@ -31,12 +43,15 @@ public abstract class PlcAbstractEntityRest <PK extends Serializable, E extends 
 
 	@Override
 	public E save(E entity) throws PlcException {
-		return getEntityService().save(entity);
+		E e = getEntityService().save(entity);
+		msgUtil.msg(PlcBeanMessages.DADOS_SALVOS_SUCESSO_000, PlcMessageType.SUCCESS); 
+		return e; 
 	}
 
 	@Override
 	public boolean remove(E entity) throws PlcException {
 		getEntityService().remove(entity);
+		msgUtil.msg(PlcBeanMessages.REGISTRO_EXCLUIDO_SUCESSO_021, PlcMessageType.SUCCESS); 
 		return true;
 	}
 
