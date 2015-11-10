@@ -57,6 +57,7 @@
         $scope.edit($stateParams.id);
       }
 
+
     }
 
     $scope.find = function(){
