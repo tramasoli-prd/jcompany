@@ -2,11 +2,14 @@ package com.powerlogic.jcompany.core.rest.entity;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import com.powerlogic.jcompany.commons.util.PlcMsgUtil;
+import com.powerlogic.jcompany.commons.util.PlcValidationConstraintsDTO;
+import com.powerlogic.jcompany.commons.util.PlcValidationInvariantUtil;
 import com.powerlogic.jcompany.core.PlcException;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
 import com.powerlogic.jcompany.core.exception.PlcBeanMessages;
@@ -16,13 +19,16 @@ import com.powerlogic.jcompany.core.model.service.PlcEntityService;
 import com.powerlogic.jcompany.core.rest.PlcAbstractRest;
 
 public abstract class PlcAbstractEntityRest <PK extends Serializable, E extends PlcEntityModel<PK>, A>
-		extends PlcAbstractRest implements PlcEntityModelRest<PK, E, A> {
+extends PlcAbstractRest implements PlcEntityModelRest<PK, E, A> {
 
 	protected abstract PlcEntityService<PK, E> getEntityService();
 
 	@Inject
 	private PlcMsgUtil msgUtil;
-	
+
+	@Inject
+	private PlcValidationInvariantUtil validationInvariantUtil;
+
 	protected List<E> findAll() throws PlcException {
 		List<E> lista = getEntityService().findAll();
 		if (lista==null || lista.size()==0) {
@@ -59,9 +65,9 @@ public abstract class PlcAbstractEntityRest <PK extends Serializable, E extends 
 	public PlcPagedResult<E> find(A searchBuilder) throws PlcException {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	protected void setMasterIntoDetails(Object entity, List list, String property) {
-		
+
 		for(Object o: list) {
 			try {
 				Field f = o.getClass().getDeclaredField(property);
@@ -71,6 +77,21 @@ public abstract class PlcAbstractEntityRest <PK extends Serializable, E extends 
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
+
+	@Override
+	public PlcValidationConstraintsDTO getEntityBeanValidationMetadata(){
+
+		try {
+			ParameterizedType pt = (ParameterizedType)this.getClass().getGenericSuperclass();
+
+			return validationInvariantUtil.getConstraintsForClass((Class)pt.getActualTypeArguments()[1]);
+			
+		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }
