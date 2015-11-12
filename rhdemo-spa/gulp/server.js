@@ -3,7 +3,6 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
-var env  = require('gulp-env');
 
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
@@ -48,20 +47,10 @@ browserSync.use(browserSyncSpa({
 }));
 
 gulp.task('serve', ['watch'], function () {
-  env({
-        vars: {
-            ambiente : "dev"
-        }
-  });
   browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
 });
 
 gulp.task('serve:dist', ['build'], function () {
-  env({
-        vars: {
-            ambiente : "prod"
-        }
-  });
   browserSyncInit(conf.paths.dist);
 });
 
