@@ -6,7 +6,7 @@
     .config(config);
 
   /** @ngInject */
-  function config() {
+  function config(tmhDynamicLocaleProvider) {
     
   }
 

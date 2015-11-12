@@ -1,13 +1,11 @@
 /**
- *  If you want to override some bootstrap variables, you have to change values here.
- *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
+ *  Variaveis Globais SASS
  */
 $navbar-inverse-link-color: #5AADBB;
 $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 
 /**
- *  Do not remove the comments below. It's the markers used by wiredep to inject
- *  sass dependencies when defined in the bower.json of your dependencies
+ * Nao remover esse cometario. A injecao de dependencias bower sera relizada nesse ponto pelo GULP
  */
 // bower:scss
 // endbower
@@ -19,43 +17,6 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
   padding: 0.2em 0;
 }
 
-.my-drop-zone { border: dotted 3px lightgray; }
-.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
-.another-file-over-class { border: dotted 3px green; }
-
-
-
-.checkbox label {
-	font-weight: bold !important;
-}
-
-.ngdialog.ngdialog-theme-default {
-  padding-bottom: 1% !important;
-  padding-top: 2% !important;
-}
-
-
-.ngdialog.ngdialog-theme-default .ngdialog-content {
-  width: 80% !important ;
-}
-
-.thumbnail {
-  height: 200px;
-
-  img.pull-right {
-    width: 50px;
-  }
-}
-
-.obrigatorio.haserror {
- 	border : 1px solid #ff0000!important;
-}
-.obrigatorioEtiqueta.haserror {
- 	border : 1px solid #ff0000!important;
-}
-.obrigatorioElemento.haserror {
- 	border : 1px solid #ff0000!important;
-}
 
 
 .box > .icon { text-align: center; position: relative; }
@@ -110,8 +71,7 @@ body {
 
 
 /**
- *  Do not remove the comments below. It's the markers used by gulp-inject to inject
- *  all your sass files automatically
+ * Nao remover esse comentario, indicao ponto final da injecao dos componentes bower.
  */
 // injector
 // endinjector

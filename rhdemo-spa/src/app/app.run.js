@@ -1,13 +1,14 @@
 (function() {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('rhdemo')
-    .run(runBlock);
+	angular
+	.module('rhdemo')
+	.run(runBlock);
 
-  /** @ngInject */
-  function runBlock() {  
-    
-  }
+
+	function runBlock(PlcAuthService) {  
+		//aplica segurança
+		PlcAuthService.load();
+	}
 
 })();

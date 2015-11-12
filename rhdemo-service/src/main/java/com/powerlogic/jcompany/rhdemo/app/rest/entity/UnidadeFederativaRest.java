@@ -38,11 +38,7 @@ public class UnidadeFederativaRest extends PlcAbstractEntityRest<Long, UnidadeFe
 	
 	@GET
 	@Path("/all")
-	public List<UnidadeFederativaEntity> findAll() throws PlcException
-	{
-		msgUtil.msg(PlcBeanMessages.ELEMENTOS_OBRIGATORIOS_015, PlcMessageType.ERROR);
-		msgUtil.msg(PlcBeanMessages.DADOS_SALVOS_SUCESSO_000, PlcMessageType.SUCCESS);
-		msgUtil.msg(PlcBeanMessages.CAMPOS_OBRIGATORIOS_TOPICO_007, PlcMessageType.INFO);
+	public List<UnidadeFederativaEntity> findAll() throws PlcException	{
 		return getEntityService().findAll();
 	}
 

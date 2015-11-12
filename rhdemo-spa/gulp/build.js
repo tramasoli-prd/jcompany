@@ -11,6 +11,7 @@ var $ = require('gulp-load-plugins')({
 gulp.task('partials', function () {
   return gulp.src([
     path.join(conf.paths.src, '/app/**/*.html'),
+    path.join(conf.paths.src, '/assets/**/*.html'),
     path.join(conf.paths.tmp, '/serve/app/**/*.html')
   ])
     .pipe($.minifyHtml({
@@ -72,7 +73,7 @@ gulp.task('html', ['inject', 'partials'], function () {
 // Only applies for fonts from bower dependencies
 // Custom fonts are handled by the "other" task
 gulp.task('fonts', function () {
-  return gulp.src($.mainBowerFiles())
+  return gulp.src( $.mainBowerFiles())
     .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
     .pipe($.flatten())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
