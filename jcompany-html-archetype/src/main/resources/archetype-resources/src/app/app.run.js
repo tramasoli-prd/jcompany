@@ -2,15 +2,15 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 (function() {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('${artifactId}')
-    .run(runBlock);
+	angular
+	.module('${artifactId}')
+	.run(AppRun);
 
-  /** @ngInject */
-  function runBlock() {  
-    
-  }
+	function AppRun(PlcAuthService) {  
+		//aplica segurança
+		PlcAuthService.load();
+	}
 
 })();

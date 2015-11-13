@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-/* global malarkey:false, moment:false */
+
 (function() {
 	'use strict';
 

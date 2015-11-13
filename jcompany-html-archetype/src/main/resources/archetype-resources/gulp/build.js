@@ -14,6 +14,7 @@ var ${symbol_dollar} = require('gulp-load-plugins')({
 gulp.task('partials', function () {
   return gulp.src([
     path.join(conf.paths.src, '/app/**/*.html'),
+    path.join(conf.paths.src, '/assets/**/*.html'),
     path.join(conf.paths.tmp, '/serve/app/**/*.html')
   ])
     .pipe(${symbol_dollar}.minifyHtml({

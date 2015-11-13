@@ -25,7 +25,8 @@
                        'angularFileUpload', // upload de arquivos
                        'ngDialog', // modal
                        'jcompany-view',
-                       'blockUI'
+                       'blockUI',,
+                       'ui.bootstrap.datepicker'
                        ]
     		);
 

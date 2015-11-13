@@ -8,7 +8,6 @@
     .module('${artifactId}')
     .config(config);
 
-  /** @ngInject */
   function config() {
     
   }

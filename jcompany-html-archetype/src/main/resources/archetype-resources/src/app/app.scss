@@ -19,42 +19,9 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
   padding: 0.2em 0;
 }
 
-.my-drop-zone { border: dotted 3px lightgray; }
-.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
-.another-file-over-class { border: dotted 3px green; }
-
-
-
-.checkbox label {
-	font-weight: bold !important;
-}
-
 .ngdialog.ngdialog-theme-default {
   padding-bottom: 1% !important;
   padding-top: 2% !important;
-}
-
-
-.ngdialog.ngdialog-theme-default .ngdialog-content {
-  width: 80% !important ;
-}
-
-.thumbnail {
-  height: 200px;
-
-  img.pull-right {
-    width: 50px;
-  }
-}
-
-.obrigatorio.haserror {
- 	border : 1px solid #ff0000!important;
-}
-.obrigatorioEtiqueta.haserror {
- 	border : 1px solid #ff0000!important;
-}
-.obrigatorioElemento.haserror {
- 	border : 1px solid #ff0000!important;
 }
 
 
