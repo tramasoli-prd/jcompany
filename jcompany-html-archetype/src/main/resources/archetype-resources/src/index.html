@@ -9,9 +9,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-
-
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
@@ -43,7 +40,7 @@
               </a>
             </li>
 
-            <li ng-class="getMenuItemPropClasses(item)" ng-repeat="item in menuItems" ng-init="pIndex = ${symbol_dollar}index" ng-include="'assets/template/menu-template.html'" ng-click="toggleCollapse(pIndex, true)"></li>
+            <li ng-class="getMenuItemPropClasses(item)" ng-repeat="item in menuItems" ng-init="pIndex = ${symbol_dollar}index" ng-include="'app/components/template/menu-template.html'" ng-click="toggleCollapse(pIndex, true)"></li>
 
            
           </ul> 
