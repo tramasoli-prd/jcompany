@@ -7,12 +7,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.powerlogic.jcompany.commons.util.PlcMsgUtil;
-import com.powerlogic.jcompany.commons.util.PlcValidationConstraintsDTO;
-import com.powerlogic.jcompany.commons.util.PlcValidationInvariantUtil;
-import com.powerlogic.jcompany.core.PlcException;
+import com.powerlogic.jcompany.commons.util.message.PlcMsgUtil;
+import com.powerlogic.jcompany.commons.util.validation.PlcValidationConstraintsDTO;
+import com.powerlogic.jcompany.commons.util.validation.PlcValidationInvariantUtil;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
-import com.powerlogic.jcompany.core.exception.PlcBeanMessages;
+import com.powerlogic.jcompany.core.exception.PlcException;
+import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.messages.PlcMessageType;
 import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
 import com.powerlogic.jcompany.core.model.service.PlcEntityService;

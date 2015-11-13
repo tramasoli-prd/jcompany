@@ -1,4 +1,4 @@
-package com.powerlogic.jcompany.commons.validation;
+package com.powerlogic.jcompany.commons.interceptor.validation;
 
 import java.lang.annotation.Annotation;
 import java.util.Set;
@@ -9,10 +9,10 @@ import javax.interceptor.InvocationContext;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 
-import com.powerlogic.jcompany.commons.util.PlcMessageUtil;
-import com.powerlogic.jcompany.commons.util.PlcValidationInvariantUtil;
-import com.powerlogic.jcompany.core.PlcException;
-import com.powerlogic.jcompany.core.exception.PlcBeanMessages;
+import com.powerlogic.jcompany.commons.util.message.PlcMessageUtil;
+import com.powerlogic.jcompany.commons.util.validation.PlcValidationInvariantUtil;
+import com.powerlogic.jcompany.core.exception.PlcException;
+import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 
 public class PlcValidationInterceptor  {
 

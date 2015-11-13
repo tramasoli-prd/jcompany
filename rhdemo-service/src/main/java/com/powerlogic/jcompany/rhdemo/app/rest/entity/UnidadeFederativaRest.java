@@ -11,10 +11,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.powerlogic.jcompany.commons.util.PlcMsgUtil;
-import com.powerlogic.jcompany.core.PlcException;
-import com.powerlogic.jcompany.core.exception.PlcBeanMessages;
-import com.powerlogic.jcompany.core.messages.PlcMessageType;
+import com.powerlogic.jcompany.commons.util.message.PlcMsgUtil;
+import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.rest.PlcSearchBuilder;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.core.rest.entity.PlcAbstractEntityRest;

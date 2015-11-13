@@ -1,4 +1,4 @@
-package com.powerlogic.jcompany.commons.util;
+package com.powerlogic.jcompany.commons.util.fileupload;
 
 import java.io.Serializable;
 

@@ -8,7 +8,7 @@ import javax.ws.rs.ext.Provider;
 import javax.ws.rs.ext.WriterInterceptor;
 import javax.ws.rs.ext.WriterInterceptorContext;
 
-import com.powerlogic.jcompany.commons.util.PlcMsgUtil;
+import com.powerlogic.jcompany.commons.util.message.PlcMsgUtil;
 import com.powerlogic.jcompany.core.messages.PlcMessageMap;
 
 @Provider

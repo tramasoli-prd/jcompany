@@ -17,8 +17,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
-import com.powerlogic.jcompany.core.PlcException;
-import com.powerlogic.jcompany.core.exception.PlcBeanMessages;
+import com.powerlogic.jcompany.core.exception.PlcException;
+import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.rest.PlcAbstractRest;
 
 @Path("/auth")

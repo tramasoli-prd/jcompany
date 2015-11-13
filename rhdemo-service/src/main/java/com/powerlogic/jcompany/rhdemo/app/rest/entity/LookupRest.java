@@ -20,7 +20,7 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
-import com.powerlogic.jcompany.core.PlcException;
+import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.rhdemo.app.model.domain.EstadoCivil;
 import com.powerlogic.jcompany.rhdemo.app.model.domain.Sexo;

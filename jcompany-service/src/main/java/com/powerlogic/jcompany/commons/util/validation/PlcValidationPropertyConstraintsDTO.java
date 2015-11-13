@@ -1,4 +1,4 @@
-package com.powerlogic.jcompany.commons.util;
+package com.powerlogic.jcompany.commons.util.validation;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

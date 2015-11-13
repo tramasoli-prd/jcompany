@@ -1,4 +1,4 @@
-package com.powerlogic.jcompany.core;
+package com.powerlogic.jcompany.core.exception;
 
 import javax.ejb.ApplicationException;
 

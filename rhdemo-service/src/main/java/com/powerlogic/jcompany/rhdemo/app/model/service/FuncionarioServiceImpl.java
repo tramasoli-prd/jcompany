@@ -5,13 +5,10 @@ import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.validation.Valid;
 
-import com.powerlogic.jcompany.commons.util.PlcFileDTO;
-import com.powerlogic.jcompany.commons.util.PlcFileUploadUtil;
-import com.powerlogic.jcompany.commons.validation.PlcValidationInterceptor;
-import com.powerlogic.jcompany.core.PlcException;
+import com.powerlogic.jcompany.commons.interceptor.validation.PlcValidationInterceptor;
+import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.model.repository.PlcEntityRepository;
 import com.powerlogic.jcompany.core.model.service.PlcAbstractServiceEntity;
-import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoConteudoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FuncionarioEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.repository.FuncionarioRepository;

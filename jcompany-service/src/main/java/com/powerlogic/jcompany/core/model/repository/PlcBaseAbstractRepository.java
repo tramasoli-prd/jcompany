@@ -20,10 +20,10 @@ import javax.persistence.criteria.Root;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.PropertyUtilsBean;
 
-import com.powerlogic.jcompany.core.PlcException;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
 import com.powerlogic.jcompany.core.commons.search.PlcPagination;
-import com.powerlogic.jcompany.core.exception.PlcBeanMessages;
+import com.powerlogic.jcompany.core.exception.PlcException;
+import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;

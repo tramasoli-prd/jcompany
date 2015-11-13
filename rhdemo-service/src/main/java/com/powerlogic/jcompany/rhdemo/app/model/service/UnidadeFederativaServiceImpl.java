@@ -5,8 +5,8 @@ import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.validation.Valid;
 
-import com.powerlogic.jcompany.commons.validation.PlcValidationInterceptor;
-import com.powerlogic.jcompany.core.PlcException;
+import com.powerlogic.jcompany.commons.interceptor.validation.PlcValidationInterceptor;
+import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.model.repository.PlcEntityRepository;
 import com.powerlogic.jcompany.core.model.service.PlcAbstractServiceEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.UnidadeFederativaEntity;

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import com.powerlogic.jcompany.commons.util.PlcFileUploadUtil;
+import com.powerlogic.jcompany.commons.util.fileupload.PlcFileUploadUtil;
 
 
 /** Servlet responsavel pelo upload de arquivos.

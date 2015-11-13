@@ -1,6 +1,5 @@
 package com.powerlogic.jcompany.core.commons.search;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;

@@ -6,7 +6,7 @@
 		information or contribute with this project: suporte@powerlogic.com.br - www.powerlogic.com.br																								
  */
 
-package com.powerlogic.jcompany.commons.util;
+package com.powerlogic.jcompany.commons.util.fileupload;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -1,6 +1,6 @@
-package com.powerlogic.jcompany.rhdemo.app.exception;
+package com.powerlogic.jcompany.rhdemo.app.messages;
 
-import com.powerlogic.jcompany.core.PlcException;
+import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcMessageKey;
 
 public enum AppBeanMessages implements PlcMessageKey

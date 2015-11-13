@@ -1,12 +1,12 @@
-package com.powerlogic.jcompany.commons.util;
+package com.powerlogic.jcompany.commons.util.message;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 
-import com.powerlogic.jcompany.core.PlcException;
-import com.powerlogic.jcompany.core.exception.PlcBeanMessages;
+import com.powerlogic.jcompany.core.exception.PlcException;
+import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.messages.PlcMessageEntry;
 import com.powerlogic.jcompany.core.messages.PlcMessageKey;
 import com.powerlogic.jcompany.core.messages.PlcMessageMap;

@@ -6,7 +6,7 @@
 		information or contribute with this project: suporte@powerlogic.com.br - www.powerlogic.com.br																								
  */
 
-package com.powerlogic.jcompany.commons.util;
+package com.powerlogic.jcompany.commons.util.message;
 
 import java.util.Iterator;
 import java.util.Set;

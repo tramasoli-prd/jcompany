@@ -11,9 +11,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.powerlogic.jcompany.commons.util.PlcValidationConstraintsDTO;
-import com.powerlogic.jcompany.core.PlcException;
+import com.powerlogic.jcompany.commons.util.validation.PlcValidationConstraintsDTO;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
+import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
 
 @Produces(MediaType.APPLICATION_JSON)

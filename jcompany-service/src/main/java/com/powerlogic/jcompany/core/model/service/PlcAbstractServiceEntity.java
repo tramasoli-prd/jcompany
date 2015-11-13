@@ -5,10 +5,10 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.powerlogic.jcompany.core.PlcException;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
 import com.powerlogic.jcompany.core.commons.search.PlcPagination;
-import com.powerlogic.jcompany.core.exception.PlcBeanMessages;
+import com.powerlogic.jcompany.core.exception.PlcException;
+import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 import com.powerlogic.jcompany.core.model.repository.PlcEntityRepository;
 

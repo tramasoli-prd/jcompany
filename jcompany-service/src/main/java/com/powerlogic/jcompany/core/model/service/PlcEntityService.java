@@ -5,9 +5,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.powerlogic.jcompany.core.PlcException;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
 import com.powerlogic.jcompany.core.commons.search.PlcPagination;
+import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
 
 public interface PlcEntityService<PK extends Serializable, E extends PlcEntityModel<PK>> {

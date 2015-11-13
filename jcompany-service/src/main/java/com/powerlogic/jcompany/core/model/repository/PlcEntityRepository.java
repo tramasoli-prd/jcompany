@@ -3,9 +3,9 @@ package com.powerlogic.jcompany.core.model.repository;
 import java.io.Serializable;
 import java.util.List;
 
-import com.powerlogic.jcompany.core.PlcException;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
 import com.powerlogic.jcompany.core.commons.search.PlcPagination;
+import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 
 public interface PlcEntityRepository<PK extends Serializable, E extends PlcVersionedEntity<PK>> {

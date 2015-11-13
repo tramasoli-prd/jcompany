@@ -6,7 +6,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-import com.powerlogic.jcompany.core.PlcException;
+import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcMessageMap;
 import com.powerlogic.jcompany.core.messages.PlcMessageTranslator;
 

@@ -2,7 +2,7 @@ package com.powerlogic.jcompany.rhdemo.app.model.service;
 
 import javax.ejb.Local;
 
-import com.powerlogic.jcompany.core.PlcException;
+import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.model.service.PlcEntityService;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.DepartamentoEntity;
 

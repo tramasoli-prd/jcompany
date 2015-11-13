@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import com.powerlogic.jcompany.core.PlcException;
+import com.powerlogic.jcompany.core.exception.PlcException;
 
 @ApplicationScoped
 public class PlcAuthenticationProvider {

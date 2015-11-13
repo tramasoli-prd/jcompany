@@ -11,8 +11,8 @@ import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.powerlogic.jcompany.core.PlcException;
-import com.powerlogic.jcompany.core.exception.PlcBeanMessages;
+import com.powerlogic.jcompany.core.exception.PlcException;
+import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 import com.powerlogic.jcompany.core.model.repository.PlcAbstractRepository;
 import com.powerlogic.jcompany.core.util.ConstantUtil;

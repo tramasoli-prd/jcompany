@@ -17,7 +17,7 @@ import javax.ws.rs.core.UriInfo;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.powerlogic.jcompany.core.PlcException;
+import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.rest.PlcSearchBuilder;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.core.rest.entity.PlcAbstractEntityRest;
