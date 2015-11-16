@@ -27,12 +27,9 @@
 		</div>
 
 		<div class="col-md-4">    
-			<label class="radio-inline c-radio">
-            	<input id="inlineradio1" type="radio" ng-model="row.sexo" name="radio-sexo-dependente{{$index}}"  value="{{staticLookupSexo[0].sexo}}" />
-            	<span class="fa fa-circle"></span>{{staticLookupSexo[0].descricao}}</label>
-          	<label class="radio-inline c-radio">
-           		<input id="inlineradio2" type="radio" ng-model="row.sexo" name="radio-sexo-dependente{{$index}}" value="{{staticLookupSexo[1].sexo}}" />
-           		<span class="fa fa-circle"></span>{{staticLookupSexo[1].descricao}}</label> 
+			<plc-radio ng-model="row.sexo" ng-item-description="descricao"
+        		ng-enum="sexo" ng-enum-value="sexo" />
+
 		</div>
 
 		<div class="col-sd-2">

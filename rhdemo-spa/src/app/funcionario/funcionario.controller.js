@@ -6,18 +6,16 @@
     .module('rhdemo')
     .controller('funcionarioController', FuncionarioController );
 
-  FuncionarioController.$inject = ['$rootScope', '$scope', '$state', '$backendUrl', 'funcionarioService', 'PlcNotificationService', 'appLookupSexoService', 'appLookupEstadoCivilService', 'appLookupDepartamentoService', 'FileUploader', '$stateParams'];
+  FuncionarioController.$inject = ['$rootScope', '$scope', '$state', '$backendUrl', 'funcionarioService', 'PlcNotificationService', 'FileUploader', '$stateParams'];
 
   /** @ngInject */
-  function FuncionarioController($rootScope, $scope, $state, $backendUrl, funcionarioService, PlcNotificationService, appLookupSexoService, appLookupEstadoCivilService, appLookupDepartamentoService,  FileUploader, $stateParams) {
+  function FuncionarioController($rootScope, $scope, $state, $backendUrl, funcionarioService, PlcNotificationService, FileUploader, $stateParams) {
 
 
     /* ------------------
      * Atributos Gerais
      * -----------------*/
-    $scope.staticLookupSexo = [];
-    $scope.staticLookupEstadoCivil = [];
-    $scope.dynamicLookupDepartamento = [];
+    
     $scope.backendUrl = $backendUrl;
     $scope.uploader = new FileUploader({
         url: $backendUrl+'/uploadFiles',
@@ -41,22 +39,10 @@
 
 
     var init = function(){
-      appLookupSexoService._all().then( function (response) {
-        $scope.staticLookupSexo = response.data;
-      });
-
-      appLookupEstadoCivilService._all().then( function (response) {
-        $scope.staticLookupEstadoCivil = response.data;
-      });
-
-      appLookupDepartamentoService._all().then( function (response) {
-        $scope.dynamicLookupDepartamento = response.data;
-      });
-
+     
       if ($state.current.name === 'funcionariomdt' && $stateParams.id){
         $scope.edit($stateParams.id);
       }
-
 
     }
 

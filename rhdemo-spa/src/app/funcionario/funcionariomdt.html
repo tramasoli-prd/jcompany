@@ -54,39 +54,22 @@
 
 		<div class="col-md-4">
 
-			<label>Estado Civil:</label> <select
-				ng-model="funcionario.estadoCivil" class="form-control"
-				ng-options="i.estadoCivil as (i.descricao) for i in staticLookupEstadoCivil">
-				<option></option>
-			</select>
+			<plc-static-combo ng-model="funcionario.estadoCivil" label="Estado Civil:" 
+        ng-enum="estadocivil" ng-enum-value="estadoCivil"/>
 
 		</div>
 
 		<div class="col-md-4">
 
-			<label>Departamento:</label> <select
-				ng-model="funcionario.departamento" ng-value="item.estadoCivil"
-				class="form-control"
-				ng-options="item.descricao for item in  dynamicLookupDepartamento track by item.id">
-			</select>
+			<plc-dynamic-combo ng-model="funcionario.departamento" label="Departamento:" ng-item-description="descricao"
+        ng-entity="departamento"  />
 
 		</div>
 
 		<div class="col-sm-4" style="margin-top: 30px;">
 
-			<label class="col-sm-2 control-label">Sexo:</label>
-			<div class="col-sm-10">
-				<label class="radio-inline c-radio"> <input
-					id="inlineradio1" type="radio" ng-model="funcionario.sexo"
-					name="radio-sexo" ng-value="staticLookupSexo[0].sexo" /> <span
-					class="fa fa-circle"></span>{{staticLookupSexo[0].descricao}}
-				</label> <label class="radio-inline c-radio"> <input
-					id="inlineradio2" type="radio" ng-model="funcionario.sexo"
-					name="radio-sexo" ng-value="staticLookupSexo[1].sexo" /> <span
-					class="fa fa-circle"></span>{{staticLookupSexo[1].descricao}}
-				</label>
-
-			</div>
+			<plc-radio ng-model="funcionario.sexo" label="Sexo:"  ng-item-description="descricao"
+        ng-enum="sexo" ng-enum-value="sexo" />
 
 		</div>
 
