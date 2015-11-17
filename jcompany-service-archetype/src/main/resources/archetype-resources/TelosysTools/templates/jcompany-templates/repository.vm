@@ -1,0 +1,24 @@
+package ${target.javaPackageFromFolder($SRC)};
+
+import javax.enterprise.context.ApplicationScoped;
+
+import com.powerlogic.jcompany.core.model.repository.PlcAbstractRepository;
+import ${REPOSITORY_PKG}.${entity.name}Repository;
+import ${ENTITY_PKG}.${entity.name}Entity;
+
+/**
+ * Repository for "${entity.name}"
+ *
+ * @author jCompany Generator
+ *
+ */
+
+@ApplicationScoped
+public class ${entity.name}Repository extends PlcAbstractRepository<Long, ${entity.name}Entity> {
+
+	@Override
+	public Class<${entity.name}Entity> getEntityType() {
+		return ${entity.name}Entity.class;
+	}
+
+}
