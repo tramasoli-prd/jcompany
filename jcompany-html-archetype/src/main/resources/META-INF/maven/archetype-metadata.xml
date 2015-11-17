@@ -81,6 +81,7 @@
       <directory></directory>
       <includes>
         <include>.project</include>
+        <include>telosys-tools.cfg</include>
       </includes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
@@ -99,5 +100,29 @@
         <include>README</include>
       </includes>
     </fileSet>
+    <fileSet  encoding="UTF-8" >
+      <directory>TelosysTools</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>    
+    <fileSet  encoding="UTF-8" >
+      <directory>TelosysTools/downloads</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>    
+    <fileSet  encoding="UTF-8" >
+      <directory>TelosysTools/lib</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>    
+    <fileSet  encoding="UTF-8" >
+      <directory>TelosysTools/templates</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>      
   </fileSets>
 </archetype-descriptor>
