@@ -30,7 +30,8 @@
 	<div class="row">
 
 		<div class="col-md-2">
-		  <plc-date-picker ng-model="funcionario.dataNascimento" label="Data Nasc.:"  />
+			<plc-date-picker ng-model="funcionario.dataNascimento"
+				label="Data Nasc.:" />
 		</div>
 
 		<div class="col-md-6">
@@ -39,7 +40,8 @@
 		</div>
 
 		<div class="col-md-4">
-      <plc-check ng-model="funcionario.temCursoSuperior" label="Tem curso superior"/>
+			<plc-check ng-model="funcionario.temCursoSuperior"
+				label="Tem curso superior" />
 		</div>
 
 	</div>
@@ -49,22 +51,24 @@
 
 		<div class="col-md-4">
 
-			<plc-static-combo ng-model="funcionario.estadoCivil" label="Estado Civil:" 
-        ng-enum="estadocivil" ng-enum-value="estadoCivil"/>
+			<plc-static-combo ng-model="funcionario.estadoCivil"
+				label="Estado Civil:" ng-enum="estadocivil"
+				ng-enum-value="estadoCivil" />
 
 		</div>
 
 		<div class="col-md-4">
 
-			<plc-dynamic-combo ng-model="funcionario.departamento" label="Departamento:" ng-item-description="descricao"
-        ng-entity="departamento"  />
+			<plc-dynamic-combo ng-model="funcionario.departamento"
+				label="Departamento:" ng-item-description="descricao"
+				ng-entity="departamento" />
 
 		</div>
 
 		<div class="col-sm-4" style="margin-top: 30px;">
 
-			<plc-radio ng-model="funcionario.sexo" label="Sexo"  ng-item-description="descricao"
-        ng-enum="sexo" ng-enum-value="sexo" />
+			<plc-radio ng-model="funcionario.sexo" label="Sexo:"
+				ng-item-description="descricao" ng-enum="sexo" ng-enum-value="sexo" />
 
 		</div>
 

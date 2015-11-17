@@ -6,10 +6,10 @@
 	.module('rhdemo')
 	.controller('DepartamentoController', DepartamentoController );
 
-	DepartamentoController.$inject = ['$rootScope', '$scope', '$state', 'ngDialog', 'DepartamentoService', 'PlcNotificationService', '$stateParams'];
+	DepartamentoController.$inject = ['$scope', '$state', 'ngDialog', 'DepartamentoService', 'PlcNotificationService', '$stateParams'];
 
 	/** @ngInject */
-	function DepartamentoController($rootScope, $scope, $state, ngDialog, DepartamentoService, PlcNotificationService, $stateParams) {
+	function DepartamentoController($scope, $state, ngDialog, DepartamentoService, PlcNotificationService, $stateParams) {
 
 		$scope.ehVinculado = false;
 
@@ -17,7 +17,7 @@
 
 		$scope.init = function(){
 
-			if ($state.current.name === 'departamentoman' && $stateParams.id){ 
+			if ($state.current.name === 'departamento.man' && $stateParams.id){ 
 				$scope.edit($stateParams.id);    
 			} 
 
@@ -40,13 +40,13 @@
 		$scope.edit = function(id){
 			DepartamentoService.edit(id).then( function (response) {
 
-				$rootScope.departamento = response.data.entity;
+				$scope.departamento = response.data.entity;
 				if (response.data.entity.departamentoPai){
-					$rootScope.departamentoPai = response.data.entity.departamentoPai.id;
-					$rootScope.departamentoPaiDescricao = response.data.entity.departamentoPai.descricao;
+					$scope.departamentoPai = response.data.entity.departamentoPai.id;
+					$scope.departamentoPaiDescricao = response.data.entity.departamentoPai.descricao;
 				}else{
-					$rootScope.departamentoPai = null;
-					$rootScope.departamentoPaiDescricao = null;
+					$scope.departamentoPai = null;
+					$scope.departamentoPaiDescricao = null;
 				}
 
 			});
@@ -64,26 +64,26 @@
 			}
 
 			DepartamentoService.save($scope.departamento).then( function (response) {
-				$rootScope.departamento = response.data.entity;
+				$scope.departamento = response.data.entity;
 			});
 		};
 
 		$scope.remove = function(){
 			DepartamentoService.remove($scope.departamento).then( function (response) {
-				$rootScope.departamento = response.data.entity;
+				$scope.departamento = response.data.entity;
 			});
 		};
 
 		$scope.new = function () {
-			$rootScope.departamento = new Object();
-			$rootScope.departamentoPai = '';
-			$rootScope.departamentoPaiDescricao = '';
-			$state.go( 'departamentoman' );
+			$scope.departamento = new Object();
+			$scope.departamentoPai = '';
+			$scope.departamentoPaiDescricao = '';
+			$state.go( 'departamento.man' );
 		};
 
 		$scope.list = function () {
 			$scope.departamentoArg = new Object();
-			$state.go( 'departamentosel' );
+			$state.go( 'departamento.sel' );
 		};
 
 		$scope.openConfirmWithPreCloseCallbackOnScope = function () {
@@ -100,7 +100,7 @@
 		};
 
 		$scope.rowTemplate =  function() {
-			return '<div ng-if="!grid.appScope.ehVinculado" ui-sref="departamentoman({id: row.entity.id})" >' +
+			return '<div ng-if="!grid.appScope.ehVinculado" ui-sref="departamento.man({id: row.entity.id})" >' +
 			'  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }"  ui-grid-cell></div>' +
 			'</div>' +
 			'<div ng-if="grid.appScope.ehVinculado"  ng-click="grid.appScope.retornaVinculado(row); grid.appScope.closeThisDialog()" >' +
