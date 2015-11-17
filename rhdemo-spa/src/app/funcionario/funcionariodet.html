@@ -18,17 +18,17 @@
 
 	</div>
 
-	<div class="row" ng-repeat="row in funcionario.dependente">
+	<div class="row" ng-repeat="dependente in funcionario.dependente">
 
 		<div class="col-md-6">
-			<input type="text" ng-model="row.nome" required ="" ng-required="true" maxlength="40" 		class="form-control obrigatorio">
-			<input type="hidden" ng-model="row.id" >
+			<input type="text" ng-model="dependente.nome" required ="" ng-required="true" maxlength="40" 		class="form-control obrigatorio">
+			<input type="hidden" ng-model="dependente.id" >
 		    
 		</div>
 
 		<div class="col-md-4">    
-			<plc-radio ng-model="row.sexo" ng-item-description="descricao"
-        		ng-enum="sexo" ng-enum-value="sexo" />
+			<plc-radio ng-model="dependente.sexo" ng-item-description="descricao"
+        		ng-enum="sexo" ng-enum-value="sexo" indexradio="{{$index}}"/>
 
 		</div>
 

@@ -39,12 +39,7 @@
 		</div>
 
 		<div class="col-md-4">
-			<div class="checkbox c-checkbox needsclick">
-				<label class="needsclick"> <input type="checkbox"
-					ng-model="funcionario.temCursoSuperior" class="needsclick" /> <span
-					class="fa fa-check"></span> Tem curso superior
-				</label>
-			</div>
+      <plc-check ng-model="funcionario.temCursoSuperior" label="Tem curso superior"/>
 		</div>
 
 	</div>
@@ -68,7 +63,7 @@
 
 		<div class="col-sm-4" style="margin-top: 30px;">
 
-			<plc-radio ng-model="funcionario.sexo" label="Sexo:"  ng-item-description="descricao"
+			<plc-radio ng-model="funcionario.sexo" label="Sexo"  ng-item-description="descricao"
         ng-enum="sexo" ng-enum-value="sexo" />
 
 		</div>
