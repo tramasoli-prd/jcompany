@@ -1,0 +1,137 @@
+#set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
+#set( $dollarSymbol= "$" )
+
+(function() {
+  'use strict';
+
+  angular
+    .module('${PROJECT_NAME}')
+    .controller('${entity.name}Controller', ${entity.name}Controller );
+
+  ${entity.name}Controller.${dollarSymbol}_inject = ['${dollarSymbol}rootScope', '${dollarSymbol}scope', '${dollarSymbol}state', '${dollarSymbol}backendUrl', '${entity.name}Service', 'PlcNotificationService', 'FileUploader', '${dollarSymbol}stateParams'];
+
+  /** @ngInject */
+  function ${entity.name}Controller(${dollarSymbol}rootScope, ${dollarSymbol}scope, ${dollarSymbol}state, ${dollarSymbol}backendUrl, ${entity.name}Service, PlcNotificationService,  FileUploader, ${dollarSymbol}stateParams) {
+
+
+    /* ------------------
+     * Atributos Gerais
+     * -----------------*/
+    ${dollarSymbol}scope.backendUrl = ${dollarSymbol}backendUrl;
+
+
+    var init = function(){
+
+      if (${dollarSymbol}state.current.name === '${uncapitalizedEntityName}man' && ${dollarSymbol}stateParams.id){
+        ${dollarSymbol}scope.edit(${dollarSymbol}stateParams.id);
+      }
+    }
+
+    ${dollarSymbol}scope.find = function(){
+      ${entity.name}Service._all(${dollarSymbol}scope.${uncapitalizedEntityName}Arg).then( function (response) {
+        ${dollarSymbol}scope.gridOptions.data = response.data.entity;
+      });
+    };
+
+    ${dollarSymbol}scope.clear = function(){
+       ${dollarSymbol}scope.${uncapitalizedEntityName}Arg =  new Object();
+       ${dollarSymbol}scope.gridOptions.data = [];
+    };
+
+    ${dollarSymbol}scope.edit = function(id){
+      ${entity.name}Service.edit(id).then( function (response) {
+        ${dollarSymbol}state.go( '${uncapitalizedEntityName}man' );
+        ${dollarSymbol}rootScope.${uncapitalizedEntityName} = response.data.entity;
+      });
+    };
+
+    ${dollarSymbol}scope.save = function(){
+      ${entity.name}Service.save(${dollarSymbol}scope.${uncapitalizedEntityName}).then( function (response) {
+          ${dollarSymbol}rootScope.${uncapitalizedEntityName} = response.data.entity;
+          ${dollarSymbol}scope.uploader.clearQueue();
+      });
+    };
+
+    ${dollarSymbol}scope.remove = function(){
+      ${entity.name}Service.remove(${dollarSymbol}scope.${uncapitalizedEntityName}).then( function (response) {
+          ${dollarSymbol}rootScope.${uncapitalizedEntityName} = response.data.entity;
+      });
+    };
+
+    ${dollarSymbol}scope.new = function () {
+      ${dollarSymbol}rootScope.${uncapitalizedEntityName} = new Object();
+
+	  #foreach($link in $entity.selectedLinks)
+		#if($link.isCardinalityOneToMany())
+
+      ${dollarSymbol}rootScope.${uncapitalizedEntityName}.${fn.uncapitalize($link.formattedFieldName(0))} = [];
+		#end
+      #end
+
+      ${dollarSymbol}state.go( '${uncapitalizedEntityName}man' );
+    };
+
+    ${dollarSymbol}scope.list = function () {
+      ${dollarSymbol}scope.${uncapitalizedEntityName}Arg =  new Object();
+      ${dollarSymbol}state.go( '${uncapitalizedEntityName}sel' );
+    };
+
+
+    function rowTemplate() {
+      return '<div ui-sref="${uncapitalizedEntityName}man({id: row.entity.id})" >' +
+             '  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }"  ui-grid-cell></div>' +
+             '</div>';
+    }
+
+    ${dollarSymbol}scope.oneAtATime = true;
+
+    ${dollarSymbol}scope.detalhes = [];
+
+	  #foreach($link in $entity.selectedLinks)
+		#if($link.isCardinalityOneToMany())
+	#set($nameDetail = ${fn.firstCharToUpperCase($link.formattedFieldName(0))})
+
+    ${dollarSymbol}scope.detalhes.push(
+      {
+        titulo: "${nameDetail}",
+        template: "app/${link.formattedFieldName(0)}/${link.formattedFieldName(0)}det.html"
+      } 
+	);
+
+    ${dollarSymbol}scope.addItem${nameDetail} = function() {
+      if(!${dollarSymbol}rootScope.${uncapitalizedEntityName}.${link.formattedFieldName(0)}){
+        ${dollarSymbol}rootScope.${uncapitalizedEntityName}.${link.formattedFieldName(0)} = [];
+      }
+
+      ${dollarSymbol}rootScope.${uncapitalizedEntityName}.${link.formattedFieldName(0)}.push(new Object());
+    };
+
+    ${dollarSymbol}scope.removeRow${nameDetail} = function(index){
+        ${dollarSymbol}rootScope.${uncapitalizedEntityName}.${link.formattedFieldName(0)}.splice(index, 1);
+    };
+
+		#end
+	  #end	
+
+
+    ${dollarSymbol}scope.gridOptions = {
+      paginationPageSizes: [25, 50, 75],
+      paginationPageSize: 25,
+      rowTemplate: rowTemplate(),
+      columnDefs: [
+        { field: 'id', displayName: 'Id', width: '10%'}
+        //,{ field: 'nome', displayName: 'Nome', width: '25%'}
+        //,{ field: 'email', displayName: 'E-mail', width: '20%'}
+        //,{ field: 'cpf', displayName: 'CPF', width: '15%'}
+        //,{ field: 'dataNascimento', displayName: 'Nascimento', width: '10%', cellFilter: 'date:\'dd/MM/yyyy\''}
+        //,{ field: 'departamento.descricao', displayName: 'Departamento', width: '20%'}
+      ]
+    };
+
+    init();
+
+  }
+
+})();
+
+

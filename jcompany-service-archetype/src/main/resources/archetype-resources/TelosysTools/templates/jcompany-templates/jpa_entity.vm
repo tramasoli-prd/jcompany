@@ -69,54 +69,43 @@ public class ${entity.name} extends PlcVersionedEntity<Long> implements PlcLogic
 	}
 	
 
+
+
 #foreach( $field in $entity.keyAttributes )
+#if( $field.isSelected() )
 $jpa.fieldAnnotations(4, $field)
 $beanValidation.annotations(4, $field)
     @GeneratedValue(strategy=GenerationType.AUTO, generator = "SE_${entity.databaseTable}")
     private $field.formattedType(10) $field.formattedName(12) #if($field.hasInitialValue())= ${field.initialValue} #end;
+
+#end
 #end
 
-  
+#set($selectecFields = [])
+
 #foreach( $field in $dataFields )
-## #if ( $field.isUsedInLinkJoinColumn( $entity.selectedLinks ) != true )
-## $field.jpaAnnotations(4)
-##     private $field.formattedType(10) $field.formattedName(12) #if($field.hasInitialValue())= ${field.initialValue} #end;
-##     
-## #else
-##     // "$field.name" (column "$field.databaseName") is not mapped as an attribute because it is used in a link   
-##     
-## #end
+#if( $field.isSelected() )
+#set($f = $selectecFields.add($field))
 $jpa.fieldAnnotations(4, $field)
 $beanValidation.annotations(4, $field)
     private $field.formattedType(10) $field.formattedName(12) #if($field.hasInitialValue())= ${field.initialValue} #end;
 
 #end
-#foreach( $field in $linkFields )
-	// "$field.name" (column "$field.databaseName") is not defined by itself because used as FK in a link 
 #end
 
 
-## #foreach( $link in $entity.links )
 #foreach( $link in $entity.selectedLinks )
+#if( $link.isSelected() )
 $jpa.linkAnnotations(4, $link, $allMappedFields)
     private ${link.formattedFieldType(0)} $link.formattedFieldName(12);
 
 #end
+#end
 
     
 #if ( $entity.hasCompositePrimaryKey() )
-    //----------------------------------------------------------------------
-    // GETTER & SETTER FOR THE COMPOSITE KEY 
-    //----------------------------------------------------------------------
-##	public ${entity.name}Key getKey() {
-##        return key;
-##    }
-## 
-##    public void setKey(${entity.name}Key key) {
-##        this.key = key;
-##    }
-##
 #foreach( $field in $entity.keyAttributes )
+#if( $field.isSelected() )				
 #if ( $field.setter )    public void ${field.setter}( $field.type $field.name ) {
         this.compositePrimaryKey.${field.setter}( $field.name ) ;
     }
@@ -126,10 +115,12 @@ $jpa.linkAnnotations(4, $link, $allMappedFields)
     }
 #end
 #end
+#end
 
 #else 
 
 #foreach( $field in $entity.keyAttributes )
+#if( $field.isSelected() )	
 #if ( $field.setter )    public void ${field.setter}( $field.type $field.name ) {
         this.$field.name = $field.name ;
     }
@@ -140,12 +131,11 @@ $jpa.linkAnnotations(4, $link, $allMappedFields)
 #end
 #end
 #end
+#end
 
 
 #foreach( $field in $dataFields )
-## #if ( $field.isUsedInLinkJoinColumn( $entity.selectedLinks ) != true )
-#if ( $field.databaseName )    //--- DATABASE MAPPING : $field.databaseName ( $field.databaseType ) 
-#end
+#if( $field.isSelected() )	
 #if ( $field.setter )    public void ${field.setter}( $field.type $field.name ) {
         this.$field.name = $field.name;
     }
@@ -155,12 +145,11 @@ $jpa.linkAnnotations(4, $link, $allMappedFields)
     }
 #end
 
-## #end  
+#end  
 #end  
 
-
-## #foreach( $link in $entity.links )
 #foreach( $link in $entity.selectedLinks )
+#if( $link.isSelected() )	
 #if ( $link.setter )    public void ${link.setter}( ${link.formattedFieldType(0)} ${link.formattedFieldName(0)} ) {
         this.${link.formattedFieldName(0)} = ${link.formattedFieldName(0)};
     }
@@ -170,8 +159,9 @@ $jpa.linkAnnotations(4, $link, $allMappedFields)
     }
 #end
 
+#end 
 #end  
 
 
-$java.toStringMethod($entity, $dataFields, "compositePrimaryKey", 4)
+$java.toStringMethod($entity, $selectecFields, "compositePrimaryKey", 4)
 }
