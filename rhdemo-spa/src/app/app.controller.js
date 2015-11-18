@@ -58,7 +58,7 @@
 			// ----------------------------------- 
 
 			PlcMenuLoader.getMenu(menuReady);
-
+			
 			function menuReady(items) {
 				$scope.menuItems = items;
 			}

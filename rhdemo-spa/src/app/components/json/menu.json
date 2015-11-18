@@ -24,7 +24,7 @@
   },
   {
     "text": "Funcionário",
-    "sref": "funcionariosel",
+    "sref": "funcionario.sel",
     "icon": "menu-icon fa fa-paperclip",
     "translate": "label.menu.funcionario"
   }

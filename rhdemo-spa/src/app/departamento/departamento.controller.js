@@ -6,10 +6,10 @@
 	.module('rhdemo')
 	.controller('DepartamentoController', DepartamentoController );
 
-	DepartamentoController.$inject = ['$scope', '$state', 'ngDialog', 'DepartamentoService', 'PlcNotificationService', '$stateParams'];
+	DepartamentoController.$inject = ['$scope', '$state', 'DepartamentoService', 'PlcNotificationService', '$stateParams'];
 
 	/** @ngInject */
-	function DepartamentoController($scope, $state, ngDialog, DepartamentoService, PlcNotificationService, $stateParams) {
+	function DepartamentoController($scope, $state, DepartamentoService, PlcNotificationService, $stateParams) {
 
 		$scope.ehVinculado = false;
 
@@ -33,36 +33,16 @@
 		$scope.clear = function(){
 			$scope.departamentoArg = new Object();
 			$scope.gridOptions.data = [];
-			$scope.departamentoPai = '';
-			$scope.departamentoPaiDescricao = '';
 		};
 
 		$scope.edit = function(id){
 			DepartamentoService.edit(id).then( function (response) {
-
 				$scope.departamento = response.data.entity;
-				if (response.data.entity.departamentoPai){
-					$scope.departamentoPai = response.data.entity.departamentoPai.id;
-					$scope.departamentoPaiDescricao = response.data.entity.departamentoPai.descricao;
-				}else{
-					$scope.departamentoPai = null;
-					$scope.departamentoPaiDescricao = null;
-				}
-
 			});
 		};
 
-		$scope.retornaVinculado = function(row){
-			$scope.departamentoPai = row.entity.id;
-			$scope.departamentoPaiDescricao = row.entity.descricao;
-		};
 
 		$scope.save = function(){
-
-			if ($scope.departamentoPai != ''){
-				$scope.departamento.departamentoPai =  $scope.departamentoPai;
-			}
-
 			DepartamentoService.save($scope.departamento).then( function (response) {
 				$scope.departamento = response.data.entity;
 			});
@@ -76,8 +56,6 @@
 
 		$scope.new = function () {
 			$scope.departamento = new Object();
-			$scope.departamentoPai = '';
-			$scope.departamentoPaiDescricao = '';
 			$state.go( 'departamento.man' );
 		};
 
@@ -86,32 +64,25 @@
 			$state.go( 'departamento.sel' );
 		};
 
-		$scope.openConfirmWithPreCloseCallbackOnScope = function () {
-			$scope.ehVinculado = true;
-			ngDialog.openConfirm({
-				template: 'app/departamento/departamentosel.html',
-				preCloseCallback: 'preCloseCallbackOnScope',
-				scope: $scope
-			}).then(function (value) {
-				$scope.ehVinculado = false;
-			}, function (reason) {
-				$scope.ehVinculado = false;
-			});
-		};
+		$scope.rowTemplate = '<div ng-if="!grid.appScope.isAggregateModal" ui-sref="departamento.man({id: row.entity.id})" >' +
+			'  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }"  ui-grid-cell></div>' +
+			'</div>'+
+			'<div ng-if="grid.appScope.isAggregateModal"  ng-click="grid.appScope.returnValuesAggregate(row); grid.appScope.closeThisDialog()" >' +
+					'  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }"  ui-grid-cell></div>' +
+					'</div>';
 
-		$scope.rowTemplate =  function() {
-			return '<div ng-if="!grid.appScope.ehVinculado" ui-sref="departamento.man({id: row.entity.id})" >' +
-			'  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }"  ui-grid-cell></div>' +
-			'</div>' +
-			'<div ng-if="grid.appScope.ehVinculado"  ng-click="grid.appScope.retornaVinculado(row); grid.appScope.closeThisDialog()" >' +
-			'  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }"  ui-grid-cell></div>' +
-			'</div>';
+		$scope.getRowTemplate =  function() {
+			return $scope.rowTemplate;
+		}
+
+		$scope.setRowTemplate =  function(templateAdd) {
+			$scope.rowTemplate = templateAdd;
 		}
 
 		$scope.gridOptions = {
 				paginationPageSizes: [25, 50, 75],
 				paginationPageSize: 25,
-				rowTemplate: $scope.rowTemplate(),
+				rowTemplate: $scope.getRowTemplate(),
 				columnDefs: [
 				             { field: 'id', displayName: 'Id', width: '10%'},
 				             { field: 'descricao', displayName: 'Descrição', width: '50%'},

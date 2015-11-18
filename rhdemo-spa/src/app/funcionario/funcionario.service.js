@@ -3,7 +3,7 @@
 
   angular
     .module('rhdemo')
-    .factory('funcionarioService', FuncionarioService);
+    .factory('FuncionarioService', FuncionarioService);
 
   FuncionarioService.$inject = ['PlcEntityService', 'PlcUtils'];
 
