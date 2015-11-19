@@ -72,7 +72,7 @@ public class PlcLookupRest extends PlcAbstractRest{
 				}
 				if (bean!=null) {
 					CreationalContext ctx = bm.createCreationalContext(bean);
-					PlcEntityService entityService = (PlcEntityService)bm.getReference(bean, bean.getBeanClass(), ctx);
+					PlcEntityService entityService = (PlcEntityService)bm.getReference(bean, PlcEntityService.class, ctx);
 
 					List lista = entityService.findAll();
 
