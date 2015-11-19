@@ -3,7 +3,7 @@
 
   angular
     .module('rhdemo')
-    .factory('ufService', UfService);
+    .factory('UfService', UfService);
 
   UfService.$inject = ['PlcEntityService'];
 

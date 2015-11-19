@@ -3,6 +3,8 @@
 
 	angular
 	.module('rhdemo')
+	.constant('$appName', 'RH DEMO')
+	.constant('$appVersion', '0.0.1')
 	.constant('$contextUrl', '/');
 
 	angular

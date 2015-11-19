@@ -1,13 +1,14 @@
 (function() {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('rhdemo')
-    .config(config);
+	angular
+	.module('rhdemo')
+	.config(AppConfig);
 
-  /** @ngInject */
-  function config(tmhDynamicLocaleProvider) {
-    
-  }
+	function AppConfig(PlcMenuLoaderProvider) {
+
+		PlcMenuLoaderProvider.addMenuPath('app/components/json/menu.json');
+
+	}
 
 })();
