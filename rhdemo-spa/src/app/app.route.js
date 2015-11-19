@@ -16,14 +16,6 @@
         controllerAs: 'inicial'
       });
 
-    $stateProvider
-      .state('uf', {
-        url: '/uf',
-        templateUrl: 'app/uf/uf.html',
-        controller: 'ufController',
-        controllerAs: 'ufController'
-      });
-
     $urlRouterProvider.otherwise('/');
   }
 

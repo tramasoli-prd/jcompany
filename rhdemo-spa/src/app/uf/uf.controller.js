@@ -4,9 +4,9 @@
 
   angular
     .module('rhdemo')
-    .controller('ufController', UfController );
+    .controller('UfController', UfController );
 
-  UfController.$inject = ['$rootScope', '$scope', '$location', 'ufService', 'PlcNotificationService', 'PlcUtils'];
+  UfController.$inject = ['$rootScope', '$scope', '$location', 'UfService', 'PlcNotificationService', 'PlcUtils'];
 
   /** @ngInject */
   function UfController($rootScope, $scope, $location, ufService, PlcNotificationService, PlcUtils) {

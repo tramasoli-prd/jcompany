@@ -6,9 +6,9 @@
 	.module('rhdemo')
 	.controller('AppController', AppController);
 
-	AppController.$inject = ['$rootScope', '$scope', '$cookies','$state', '$window', 'PlcAuthService', '$stateParams', 'PlcMenuLoader'];
+	AppController.$inject = ['$scope', '$cookies','$state', '$window', 'PlcAuthService', '$stateParams', 'PlcMenuLoader', 'PlcMenu'];
 
-	function AppController($rootScope, $scope, $cookies, $state, $window, PlcAuthService, $stateParams, PlcMenuLoader) {
+	function AppController($scope, $cookies, $state, $window, PlcAuthService, $stateParams, PlcMenuLoader, PlcMenu) {
 
 		/**  
 		 * Sidebar Toggle & Cookie Control
@@ -56,12 +56,8 @@
 		function activate() {
 			// Load menu from json file
 			// ----------------------------------- 
-
-			PlcMenuLoader.getMenu(menuReady);
-			
-			function menuReady(items) {
-				$scope.menuItems = items;
-			}
+			PlcMenu.addMenuJson(PlcMenuLoader.getMenuPaths());
+			$scope.menuItems = PlcMenu.getMenuArray();
 		}
 
 

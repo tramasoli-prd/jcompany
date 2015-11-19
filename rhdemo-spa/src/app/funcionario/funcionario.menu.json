@@ -1,0 +1,7 @@
+{
+    "text": "Funcionário",
+    "position": 4,
+    "sref": "funcionario.sel",
+    "icon": "menu-icon fa fa-paperclip",
+    "translate": "label.menu.funcionario"
+  }
