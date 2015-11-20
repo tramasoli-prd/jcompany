@@ -1,4 +1,5 @@
 #set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
+#set( $lowerEntityName = $fn.toLowerCase($entity.name) )
 #set( $dollarSymbol= "$" )
 (function() {
   'use strict';
@@ -7,7 +8,7 @@
     .module('${PROJECT_NAME}')
     .factory('${entity.name}Service', ${entity.name}Service);
 
-  ${entity.name}Service.${dollarSymbol}inject = ['PlcEntityService', 'PlcUtils'];
+  ${entity.name}Service.${dollarSymbol}inject = ['PlcEntityService'];
 
   /** @ngInject */
   function ${entity.name}Service(PlcEntityService) {
@@ -17,14 +18,13 @@
 
         constructor: function() {
             PlcEntityService.call(this, {
-                 type: '${uncapitalizedEntityName}'
+                 type: '${lowerEntityName}'
             });
         },
 
         /* METODOS REST */
         _all: function(${uncapitalizedEntityName}) {
-            var url = PlcUtils.encodeURIParams(${uncapitalizedEntityName});
-            return this._get('/all?'+url);
+            return this._get('/all');
         },
 
         create: function() {

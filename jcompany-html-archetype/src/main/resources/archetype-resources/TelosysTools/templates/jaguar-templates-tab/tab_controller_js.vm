@@ -1,12 +1,12 @@
 #set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
+#set( $lowerEntityName = $fn.toLowerCase($entity.name) )
 #set( $dollarSymbol= "$" )
-
 (function() {
   'use strict';
 
   angular
     .module('${PROJECT_NAME}')
-    .controller('${entity.name}Controller', '${entity.name}Controller );
+    .controller('${entity.name}Controller', ${entity.name}Controller );
 
   ${entity.name}Controller.${dollarSymbol}inject = ['${dollarSymbol}rootScope', '${dollarSymbol}scope', '${dollarSymbol}location', '${entity.name}Service', 'PlcNotificationService', 'PlcUtils'];
 
@@ -18,7 +18,7 @@
         ${dollarSymbol}scope.rows = [];
         angular.forEach(response.data.entity, function(value, key) {
           var o = new Object();
-          o.${entity.name} = value;
+          o.${lowerEntityName} = value;
           ${dollarSymbol}scope.rows.push(o);
         });
         ${dollarSymbol}scope.rows.push(new Object());
@@ -34,18 +34,18 @@
         return;
       }
 
-      var incluiNovo = ${dollarSymbol}scope.rows[index].${entity.name} && ${dollarSymbol}scope.rows[index].${entity.name}.id ;
-      ${entity.name}Service.save(${dollarSymbol}scope.rows[index].${entity.name}).then( function (response) {
+      var incluiNovo = ${dollarSymbol}scope.rows[index].${lowerEntityName} && ${dollarSymbol}scope.rows[index].${lowerEntityName}.id ;
+      ${entity.name}Service.save(${dollarSymbol}scope.rows[index].${lowerEntityName}).then( function (response) {
           if (!incluiNovo){
             ${dollarSymbol}scope.rows.push(new Object());
           }
-          ${dollarSymbol}scope.rows[index].${entity.name}  = response.data.entity;
+          ${dollarSymbol}scope.rows[index].${lowerEntityName}  = response.data.entity;
          
       });
     };
 
     ${dollarSymbol}scope.removeRow = function(index){
-      ${entity.name}Service.remove(${dollarSymbol}scope.rows[index].${uncapitalizedEntityName}).then( function (response) {
+      ${entity.name}Service.remove(${dollarSymbol}scope.rows[index].${lowerEntityName}).then( function (response) {
           ${dollarSymbol}scope.rows.splice(index, 1);
       });
     };
