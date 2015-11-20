@@ -1,0 +1,123 @@
+#set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
+#set( $_= "$" )
+##--------------------------------------------------------------------------------------------------------
+##--------------------------------------------------------------------------------------------------------
+## Key fields = fields in Primary Key    
+#set( $keyFields = $entity.keyAttributes )
+##--------------------------------------------------------------------------------------------------------
+## Data fields = fields not in Primary Key    
+#set( $dataFields = $entity.nonKeyAttributes )
+##--------------------------------------------------------------------------------------------------------
+## All fields ( ordered fiels : 1) fields in Primary Key 2) fields not in primary key    
+#set( $allFields = $fn.concatLists($keyFields, $dataFields) )
+##--------------------------------------------------------------------------------------------------------
+
+<div class="container-fluid">
+
+	<div class="panel .panel-default">
+		<div class=".panel-heading">{{ 'label.${uncapitalizedEntityName}.titulo' | translate }}</div>
+	</div>
+
+	#set($count = 0)
+
+	#foreach( $field in $allFields )
+	
+		#if( $field.isSelected() )
+
+			#set($htmlId      = "${uncapitalizedEntityName}_${field.name}" )
+			#set($htmlName    = $field.name )
+			#set($fields = [])
+			#set($ttt = $fields.add($field))
+			#set($referencedEntityTypes = $entity.referencedEntityTypes($fields) )
+			#set($ng_disabled = "")
+
+			#if( $field.isKeyElement() )
+				#set($ng_disabled = " ng-disabled=""true""")
+			#end
+
+	#set($count = $count + 1)
+
+	#if( $count % 3 == 1 )	
+	
+	<div class="row">
+	#end
+
+		<div class="col-md-4">
+
+			<label for="${htmlId}">{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}</label>
+			#if( $field.inputType == "textarea" )
+
+			<textarea id="${htmlId}" ng-model="${fn.uncapitalize($entity.name)}.${htmlName}" class="form-control" rows="3" $ng_disabled></textarea>
+			#elseif( $field.inputType == "dynamic-combo" )
+
+			<plc-dynamic-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-item-description="descricao" ng-entity="${field.formattedName(0)}" />
+			#elseif( $field.inputType == "static-combo" )
+
+			<plc-static-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}"/>
+			#elseif( $field.inputType == "radiobox" )
+
+			<plc-radio ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" />
+			#elseif( $field.inputType == "checkbox" )
+
+			<plc-check ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"/>
+			#elseif( $field.inputType == "modal" )
+
+			#elseif( $field.inputType == "fileupload" )
+
+			#elseif( $field.inputType == "datepicker" )
+
+			<plc-date-picker ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  />
+			#else
+
+			<input type="text" id="${htmlId}" ng-model="${fn.uncapitalize($entity.name)}.${htmlName}" class="form-control" maxLength="${field.guiMaxLength}" $ng_disabled/>
+			#end
+
+		</div>
+
+	#if( $count % 3 == 0 )		
+
+	</div>
+	#end
+		#end
+	#end
+	
+	#if( $count % 3 > 0 )
+	
+	</div>
+	#end
+
+	#set($temDetalhe = "0")
+	#foreach($link in $entity.selectedLinks)
+		#if($link.isCardinalityOneToMany())
+      		#set($temDetalhe = "1")
+		#end
+	#end
+
+	#if( $temDetalhe == "1" )
+
+	<br />
+
+	<div class="form-group">
+		<accordion close-others="oneAtATime"> 
+			<accordion-group heading="{{detalhe.titulo}}" ng-repeat="detalhe in detalhes">
+				<div ng-include="detalhe.template"></div>
+			</accordion-group> 
+		</accordion>
+	</div>
+
+	#end
+		
+	<br />
+
+	<div class="form-group">
+		<div class="col-sm-4">
+			<button type="button" class="btn btn-default" ng-click="new();">Limpar</button>
+			<button type="button" class="btn btn-default" ng-click="save();">Salvar</button>
+			<button type="button" class="btn btn-default" ng-click="list();">Listar</button>
+			<button type="button" class="btn btn-default" ng-click="remove();">Excluir</button>
+		</div>
+
+	</div>
+
+			
+</div>

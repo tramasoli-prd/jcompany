@@ -1,0 +1,17 @@
+#set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
+#set( $dollarSymbol= "$" )
+
+(function() {
+	'use strict';
+
+	angular
+	.module('${PROJECT_NAME}')
+	.config(${entity.name}Config);
+
+	UfConfig.$inject = ['PlcMenuLoaderProvider']
+
+	function UfConfig(PlcMenuLoaderProvider) {
+		PlcMenuLoaderProvider.addMenuPath('app/${uncapitalizedEntityName}/${uncapitalizedEntityName}.menu.json');
+	}
+
+})();

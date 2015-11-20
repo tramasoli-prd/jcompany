@@ -1,0 +1,7 @@
+ {
+    "text": "Unidade Federativa",
+    "position" : 2,
+    "sref": "uf",
+    "icon": "menu-icon fa fa-compass",
+    "translate": "label.menu.uf"
+  }
