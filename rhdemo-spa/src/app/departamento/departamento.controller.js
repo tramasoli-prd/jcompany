@@ -6,12 +6,12 @@
 	.module('rhdemo')
 	.controller('DepartamentoController', DepartamentoController );
 
-	DepartamentoController.$inject = ['$scope', '$state', 'DepartamentoService', 'PlcNotificationService', '$stateParams'];
+	DepartamentoController.$inject = ['$scope', '$state', 'DepartamentoService', 'PlcNotificationService', '$stateParams', 'PlcUtils'];
 
 	/** @ngInject */
-	function DepartamentoController($scope, $state, DepartamentoService, PlcNotificationService, $stateParams) {
+	function DepartamentoController($scope, $state, DepartamentoService, PlcNotificationService, $stateParams, PlcUtils) {
 
-	
+
 		$scope.init = function(){
 
 			if ($state.current.name === 'departamento.man' && $stateParams.id){ 
@@ -40,6 +40,11 @@
 
 
 		$scope.save = function(){
+			var temErro = PlcUtils.validaObrigatorio();
+			if (temErro) {    
+				PlcNotificationService.error("CAMPOS_OBRIGATORIOS_TOPICO_024");
+				return;
+			}
 			DepartamentoService.save($scope.departamento).then( function (response) {
 				$scope.departamento = response.data.entity;
 			});
@@ -61,11 +66,12 @@
 			$state.go( 'departamento.sel' );
 		};
 
+
 		$scope.columnDefs = [
-						             { field: 'id', displayName: 'Id', width: '10%'},
-						             { field: 'descricao', displayName: 'Descrição', width: '50%'},
-						             { field: 'departamentoPai.descricao', displayName: 'Departamento Pai', width: '40%'}
-						    ]
+		                     { field: 'id', displayName: 'Id', width: '10%'},
+		                     { field: 'descricao', displayName: 'Descrição', width: '50%'},
+		                     { field: 'departamentoPai.descricao', displayName: 'Departamento Pai', width: '40%'}
+		                    ]
 
 		$scope.init();
 
