@@ -71,7 +71,7 @@
 
     ${dollarSymbol}scope.list = function () {
       ${dollarSymbol}scope.${uncapitalizedEntityName}Arg =  new Object();
-      ${dollarSymbol}state.go( '${uncapitalizedEntityName}sel' );
+      ${dollarSymbol}state.go( '${uncapitalizedEntityName}.sel' );
     };
 
 

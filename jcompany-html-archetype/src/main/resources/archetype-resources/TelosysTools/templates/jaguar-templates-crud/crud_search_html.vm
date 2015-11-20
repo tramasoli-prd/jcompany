@@ -21,11 +21,11 @@
 	<div class="row">
 		<div class="col-md-2">
 			<label>Nome:</label> <input type="text"
-				ng-model="${uncapitalizedEntityName}.id" class="form-control">
+				ng-model="${uncapitalizedEntityName}Arg.id" class="form-control">
 		</div>
 		<!--div class="col-md-2">
 			<label>Nome:</label> <input type="text"
-				ng-model="${uncapitalizedEntityName}.nome" class="form-control">
+				ng-model="${uncapitalizedEntityName}Arg.nome" class="form-control">
 		</div-->
 	</div>
 
