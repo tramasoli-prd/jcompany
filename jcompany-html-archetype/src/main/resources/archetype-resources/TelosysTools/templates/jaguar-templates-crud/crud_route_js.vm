@@ -11,6 +11,14 @@
 
 	function ${entity.name}RouterConfig(${dollarSymbol}stateProvider, ${dollarSymbol}urlRouterProvider) {
 
+		$stateProvider
+		.state('departamento', {
+			abstract: true,
+			url: '/${uncapitalizedEntityName}',
+			templateUrl: 'app/components/template/single-page-template.html',
+			controller: '${entity.name}Controller',
+			controllerAs: '${uncapitalizedEntityName}Controller'
+		});
 
 		${dollarSymbol}stateProvider
 		.state('${uncapitalizedEntityName}sel', {

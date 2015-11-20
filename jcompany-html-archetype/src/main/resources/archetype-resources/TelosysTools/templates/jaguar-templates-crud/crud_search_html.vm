@@ -18,9 +18,22 @@
 		<div class=".panel-heading">{{ 'label.${uncapitalizedEntityName}.titulo.sel' | translate }}</div>
 	</div>
 
-	<div id="grid1" ui-grid="gridOptions" ui-grid-pagination class="grid"></div>
+	<div class="row">
+		<div class="col-md-2">
+			<label>Nome:</label> <input type="text"
+				ng-model="${uncapitalizedEntityName}.id" class="form-control">
+		</div>
+		<!--div class="col-md-2">
+			<label>Nome:</label> <input type="text"
+				ng-model="${uncapitalizedEntityName}.nome" class="form-control">
+		</div-->
+	</div>
 
 	<br/>
+
+	<div class="row">
+		<plc-grid sref="${uncapitalizedEntityName}.man" />
+	</div>
 
 	<div class="form-group">
 	    <div class="col-sm-4">
