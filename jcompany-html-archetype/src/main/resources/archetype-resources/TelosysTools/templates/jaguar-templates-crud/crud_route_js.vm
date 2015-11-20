@@ -11,8 +11,8 @@
 
 	function ${entity.name}RouterConfig(${dollarSymbol}stateProvider, ${dollarSymbol}urlRouterProvider) {
 
-		$stateProvider
-		.state('departamento', {
+		${dollarSymbol}stateProvider
+		.state('${uncapitalizedEntityName}', {
 			abstract: true,
 			url: '/${uncapitalizedEntityName}',
 			templateUrl: 'app/components/template/single-page-template.html',

@@ -1,4 +1,6 @@
-#set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
+#set( $upperEntityName = $fn.toUpperCase($entity.name) )
+#set( $lowerEntityName = $fn.toLowerCase($entity.name) )
+
 #set( $dollarSymbol= "$" )
 
 (function() {
@@ -8,10 +10,10 @@
 	.module('${PROJECT_NAME}')
 	.config(${entity.name}Config);
 
-	UfConfig.$inject = ['PlcMenuLoaderProvider']
+	${entity.name}Config.${dollarSymbol}inject = ['PlcMenuLoaderProvider']
 
-	function UfConfig(PlcMenuLoaderProvider) {
-		PlcMenuLoaderProvider.addMenuPath('app/${uncapitalizedEntityName}/${uncapitalizedEntityName}.menu.json');
+	function ${entity.name}Config(PlcMenuLoaderProvider) {
+		PlcMenuLoaderProvider.addMenuPath('app/${lowerEntityName}/${lowerEntityName}.menu.json');
 	}
 
 })();
