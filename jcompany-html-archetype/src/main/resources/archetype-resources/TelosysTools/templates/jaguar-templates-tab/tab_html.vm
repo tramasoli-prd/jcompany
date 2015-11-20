@@ -10,6 +10,7 @@
 ##--------------------------------------------------------------------------------------------------------
 ## All fields ( ordered fiels : 1) fields in Primary Key 2) fields not in primary key    
 #set( $allFields = $fn.concatLists($keyFields, $dataFields) )
+#set( $dollarSymbol= "$" )
 ##--------------------------------------------------------------------------------------------------------
 
 <div class="container-fluid">
@@ -93,11 +94,11 @@
 
 		<div class="col-sd-2">
 
-		   	<button type="submit" class="btn btn-primary" ng-click="saveRow($index);">
+		   	<button type="submit" class="btn btn-primary" ng-click="saveRow(${dollarSymbol}index);">
 			  <i class="glyphicon glyphicon-save-file"></i>
 			</button>
 
-			<button type="submit" class="btn btn-danger" ng-click="removeRow($index);" ng-if="row.${fn.uncapitalize($entity.name)}.id">
+			<button type="submit" class="btn btn-danger" ng-click="removeRow(${dollarSymbol}index);" ng-if="row.${fn.uncapitalize($entity.name)}.id">
 			  <i class="glyphicon glyphicon-erase"></i>
 			</button>
 
