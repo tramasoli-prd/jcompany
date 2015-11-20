@@ -43,23 +43,25 @@
 	#end
 
 		<div class="col-md-4">
-
+			#if($field.inputType == "textarea" || $field.inputType == "text" || $field.inputType == "number")
 			<label for="${htmlId}">{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}</label>
+			#end
+			
 			#if( $field.inputType == "textarea" )
-
 			<textarea id="${htmlId}" ng-model="${fn.uncapitalize($entity.name)}.${htmlName}" class="form-control" rows="3" $ng_disabled></textarea>
+
 			#elseif( $field.inputType == "dynamic-combo" )
-
 			<plc-dynamic-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-item-description="descricao" ng-entity="${field.formattedName(0)}" />
+
 			#elseif( $field.inputType == "static-combo" )
-
 			<plc-static-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}"/>
+			
 			#elseif( $field.inputType == "radiobox" )
-
 			<plc-radio ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" />
+			
 			#elseif( $field.inputType == "checkbox" )
-
 			<plc-check ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"/>
+			
 			#elseif( $field.inputType == "modal" )
 
 			#elseif( $field.inputType == "fileupload" )
@@ -69,7 +71,7 @@
 			<plc-date-picker ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  />
 			#else
 
-			<input type="text" id="${htmlId}" ng-model="${fn.uncapitalize($entity.name)}.${htmlName}" class="form-control" maxLength="${field.guiMaxLength}" $ng_disabled/>
+			<input type="text" id="${htmlId}" ng-model="${entity.name}.${htmlName}" class="form-control" maxLength="${field.guiMaxLength}" $ng_disabled/>
 			#end
 
 		</div>

@@ -65,7 +65,7 @@
 			<plc-static-combo ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}"/>
 			#elseif( $field.inputType == "radiobox" )
 
-			<plc-radio ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" indexradio="{{${dollarSymbol}index}}/>
+			<plc-radio ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" indexradio="{{${dollarSymbol}index}}"/>
 			#elseif( $field.inputType == "checkbox" )
 
 			<plc-check ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"/>

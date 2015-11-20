@@ -21,7 +21,7 @@
 		});
 
 		${dollarSymbol}stateProvider
-		.state('${uncapitalizedEntityName}sel', {
+		.state('${uncapitalizedEntityName}.sel', {
 			url: '/${uncapitalizedEntityName}sel',
 			templateUrl: 'app/${uncapitalizedEntityName}/${uncapitalizedEntityName}sel.html',
 			controller: '${entity.name}Controller',
@@ -29,7 +29,7 @@
 		});
 
 		${dollarSymbol}stateProvider
-		.state('${uncapitalizedEntityName}man', {
+		.state('${uncapitalizedEntityName}.man', {
 			url: '/${uncapitalizedEntityName}man/:id',
 			templateUrl: 'app/${uncapitalizedEntityName}/${uncapitalizedEntityName}man.html',
 			controller: '${entity.name}Controller',

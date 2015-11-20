@@ -3,7 +3,7 @@
 
  {
     "position" : 2,
-    "sref": "${uncapitalizedEntityName}",
+    "sref": "${uncapitalizedEntityName}.sel",
     "icon": "menu-icon fa fa-compass",
     "translate": "label.menu.${uncapitalizedEntityName}",
     "text": ""
