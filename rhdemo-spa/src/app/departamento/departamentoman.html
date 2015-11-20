@@ -1,5 +1,7 @@
 <div class="container-fluid" >
 
+
+	<form id="formDepartamentoMan">
 	<div class="panel .panel-default">
 		<div class=".panel-heading">
 		 Cadastro de Departamentos
@@ -17,7 +19,7 @@
         <div class="col-md-8">
            
             <label>Descri&ccedil;&atilde;o:</label>
-			<input type="text" ng-model="departamento.descricao" required class="form-control">
+			<input type="text" ng-model="departamento.descricao" required="" ng-required="true" maxlength="50" class="form-control obrigatorio">
             
         </div>
 	</div>
@@ -41,5 +43,6 @@
 
 	</div>
 
+	</form>
 	
 </div>

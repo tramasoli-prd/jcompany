@@ -2,6 +2,7 @@ package com.powerlogic.jcompany.rhdemo.app.model.service;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.model.repository.PlcEntityRepository;
@@ -18,6 +19,11 @@ public class DepartamentoServiceImpl extends PlcAbstractServiceEntity<Long, Depa
 	@Override
 	public DepartamentoEntity findByRoot(Long id) throws PlcException {
 		return null;
+	}
+	
+	@Override
+	public DepartamentoEntity save(@Valid DepartamentoEntity entity) throws PlcException {
+		return super.save(entity);
 	}
 
 	@Override
