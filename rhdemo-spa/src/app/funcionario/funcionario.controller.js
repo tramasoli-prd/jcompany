@@ -94,12 +94,6 @@
 		};
 
 
-		function rowTemplate() {
-			return '<div ui-sref="funcionario.mdt({id: row.entity.id})" >' +
-			'  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }"  ui-grid-cell></div>' +
-			'</div>';
-		}
-
 		$scope.oneAtATime = true;
 
 		$scope.detalhes = [
@@ -138,11 +132,8 @@
 			$scope.funcionario.historicoProfissional.splice(index, 1);
 		};
 
-		$scope.gridOptions = {
-				paginationPageSizes: [25, 50, 75],
-				paginationPageSize: 25,
-				rowTemplate: rowTemplate(),
-				columnDefs: [
+
+		$scope.columnDefs = [
 				             { field: 'id', displayName: 'Id', width: '10%'},
 				             { field: 'nome', displayName: 'Nome', width: '25%'},
 				             { field: 'email', displayName: 'E-mail', width: '20%'},
@@ -150,7 +141,7 @@
 				             { field: 'dataNascimento', displayName: 'Nascimento', width: '10%', cellFilter: 'date:\'dd/MM/yyyy\''},
 				             { field: 'departamento.descricao', displayName: 'Departamento', width: '20%'}
 				             ]
-		};
+
 
 		init();
 

@@ -1,48 +1,43 @@
-<div class="container-fluid" >
+<div class="container-fluid">
 
 	<div class="panel .panel-default">
-		<div class=".panel-heading">
-		 Consulta de Funcion&aacute;rios
+		<div class=".panel-heading">Consulta de Funcion&aacute;rios</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-2">
+			<label>Nome:</label> <input type="text"
+				ng-model="funcionarioArg.nome" class="form-control">
+		</div>
+
+		<div class="col-md-2">
+			<label>CPF:</label> <input type="text" ng-model="funcionarioArg.cpf"
+				class="form-control">
+		</div>
+
+		<div class="col-md-3">
+
+			<plc-date-picker ng-model="funcionarioArg.dataNascimento"
+				label="Data Nasc.:" />
+
+		</div>
+
+		<div class="col-md-4">
+			<label>E-mail:</label> <input type="text"
+				ng-model="funcionarioArg.email" class="form-control">
 		</div>
 	</div>
 
 	<div class="row">
-    <div class="col-md-2">
-      <label>Nome:</label>
-      <input type="text" ng-model="funcionarioArg.nome" class="form-control">
-    </div>
 
-    <div class="col-md-2">
-      <label>CPF:</label>
-      <input type="text" ng-model="funcionarioArg.cpf" class="form-control">
-    </div>
-
-    <div class="col-md-3">
-     
-        <plc-date-picker ng-model="funcionarioArg.dataNascimento" label="Data Nasc.:"  />
-     
-    </div>
-
-    <div class="col-md-4">
-      <label>E-mail:</label>
-      <input type="text" ng-model="funcionarioArg.email" class="form-control">
-    </div>
-
-
+		<plc-grid sref="funcionario.mdt" />
 
 	</div>
-
-	<div id="grid1" ui-grid="gridOptions" ui-grid-pagination class="grid"></div>
-
-	<br/>
 
 	<div class="form-group">
-	    <div class="col-sm-4">
-	    	<button type="button" class="btn btn-default" ng-click="find();" >Pesquisar</button>
-	    	<button type="button" class="btn btn-default" ng-click="clear();" >Limpar</button>
-	    	<button type="button" class="btn btn-default" ng-click="new();" >Novo</button>
-	    </div>
+		<div class="col-sm-4">
+			<button type="button" class="btn btn-default" ng-click="find();">Pesquisar</button>
+			<button type="button" class="btn btn-default" ng-click="clear();">Limpar</button>
+			<button type="button" class="btn btn-default" ng-click="new();">Novo</button>
+		</div>
 	</div>
-
-
-</div>

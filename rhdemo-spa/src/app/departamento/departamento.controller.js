@@ -11,10 +11,7 @@
 	/** @ngInject */
 	function DepartamentoController($scope, $state, DepartamentoService, PlcNotificationService, $stateParams) {
 
-		$scope.ehVinculado = false;
-
-
-
+	
 		$scope.init = function(){
 
 			if ($state.current.name === 'departamento.man' && $stateParams.id){ 
@@ -64,31 +61,11 @@
 			$state.go( 'departamento.sel' );
 		};
 
-		$scope.rowTemplate = '<div ng-if="!grid.appScope.isAggregateModal" ui-sref="departamento.man({id: row.entity.id})" >' +
-			'  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }"  ui-grid-cell></div>' +
-			'</div>'+
-			'<div ng-if="grid.appScope.isAggregateModal"  ng-click="grid.appScope.returnValuesAggregate(row); grid.appScope.closeThisDialog()" >' +
-					'  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }"  ui-grid-cell></div>' +
-					'</div>';
-
-		$scope.getRowTemplate =  function() {
-			return $scope.rowTemplate;
-		}
-
-		$scope.setRowTemplate =  function(templateAdd) {
-			$scope.rowTemplate = templateAdd;
-		}
-
-		$scope.gridOptions = {
-				paginationPageSizes: [25, 50, 75],
-				paginationPageSize: 25,
-				rowTemplate: $scope.getRowTemplate(),
-				columnDefs: [
-				             { field: 'id', displayName: 'Id', width: '10%'},
-				             { field: 'descricao', displayName: 'Descrição', width: '50%'},
-				             { field: 'departamentoPai.descricao', displayName: 'Departamento Pai', width: '40%'}
-				             ]
-		};
+		$scope.columnDefs = [
+						             { field: 'id', displayName: 'Id', width: '10%'},
+						             { field: 'descricao', displayName: 'Descrição', width: '50%'},
+						             { field: 'departamentoPai.descricao', displayName: 'Departamento Pai', width: '40%'}
+						    ]
 
 		$scope.init();
 
