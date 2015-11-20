@@ -2,17 +2,16 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 
-(function() {
-	'use strict';
+	(function() {
+		'use strict';
 
-	angular
-	.module('${artifactId}')
-	.constant('$contextUrl', '/');
+		angular
+		.module('${artifactId}')
+		.constant('$contextUrl', '/');
 
-	angular
-	.module('jcompany-view')
-	.constant('$menuPath', 'app/components/json/menu.json')
-	.constant('$backendUrl', '${BACKEND-URL}');
+		angular
+		.module('jcompany-view')
+		.constant('$backendUrl', '${BACKEND-URL}');
 
-	
-})();
+
+	})();
