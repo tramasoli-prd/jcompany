@@ -87,78 +87,9 @@
 
 	<div class="row">
 
-		<div class="col-md-6">
+	   <plc-file-upload label="Foto:" ng-model="funcionario.foto" url="/funcionario/foto/{{funcionario.foto.id}}"
+        model-filename="funcionario.foto.nome" />
 
-
-			<label>Foto:</label>
-
-			<div nv-file-drop="" uploader="uploader"
-				filters="queueLimit, customFilter">
-				<input plc-filestyle="" type="file" id="fotoFileName"
-					data-button-text="Selecione" data-class-button="btn btn-default"
-					data-classinput="form-control inline" nv-file-select=""
-					uploader="uploader" class="form-control" /> <a target="_blank"
-					href="{{backendUrl}}/rest/entity/funcionario/foto/{{funcionario.foto.id}}">{{funcionario.foto.nome}}</a>
-
-				<input type="hidden" ng-model="funcionario.foto"
-					class="form-control">
-
-			</div>
-
-
-
-			<br />
-
-			<p ng-if="!uploader.queue.length" class="lead text-center"></p>
-			<div ng-if="uploader.queue.length">
-				<table ng-if="uploader.queue.length" class="table">
-					<thead>
-						<tr>
-							<th ng-show="uploader.isHTML5">Tamanho</th>
-							<th ng-show="uploader.isHTML5">Progresso</th>
-							<th>Status</th>
-							<th>Ações</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="item in uploader.queue">
-							<td ng-show="uploader.isHTML5" nowrap="">{{
-								item.file.size/1024/1024|number:2 }} MB</td>
-							<td ng-show="uploader.isHTML5">
-								<div style="margin-bottom: 0;" class="progress progress-xs">
-									<div role="progressbar"
-										ng-style="{ 'width': item.progress + '%' }"
-										class="progress-bar"></div>
-								</div>
-							</td>
-							<td class="text-center"><span ng-show="item.isSuccess">
-									<em class="fa fa-check fa-fw"></em>
-							</span> <span ng-show="item.isCancel"> <em
-									class="fa fa-ban-circle fa-fw"></em>
-							</span> <span ng-show="item.isError"> <em
-									class="fa fa-times fa-fw"></em>
-							</span></td>
-							<td nowrap="">
-								<button type="button" ng-click="item.upload()"
-									ng-disabled="item.isReady || item.isUploading || item.isSuccess"
-									class="btn btn-info btn-xs">
-									<span class="icon-cloud-upload mr"></span>Upload
-								</button>
-								<button type="button" ng-click="item.cancel()"
-									ng-disabled="!item.isUploading" class="btn btn-warning btn-xs">
-									<span class="icon-close mr"></span>Cancel
-								</button>
-								<button type="button" ng-click="item.remove()"
-									class="btn btn-danger btn-xs">
-									<span class="icon-trash mr"></span>Excluir
-								</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-		</div>
 
 	</div>
 

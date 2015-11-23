@@ -93,6 +93,12 @@
 			$state.go( 'funcionario.sel' );
 		};
 
+    $scope.$watch('funcionarioArg.dataNascimento', function() {
+      if ($scope.funcionarioArg){
+        
+       console.log($scope.funcionarioArg.dataNascimento);
+      }
+    });
 
 		$scope.oneAtATime = true;
 
