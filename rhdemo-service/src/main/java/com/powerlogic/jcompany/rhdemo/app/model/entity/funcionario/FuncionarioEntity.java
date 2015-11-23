@@ -115,10 +115,7 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements PlcLo
     @OneToOne (targetEntity = FotoEntity.class, cascade=CascadeType.ALL, orphanRemoval=true)    
     @JoinColumn(name="ID_FOTO")
     private FotoEntity foto;
-	
-	@NotNull
-	@Size(max = 1) @Column
-	private String sitHistoricoPlc="A";
+
 	
 	@OneToMany (targetEntity = HistoricoProfissionalEntity.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="funcionario", orphanRemoval=true)
 	@Valid
@@ -241,14 +238,6 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements PlcLo
 
 	public void setFoto(FotoEntity foto) {
 		this.foto = foto;
-	}
-
-	public String getSitHistoricoPlc() {
-		return sitHistoricoPlc;
-	}
-
-	public void setSitHistoricoPlc(String sitHistoricoPlc) {
-		this.sitHistoricoPlc = sitHistoricoPlc;
 	}
 
 	public List<HistoricoProfissionalEntity> getHistoricoProfissional() {
