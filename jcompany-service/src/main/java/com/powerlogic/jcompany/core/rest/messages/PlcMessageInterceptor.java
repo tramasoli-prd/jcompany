@@ -25,12 +25,14 @@ public class PlcMessageInterceptor implements WriterInterceptor
 	{
 		Object entity = context.getEntity();
 		if (!entity.getClass().isAssignableFrom(PlcMessageMap.class)){ // não deu exceção
-			PlcResponseEntity responseEntity = new PlcResponseEntity();
-			responseEntity.setEntity(entity);
-			responseEntity.setMessageMap(msgUtil.getMensagens());
-
-			context.setGenericType(PlcResponseEntity.class);
-			context.setEntity(responseEntity);
+			if (entity.getClass().getCanonicalName()!=null && !entity.getClass().getCanonicalName().equals("byte[]")) {
+				PlcResponseEntity responseEntity = new PlcResponseEntity();
+				responseEntity.setEntity(entity);
+				responseEntity.setMessageMap(msgUtil.getMensagens());
+	
+				context.setGenericType(PlcResponseEntity.class);
+				context.setEntity(responseEntity);
+			}
 		}
 		context.proceed();
 	}
