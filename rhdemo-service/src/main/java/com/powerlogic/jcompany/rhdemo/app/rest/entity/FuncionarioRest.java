@@ -1,7 +1,7 @@
 package com.powerlogic.jcompany.rhdemo.app.rest.entity;
 
 import java.io.File;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,6 +27,7 @@ import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.core.rest.entity.PlcAbstractEntityRest;
 import com.powerlogic.jcompany.core.rest.messages.PlcMessageIntercept;
+import com.powerlogic.jcompany.core.rest.util.PlcDateParam;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoConteudoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FuncionarioEntity;
@@ -51,7 +52,7 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 			 @QueryParam("nome") String nome,
 			 @QueryParam("cpf") String cpf,
 			 @QueryParam("email") String email,
-			 @QueryParam("dataNascimento") Date dataNascimento) throws PlcException {
+			 @QueryParam("dataNascimento") PlcDateParam dataNascimento) throws PlcException {
 
 		FuncionarioEntity funcionario = new FuncionarioEntity();
 
@@ -64,7 +65,7 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 		}
 
 		if (dataNascimento != null) {
-			funcionario.setDataNascimento(dataNascimento);
+			funcionario.setDataNascimento(dataNascimento.getDate());
 		}
 		
 		if (StringUtils.isNoneBlank(email)) {
