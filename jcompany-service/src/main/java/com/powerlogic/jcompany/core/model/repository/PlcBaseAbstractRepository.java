@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -20,6 +21,7 @@ import javax.persistence.criteria.Root;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.PropertyUtilsBean;
 
+import com.powerlogic.jcompany.commons.util.message.PlcMessageUtil;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
 import com.powerlogic.jcompany.core.commons.search.PlcPagination;
 import com.powerlogic.jcompany.core.exception.PlcException;
@@ -27,15 +29,19 @@ import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
+import com.powerlogic.jcompany.core.model.qbe.PlcQBERepository;
 import com.powerlogic.jcompany.core.util.ConstantUtil;
 
-public abstract class PlcBaseAbstractRepository<PK extends Serializable, E extends PlcVersionedEntity<PK>> implements PlcEntityRepository<PK, E> {
+public abstract class PlcBaseAbstractRepository<PK extends Serializable, E extends PlcVersionedEntity<PK>> extends PlcQBERepository<PK, E>  {
 
 	private static PropertyUtilsBean propertyUtilsBean = BeanUtilsBean.getInstance().getPropertyUtils();
 
 	protected abstract EntityManager getEntityManager();
 
 	public abstract Class<E> getEntityType();
+	
+	@Inject
+	protected PlcMessageUtil messageUtil;
 
 	@Override
 	public E get(PK id) {
@@ -48,6 +54,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
 		}
 	}
+
 
 	@Override
 	public E getDetached(PK id) {
@@ -77,6 +84,8 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 			throw PlcBeanMessages.REGISTROS_CONCORRENTES_011.create();
 		} catch (PlcException e) {
 			throw e;
+//		} catch (ConstraintViolationException e) {
+//			throw PlcBeanMessages.FALHA_VALIDACAO_023.create(messageUtil.availableInvariantMessages(e.getConstraintViolations()));
 		} catch (Exception e) {
 			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
 		}

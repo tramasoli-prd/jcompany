@@ -27,7 +27,7 @@ public abstract class PlcVersionedEntity<PK extends Serializable> implements Plc
 	@NotNull
 	@Column(name = "VERSAO_REGISTRO")
 	@Digits(integer = 8, fraction = 0)
-	private int versao;
+	private Integer versao = 0;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "DATA_CRIACAO", updatable = false)
@@ -44,11 +44,11 @@ public abstract class PlcVersionedEntity<PK extends Serializable> implements Plc
 	@Column(name = "IN_SITUACAO_REGISTRO", nullable = false, length = 1)
 	private PlcSituacao situacao;
 
-	public int getVersao() {
+	public Integer getVersao() {
 		return versao;
 	}
 
-	public void setVersao(int versao) {
+	public void setVersao(Integer versao) {
 		this.versao = versao;
 	}
 
@@ -82,5 +82,12 @@ public abstract class PlcVersionedEntity<PK extends Serializable> implements Plc
 
 	public void setSituacao(PlcSituacao situacao) {
 		this.situacao = situacao;
+	}
+	
+	@Override
+	public boolean isIdSet() {
+		if(getId()!=null)
+			return true;
+		return false;
 	}
 }

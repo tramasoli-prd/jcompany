@@ -39,6 +39,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<version.junit>4.12</version.junit>
 		<version.commons-beanutils>1.9.2</version.commons-beanutils>
+		<version.guava>18.0</version.guava>
 	</properties>
 
 	<!-- Mapeamento de todas as dependências -->
@@ -99,6 +100,13 @@
 				<version>${version.junit}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${version.guava}</version>
+			</dependency>
+
+
 		</dependencies>
 
 	</dependencyManagement>
@@ -148,6 +156,11 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
 		</dependency>
 
 	</dependencies>

@@ -67,14 +67,15 @@ extends PlcAbstractRest implements PlcEntityModelRest<PK, E, A> {
 	}
 
 	protected void setMasterIntoDetails(Object entity, List list, String property) {
-
-		for(Object o: list) {
-			try {
-				Field f = o.getClass().getDeclaredField(property);
-				f.setAccessible(true);
-				f.set(o, entity);
-			} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-				e.printStackTrace();
+		if (list!=null) {
+			for(Object o: list) {
+				try {
+					Field f = o.getClass().getDeclaredField(property);
+					f.setAccessible(true);
+					f.set(o, entity);
+				} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 
@@ -87,7 +88,7 @@ extends PlcAbstractRest implements PlcEntityModelRest<PK, E, A> {
 			ParameterizedType pt = (ParameterizedType)this.getClass().getGenericSuperclass();
 
 			return validationInvariantUtil.getConstraintsForClass((Class)pt.getActualTypeArguments()[1]);
-			
+
 		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException e) {
 			e.printStackTrace();
 			return null;

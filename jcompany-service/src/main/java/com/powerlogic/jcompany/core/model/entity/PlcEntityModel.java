@@ -8,4 +8,5 @@ public interface PlcEntityModel<PK extends Serializable> extends Serializable {
 
 	void setId(PK id);
 	
+    boolean isIdSet();
 }
