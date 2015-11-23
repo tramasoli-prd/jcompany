@@ -36,41 +36,45 @@ public class FuncionarioRepository extends PlcAbstractRepository<Long, Funcionar
 	public List<FuncionarioEntity> findAll(FuncionarioEntity funcionario) {
 	
 		try {
+//			
+//			CriteriaBuilder builder = criteriaBuilder();
+//
+//			CriteriaQuery<FuncionarioEntity> query = builder.createQuery(getEntityType());
+//
+//			Root<FuncionarioEntity> from = query.from(getEntityType());
+//
+//			query.select(from).where(builder.equal(from.get(ConstantUtil.QUERY_PARAM_SITUACAO), PlcSituacao.A));
+//			
+//			//TODO: Colocar generico no framework...
+//			List<Predicate> predicates= new ArrayList<Predicate>();
+//			
+//			if(StringUtils.isNoneBlank(funcionario.getNome())) {
+//			    Predicate nome = builder.like(from.<String>get("nome"), funcionario.getNome());
+//			    predicates.add(nome);
+//			}
+//			
+//			if(StringUtils.isNoneBlank(funcionario.getCpf())) {
+//			    Predicate cpf = builder.like(from.<String>get("cpf"), funcionario.getCpf());
+//			    predicates.add(cpf);
+//			}
+//			 
+//			if(StringUtils.isNoneBlank(funcionario.getEmail())) {
+//			    Predicate email = builder.like(from.<String>get("email"), funcionario.getEmail());
+//			    predicates.add(email);
+//			}
+//			
+//			if(funcionario.getDataNascimento() != null) {
+//			    Predicate dataNascimento = builder.equal(from.<Date>get("dataNascimento"), funcionario.getDataNascimento());
+//			    predicates.add(dataNascimento);
+//			}			
+//			
+//			query.where(predicates.toArray(new Predicate[]{}));
+//			
+//			return createQuery(query).getResultList();
 			
-			CriteriaBuilder builder = criteriaBuilder();
-
-			CriteriaQuery<FuncionarioEntity> query = builder.createQuery(getEntityType());
-
-			Root<FuncionarioEntity> from = query.from(getEntityType());
-
-			query.select(from).where(builder.equal(from.get(ConstantUtil.QUERY_PARAM_SITUACAO), PlcSituacao.A));
+			funcionario.setTemCursoSuperior(null);
+			return find(funcionario);
 			
-			//TODO: Colocar generico no framework...
-			List<Predicate> predicates= new ArrayList<Predicate>();
-			
-			if(StringUtils.isNoneBlank(funcionario.getNome())) {
-			    Predicate nome = builder.like(from.<String>get("nome"), funcionario.getNome());
-			    predicates.add(nome);
-			}
-			
-			if(StringUtils.isNoneBlank(funcionario.getCpf())) {
-			    Predicate cpf = builder.like(from.<String>get("cpf"), funcionario.getCpf());
-			    predicates.add(cpf);
-			}
-			 
-			if(StringUtils.isNoneBlank(funcionario.getEmail())) {
-			    Predicate email = builder.like(from.<String>get("email"), funcionario.getEmail());
-			    predicates.add(email);
-			}
-			
-			if(funcionario.getDataNascimento() != null) {
-			    Predicate dataNascimento = builder.equal(from.<Date>get("dataNascimento"), funcionario.getDataNascimento());
-			    predicates.add(dataNascimento);
-			}			
-			
-			query.where(predicates.toArray(new Predicate[]{}));
-			
-			return createQuery(query).getResultList();
 		} catch (PlcException e) {
 			throw e;
 		} catch (Exception e) {
