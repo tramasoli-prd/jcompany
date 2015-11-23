@@ -17,26 +17,6 @@
 		 * -----------------*/
 
 		$scope.backendUrl = $backendUrl;
-		$scope.uploader = new FileUploader({
-			url: $backendUrl+'/uploadFiles',
-			queueLimit: 1,
-			withCredentials: true
-		});
-
-		// FILTERS
-		$scope.uploader.filters.push({
-			name: 'imageFilter',
-			fn: function(item /*{File|FileLikeObject}*/, options) {
-				var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-				return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-			}
-		});
-
-		// CALLBACKS
-		$scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-			$scope._fotoFileName = fileItem._file.name;
-		};
-
 
 		var init = function(){
 
@@ -93,12 +73,6 @@
 			$state.go( 'funcionario.sel' );
 		};
 
-    $scope.$watch('funcionarioArg.dataNascimento', function() {
-      if ($scope.funcionarioArg){
-        
-       console.log($scope.funcionarioArg.dataNascimento);
-      }
-    });
 
 		$scope.oneAtATime = true;
 
@@ -148,6 +122,15 @@
 				             { field: 'departamento.descricao', displayName: 'Departamento', width: '20%'}
 				             ]
 
+    $scope.uploaderFilter =[
+
+      {
+          name: 'imageFilter',
+          fn: function(item /*{File|FileLikeObject}*/, options) {
+            var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+            return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+          }
+        }]
 
 		init();
 
