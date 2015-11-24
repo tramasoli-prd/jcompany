@@ -63,6 +63,11 @@
 		#if($link.isCardinalityOneToMany())
 
       ${dollarSymbol}scope.${uncapitalizedEntityName}.${fn.uncapitalize($link.formattedFieldName(0))} = [];
+	  ${generator.generate(
+					$link.targetTableName , 
+					"${uncapitalizedEntityName}_${fn.uncapitalize($link.formattedFieldName(0))}.html", 
+					$target.folder, 
+					"crud_det_html.vm" )};
 		#end
       #end
 
@@ -86,7 +91,7 @@
     ${dollarSymbol}scope.detalhes.push(
       {
         titulo: "${nameDetail}",
-        template: "app/${link.formattedFieldName(0)}/${link.formattedFieldName(0)}det.html"
+        template: "app/${uncapitalizedEntityName}/${uncapitalizedEntityName}_${fn.uncapitalize($link.formattedFieldName(0))}.html"
       } 
 	);
 
