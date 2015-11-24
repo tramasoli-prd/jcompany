@@ -55,6 +55,10 @@
 				return this._post('/save', data);
 			},
 
+			metadata: function() {
+				return this._get('/metadata');
+			},
+
 			remove: function(data) {
 				return this._post('/remove', data);
 			}

@@ -18,6 +18,16 @@
 				$scope.edit($stateParams.id);    
 			} 
 
+			DepartamentoService.metadata().then( function (response) {
+
+				angular.forEach(response.data.entity.properties, function(value, key) {
+					console.log(value);
+				  	var myEl = angular.element( document.querySelector( "[name='"+value+"']" ));
+					myEl.attr('maxlength',"2");
+				});
+		
+			});
+
 		}
 
 
