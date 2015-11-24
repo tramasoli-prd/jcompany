@@ -1,0 +1,14 @@
+#set( $lowerEntityName = $fn.toLowerCase($entity.name) )
+
+# ${fn.uncapitalize($entity.name)}
+label.${fn.uncapitalize($entity.name)}=${entity.name}
+label.${fn.uncapitalize($entity.name)}.menu=${entity.name}
+label.${fn.uncapitalize($entity.name)}.titulo.sel=${entity.name}
+label.${fn.uncapitalize($entity.name)}.titulo=${entity.name}
+label.menu.${lowerEntityName}=${entity.name}
+#foreach($attribute in $entity.attributes)
+label.${fn.uncapitalize($entity.name)}.${attribute.name}=${attribute.label}
+#end
+#foreach($link in $entity.links)
+label.${fn.uncapitalize($entity.name)}.${link.fieldName}=${link.fieldName}
+#end
