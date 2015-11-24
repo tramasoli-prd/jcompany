@@ -11,6 +11,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -58,6 +60,8 @@ public class DepartamentoEntity extends PlcVersionedEntity<Long> implements PlcL
 
 	/** atributo descricao do departamento
 	 */
+	@NotNull
+	@Size(max=100)
 	@Column(name = "DESCRICAO", length = 100)
 	private String descricao;
 

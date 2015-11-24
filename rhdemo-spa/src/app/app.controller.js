@@ -59,6 +59,7 @@
 			PlcMenu.addMenuPath(PlcMenuLoader.getMenuPaths());
 			PlcMenu.addMenuJson(PlcMenuLoader.getMenuJson());
 			$scope.menuItems = PlcMenu.getMenuArray();
+
 		}
 
 
@@ -78,9 +79,6 @@
 		$scope.notificationI = function() {  
 			document.getElementById('notification').className= "item dropdown";
 		};
-
-
-
 
 	}
 

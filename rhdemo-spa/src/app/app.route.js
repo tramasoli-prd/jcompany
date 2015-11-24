@@ -8,15 +8,20 @@
     /** @ngInject */
   function RouterConfig($stateProvider, $urlRouterProvider) {
     
-    $stateProvider
-      .state('inicial', {
+   
+
+
+     $stateProvider
+      .state('home', {
         url: '/',
         templateUrl: 'app/inicial/inicial.html',
-        controller: 'InicialController',
-        controllerAs: 'inicial'
+        controller: 'AppController',
+        controllerAs: 'app'
       });
 
     $urlRouterProvider.otherwise('/');
+
+   
   }
 
 })();

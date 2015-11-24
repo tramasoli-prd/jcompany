@@ -15,9 +15,7 @@
 		.state('${uncapitalizedEntityName}', {
 			abstract: true,
 			url: '/${uncapitalizedEntityName}',
-			templateUrl: 'app/components/template/single-page-template.html',
-			controller: '${entity.name}Controller',
-			controllerAs: '${uncapitalizedEntityName}Controller'
+			templateUrl: 'app/components/template/single-page-template.html'
 		});
 
 		${dollarSymbol}stateProvider
