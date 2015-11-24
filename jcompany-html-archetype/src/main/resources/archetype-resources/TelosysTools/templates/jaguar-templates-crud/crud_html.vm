@@ -19,6 +19,7 @@
 	</div>
 
 	#set($count = 0)
+	#set($isModalOrFileuploadPrev = false)
 
 	#foreach( $field in $allFields )
 	
@@ -35,58 +36,87 @@
 				#set($ng_disabled = " ng-disabled=""true""")
 			#end
 
-	#set($count = $count + 1)
+			#set($count = $count + 1)
 
-	#if( $count % 3 == 1 )	
+			#if(!($field.inputType == "modal" || $field.inputType == "fileupload"))
+				#set($isModalOrFileuploadPrev = false)
+				#if( $count % 3 == 1 )	
 	
 	<div class="row">
-	#end
+				#end
 
 		<div class="col-md-4">
-			#if($field.inputType == "textarea" || $field.inputType == "text" || $field.inputType == "number")
+
+				#if($field.inputType == "textarea" || $field.inputType == "text" || $field.inputType == "number")
+
 			<label for="${htmlId}">{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}</label>
-			#end
+				#end
 			
-			#if( $field.inputType == "textarea" )
+				#if( $field.inputType == "textarea" )
+
 			<textarea id="${htmlId}" ng-model="${fn.uncapitalize($entity.name)}.${htmlName}" class="form-control" rows="3" $ng_disabled></textarea>
+				#elseif( $field.inputType == "dynamic-combo" )
 
-			#elseif( $field.inputType == "dynamic-combo" )
 			<plc-dynamic-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-item-description="descricao" ng-entity="${field.formattedName(0)}" />
+				#elseif( $field.inputType == "static-combo" )
 
-			#elseif( $field.inputType == "static-combo" )
 			<plc-static-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}"/>
-			
-			#elseif( $field.inputType == "radiobox" )
+				#elseif( $field.inputType == "radiobox" )
+
 			<plc-radio ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" />
-			
-			#elseif( $field.inputType == "checkbox" )
+				#elseif( $field.inputType == "checkbox" )
+
 			<plc-check ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"/>
-			
-			#elseif( $field.inputType == "modal" )
-
-			#elseif( $field.inputType == "fileupload" )
-
-			#elseif( $field.inputType == "datepicker" )
+				#elseif( $field.inputType == "datepicker" )
 
 			<plc-date-picker ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  />
-			#else
+				#else
 
-			<input type="text" id="${htmlId}" ng-model="${entity.name}.${htmlName}" class="form-control" maxLength="${field.guiMaxLength}" $ng_disabled/>
-			#end
+			<input type="text" id="${htmlId}" ng-model="${fn.uncapitalize($entity.name)}.${htmlName}" class="form-control" maxLength="${field.guiMaxLength}" $ng_disabled/>
+				#end
 
 		</div>
-
-	#if( $count % 3 == 0 )		
+		
+				#if( $count % 3 == 0 )		
+	
+	</div>
+				#end
+			#else
+				#if(!$isModalOrFileuploadPrev && !($count % 3 == 1))
 
 	</div>
-	#end
+				#end
+				#set($isModalOrFileuploadPrev = true)
+			#end
+			#if( $count % 3 == 3 )
+
+	</div>
+			#end
+
+			#if($field.inputType == "modal" || $field.inputType == "fileupload")	
+						
+
+	<div class="row">
+				#if( $field.inputType == "modal" )
+
+		<plc-aggregate-modal label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" ng-model-lookup="descricao"		template="app/${fn.uncapitalize($entity.name)}/${fn.uncapitalize($entity.name)}sel.html" />
+				#elseif( $field.inputType == "fileupload" )
+
+		<plc-file-upload label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" url="/${fn.uncapitalize($entity.name)}/${field.formattedName(0)}/{{${fn.uncapitalize($entity.name)}.${field.formattedName(0)}.id}}"	model-filename="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}.nome" />
+				#end
+
+	</div>
+			#end
+			
 		#end
+		
+		
+		
 	#end
 	
-	#if( $count % 3 > 0 )
 	
-	</div>
-	#end
+	
+	
 
 	#set($temDetalhe = "0")
 	#foreach($link in $entity.selectedLinks)

@@ -114,23 +114,23 @@
 
 
 		$scope.columnDefs = [
-				             { field: 'id', displayName: 'Id', width: '10%'},
-				             { field: 'nome', displayName: 'Nome', width: '25%'},
-				             { field: 'email', displayName: 'E-mail', width: '20%'},
-				             { field: 'cpf', displayName: 'CPF', width: '15%'},
-				             { field: 'dataNascimento', displayName: 'Nascimento', width: '10%', cellFilter: 'date:\'dd/MM/yyyy\''},
-				             { field: 'departamento.descricao', displayName: 'Departamento', width: '20%'}
-				             ]
+		                     { field: 'id', displayName: 'Id', width: '10%'},
+		                     { field: 'nome', displayName: 'Nome', width: '25%'},
+		                     { field: 'email', displayName: 'E-mail', width: '20%'},
+		                     { field: 'cpf', displayName: 'CPF', width: '15%'},
+		                     { field: 'dataNascimento', displayName: 'Nascimento', width: '10%', cellFilter: 'date:\'dd/MM/yyyy\''},
+		                     { field: 'departamento.descricao', displayName: 'Departamento', width: '20%'}
+		                     ]
 
-    $scope.uploaderFilter =[
+		$scope.uploaderFilter =[
 
-      {
-          name: 'imageFilter',
-          fn: function(item /*{File|FileLikeObject}*/, options) {
-            var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-            return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-          }
-        }]
+		                        {
+		                        	name: 'imageFilter',
+		                        	fn: function(item /*{File|FileLikeObject}*/, options) {
+		                        		var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+		                        		return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+		                        	}
+		                        }]
 
 		init();
 
