@@ -88,8 +88,19 @@ $beanValidation.annotations(4, $field)
 #set($f = $selectecFields.add($field))
 $jpa.fieldAnnotations(4, $field)
 $beanValidation.annotations(4, $field)
+#if( $field.formattedType(0) == 'Enum')
+	@Enumerated(EnumType.STRING)
+    private $fn.capitalize($field.formattedName(0)) $field.formattedName(12) #if($field.hasInitialValue())= ${field.initialValue} #end;
+	${generator.generate(
+					$entity.databaseTable , 
+					"${fn.capitalize($field.formattedName(0))}.java", 
+					$target.folder, 
+					"enum.vm" )}
+
+#else 
     private $field.formattedType(10) $field.formattedName(12) #if($field.hasInitialValue())= ${field.initialValue} #end;
 
+#end
 #end
 #end
 
@@ -136,6 +147,16 @@ $jpa.linkAnnotations(4, $link, $allMappedFields)
 
 #foreach( $field in $dataFields )
 #if( $field.isSelected() )	
+#if( $field.formattedType(0) == 'Enum')
+#if ( $field.setter )    public void ${field.setter}( ${fn.capitalize($field.formattedName(0))} $field.name ) {
+        this.$field.name = $field.name;
+    }
+#end
+#if ( $field.getter )    public ${fn.capitalize($field.formattedName(0))} ${field.getter}() {
+        return this.$field.name;
+    }
+#end
+#else
 #if ( $field.setter )    public void ${field.setter}( $field.type $field.name ) {
         this.$field.name = $field.name;
     }
@@ -144,7 +165,7 @@ $jpa.linkAnnotations(4, $link, $allMappedFields)
         return this.$field.name;
     }
 #end
-
+#end
 #end  
 #end  
 
