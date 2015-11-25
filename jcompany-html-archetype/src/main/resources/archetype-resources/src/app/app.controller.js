@@ -59,7 +59,7 @@
 			function activate() {
 				// Load menu from json file
 				// ----------------------------------- 
-				PlcMenu.addMenuJson(PlcMenuLoader.getMenuPaths());
+				PlcMenu.addMenuPath(PlcMenuLoader.getMenuPaths());
 				$scope.menuItems = PlcMenu.getMenuArray();
 			}
 
