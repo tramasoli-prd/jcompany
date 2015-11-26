@@ -23,6 +23,14 @@ package ${target.javaPackageFromFolder($SRC)};
 import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 
+${generator.generateWithExtra(
+				$entity.databaseTable , 
+				"persistence.xml", 
+				"${RES}/META-INF", 
+				"persistence.vm",
+				"I" )}
+
+
 
 #foreach( $import in $java.imports($entity) )
 import $import;

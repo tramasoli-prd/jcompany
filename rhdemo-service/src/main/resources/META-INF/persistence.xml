@@ -19,6 +19,7 @@
 		<mapping-file>META-INF/orm.xml</mapping-file>
 
 		<!-- Entities -->
+		<!-- GENERATOR INSERTS HERE  -->
 		<class>com.powerlogic.jcompany.rhdemo.app.model.entity.UnidadeFederativaEntity</class>
 		<class>com.powerlogic.jcompany.rhdemo.app.model.entity.DepartamentoEntity</class>
 		

@@ -20,6 +20,9 @@
 		<class></class>
 		-->
 		
+		<!-- GENERATOR INSERTS HERE  -->
+				
+		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 		<shared-cache-mode>NONE</shared-cache-mode>

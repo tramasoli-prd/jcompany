@@ -1,0 +1,1 @@
+<class>${ENTITY_PKG}.${entity.name}Entity</class>
