@@ -56,7 +56,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
-import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 
 @Named
 @Singleton
@@ -214,7 +214,7 @@ public class JpaUtil {
         }
     }
 
-    public <T extends PlcEntityModel<?>> String compositePkPropertyName(T entity) {
+    public <T extends IPlcEntityModel<?>> String compositePkPropertyName(T entity) {
         Class<?> entityClass = entity.getClass();
         if (compositePkCache.containsKey(entityClass)) {
             return compositePkCache.get(entityClass);
@@ -272,7 +272,7 @@ public class JpaUtil {
         return mt.getSingularAttribute(attr.getName(), String.class);
     }
 
-    public <T extends PlcEntityModel<?>> boolean hasSimplePk(T entity) {
+    public <T extends IPlcEntityModel<?>> boolean hasSimplePk(T entity) {
         for (Method m : entity.getClass().getMethods()) {
             if (m.getAnnotation(Id.class) != null) {
                 return true;
@@ -298,7 +298,7 @@ public class JpaUtil {
         return ret;
     }
 
-    public String getEntityName(PlcEntityModel<?> entity) {
+    public String getEntityName(IPlcEntityModel<?> entity) {
         Entity entityAnnotation = entity.getClass().getAnnotation(Entity.class);
         if (StringUtils.isBlank(entityAnnotation.name())) {
             return entity.getClass().getSimpleName();

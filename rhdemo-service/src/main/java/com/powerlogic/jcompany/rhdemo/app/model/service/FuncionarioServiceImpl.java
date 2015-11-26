@@ -7,7 +7,7 @@ import javax.validation.Valid;
 
 import com.powerlogic.jcompany.commons.interceptor.validation.PlcValidationInterceptor;
 import com.powerlogic.jcompany.core.exception.PlcException;
-import com.powerlogic.jcompany.core.model.repository.PlcEntityRepository;
+import com.powerlogic.jcompany.core.model.repository.IPlcEntityRepository;
 import com.powerlogic.jcompany.core.model.service.PlcAbstractServiceEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FuncionarioEntity;
@@ -22,7 +22,7 @@ public class FuncionarioServiceImpl extends PlcAbstractServiceEntity<Long, Funci
 
 
 	@Override
-	protected PlcEntityRepository<Long, FuncionarioEntity> getEntityRepository() {
+	protected IPlcEntityRepository<Long, FuncionarioEntity> getEntityRepository() {
 		return funcionarioRepository;
 	}
 

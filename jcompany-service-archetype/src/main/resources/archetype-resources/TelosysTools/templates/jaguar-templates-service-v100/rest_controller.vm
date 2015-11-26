@@ -16,7 +16,7 @@ import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.core.rest.entity.PlcAbstractEntityRest;
 import com.powerlogic.jcompany.core.rest.messages.PlcMessageIntercept;
-import ${SERVICE_PKG}.${entity.name}Service;
+import ${SERVICE_INTERFACE_PKG}.I${entity.name}Service;
 import ${ENTITY_PKG}.${entity.name}Entity;
 
 /**
@@ -34,10 +34,10 @@ import ${ENTITY_PKG}.${entity.name}Entity;
 public class ${entity.name}Rest extends PlcAbstractEntityRest<Long, ${entity.name}Entity, Object> {
 
    @Inject
-   private ${entity.name}Service $fn.toLowerCase(${entity.name})Service;
+   private I${entity.name}Service $fn.toLowerCase(${entity.name})Service;
 
    @Override
-   protected ${entity.name}Service getEntityService() {
+   protected I${entity.name}Service getEntityService() {
       return $fn.toLowerCase(${entity.name})Service;
    }
 

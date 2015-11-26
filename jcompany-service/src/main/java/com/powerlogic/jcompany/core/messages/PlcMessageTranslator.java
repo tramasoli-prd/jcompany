@@ -16,7 +16,7 @@ public abstract class PlcMessageTranslator {
 
 	private static final String MESSAGE_ARG = "%s";
 
-	private static class StringMessageKey implements PlcMessageKey {
+	private static class StringMessageKey implements IPlcMessageKey {
 		private String name;
 
 		public StringMessageKey(String name) {

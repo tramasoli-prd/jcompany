@@ -36,7 +36,7 @@ import java.util.ResourceBundle;
  *
  * @author Gunnar Morling
  */
-public interface ResourceBundleLocator {
+public interface IResourceBundleLocator {
 
 	/**
 	 * Returns a resource bundle for the given locale.

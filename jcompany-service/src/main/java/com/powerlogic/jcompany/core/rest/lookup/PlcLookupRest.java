@@ -25,7 +25,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.powerlogic.jcompany.core.commons.config.PlcConfiguration;
 import com.powerlogic.jcompany.core.exception.PlcException;
-import com.powerlogic.jcompany.core.model.service.PlcEntityService;
+import com.powerlogic.jcompany.core.model.service.IPlcEntityService;
 import com.powerlogic.jcompany.core.rest.PlcAbstractRest;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 
@@ -64,7 +64,7 @@ public class PlcLookupRest extends PlcAbstractRest{
 			} else {
 
 				Bean bean = null;
-				for(Bean b : bm.getBeans(PlcEntityService.class)) {
+				for(Bean b : bm.getBeans(IPlcEntityService.class)) {
 					if (b.getBeanClass().getCanonicalName().endsWith(c.getSimpleName().replace("Entity", "Service")+"Impl")) {
 						bean = b;
 						break;
@@ -72,7 +72,7 @@ public class PlcLookupRest extends PlcAbstractRest{
 				}
 				if (bean!=null) {
 					CreationalContext ctx = bm.createCreationalContext(bean);
-					PlcEntityService entityService = (PlcEntityService)bm.getReference(bean, PlcEntityService.class, ctx);
+					IPlcEntityService entityService = (IPlcEntityService)bm.getReference(bean, IPlcEntityService.class, ctx);
 
 					List lista = entityService.findAll();
 

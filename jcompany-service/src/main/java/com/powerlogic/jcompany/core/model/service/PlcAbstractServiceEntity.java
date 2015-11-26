@@ -9,12 +9,14 @@ import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
 import com.powerlogic.jcompany.core.commons.search.PlcPagination;
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
+import com.powerlogic.jcompany.core.model.entity.IPlcVersionedEntity;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
-import com.powerlogic.jcompany.core.model.repository.PlcEntityRepository;
+import com.powerlogic.jcompany.core.model.repository.IPlcEntityRepository;
 
-public abstract class PlcAbstractServiceEntity <PK extends Serializable, E extends PlcVersionedEntity<PK>> implements PlcEntityService<PK, E> {
+public abstract class PlcAbstractServiceEntity <PK extends Serializable, E extends IPlcEntityModel<PK>> implements IPlcEntityService<PK, E> {
 
-	protected abstract PlcEntityRepository<PK, E> getEntityRepository();
+	protected abstract IPlcEntityRepository<PK, E> getEntityRepository();
 
 	@Override
 	public E newEntity() {
@@ -54,8 +56,10 @@ public abstract class PlcAbstractServiceEntity <PK extends Serializable, E exten
 	public void remove(E entity) throws PlcException {
 		try {
 			E novo = get(entity.getId());
-			novo.setUsuarioAtualizacao(entity.getUsuarioAtualizacao());
-			novo.setVersao(entity.getVersao());
+	    	if (IPlcVersionedEntity.class.isAssignableFrom(entity.getClass())) {
+	    		((IPlcVersionedEntity)novo).setUsuarioAtualizacao(((IPlcVersionedEntity)entity).getUsuarioAtualizacao());
+	    		((IPlcVersionedEntity)novo).setVersao(((IPlcVersionedEntity)entity).getVersao());
+	    	}
 			getEntityRepository().remove(novo);
 		} catch (PlcException e) {
 			throw e;
@@ -68,8 +72,8 @@ public abstract class PlcAbstractServiceEntity <PK extends Serializable, E exten
 	public void inative(E entity) throws PlcException {
 		try {
 			E novo = get(entity.getId());
-			novo.setUsuarioAtualizacao(entity.getUsuarioAtualizacao());
-			novo.setVersao(entity.getVersao());
+    		((IPlcVersionedEntity)novo).setUsuarioAtualizacao(((IPlcVersionedEntity)entity).getUsuarioAtualizacao());
+    		((IPlcVersionedEntity)novo).setVersao(((IPlcVersionedEntity)entity).getVersao());
 			getEntityRepository().inative(novo);
 		} catch (PlcException e) {
 			throw e;			

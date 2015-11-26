@@ -18,13 +18,13 @@ package com.powerlogic.jcompany.core.model.qbe;
 import java.io.Serializable;
 import java.util.Collection;
 
-import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 
 /**
  * The EntityGraphLoader is used to load within a single read-only transaction all the desired associations that
  * are normally lazily loaded.
  */
-public abstract class EntityGraphLoader<T extends PlcEntityModel<PK>, PK extends Serializable> {
+public abstract class EntityGraphLoader<T extends IPlcEntityModel<PK>, PK extends Serializable> {
 
     protected PlcQBERepository<PK, T> repository;
 

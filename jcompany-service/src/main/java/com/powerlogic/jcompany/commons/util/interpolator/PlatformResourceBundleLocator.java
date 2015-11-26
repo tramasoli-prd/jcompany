@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
  * @author Hardy Ferentschik
  * @author Gunnar Morling
  */
-public class PlatformResourceBundleLocator implements ResourceBundleLocator {
+public class PlatformResourceBundleLocator implements IResourceBundleLocator {
 
 	private String bundleName;
 

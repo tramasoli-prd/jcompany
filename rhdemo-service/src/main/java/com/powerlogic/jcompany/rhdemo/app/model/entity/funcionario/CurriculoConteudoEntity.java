@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
+import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 
 /**
@@ -30,7 +30,7 @@ import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @SequenceGenerator(name="CURRICULO_CONTEUDO_ID_GENERATOR",sequenceName="SE_CURRICULO_CONTEUDO")
-public class CurriculoConteudoEntity extends PlcVersionedEntity<Long> implements PlcLogicalExclusion {
+public class CurriculoConteudoEntity extends PlcVersionedEntity<Long> implements IPlcLogicalExclusion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CURRICULO_CONTEUDO_ID_GENERATOR")

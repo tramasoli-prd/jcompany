@@ -14,11 +14,11 @@ import javax.ws.rs.core.MediaType;
 import com.powerlogic.jcompany.commons.util.validation.PlcValidationConstraintsDTO;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
 import com.powerlogic.jcompany.core.exception.PlcException;
-import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public interface PlcEntityModelRest<PK extends Serializable, E extends PlcEntityModel<PK>, A> {
+public interface IPlcEntityModelRest<PK extends Serializable, E extends IPlcEntityModel<PK>, A> {
 
 	@GET
 	@Path("/find")

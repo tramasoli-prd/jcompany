@@ -4,9 +4,9 @@
 package ${package}.app.messages;
 
 import com.powerlogic.jcompany.core.exception.PlcException;
-import com.powerlogic.jcompany.core.messages.PlcMessageKey;
+import com.powerlogic.jcompany.core.messages.IPlcMessageKey;
 
-public enum AppBeanMessages implements PlcMessageKey
+public enum AppBeanMessages implements IPlcMessageKey
 {
 	TESTE_MESSAGE_ERROR_APP_01;
 

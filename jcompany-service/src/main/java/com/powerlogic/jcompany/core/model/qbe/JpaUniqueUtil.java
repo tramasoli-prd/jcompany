@@ -38,7 +38,7 @@ import javax.persistence.UniqueConstraint;
 
 import org.apache.commons.lang3.text.WordUtils;
 
-import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 
 
 @Named
@@ -52,7 +52,7 @@ public class JpaUniqueUtil {
     /*
      * Return the error code if the given property is already present in the database, returns null otherwise.
      */
-    public String validateSimpleUnique(PlcEntityModel<?> entity, String property, Object value) {
+    public String validateSimpleUnique(IPlcEntityModel<?> entity, String property, Object value) {
         Map<String, Object> values = newHashMap();
         values.put(property, value);
         return existsInDatabaseOnAllObjects(entity, values) ? simpleUniqueConstraintError(entity, property) : null;
@@ -61,20 +61,20 @@ public class JpaUniqueUtil {
     /*
      * Return a list of error codes for all composite unique and simple unique constraints violations.
      */
-    public List<String> validateUniques(PlcEntityModel<?> entity) {
+    public List<String> validateUniques(IPlcEntityModel<?> entity) {
         return newArrayList(concat( //
                 validateCompositeUniqueConstraints(entity), //
                 validateSimpleUniqueConstraints(entity) //
         ));
     }
 
-    private List<String> validateSimpleUniqueConstraints(PlcEntityModel<?> entity) {
+    private List<String> validateSimpleUniqueConstraints(IPlcEntityModel<?> entity) {
         return newArrayList(concat( //
                 validateSimpleUniqueConstraintsDefinedOnMethods(entity), //
                 validateSimpleUniqueConstraintsDefinedOnFields(entity)));
     }
 
-    private List<String> validateSimpleUniqueConstraintsDefinedOnFields(PlcEntityModel<?> entity) {
+    private List<String> validateSimpleUniqueConstraintsDefinedOnFields(IPlcEntityModel<?> entity) {
         Class<?> entityClass = entity.getClass();
         List<String> errors = newArrayList();
         for (Field field : entityClass.getFields()) {
@@ -90,7 +90,7 @@ public class JpaUniqueUtil {
         return errors;
     }
 
-    private List<String> validateSimpleUniqueConstraintsDefinedOnMethods(PlcEntityModel<?> entity) {
+    private List<String> validateSimpleUniqueConstraintsDefinedOnMethods(IPlcEntityModel<?> entity) {
         Class<?> entityClass = entity.getClass();
         List<String> errors = newArrayList();
         for (Method method : entityClass.getMethods()) {
@@ -107,11 +107,11 @@ public class JpaUniqueUtil {
         return errors;
     }
 
-    private String simpleUniqueConstraintError(PlcEntityModel<?> entity, String property) {
+    private String simpleUniqueConstraintError(IPlcEntityModel<?> entity, String property) {
         return WordUtils.uncapitalize(jpaUtil.getEntityName(entity)) + "_" + property + "_already_exists";
     }
 
-    private List<String> validateCompositeUniqueConstraints(PlcEntityModel<?> entity) {
+    private List<String> validateCompositeUniqueConstraints(IPlcEntityModel<?> entity) {
         Class<?> entityClass = entity.getClass();
         Table table = entityClass.getAnnotation(Table.class);
         if (table == null) {
@@ -126,12 +126,12 @@ public class JpaUniqueUtil {
         return errors;
     }
 
-    private String compositeUniqueConstraintErrorCode(PlcEntityModel<?> entity, UniqueConstraint uniqueConstraint) {
+    private String compositeUniqueConstraintErrorCode(IPlcEntityModel<?> entity, UniqueConstraint uniqueConstraint) {
         return WordUtils.uncapitalize(jpaUtil.getEntityName(entity)) + "_"
                 + (uniqueConstraint.name() == null ? "composite_unique_constraint_error" : uniqueConstraint.name().toLowerCase());
     }
 
-    private boolean checkCompositeUniqueConstraint(PlcEntityModel<?> entity, Class<?> entityClass, UniqueConstraint u) {
+    private boolean checkCompositeUniqueConstraint(IPlcEntityModel<?> entity, Class<?> entityClass, UniqueConstraint u) {
         Map<String, Object> values = newHashMap();
         values.putAll(getPropertyConstraints(entity, entityClass, u, ""));
         return !existsInDatabaseOnAllObjects(entity, values);
@@ -173,7 +173,7 @@ public class JpaUniqueUtil {
         return null;
     }
 
-    private boolean existsInDatabaseOnAllObjects(PlcEntityModel<?> entity, Map<String, Object> values) {
+    private boolean existsInDatabaseOnAllObjects(IPlcEntityModel<?> entity, Map<String, Object> values) {
         if (entity == null || values == null || values.isEmpty()) {
             return false;
         }

@@ -1,6 +1,6 @@
 package com.powerlogic.jcompany.core.model.entity;
 
-public interface PlcLogicalExclusion
+public interface IPlcLogicalExclusion
 {
 
 }

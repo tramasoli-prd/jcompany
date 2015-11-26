@@ -19,7 +19,7 @@ import javax.validation.metadata.PropertyDescriptor;
 
 import com.powerlogic.jcompany.commons.util.interpolator.AggregateResourceBundleLocator;
 import com.powerlogic.jcompany.commons.util.interpolator.ResourceBundleMessageInterpolator;
-import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 
 /**
  * Serviço dinâmicos para realização de validação invariante, vinculada ao
@@ -94,7 +94,7 @@ public class PlcValidationInvariantUtil implements Serializable {
 				if (Collection.class.isAssignableFrom(pd.getElementClass()) || Map.class.isAssignableFrom(pd.getElementClass())) {
 					if (clazz.getDeclaredField(pd.getPropertyName()).getGenericType()!=null) {
 						if (((ParameterizedType)clazz.getDeclaredField(pd.getPropertyName()).getGenericType()).getActualTypeArguments().length>0
-								&& PlcEntityModel.class.isAssignableFrom(((Class)((ParameterizedType)clazz.getDeclaredField(pd.getPropertyName()).getGenericType()).getActualTypeArguments()[0]))) {
+								&& IPlcEntityModel.class.isAssignableFrom(((Class)((ParameterizedType)clazz.getDeclaredField(pd.getPropertyName()).getGenericType()).getActualTypeArguments()[0]))) {
 							property.setConstraint(getConstraintsForClass((Class)((ParameterizedType)clazz.getDeclaredField(pd.getPropertyName()).getGenericType()).getActualTypeArguments()[0]));
 						}
 					}

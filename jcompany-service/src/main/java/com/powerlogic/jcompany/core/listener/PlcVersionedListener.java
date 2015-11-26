@@ -6,14 +6,14 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
-import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
+import com.powerlogic.jcompany.core.model.entity.IPlcVersionedEntity;
 
 public class PlcVersionedListener
 {
    private String usuario = "ADMIN";
 
    @PrePersist
-   public void prePersist(PlcVersionedEntity versionedEntity)
+   public void prePersist(IPlcVersionedEntity versionedEntity)
    {
       if (versionedEntity.getSituacao() == null)
       {
@@ -25,12 +25,12 @@ public class PlcVersionedListener
    }
 
    @PreUpdate
-   public void preUpdate(PlcVersionedEntity versionedEntity)
+   public void preUpdate(IPlcVersionedEntity versionedEntity)
    {
       update(versionedEntity, new Date());
    }
 
-   private void update(PlcVersionedEntity versionedEntity, Date data)
+   private void update(IPlcVersionedEntity versionedEntity, Date data)
    {
       versionedEntity.setDataAtualizacao(data);
       if (versionedEntity.getUsuarioAtualizacao() == null)

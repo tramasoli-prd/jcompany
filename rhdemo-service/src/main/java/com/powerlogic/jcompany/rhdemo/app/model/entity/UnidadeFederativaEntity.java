@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
+import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 
 @Entity
@@ -26,7 +26,7 @@ import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 @NamedQueries({
 	@NamedQuery(name = "UnidadeFederativaEntity.findByNome", query = "SELECT u FROM UnidadeFederativaEntity u WHERE u.nome = :nome AND u.situacao = :situacao") 
 })
-public class UnidadeFederativaEntity extends PlcVersionedEntity<Long> implements PlcLogicalExclusion {
+public class UnidadeFederativaEntity extends PlcVersionedEntity<Long> implements IPlcLogicalExclusion {
 
 	private static final long serialVersionUID = 1L;
 

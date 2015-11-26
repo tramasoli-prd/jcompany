@@ -8,9 +8,9 @@ import javax.validation.Valid;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
 import com.powerlogic.jcompany.core.commons.search.PlcPagination;
 import com.powerlogic.jcompany.core.exception.PlcException;
-import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 
-public interface PlcEntityService<PK extends Serializable, E extends PlcEntityModel<PK>> {
+public interface IPlcEntityService<PK extends Serializable, E extends IPlcEntityModel<PK>> {
 	
    List<E> findAll() throws PlcException;
    

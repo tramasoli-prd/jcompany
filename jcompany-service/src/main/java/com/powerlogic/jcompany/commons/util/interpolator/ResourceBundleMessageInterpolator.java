@@ -60,12 +60,12 @@ public class ResourceBundleMessageInterpolator implements MessageInterpolator {
 	/**
 	 * Loads user-specified resource bundles.
 	 */
-	private final ResourceBundleLocator userResourceBundleLocator;
+	private final IResourceBundleLocator userResourceBundleLocator;
 
 	/**
 	 * Loads built-in resource bundles.
 	 */
-	private final ResourceBundleLocator defaultResourceBundleLocator;
+	private final IResourceBundleLocator defaultResourceBundleLocator;
 
 	/**
 	 * Step 1-3 of message interpolation can be cached. We do this in this map.
@@ -81,11 +81,11 @@ public class ResourceBundleMessageInterpolator implements MessageInterpolator {
 		this( null );
 	}
 
-	public ResourceBundleMessageInterpolator(ResourceBundleLocator userResourceBundleLocator) {
+	public ResourceBundleMessageInterpolator(IResourceBundleLocator userResourceBundleLocator) {
 		this( userResourceBundleLocator, true );
 	}
 
-	public ResourceBundleMessageInterpolator(ResourceBundleLocator userResourceBundleLocator, boolean cacheMessages) {
+	public ResourceBundleMessageInterpolator(IResourceBundleLocator userResourceBundleLocator, boolean cacheMessages) {
 
 		defaultLocale = Locale.getDefault();
 

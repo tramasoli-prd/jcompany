@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- * A {@link ResourceBundleLocator} implementation that provides access
+ * A {@link IResourceBundleLocator} implementation that provides access
  * to multiple source {@link ResourceBundle}s by merging them into one
  * aggregated bundle.
  *
@@ -61,7 +61,7 @@ public class AggregateResourceBundleLocator extends DelegatingResourceBundleLoca
 	 * this locator will be added to the aggregate bundle after all
 	 * source bundles.
 	 */
-	public AggregateResourceBundleLocator(List<String> bundleNames, ResourceBundleLocator delegate) {
+	public AggregateResourceBundleLocator(List<String> bundleNames, IResourceBundleLocator delegate) {
 		super( delegate );
 
 		if ( bundleNames == null ) {
@@ -78,7 +78,7 @@ public class AggregateResourceBundleLocator extends DelegatingResourceBundleLoca
 		List<ResourceBundle> sourceBundles = new ArrayList<ResourceBundle>();
 
 		for ( String oneBundleName : bundleNames ) {
-			ResourceBundleLocator oneLocator =
+			IResourceBundleLocator oneLocator =
 					new PlatformResourceBundleLocator( oneBundleName );
 
 			ResourceBundle oneBundle = oneLocator.getResourceBundle( locale );

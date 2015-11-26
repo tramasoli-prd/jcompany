@@ -6,9 +6,9 @@ import java.util.List;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
 import com.powerlogic.jcompany.core.commons.search.PlcPagination;
 import com.powerlogic.jcompany.core.exception.PlcException;
-import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 
-public interface PlcEntityRepository<PK extends Serializable, E extends PlcEntityModel<PK>> {
+public interface IPlcEntityRepository<PK extends Serializable, E extends IPlcEntityModel<PK>> {
 	
    Class<E> getEntityType();
 

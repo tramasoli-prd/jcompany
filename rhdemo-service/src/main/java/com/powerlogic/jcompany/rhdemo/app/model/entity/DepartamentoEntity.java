@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
+import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 
 
@@ -34,7 +34,7 @@ import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 	@NamedQuery(name = "DepartamentoEntity.checkConstraintsBeforeRemove.departamentoPai", query = "SELECT count(o.id) FROM DepartamentoEntity o WHERE o.departamentoPai.id = :id"),
 	@NamedQuery(name = "DepartamentoEntity.checkConstraintsBeforeSave.nomeUnico", query = "SELECT count(o.id) FROM DepartamentoEntity o WHERE o.descricao like :descricao and o.id <> :id")
 })
-public class DepartamentoEntity extends PlcVersionedEntity<Long> implements PlcLogicalExclusion {
+public class DepartamentoEntity extends PlcVersionedEntity<Long> implements IPlcLogicalExclusion {
 
 	private static final long serialVersionUID = 1L;
 

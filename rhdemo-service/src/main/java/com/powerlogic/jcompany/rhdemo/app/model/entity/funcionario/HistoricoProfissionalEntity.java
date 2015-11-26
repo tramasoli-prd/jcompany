@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
+import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 /**
  * Classe Concreta gerada a partir do assistente
@@ -40,7 +40,7 @@ import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 @Access(AccessType.FIELD)
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class HistoricoProfissionalEntity extends PlcVersionedEntity<Long> implements PlcLogicalExclusion {
+public class HistoricoProfissionalEntity extends PlcVersionedEntity<Long> implements IPlcLogicalExclusion {
 
 	private static final long serialVersionUID = 1L;
 

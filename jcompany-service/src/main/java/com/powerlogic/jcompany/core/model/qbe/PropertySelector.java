@@ -132,7 +132,7 @@ public class PropertySelector<E, F> implements Serializable {
     }
 
     public boolean isLabelizedEnum() {
-        return isType(LabelizedEnum.class);
+        return isType(ILabelizedEnum.class);
     }
 
     public boolean isString() {

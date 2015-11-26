@@ -20,7 +20,7 @@
 
 package ${target.javaPackageFromFolder($SRC)};
 
-import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
+import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 
 ${generator.generateWithExtra(
@@ -59,7 +59,7 @@ $jpa.entityAnnotations(0, $entity)
 @NamedQueries ( {
     @NamedQuery(name = "${entity.name}.find", query = "SELECT o FROM ${entity.name} o"),
 } )
-public class ${entity.name} extends PlcVersionedEntity<Long> implements PlcLogicalExclusion {
+public class ${entity.name} extends PlcVersionedEntity<Long> implements IPlcLogicalExclusion {
 
     private static final long serialVersionUID = 1L;
 

@@ -45,14 +45,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
-import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
-import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
-import com.powerlogic.jcompany.core.model.repository.PlcEntityRepository;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
+import com.powerlogic.jcompany.core.model.entity.IPlcVersionedEntity;
+import com.powerlogic.jcompany.core.model.repository.IPlcEntityRepository;
 
 /**
  * JPA 2 {@link PlcQBERepository} implementation
  */
-public abstract class PlcQBERepository<PK extends Serializable, E extends PlcEntityModel<PK>> implements PlcEntityRepository<PK, E> {
+public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEntityModel<PK>> implements IPlcEntityRepository<PK, E> {
     @Inject
     protected ByExampleUtil byExampleUtil;
     @Inject
@@ -196,8 +196,8 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends PlcEnt
      */
     
     public List<E> find(E entity, SearchParameters sp) {
-    	if (PlcVersionedEntity.class.isAssignableFrom(entity.getClass())) {
-    		((PlcVersionedEntity)entity).setVersao(null);
+    	if (IPlcVersionedEntity.class.isAssignableFrom(entity.getClass())) {
+    		((IPlcVersionedEntity)entity).setVersao(null);
     	}
         if (sp.hasNamedQuery()) {
             return byNamedQueryUtil.findByNamedQuery(sp);

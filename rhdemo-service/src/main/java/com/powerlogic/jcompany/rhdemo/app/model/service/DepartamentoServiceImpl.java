@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 import com.powerlogic.jcompany.core.exception.PlcException;
-import com.powerlogic.jcompany.core.model.repository.PlcEntityRepository;
+import com.powerlogic.jcompany.core.model.repository.IPlcEntityRepository;
 import com.powerlogic.jcompany.core.model.service.PlcAbstractServiceEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.DepartamentoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.repository.DepartamentoRepository;
@@ -27,7 +27,7 @@ public class DepartamentoServiceImpl extends PlcAbstractServiceEntity<Long, Depa
 	}
 
 	@Override
-	protected PlcEntityRepository<Long, DepartamentoEntity> getEntityRepository() {
+	protected IPlcEntityRepository<Long, DepartamentoEntity> getEntityRepository() {
 		return departamentoRepository;
 	}
 }

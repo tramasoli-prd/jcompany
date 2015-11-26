@@ -2,7 +2,7 @@ package com.powerlogic.jcompany.core.messages;
 
 import com.powerlogic.jcompany.core.exception.PlcException;
 
-public enum PlcBeanMessages implements PlcMessageKey
+public enum PlcBeanMessages implements IPlcMessageKey
 {
 	DADOS_SALVOS_SUCESSO_000,
 	FALHA_LOGIN_001,

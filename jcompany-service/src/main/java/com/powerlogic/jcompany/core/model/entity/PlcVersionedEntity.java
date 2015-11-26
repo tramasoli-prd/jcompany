@@ -19,7 +19,7 @@ import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 
 @MappedSuperclass
 @EntityListeners(PlcVersionedListener.class)
-public abstract class PlcVersionedEntity<PK extends Serializable> implements PlcEntityModel<PK> {
+public abstract class PlcVersionedEntity<PK extends Serializable> implements IPlcVersionedEntity<PK> {
 	
 	private static final long serialVersionUID = 1L;
 

@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
+import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.domain.EstadoCivil;
 import com.powerlogic.jcompany.rhdemo.app.model.domain.Sexo;
@@ -53,7 +53,7 @@ import com.powerlogic.jcompany.rhdemo.app.model.entity.DepartamentoEntity;
 @NamedQueries({
 	@NamedQuery(name = "FuncionarioEntity.find", query = "SELECT f from FuncionarioEntity f where f.situacao = :situacao order by f.id asc")
 })
-public class FuncionarioEntity extends PlcVersionedEntity<Long> implements PlcLogicalExclusion {
+public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcLogicalExclusion {
 
 	/**
 	 * 

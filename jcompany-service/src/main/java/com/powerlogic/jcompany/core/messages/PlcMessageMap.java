@@ -84,12 +84,12 @@ public class PlcMessageMap
 		messages.clear();
 	}
 
-	public void addMessage(PlcMessageKey key, PlcMessageType type)
+	public void addMessage(IPlcMessageKey key, PlcMessageType type)
 	{
 		addMessage(key, type, null);
 	}
 
-	public void addMessage(PlcMessageKey key, PlcMessageType type, String[] args)
+	public void addMessage(IPlcMessageKey key, PlcMessageType type, String[] args)
 	{
 		add(new PlcMessageEntry(key, type, args));
 	}

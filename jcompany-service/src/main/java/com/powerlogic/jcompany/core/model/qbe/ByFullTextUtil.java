@@ -33,7 +33,7 @@ import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.ManagedType;
 import javax.persistence.metamodel.SingularAttribute;
 
-import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 
 /**
  * @author Nicolas Romanetti
@@ -62,7 +62,7 @@ public class ByFullTextUtil {
 
 
 
-    public <T extends PlcEntityModel<?>> Predicate byExampleOnEntity(Root<T> rootPath, T entityValue, SearchParameters sp, CriteriaBuilder builder) {
+    public <T extends IPlcEntityModel<?>> Predicate byExampleOnEntity(Root<T> rootPath, T entityValue, SearchParameters sp, CriteriaBuilder builder) {
         if (entityValue == null) {
             return null;
         }
@@ -76,7 +76,7 @@ public class ByFullTextUtil {
         return jpaUtil.orPredicate(builder, predicates);
     }
 
-    protected <T extends PlcEntityModel<?>> List<Predicate> byExampleOnCompositePk(Root<T> root, T entity, SearchParameters sp, CriteriaBuilder builder) {
+    protected <T extends IPlcEntityModel<?>> List<Predicate> byExampleOnCompositePk(Root<T> root, T entity, SearchParameters sp, CriteriaBuilder builder) {
         String compositePropertyName = jpaUtil.compositePkPropertyName(entity);
         if (compositePropertyName == null) {
             return emptyList();

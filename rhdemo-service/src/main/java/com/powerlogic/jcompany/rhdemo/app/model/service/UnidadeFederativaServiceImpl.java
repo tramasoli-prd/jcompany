@@ -7,7 +7,7 @@ import javax.validation.Valid;
 
 import com.powerlogic.jcompany.commons.interceptor.validation.PlcValidationInterceptor;
 import com.powerlogic.jcompany.core.exception.PlcException;
-import com.powerlogic.jcompany.core.model.repository.PlcEntityRepository;
+import com.powerlogic.jcompany.core.model.repository.IPlcEntityRepository;
 import com.powerlogic.jcompany.core.model.service.PlcAbstractServiceEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.UnidadeFederativaEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.repository.UnidadeFederativaRepository;
@@ -26,7 +26,7 @@ public class UnidadeFederativaServiceImpl extends PlcAbstractServiceEntity<Long,
 
 
 	@Override
-	protected PlcEntityRepository<Long, UnidadeFederativaEntity> getEntityRepository() {
+	protected IPlcEntityRepository<Long, UnidadeFederativaEntity> getEntityRepository() {
 		return unidadeFederativaRepository;
 	}
 

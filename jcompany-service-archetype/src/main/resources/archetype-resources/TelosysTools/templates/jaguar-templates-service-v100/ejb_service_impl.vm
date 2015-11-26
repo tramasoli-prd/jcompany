@@ -3,9 +3,10 @@ package ${target.javaPackageFromFolder($SRC)};
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import com.powerlogic.jcompany.core.model.repository.PlcEntityRepository;
+import com.powerlogic.jcompany.core.model.repository.IPlcEntityRepository;
 import com.powerlogic.jcompany.core.model.service.PlcAbstractServiceEntity;
 import ${REPOSITORY_PKG}.${entity.name}Repository;
+import ${SERVICE_INTERFACE_PKG}.I${entity.name}Service;
 import ${ENTITY_PKG}.${entity.name}Entity;
 
 /**
@@ -16,14 +17,14 @@ import ${ENTITY_PKG}.${entity.name}Entity;
  */
 
 @Stateless
-public class ${entity.name}ServiceImpl extends PlcAbstractServiceEntity<Long,  ${entity.name}Entity> implements  ${entity.name}Service {
+public class ${entity.name}ServiceImpl extends PlcAbstractServiceEntity<Long,  ${entity.name}Entity> implements  I${entity.name}Service {
 
 	@Inject
 	private ${entity.name}Repository $fn.toLowerCase(${entity.name})Repository;
 
 
 	@Override
-	protected PlcEntityRepository<Long, ${entity.name}Entity> getEntityRepository() {
+	protected IPlcEntityRepository<Long, ${entity.name}Entity> getEntityRepository() {
 		return $fn.toLowerCase(${entity.name})Repository;
 	}
 

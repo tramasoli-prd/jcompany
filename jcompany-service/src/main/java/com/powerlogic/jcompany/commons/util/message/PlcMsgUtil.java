@@ -8,7 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.messages.PlcMessageEntry;
-import com.powerlogic.jcompany.core.messages.PlcMessageKey;
+import com.powerlogic.jcompany.core.messages.IPlcMessageKey;
 import com.powerlogic.jcompany.core.messages.PlcMessageMap;
 import com.powerlogic.jcompany.core.messages.PlcMessageType;
 
@@ -24,7 +24,7 @@ public class PlcMsgUtil {
 	}
 
 
-	public void msg(PlcMessageKey key, PlcMessageType type, String... args)  {
+	public void msg(IPlcMessageKey key, PlcMessageType type, String... args)  {
 		
 		try {
 			

@@ -29,7 +29,7 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 
 /**
  * Helper to create a predicate out of {@link PropertySelector}s.
@@ -119,10 +119,10 @@ public class ByPropertySelectorUtil {
             selectorPredicates.add(builder.isNull(path));
         }
         if (isNotEmpty(selected)) {
-            if (selected.get(0) instanceof PlcEntityModel) {
+            if (selected.get(0) instanceof IPlcEntityModel) {
                 List<Serializable> ids = newArrayList();
                 for (Object selection : selected) {
-                    ids.add(((PlcEntityModel<?>) selection).getId());
+                    ids.add(((IPlcEntityModel<?>) selection).getId());
                 }
                 selectorPredicates.add(path.get("id").in(ids));
             } else {
@@ -143,8 +143,8 @@ public class ByPropertySelectorUtil {
         }
         for (Object selection : selected) {
             Path<?> path = jpaUtil.getPath(root, selector.getAttributes());
-            if (selection instanceof PlcEntityModel) {
-                selectorPredicates.add(builder.equal(path.get("id"), ((PlcEntityModel<?>) selection).getId()));
+            if (selection instanceof IPlcEntityModel) {
+                selectorPredicates.add(builder.equal(path.get("id"), ((IPlcEntityModel<?>) selection).getId()));
             } else {
                 selectorPredicates.add(builder.equal(path, selection));
             }

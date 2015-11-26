@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
+import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 
 /**
@@ -29,7 +29,7 @@ import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 @Table(name="FOTO_CONTEUDO")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class FotoConteudoEntity extends PlcVersionedEntity<Long> implements PlcLogicalExclusion {
+public class FotoConteudoEntity extends PlcVersionedEntity<Long> implements IPlcLogicalExclusion {
 
 	@Id
 	@Column(name = "PK_FOTO_CONTEUDO", unique = true, nullable = false, precision = 10)

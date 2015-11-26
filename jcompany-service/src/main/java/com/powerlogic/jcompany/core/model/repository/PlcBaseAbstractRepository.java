@@ -27,12 +27,14 @@ import com.powerlogic.jcompany.core.commons.search.PlcPagination;
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
-import com.powerlogic.jcompany.core.model.entity.PlcLogicalExclusion;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
+import com.powerlogic.jcompany.core.model.entity.IPlcVersionedEntity;
+import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 import com.powerlogic.jcompany.core.model.qbe.PlcQBERepository;
 import com.powerlogic.jcompany.core.util.ConstantUtil;
 
-public abstract class PlcBaseAbstractRepository<PK extends Serializable, E extends PlcVersionedEntity<PK>> extends PlcQBERepository<PK, E>  {
+public abstract class PlcBaseAbstractRepository<PK extends Serializable, E extends IPlcEntityModel<PK>> extends PlcQBERepository<PK, E>  {
 
 	private static PropertyUtilsBean propertyUtilsBean = BeanUtilsBean.getInstance().getPropertyUtils();
 
@@ -97,7 +99,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 	public void remove(E entity) {
 		try {
 			checkConstraintsBeforeRemoveOrSave(entity, "Remove");
-			if (entity instanceof PlcLogicalExclusion) {
+			if (entity instanceof IPlcLogicalExclusion) {
 				logicalRemove(entity);
 			} else {
 				physicalRemove(entity);
@@ -112,7 +114,9 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 	protected void logicalRemove(E entity) {
 
 		try {
-			entity.setSituacao(PlcSituacao.E);
+	    	if (IPlcVersionedEntity.class.isAssignableFrom(entity.getClass())) {
+	    		((IPlcVersionedEntity)entity).setSituacao(PlcSituacao.E);
+	    	}
 			getEntityManager().merge(entity);
 		} catch (PlcException e) {
 			throw e;
@@ -136,7 +140,9 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 
 		try {
 
-			entity.setSituacao(PlcSituacao.I);
+	    	if (IPlcVersionedEntity.class.isAssignableFrom(entity.getClass())) {
+	    		((IPlcVersionedEntity)entity).setSituacao(PlcSituacao.I);
+	    	}
 			getEntityManager().merge(entity);
 
 		} catch (PlcException e) {
@@ -262,7 +268,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 			NamedQuery nqcCheckConstraintsBeforeRemove = (NamedQuery) j.next();
 			query = nqcCheckConstraintsBeforeRemove.query();
 
-			if (entity instanceof PlcLogicalExclusion) {
+			if (entity instanceof IPlcLogicalExclusion) {
 				query = query + " and o.situacao = :situacao";
 			}
 

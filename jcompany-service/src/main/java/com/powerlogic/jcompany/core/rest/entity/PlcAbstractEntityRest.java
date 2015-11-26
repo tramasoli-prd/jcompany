@@ -14,14 +14,14 @@ import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.messages.PlcMessageType;
-import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
-import com.powerlogic.jcompany.core.model.service.PlcEntityService;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
+import com.powerlogic.jcompany.core.model.service.IPlcEntityService;
 import com.powerlogic.jcompany.core.rest.PlcAbstractRest;
 
-public abstract class PlcAbstractEntityRest <PK extends Serializable, E extends PlcEntityModel<PK>, A>
-extends PlcAbstractRest implements PlcEntityModelRest<PK, E, A> {
+public abstract class PlcAbstractEntityRest <PK extends Serializable, E extends IPlcEntityModel<PK>, A>
+extends PlcAbstractRest implements IPlcEntityModelRest<PK, E, A> {
 
-	protected abstract PlcEntityService<PK, E> getEntityService();
+	protected abstract IPlcEntityService<PK, E> getEntityService();
 
 	@Inject
 	private PlcMsgUtil msgUtil;

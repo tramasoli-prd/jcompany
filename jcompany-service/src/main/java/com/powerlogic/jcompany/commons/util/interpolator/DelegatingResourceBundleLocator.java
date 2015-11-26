@@ -20,16 +20,16 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * Abstract base for all {@link ResourceBundleLocator} implementations, that
+ * Abstract base for all {@link IResourceBundleLocator} implementations, that
  * wish to delegate to some other locator.
  *
  * @author Gunnar Morling
  */
-public abstract class DelegatingResourceBundleLocator implements ResourceBundleLocator {
+public abstract class DelegatingResourceBundleLocator implements IResourceBundleLocator {
 
-	private final ResourceBundleLocator delegate;
+	private final IResourceBundleLocator delegate;
 
-	public DelegatingResourceBundleLocator(ResourceBundleLocator delegate) {
+	public DelegatingResourceBundleLocator(IResourceBundleLocator delegate) {
 		this.delegate = delegate;
 	}
 

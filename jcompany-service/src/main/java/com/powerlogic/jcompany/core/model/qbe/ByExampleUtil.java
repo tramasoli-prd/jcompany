@@ -41,7 +41,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.powerlogic.jcompany.core.model.entity.PlcEntityModel;
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 
 /**
  * Helper to create predicate by example. It processes associated entities (1 level deep).
@@ -56,7 +56,7 @@ public class ByExampleUtil {
     @PersistenceContext
     private EntityManager em;
 
-    public <T extends PlcEntityModel<?>> Predicate byExampleOnEntity(Root<T> rootPath, T entityValue, CriteriaBuilder builder, SearchParameters sp) {
+    public <T extends IPlcEntityModel<?>> Predicate byExampleOnEntity(Root<T> rootPath, T entityValue, CriteriaBuilder builder, SearchParameters sp) {
         if (entityValue == null) {
             return null;
         }
@@ -72,7 +72,7 @@ public class ByExampleUtil {
         return jpaUtil.concatPredicate(sp, builder, predicates);
     }
 
-    protected <T extends PlcEntityModel<?>> List<Predicate> byExampleOnCompositePk(Root<T> root, T entity, SearchParameters sp, CriteriaBuilder builder) {
+    protected <T extends IPlcEntityModel<?>> List<Predicate> byExampleOnCompositePk(Root<T> root, T entity, SearchParameters sp, CriteriaBuilder builder) {
         String compositePropertyName = jpaUtil.compositePkPropertyName(entity);
         if (compositePropertyName == null) {
             return emptyList();
@@ -123,7 +123,7 @@ public class ByExampleUtil {
      * entity's properties value.
      */
     @SuppressWarnings("unchecked")
-    public <T extends PlcEntityModel<?>, M2O extends PlcEntityModel<?>> List<Predicate> byExampleOnXToOne(ManagedType<T> mt, Root<T> mtPath, T mtValue,
+    public <T extends IPlcEntityModel<?>, M2O extends IPlcEntityModel<?>> List<Predicate> byExampleOnXToOne(ManagedType<T> mt, Root<T> mtPath, T mtValue,
                                                                                                       SearchParameters sp, CriteriaBuilder builder) {
         List<Predicate> predicates = newArrayList();
         for (SingularAttribute<? super T, ?> attr : mt.getSingularAttributes()) {

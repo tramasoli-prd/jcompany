@@ -2,7 +2,7 @@ package ${target.javaPackageFromFolder($SRC)};
 
 import javax.ejb.Local;
 
-import com.powerlogic.jcompany.core.model.service.PlcEntityService;
+import com.powerlogic.jcompany.core.model.service.IPlcEntityService;
 import ${ENTITY_PKG}.${entity.name}Entity;
 
 /**
@@ -13,7 +13,7 @@ import ${ENTITY_PKG}.${entity.name}Entity;
  */
 
 @Local
-public interface ${entity.name}Service extends PlcEntityService<Long, ${entity.name}Entity> {
+public interface I${entity.name}Service extends IPlcEntityService<Long, ${entity.name}Entity> {
    
 
 }

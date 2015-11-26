@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class PlcMessageEntry
 {
-   private PlcMessageKey key;
+   private IPlcMessageKey key;
 
    private PlcMessageType type;
 
@@ -13,13 +13,13 @@ public class PlcMessageEntry
 
    private String[] args;
 
-   public PlcMessageEntry(PlcMessageKey key, PlcMessageType type)
+   public PlcMessageEntry(IPlcMessageKey key, PlcMessageType type)
    {
       this.key = key;
       this.type = type;
    }
 
-   public PlcMessageEntry(PlcMessageKey key, PlcMessageType type, String... args)
+   public PlcMessageEntry(IPlcMessageKey key, PlcMessageType type, String... args)
    {
       this(key, type);
       this.args = args;
@@ -30,7 +30,7 @@ public class PlcMessageEntry
       return type;
    }
 
-   public PlcMessageKey getKey()
+   public IPlcMessageKey getKey()
    {
       return key;
    }

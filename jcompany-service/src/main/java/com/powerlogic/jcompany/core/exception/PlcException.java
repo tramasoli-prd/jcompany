@@ -2,7 +2,7 @@ package com.powerlogic.jcompany.core.exception;
 
 import javax.ejb.ApplicationException;
 
-import com.powerlogic.jcompany.core.messages.PlcMessageKey;
+import com.powerlogic.jcompany.core.messages.IPlcMessageKey;
 import com.powerlogic.jcompany.core.messages.PlcMessageMap;
 import com.powerlogic.jcompany.core.messages.PlcMessageType;
 
@@ -13,23 +13,23 @@ public class PlcException extends RuntimeException
 
    private PlcMessageMap messageMap;
 
-   public PlcException(PlcMessageKey key)
+   public PlcException(IPlcMessageKey key)
    {
       addMessage(key);
    }
 
-   public PlcException(PlcMessageKey key, String... args)
+   public PlcException(IPlcMessageKey key, String... args)
    {
       addMessage(key, args);
    }
 
-   public PlcException(Throwable cause, PlcMessageKey key)
+   public PlcException(Throwable cause, IPlcMessageKey key)
    {
       super(cause);
       addMessage(key);
    }
 
-   public PlcException(Throwable cause, PlcMessageKey key, String... args)
+   public PlcException(Throwable cause, IPlcMessageKey key, String... args)
    {
       super(cause);
       addMessage(key, args);
@@ -47,7 +47,7 @@ public class PlcException extends RuntimeException
       this.messageMap = messageMap;
    }
 
-   protected void addMessage(PlcMessageKey key, String... args)
+   protected void addMessage(IPlcMessageKey key, String... args)
    {
       getMessageMap().addMessage(key, PlcMessageType.ERROR, args);
    }
