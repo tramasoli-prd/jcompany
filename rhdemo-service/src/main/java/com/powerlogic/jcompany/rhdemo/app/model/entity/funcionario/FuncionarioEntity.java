@@ -42,7 +42,7 @@ import com.powerlogic.jcompany.rhdemo.app.model.domain.Sexo;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.DepartamentoEntity;
 
 /**
- * Classe Concreta gerada a partir do assistente
+ * Entidade Funcionario
  */
 @Entity
 @Table(name = "FUNCIONARIO")
@@ -104,7 +104,8 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	@JoinColumn
 	private DepartamentoEntity departamento;
 	
-	@Size(max = 255) @Column
+	@Size(max = 255) 
+	@Column
 	private String observacao;
 	
     @OneToMany (targetEntity = CurriculoEntity.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)
@@ -128,7 +129,7 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	/** atributo para repassar o nome do arquivo vindo do upload
 	 */
 	@Transient
-	private String fotoFileName; 
+	private String uploadFileName; 
 	
 	@AssertTrue(message="{funcionario.valida.maioridade}")
 	public boolean isMaiorDeIdade() {
@@ -136,138 +137,233 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 		return true;
 	}	
 
+	/**
+	 * 
+	 */
 	public FuncionarioEntity() {
 	}
-
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return getNome();
 	}
 
+	/**
+	 * @return the id
+	 */
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the nome
+	 */
 	public String getNome() {
 		return nome;
 	}
 
+	/**
+	 * @param nome the nome to set
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
+	/**
+	 * @return the dataNascimento
+	 */
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
+	/**
+	 * @param dataNascimento the dataNascimento to set
+	 */
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
+	/**
+	 * @return the cpf
+	 */
 	public String getCpf() {
 		return cpf;
 	}
 
+	/**
+	 * @param cpf the cpf to set
+	 */
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
+	/**
+	 * @return the email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * @param email the email to set
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * @return the estadoCivil
+	 */
 	public EstadoCivil getEstadoCivil() {
 		return estadoCivil;
 	}
 
+	/**
+	 * @param estadoCivil the estadoCivil to set
+	 */
 	public void setEstadoCivil(EstadoCivil estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
 
+	/**
+	 * @return the sexo
+	 */
 	public Sexo getSexo() {
 		return sexo;
 	}
 
+	/**
+	 * @param sexo the sexo to set
+	 */
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}
 
+	/**
+	 * @return the temCursoSuperior
+	 */
 	public Boolean getTemCursoSuperior() {
 		return temCursoSuperior;
 	}
 
+	/**
+	 * @param temCursoSuperior the temCursoSuperior to set
+	 */
 	public void setTemCursoSuperior(Boolean temCursoSuperior) {
 		this.temCursoSuperior = temCursoSuperior;
 	}
 
+	/**
+	 * @return the departamento
+	 */
 	public DepartamentoEntity getDepartamento() {
 		return departamento;
 	}
 
+	/**
+	 * @param departamento the departamento to set
+	 */
 	public void setDepartamento(DepartamentoEntity departamento) {
 		this.departamento = departamento;
 	}
 
+	/**
+	 * @return the observacao
+	 */
 	public String getObservacao() {
 		return observacao;
 	}
 
+	/**
+	 * @param observacao the observacao to set
+	 */
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
 
+	/**
+	 * @return the curriculo
+	 */
 	public List<CurriculoEntity> getCurriculo() {
 		return curriculo;
 	}
 
+	/**
+	 * @param curriculo the curriculo to set
+	 */
 	public void setCurriculo(List<CurriculoEntity> curriculo) {
 		this.curriculo = curriculo;
 	}
 
+	/**
+	 * @return the foto
+	 */
 	public FotoEntity getFoto() {
 		return foto;
 	}
 
+	/**
+	 * @param foto the foto to set
+	 */
 	public void setFoto(FotoEntity foto) {
 		this.foto = foto;
 	}
 
+	/**
+	 * @return the historicoProfissional
+	 */
 	public List<HistoricoProfissionalEntity> getHistoricoProfissional() {
 		return historicoProfissional;
 	}
 
-	public void setHistoricoProfissional(List<HistoricoProfissionalEntity> historicoProfissional) {
+	/**
+	 * @param historicoProfissional the historicoProfissional to set
+	 */
+	public void setHistoricoProfissional(
+			List<HistoricoProfissionalEntity> historicoProfissional) {
 		this.historicoProfissional = historicoProfissional;
 	}
 
+	/**
+	 * @return the dependente
+	 */
 	public List<DependenteEntity> getDependente() {
 		return dependente;
 	}
 
+	/**
+	 * @param dependente the dependente to set
+	 */
 	public void setDependente(List<DependenteEntity> dependente) {
 		this.dependente = dependente;
 	}
-	
+
 	/**
-	 * @return the fotoFileName
+	 * @return the uploadFileName
 	 */
-	public String getFotoFileName() {
-		return fotoFileName;
+	public String getUploadFileName() {
+		return uploadFileName;
 	}
 
 	/**
-	 * @param fotoFileName the fotoFileName to set
+	 * @param uploadFileName the uploadFileName to set
 	 */
-	public void setFotoFileName(String fotoFileName) {
-		this.fotoFileName = fotoFileName;
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
 	}
+
+	
 
 }

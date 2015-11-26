@@ -42,7 +42,7 @@ public class DepartamentoRest extends PlcAbstractEntityRest<Long, DepartamentoEn
    }
 
    @GET
-   @Path("/all")
+   @Path("/findAll")
    public List<DepartamentoEntity> findAll(@Context HttpServletRequest request, @Context UriInfo ui) throws PlcException {
     
 	   MultivaluedMap<String, String> queryParams = ui.getQueryParameters();

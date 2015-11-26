@@ -23,9 +23,9 @@
 
 	<div class="form-group">
 	    <div class="col-sm-4">
-	    	<button type="button" class="btn btn-default" ng-click="find();" >Pesquisar</button>
-	    	<button type="button" class="btn btn-default" ng-click="clear();" >Limpar</button>
-	    	<button type="button" class="btn btn-default" ng-click="new();" ng-if="!isAggregateModal" >Novo</button>
+	    	<button type="button" class="btn btn-default" ng-click="departamentoController.find();" >Pesquisar</button>
+	    	<button type="button" class="btn btn-default" ng-click="departamentoController.clear();" >Limpar</button>
+	    	<button type="button" class="btn btn-default" ng-click="departamentoController.new();" ng-if="!isAggregateModal" >Novo</button>
 	    	<button type="button" class="btn btn-default" ng-click="closeThisDialog('button')"  ng-if="isAggregateModal">Fechar</button>
 	    </div>
 	</div>

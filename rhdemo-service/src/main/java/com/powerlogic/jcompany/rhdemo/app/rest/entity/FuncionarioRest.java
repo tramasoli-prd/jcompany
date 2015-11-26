@@ -1,7 +1,6 @@
 package com.powerlogic.jcompany.rhdemo.app.rest.entity;
 
 import java.io.File;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -47,7 +46,7 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 	private PlcFileUploadUtil fileUploadUtil;
 
 	@GET
-	@Path("/all")
+	@Path("/findAll")
 	public List<FuncionarioEntity> findAll(@Context HttpServletRequest request, @Context UriInfo ui,
 			 @QueryParam("nome") String nome,
 			 @QueryParam("cpf") String cpf,
@@ -110,17 +109,15 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 
 
 	private void recuperaFotoDoDisco(HttpServletRequest request, FuncionarioEntity entity) {
-		if (StringUtils.isNotEmpty(entity.getFotoFileName())) {
+		if (StringUtils.isNotEmpty(entity.getUploadFileName())) {
 
 			String subDiretorio = request.getContextPath();
 			if (request.getUserPrincipal()!=null) {
 				subDiretorio = subDiretorio.concat(File.separator).concat(request.getUserPrincipal().getName()); 
 			}			
-			PlcFileDTO fileDTO = fileUploadUtil.getFile(subDiretorio, entity.getFotoFileName());
+			PlcFileDTO fileDTO = fileUploadUtil.getFile(subDiretorio, entity.getUploadFileName());
 			if (fileDTO!=null) {
-				//if (entity.getFoto() == null){
-					entity.setFoto(new FotoEntity());
-				//}
+				entity.setFoto(new FotoEntity());
 				entity.getFoto().setNome(fileDTO.getNome());
 				entity.getFoto().setTamanho(fileDTO.getTamanho());
 				entity.getFoto().setTipo(fileDTO.getTipo());

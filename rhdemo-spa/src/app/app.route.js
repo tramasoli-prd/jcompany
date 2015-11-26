@@ -14,9 +14,7 @@
      $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'app/inicial/inicial.html',
-        controller: 'AppController',
-        controllerAs: 'app'
+        templateUrl: 'app/inicial/inicial.html'
       });
 
     $urlRouterProvider.otherwise('/');
