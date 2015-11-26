@@ -10,16 +10,21 @@
 	
 	function DepartamentoController($injector, $scope, $state, $stateParams, DepartamentoService, PlcNotificationService, PlcUtils) {
 
-	    // Using the injector for inheritance.
-	    $injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
-	      $scope: $scope,
-	      $state: $state,
-	      $stateParams: $stateParams,
-	      $baseService: DepartamentoService,
-	      $baseRoute: 'departamento',
-	      $notification : PlcNotificationService, 
-	      $utils : PlcUtils
-	    });
+	   
+	  	
+		// required atributes in scope for inheritance.
+		$scope.$baseService = DepartamentoService;
+		$scope.$baseRoute = 'departamento';
+
+ 		// Using the injector for inheritance.
+		$injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
+        	$scope: $scope,
+        	$state: $state,
+        	$stateParams: $stateParams,
+        	PlcNotificationService: PlcNotificationService,
+        	PlcUtils: PlcUtils
+    	});
+	
 	
 
 		$scope.columnDefs = [
