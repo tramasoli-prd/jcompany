@@ -1,6 +1,6 @@
 #set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
-#set( $lowerEntityName = $fn.toLowerCase($entity.name) )
 #set( $dollarSymbol= "$" )
+
 (function() {
 	'use strict';
 
@@ -11,14 +11,15 @@
 
 	function ${entity.name}RouterConfig(${dollarSymbol}stateProvider, ${dollarSymbol}urlRouterProvider) {
 
-
 		${dollarSymbol}stateProvider
-		.state('${lowerEntityName}', {
-			url: '/${lowerEntityName}',
-			templateUrl: 'app/${lowerEntityName}/${lowerEntityName}.html',
+		.state('${uncapitalizedEntityName}', {
+			url: '/${uncapitalizedEntityName}',
+			templateUrl: 'app/${uncapitalizedEntityName}/${uncapitalizedEntityName}.html',
 			controller: '${entity.name}Controller',
-			controllerAs: '${lowerEntityName}Controller'
+			controllerAs: '${uncapitalizedEntityName}Controller'
 		});
 	}
-
+	
 })();
+
+

@@ -1,57 +1,29 @@
 #set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
-#set( $lowerEntityName = $fn.toLowerCase($entity.name) )
 #set( $dollarSymbol= "$" )
+
 (function() {
   'use strict';
 
   angular
     .module('${PROJECT_NAME}')
-    .controller('${entity.name}Controller', ${entity.name}Controller );
+    .controller('${entity.name}Controller', '${entity.name}Controller );
 
-  ${entity.name}Controller.${dollarSymbol}inject = ['${dollarSymbol}rootScope', '${dollarSymbol}scope', '${dollarSymbol}location', '${entity.name}Service', 'PlcNotificationService', 'PlcUtils'];
+  ${entity.name}Controller.${dollarSymbol}inject = ['${dollarSymbol}injector', '${dollarSymbol}scope', '${dollarSymbol}location', '${entity.name}Service', 'PlcNotificationService', 'PlcUtils'];
 
   /** @ngInject */
-  function ${entity.name}Controller(${dollarSymbol}rootScope, ${dollarSymbol}scope, ${dollarSymbol}location, ${entity.name}Service, PlcNotificationService, PlcUtils) {
+	function ${entity.name}Controller(${dollarSymbol}injector, ${dollarSymbol}scope, ${dollarSymbol}state, ${dollarSymbol}stateParams, ${entity.name}Service, PlcNotificationService, PlcUtils) {
 
-    ${dollarSymbol}scope.all = function(){
-      ${entity.name}Service._all().then( function (response) {
-        ${dollarSymbol}scope.rows = [];
-        angular.forEach(response.data.entity, function(value, key) {
-          var o = new Object();
-          o.${lowerEntityName} = value;
-          ${dollarSymbol}scope.rows.push(o);
-        });
-        ${dollarSymbol}scope.rows.push(new Object());
-        
-      });
-    };
+  		${dollarSymbol}injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
+	        ${dollarSymbol}scope: ${dollarSymbol}scope,
+	        ${dollarSymbol}state: ${dollarSymbol}state,
+	        ${dollarSymbol}stateParams: ${dollarSymbol}stateParams,
+	        ${dollarSymbol}baseService: ${entity.name}Service,
+	        ${dollarSymbol}baseRoute: '${uncapitalizedEntityName}',
+	        ${dollarSymbol}notification : PlcNotificationService, 
+	        ${dollarSymbol}utils : PlcUtils
+	    });
 
-    ${dollarSymbol}scope.saveRow = function(index){
-      var rowElement = document.querySelectorAll('.row.ng-scope')[index];
-      var temErro = PlcUtils.validaObrigatorio(rowElement);
-      if (temErro) {    
-        PlcNotificationService.error("CAMPOS_OBRIGATORIOS_TOPICO_024");
-        return;
-      }
-
-      var incluiNovo = ${dollarSymbol}scope.rows[index].${lowerEntityName} && ${dollarSymbol}scope.rows[index].${lowerEntityName}.id ;
-      ${entity.name}Service.save(${dollarSymbol}scope.rows[index].${lowerEntityName}).then( function (response) {
-          if (!incluiNovo){
-            ${dollarSymbol}scope.rows.push(new Object());
-          }
-          ${dollarSymbol}scope.rows[index].${lowerEntityName}  = response.data.entity;
-         
-      });
-    };
-
-    ${dollarSymbol}scope.removeRow = function(index){
-      ${entity.name}Service.remove(${dollarSymbol}scope.rows[index].${lowerEntityName}).then( function (response) {
-          ${dollarSymbol}scope.rows.splice(index, 1);
-      });
-    };
-
-    ${dollarSymbol}scope.all();
-
+   this.allTabular();
   }
 
 })();
