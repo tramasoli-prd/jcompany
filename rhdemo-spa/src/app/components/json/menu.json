@@ -11,5 +11,26 @@
     "sref": "inicial",
     "icon": "menu-icon fa fa-tachometer",
     "translate": "label.menu.inicial"
+  },
+  {
+    "text": "Unidade Federativa",
+    "position" : 2,
+    "sref": "uf",
+    "icon": "menu-icon fa fa-compass",
+    "translate": "label.menu.uf"
+  },
+  {
+    "text": "Departamento",
+     "position" : 3,
+     "sref": "departamento.sel",
+     "icon": "menu-icon fa fa-table",
+     "translate": "label.menu.departamento"
+  },
+  {
+    "text": "Funcionário",
+    "position": 4,
+    "sref": "funcionario.sel",
+    "icon": "menu-icon fa fa-paperclip",
+    "translate": "label.menu.funcionario"
   }
 ]

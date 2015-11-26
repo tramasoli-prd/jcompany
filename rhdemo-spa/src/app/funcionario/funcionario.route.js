@@ -24,7 +24,7 @@
 		});
 
 		$stateProvider
-		.state('funcionario.mdt', {
+		.state('funcionario.man', {
 			url: '/funcionariomdt/:id',
 	        templateUrl: 'app/funcionario/funcionariomdt.html',
 			controller: 'FuncionarioController',

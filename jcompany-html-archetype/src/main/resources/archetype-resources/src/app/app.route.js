@@ -2,28 +2,23 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 (function() {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('${artifactId}')
-    .config(RouterConfig);
+	angular
+	.module('${artifactId}')
+	.config(RouterConfig);
 
-    /** @ngInject */
-  function RouterConfig($stateProvider, $urlRouterProvider) {
-    
-    $stateProvider
-      .state('inicial', {
-        url: '/',
-        templateUrl: 'app/inicial/inicial.html',
-        controller: 'InicialController',
-        controllerAs: 'inicial'
-      });
+	/** @ngInject */
+	function RouterConfig($stateProvider, $urlRouterProvider) {
 
+		$stateProvider
+		.state('home', {
+			url: '/',
+			templateUrl: 'app/inicial/inicial.html'
+		});
 
-
-
-    $urlRouterProvider.otherwise('/');
-  }
+		$urlRouterProvider.otherwise('/');
+	}
 
 })();
 

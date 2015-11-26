@@ -11,7 +11,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.powerlogic.jcompany.commons.util.message.PlcMsgUtil;
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.rest.PlcSearchBuilder;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
@@ -29,29 +28,23 @@ public class UnidadeFederativaRest extends PlcAbstractEntityRest<Long, UnidadeFe
 
 	@Inject
 	private UnidadeFederativaService unidadeFederativaService;
-
-	@Inject
-	private PlcMsgUtil msgUtil;
 	
 	
 	@GET
-	@Path("/all")
+	@Path("/findAll")
 	public List<UnidadeFederativaEntity> findAll() throws PlcException	{
 		return getEntityService().findAll();
 	}
 
 	@GET
 	@Path("/findByNome")
-	public UnidadeFederativaEntity find(@BeanParam PlcSearchBuilder searchBuilder, @QueryParam("nome") String nome) throws PlcException
-	{
+	public UnidadeFederativaEntity find(@BeanParam PlcSearchBuilder searchBuilder, @QueryParam("nome") String nome) throws PlcException	{
 		return getEntityService().findByNome(nome);
 	}
 
 
-
 	@Override
-	protected UnidadeFederativaService getEntityService()
-	{
+	protected UnidadeFederativaService getEntityService()	{
 		return unidadeFederativaService;
 	}
 

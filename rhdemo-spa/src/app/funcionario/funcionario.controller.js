@@ -2,79 +2,26 @@
 (function() {
 	'use strict';
 
-	angular
-	.module('rhdemo')
-	.controller('FuncionarioController', FuncionarioController );
+	var jcompanyModule = angular.module('jcompany-view');
+  	jcompanyModule.FuncionarioControllerConstructor = FuncionarioController;
 
-	FuncionarioController.$inject = ['$scope', '$state', '$backendUrl', 'FuncionarioService', 'PlcNotificationService', 'FileUploader', '$stateParams'];
-
-	/** @ngInject */
-	function FuncionarioController($scope, $state, $backendUrl, FuncionarioService, PlcNotificationService, FileUploader, $stateParams) {
-
-
-		/* ------------------
-		 * Atributos Gerais
-		 * -----------------*/
-
-		$scope.backendUrl = $backendUrl;
-
-		var init = function(){
-
-			if ($state.current.name === 'funcionario.mdt' && $stateParams.id){
-				$scope.edit($stateParams.id);
-			}
-
-		}
-
-		$scope.find = function(){
-			FuncionarioService._all($scope.funcionarioArg).then( function (response) {
-				$scope.gridOptions.data = response.data.entity;
-			});
-		};
-
-		$scope.clear = function(){
-			$scope.funcionarioArg =  new Object();
-			$scope.gridOptions.data = [];
-		};
-
-		$scope.edit = function(id){
-			FuncionarioService.edit(id).then( function (response) {
-				$state.go( 'funcionario.mdt' );
-				$scope.funcionario = response.data.entity;
-			});
-		};
-
-		$scope.save = function(){
-			$scope.funcionario.fotoFileName = $scope._fotoFileName;
-			FuncionarioService.save($scope.funcionario).then( function (response) {
-				$scope.funcionario = response.data.entity;
-				$scope.uploader.clearQueue();
-			});
-		};
-
-		$scope.remove = function(){
-			funcionarioService.remove($scope.funcionario).then( function (response) {
-				$scope.funcionario = response.data.entity;
-			});
-		};
-
-		$scope.new = function () {
-			$scope.funcionario = new Object();
-
-			$scope.funcionario.dependente = [];
-
-			$scope.funcionario.historicoProfissional = [];
-
-			$state.go( 'funcionario.mdt' );
-		};
-
-		$scope.list = function () {
-			$scope.funcionarioArg =  new Object();
-			$state.go( 'funcionario.sel' );
-		};
+	angular.module('rhdemo').controller('FuncionarioController', FuncionarioController );
+	FuncionarioController.$inject = ['$injector', '$scope', '$state', '$stateParams', 'FuncionarioService', 'PlcNotificationService', 'PlcUtils', 'FileUploader'];
+	
+	function FuncionarioController($injector, $scope, $state, $stateParams, FuncionarioService, PlcNotificationService, PlcUtils, FileUploader) {
 
 
-		$scope.oneAtATime = true;
+		// Using the injector for inheritance.
+	    $injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
+	        $scope: $scope,
+	        $state: $state,
+	        $stateParams: $stateParams,
+	        $baseService: FuncionarioService,
+	        $baseRoute: 'funcionario',
+	        $notification : PlcNotificationService, 
+	        $utils : PlcUtils
+	    });
+
 
 		$scope.detalhes = [
 		                   {
@@ -132,7 +79,7 @@
 		                        	}
 		                        }]
 
-		init();
+		
 
 	}
 

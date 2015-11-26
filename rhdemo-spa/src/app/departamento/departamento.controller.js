@@ -2,88 +2,31 @@
 (function() {
 	'use strict';
 
-	angular
-	.module('rhdemo')
-	.controller('DepartamentoController', DepartamentoController );
+	var jcompanyModule = angular.module('jcompany-view');
 
-	DepartamentoController.$inject = ['$scope', '$state', 'DepartamentoService', 'PlcNotificationService', '$stateParams', 'PlcUtils'];
+	jcompanyModule.DepartamentoControllerConstructor = DepartamentoController;
+	angular.module('rhdemo').controller('DepartamentoController', DepartamentoController);
+	DepartamentoController.$inject = ['$injector', '$scope', '$state', '$stateParams','DepartamentoService', 'PlcNotificationService', 'PlcUtils'];
+	
+	function DepartamentoController($injector, $scope, $state, $stateParams, DepartamentoService, PlcNotificationService, PlcUtils) {
 
-	/** @ngInject */
-	function DepartamentoController($scope, $state, DepartamentoService, PlcNotificationService, $stateParams, PlcUtils) {
-
-
-		$scope.init = function(){
-
-			if ($state.current.name === 'departamento.man' && $stateParams.id){ 
-				$scope.edit($stateParams.id);    
-			} 
-
-			DepartamentoService.metadata().then( function (response) {
-
-				angular.forEach(response.data.entity.properties, function(value, key) {
-					console.log(value);
-				  	var myEl = angular.element( document.querySelector( "[name='"+value+"']" ));
-					myEl.attr('maxlength',"2");
-				});
-		
-			});
-
-		}
-
-
-		$scope.find = function(){
-			DepartamentoService._all($scope.departamentoArg).then( function (response) {
-				$scope.gridOptions.data = response.data.entity;
-			});
-		};
-
-		$scope.clear = function(){
-			$scope.departamentoArg = new Object();
-			$scope.gridOptions.data = [];
-		};
-
-		$scope.edit = function(id){
-			DepartamentoService.edit(id).then( function (response) {
-				$scope.departamento = response.data.entity;
-			});
-		};
-
-
-		$scope.save = function(){
-			var temErro = PlcUtils.validaObrigatorio();
-			if (temErro) {    
-				PlcNotificationService.error("CAMPOS_OBRIGATORIOS_TOPICO_024");
-				return;
-			}
-			DepartamentoService.save($scope.departamento).then( function (response) {
-				$scope.departamento = response.data.entity;
-			});
-		};
-
-		$scope.remove = function(){
-			DepartamentoService.remove($scope.departamento).then( function (response) {
-				$scope.departamento = response.data.entity;
-			});
-		};
-
-		$scope.new = function () {
-			$scope.departamento = new Object();
-			$state.go( 'departamento.man' );
-		};
-
-		$scope.list = function () {
-			$scope.departamentoArg = new Object();
-			$state.go( 'departamento.sel' );
-		};
-
+	    // Using the injector for inheritance.
+	    $injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
+	      $scope: $scope,
+	      $state: $state,
+	      $stateParams: $stateParams,
+	      $baseService: DepartamentoService,
+	      $baseRoute: 'departamento',
+	      $notification : PlcNotificationService, 
+	      $utils : PlcUtils
+	    });
+	
 
 		$scope.columnDefs = [
 		                     { field: 'id', displayName: 'Id', width: '10%'},
 		                     { field: 'descricao', displayName: 'Descrição', width: '50%'},
 		                     { field: 'departamentoPai.descricao', displayName: 'Departamento Pai', width: '40%'}
 		                    ]
-
-		$scope.init();
 
 	}
 
