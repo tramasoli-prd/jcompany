@@ -27,6 +27,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Named;
@@ -139,8 +140,7 @@ public class JpaUtil {
     public <E> Predicate stringPredicate(Expression<String> path, Object attrValue, SearchMode searchMode, SearchParameters sp, CriteriaBuilder builder) {
         if (sp.isCaseInsensitive()) {
             path = builder.lower(path);
-            // TODO BALDINI
-            //attrValue = ((String) attrValue).toLowerCase(LocaleContextHolder.getLocale());
+            attrValue = ((String) attrValue).toLowerCase(Locale.getDefault());
         }
 
         switch (searchMode != null ? searchMode : sp.getSearchMode()) {
