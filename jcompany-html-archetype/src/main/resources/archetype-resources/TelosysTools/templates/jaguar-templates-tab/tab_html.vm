@@ -1,5 +1,4 @@
 #set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
-#set( $lowerEntityName = $fn.toLowerCase($entity.name) )
 #set( $_= "$" )
 ##--------------------------------------------------------------------------------------------------------
 ##--------------------------------------------------------------------------------------------------------
@@ -11,8 +10,11 @@
 ##--------------------------------------------------------------------------------------------------------
 ## All fields ( ordered fiels : 1) fields in Primary Key 2) fields not in primary key    
 #set( $allFields = $fn.concatLists($keyFields, $dataFields) )
-#set( $dollarSymbol= "$" )
 ##--------------------------------------------------------------------------------------------------------
+
+
+
+
 
 <div class="container-fluid">
 
@@ -20,29 +22,63 @@
 		<div class=".panel-heading"> {{ 'label.${uncapitalizedEntityName}.titulo' | translate }} </div>
 	</div>
 
+	SIGLAS
+
 	<div class="row header" >
 
-	#foreach( $field in $allFields )
-	
-		#if( $field.isSelected() )
+        <div class="col-md-2">
+   
+            <label>Sigla</label>
+            
+        </div>
 
-		<div class="col-md-2">
+        <div class="col-md-6">
+           
+            <label>Nome</label>
 			
-			<label>{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}</label>
-
-		</div>
-
-		#end
-	#end
+        </div>
 
 	</div>
 
 
+	ATRIBUTOS
 	<div class="row" ng-repeat="row in rows">
-		<div >
+
+		<div class="col-md-2">
+			<input type="text" ng-model="row.uf.sigla" required ="" ng-required="true" maxlength="3" 		class="form-control obrigatorio">
 			<input type="hidden" ng-model="row.uf.id" >
+		    
 		</div>
 
+		<div class="col-md-6">    
+			<input type="text" ng-model="row.uf.nome" required ="" ng-required="true" maxlength="50" class="form-control obrigatorio">     
+		</div>
+
+		<div class="col-sd-2">
+
+		   	<button type="submit" class="btn btn-primary" ng-click="saveRow($index);">
+			  <i class="glyphicon glyphicon-save-file"></i>
+			</button>
+
+			<button type="submit" class="btn btn-danger" ng-click="removeRow($index);" ng-if="row.uf.id">
+			  <i class="glyphicon glyphicon-erase"></i>
+			</button>
+
+		</div>
+
+	</div>
+	<br/>
+
+	
+</div>
+
+
+
+
+##--------------------------------------------------------------------------------------------------------
+ 
+
+	#set($count = 0)
 
 	#foreach( $field in $allFields )
 	
@@ -59,43 +95,54 @@
 				#set($ng_disabled = " ng-disabled=""true""")
 			#end
 
-	 
-		<div class="col-md-2">
-			#if( $field.inputType == "textarea" )
-			<textarea id="${htmlId}" ng-model="row.${lowerEntityName}.${field.formattedName(0)}" class="form-control" rows="3" $ng_disabled></textarea>
-			#elseif( $field.inputType == "dynamic-combo" )
-			<plc-dynamic-combo ng-model="row.${lowerEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-item-description="descricao" ng-entity="${field.formattedName(0)}" />
-			#elseif( $field.inputType == "static-combo" )
-			<plc-static-combo ng-model="row.${lowerEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}"/>
-			#elseif( $field.inputType == "radiobox" )
-			<plc-radio ng-model="row.${lowerEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" />
-			#elseif( $field.inputType == "checkbox" )
-			<plc-check ng-model="row.${lowerEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"/>
-			#elseif( $field.inputType == "modal" )
-			#elseif( $field.inputType == "fileupload" )
-			#elseif( $field.inputType == "datepicker" )
-			<plc-date-picker ng-model="row.${lowerEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  />
-			#else
-			<input type="text" id="${htmlId}" ng-model="row.${lowerEntityName}.${field.formattedName(0)}" class="form-control" maxLength="${field.guiMaxLength}" $ng_disabled/>
+			#set($count = $count + 1)
+
+			#if( $count % 3 == 1 )	
+	<div class="row">
 			#end
+
+		<div class="col-md-4">
+
+			<label for="${htmlId}">{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}</label>
+			#if( $field.inputType == "textarea" )
+
+			<textarea id="${htmlId}" ng-model="${fn.uncapitalize($entity.name)}.${htmlName}" class="form-control" rows="3" $ng_disabled></textarea>
+			#elseif( $field.inputType == "dynamic-combo" )
+
+			<plc-dynamic-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-item-description="descricao" ng-entity="${field.formattedName(0)}" />
+			#elseif( $field.inputType == "static-combo" )
+
+			<plc-static-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}"/>
+			#elseif( $field.inputType == "radiobox" )
+
+			<plc-radio ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" />
+			#elseif( $field.inputType == "checkbox" )
+
+			<plc-check ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"/>
+			#elseif( $field.inputType == "modal" )
+
+			#elseif( $field.inputType == "fileupload" )
+
+			#elseif( $field.inputType == "datepicker" )
+
+			<plc-date-picker ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  />
+			#else
+
+			<input type="text" id="${htmlId}" ng-model="${fn.uncapitalize($entity.name)}.${htmlName}" class="form-control" maxLength="${field.guiMaxLength}" $ng_disabled/>
+			#end
+
 		</div>
 
-		#end
-	#end
-
-		<div class="col-sd-2">
-
-		   	<button type="submit" class="btn btn-primary" ng-click="saveRow(${dollarSymbol}index);">
-			  <i class="glyphicon glyphicon-save-file"></i>
-			</button>
-
-			<button type="submit" class="btn btn-danger" ng-click="removeRow(${dollarSymbol}index);" ng-if="row.${lowerEntityName}.id">
-			  <i class="glyphicon glyphicon-erase"></i>
-			</button>
-
-		</div>
+			#if( $count % 3 == 0 )		
 
 	</div>
-	<br/>
+			#end
+		#end
+	#end
 	
-</div>
+
+
+
+
+
+	

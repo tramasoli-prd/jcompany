@@ -1,94 +1,32 @@
 #set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
 #set( $dollarSymbol= "$" )
-
 (function() {
   'use strict';
 
-  angular
-    .module('${PROJECT_NAME}')
-    .controller('${entity.name}Controller', ${entity.name}Controller );
+  var jcompanyModule = angular.module('jcompany-view');
+  jcompanyModule.${entity.name}ControllerConstructor = ${entity.name}Controller;
+  angular.module('${PROJECT_NAME}').controller('${entity.name}Controller', ${entity.name}Controller );
 
-  ${entity.name}Controller.${dollarSymbol}_inject = ['${dollarSymbol}scope', '${dollarSymbol}state', '${dollarSymbol}backendUrl', '${entity.name}Service', 'PlcNotificationService', 'FileUploader', '${dollarSymbol}stateParams'];
+  ${entity.name}Controller.${dollarSymbol}_inject = ['${dollarSymbol}injector','${dollarSymbol}scope', '${dollarSymbol}state', '${dollarSymbol}backendUrl', '${entity.name}Service', 'PlcNotificationService', 'FileUploader', '${dollarSymbol}stateParams'];
 
   /** @ngInject */
-  function ${entity.name}Controller(${dollarSymbol}scope, ${dollarSymbol}state, ${dollarSymbol}backendUrl, ${entity.name}Service, PlcNotificationService,  FileUploader, ${dollarSymbol}stateParams) {
+  function ${entity.name}Controller(${dollarSymbol}injector, ${dollarSymbol}scope, ${dollarSymbol}state, ${dollarSymbol}backendUrl, ${entity.name}Service, PlcNotificationService,  FileUploader, ${dollarSymbol}stateParams) {
 
-
-    /* ------------------
-     * Atributos Gerais
-     * -----------------*/
-    ${dollarSymbol}scope.backendUrl = ${dollarSymbol}backendUrl;
-
-     ${dollarSymbol}scope.init = function(){
-
-      if (${dollarSymbol}state.current.name === '${uncapitalizedEntityName}.man' && ${dollarSymbol}stateParams.id){
-        ${dollarSymbol}scope.edit(${dollarSymbol}stateParams.id);
-      }
-    }
-
-    ${dollarSymbol}scope.find = function(){
-      ${entity.name}Service._all(${dollarSymbol}scope.${uncapitalizedEntityName}Arg).then( function (response) {
-        ${dollarSymbol}scope.gridOptions.data = response.data.entity;
-      });
-    };
-
-    ${dollarSymbol}scope.clear = function(){
-       ${dollarSymbol}scope.${uncapitalizedEntityName}Arg =  new Object();
-       ${dollarSymbol}scope.gridOptions.data = [];
-    };
-
-    ${dollarSymbol}scope.edit = function(id){
-      ${entity.name}Service.edit(id).then( function (response) {
-        ${dollarSymbol}scope.${uncapitalizedEntityName} = response.data.entity;
-      });
-    };
-
-    ${dollarSymbol}scope.save = function(){
-      ${entity.name}Service.save(${dollarSymbol}scope.${uncapitalizedEntityName}).then( function (response) {
-          ${dollarSymbol}scope.${uncapitalizedEntityName} = response.data.entity;
-      });
-    };
-
-    ${dollarSymbol}scope.remove = function(){
-      ${entity.name}Service.remove(${dollarSymbol}scope.${uncapitalizedEntityName}).then( function (response) {
-          ${dollarSymbol}scope.${uncapitalizedEntityName} = response.data.entity;
-      });
-    };
-
-    ${dollarSymbol}scope.new = function () {
-      ${dollarSymbol}state.${uncapitalizedEntityName} = new Object();
-	  ${dollarSymbol}state.go( '${uncapitalizedEntityName}.man' );
-
-	  #foreach($link in $entity.selectedLinks)
-		#if($link.isCardinalityOneToMany())
-
-      ${dollarSymbol}scope.${uncapitalizedEntityName}.${fn.uncapitalize($link.formattedFieldName(0))} = [];
-	  ${generator.generate(
-					$link.targetTableName , 
-					"${uncapitalizedEntityName}_${fn.uncapitalize($link.formattedFieldName(0))}.html", 
-					$target.folder, 
-					"crud_det_html.vm" )};
-		#end
-      #end
-
-      ${dollarSymbol}state.go( '${uncapitalizedEntityName}man' );
-    };
-
-    ${dollarSymbol}scope.list = function () {
-      ${dollarSymbol}scope.${uncapitalizedEntityName}Arg =  new Object();
-      ${dollarSymbol}state.go( '${uncapitalizedEntityName}.sel' );
-    };
-
-
-    ${dollarSymbol}scope.oneAtATime = true;
-
-    ${dollarSymbol}scope.detalhes = [];
+	    ${dollarSymbol}injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
+	        ${dollarSymbol}scope: ${dollarSymbol}scope,
+	        ${dollarSymbol}state: ${dollarSymbol}state,
+	        ${dollarSymbol}stateParams: ${dollarSymbol}stateParams,
+	        ${dollarSymbol}baseService: ${entity.name}Service,
+	        ${dollarSymbol}baseRoute: '${uncapitalizedEntityName}',
+	        ${dollarSymbol}notification : PlcNotificationService, 
+	        ${dollarSymbol}utils : PlcUtils
+	    });
 
 	  #foreach($link in $entity.selectedLinks)
 		#if($link.isCardinalityOneToMany())
 	#set($nameDetail = ${fn.firstCharToUpperCase($link.formattedFieldName(0))})
 
-    ${dollarSymbol}scope.detalhes.push(
+    ${dollarSymbol}scope.detalhes(
       {
         titulo: "${nameDetail}",
         template: "app/${uncapitalizedEntityName}/${uncapitalizedEntityName}_${fn.uncapitalize($link.formattedFieldName(0))}.html"
@@ -109,8 +47,6 @@
 
 		#end
 	  #end	
-
-
 	${dollarSymbol}scope.columnDefs = [
                          { field: 'id', displayName: 'Id', width: '10%'}
  		//,{ field: 'nome', displayName: 'Nome', width: '25%'}
@@ -119,11 +55,7 @@
         //,{ field: 'dataNascimento', displayName: 'Nascimento', width: '10%', cellFilter: 'date:\'dd/MM/yyyy\''}
         //,{ field: 'departamento.descricao', displayName: 'Departamento', width: '20%'}
                 ]
-
-    ${dollarSymbol}scope.init();
-
   }
-
 })();
 
 
