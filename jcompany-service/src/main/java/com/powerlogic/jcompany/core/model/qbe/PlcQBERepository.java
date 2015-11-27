@@ -45,6 +45,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
+import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 import com.powerlogic.jcompany.core.model.entity.IPlcVersionedEntity;
 import com.powerlogic.jcompany.core.model.repository.IPlcEntityRepository;
@@ -198,7 +199,9 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
     public List<E> find(E entity, SearchParameters sp) {
     	if (IPlcVersionedEntity.class.isAssignableFrom(entity.getClass())) {
     		((IPlcVersionedEntity)entity).setVersao(null);
+    		((IPlcVersionedEntity)entity).setSituacao(PlcSituacao.A);
     	}
+   	
         if (sp.hasNamedQuery()) {
             return byNamedQueryUtil.findByNamedQuery(sp);
         }
