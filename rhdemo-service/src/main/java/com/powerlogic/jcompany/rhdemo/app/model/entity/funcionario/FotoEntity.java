@@ -60,7 +60,7 @@ public class FotoEntity extends PlcVersionedEntity<Long>implements IPlcLogicalEx
 
 	/** atributo conteudo da arquivo
 	 */
-	@OneToOne(targetEntity = FotoConteudoEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false, mappedBy="foto")
+	@OneToOne(targetEntity = FotoConteudoEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false, mappedBy="foto", orphanRemoval=true)
 	@XmlTransient
 	private FotoConteudoEntity conteudo;
 
