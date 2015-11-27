@@ -7,10 +7,10 @@
   jcompanyModule.${entity.name}ControllerConstructor = ${entity.name}Controller;
   angular.module('${PROJECT_NAME}').controller('${entity.name}Controller', ${entity.name}Controller );
 
-  ${entity.name}Controller.${dollarSymbol}_inject = ['${dollarSymbol}injector','${dollarSymbol}scope', '${dollarSymbol}state', '${dollarSymbol}backendUrl', '${entity.name}Service', 'PlcNotificationService', 'FileUploader', '${dollarSymbol}stateParams'];
+  ${entity.name}Controller.${dollarSymbol}_inject = ['${dollarSymbol}injector','${dollarSymbol}scope', '${dollarSymbol}state', '${entity.name}Service', 'PlcNotificationService', 'FileUploader', '${dollarSymbol}stateParams', 'PlcUtils'];
 
   /** @ngInject */
-  function ${entity.name}Controller(${dollarSymbol}injector, ${dollarSymbol}scope, ${dollarSymbol}state, ${dollarSymbol}backendUrl, ${entity.name}Service, PlcNotificationService,  FileUploader, ${dollarSymbol}stateParams) {
+  function ${entity.name}Controller(${dollarSymbol}injector, ${dollarSymbol}scope, ${dollarSymbol}state, ${entity.name}Service, PlcNotificationService,  FileUploader, ${dollarSymbol}stateParams, PlcUtils) {
 
 	    ${dollarSymbol}injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
 	        ${dollarSymbol}scope: ${dollarSymbol}scope,

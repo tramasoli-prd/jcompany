@@ -7,20 +7,22 @@
 
 	angular.module('rhdemo').controller('FuncionarioController', FuncionarioController );
 	FuncionarioController.$inject = ['$injector', '$scope', '$state', '$stateParams', 'FuncionarioService', 'PlcNotificationService', 'PlcUtils', 'FileUploader'];
-	
 	function FuncionarioController($injector, $scope, $state, $stateParams, FuncionarioService, PlcNotificationService, PlcUtils, FileUploader) {
 
+
+
+		// required atributes in scope for inheritance.
+		$scope.$baseService = FuncionarioService;
+		$scope.$baseRoute = 'funcionario';
 
 		// Using the injector for inheritance.
 	    $injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
 	        $scope: $scope,
 	        $state: $state,
 	        $stateParams: $stateParams,
-	        $baseService: FuncionarioService,
-	        $baseRoute: 'funcionario',
-	        $notification : PlcNotificationService, 
-	        $utils : PlcUtils
-	    });
+	        PlcNotificationService: PlcNotificationService,
+	        PlcUtils: PlcUtils
+	    }); 
 
 
 		$scope.detalhes = [

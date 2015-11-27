@@ -4,11 +4,11 @@
 (function() {
   'use strict';
 
-  angular
-    .module('${PROJECT_NAME}')
-    .controller('${entity.name}Controller', '${entity.name}Controller );
+  var jcompanyModule = angular.module('jcompany-view');
+  jcompanyModule.${entity.name}ControllerConstructor = ${entity.name}Controller;
 
-  ${entity.name}Controller.${dollarSymbol}inject = ['${dollarSymbol}injector', '${dollarSymbol}scope', '${dollarSymbol}location', '${entity.name}Service', 'PlcNotificationService', 'PlcUtils'];
+  angular.module('${PROJECT_NAME}').controller('${entity.name}Controller', ${entity.name}Controller );
+  ${entity.name}Controller.${dollarSymbol}inject = ['${dollarSymbol}injector', '${dollarSymbol}scope', '${dollarSymbol}state', '${dollarSymbol}stateParams', '${entity.name}Service', 'PlcNotificationService', 'PlcUtils'];
 
   /** @ngInject */
 	function ${entity.name}Controller(${dollarSymbol}injector, ${dollarSymbol}scope, ${dollarSymbol}state, ${dollarSymbol}stateParams, ${entity.name}Service, PlcNotificationService, PlcUtils) {

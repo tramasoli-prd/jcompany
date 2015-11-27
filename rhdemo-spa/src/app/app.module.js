@@ -3,7 +3,6 @@
 
   angular
     .module('rhdemo', [
-                       'ngAnimate',
                        'ngCookies', 
                        'ngTouch', 
                        'ngSanitize', 
