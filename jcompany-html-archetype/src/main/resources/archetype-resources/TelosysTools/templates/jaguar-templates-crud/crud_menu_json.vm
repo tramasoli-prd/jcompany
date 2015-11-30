@@ -1,0 +1,10 @@
+#set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
+#set( $dollarSymbol= "$" )
+
+ , {
+    "position" : 2,
+    "sref": "${uncapitalizedEntityName}.sel",
+    "icon": "menu-icon fa fa-compass",
+    "translate": "label.menu.${uncapitalizedEntityName}",
+    "text": ""
+  }

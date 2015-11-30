@@ -1,0 +1,10 @@
+#set( $lowerEntityName = $fn.toLowerCase($entity.name) )
+#set( $dollarSymbol= "$" )
+
+ , {
+    "position" : 2,
+    "sref": "${lowerEntityName}",
+    "icon": "menu-icon fa fa-compass",
+    "translate": "label.menu.${lowerEntityName}",
+    "text": ""
+  }
