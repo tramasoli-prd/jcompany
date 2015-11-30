@@ -7,20 +7,20 @@
   jcompanyModule.${entity.name}ControllerConstructor = ${entity.name}Controller;
   angular.module('${PROJECT_NAME}').controller('${entity.name}Controller', ${entity.name}Controller );
 
-  ${entity.name}Controller.${dollarSymbol}_inject = ['${dollarSymbol}injector','${dollarSymbol}scope', '${dollarSymbol}state', '${entity.name}Service', 'PlcNotificationService', 'FileUploader', '${dollarSymbol}stateParams', 'PlcUtils'];
+  ${entity.name}Controller.${dollarSymbol}inject = ['${dollarSymbol}injector','${dollarSymbol}scope', '${dollarSymbol}state', '${entity.name}Service', 'PlcNotificationService', 'FileUploader', '${dollarSymbol}stateParams', 'PlcUtils'];
 
   /** @ngInject */
   function ${entity.name}Controller(${dollarSymbol}injector, ${dollarSymbol}scope, ${dollarSymbol}state, ${entity.name}Service, PlcNotificationService,  FileUploader, ${dollarSymbol}stateParams, PlcUtils) {
   
-		${dollarSymbol}scope.${dollarSymbol}baseService: ${entity.name}Service;
-	    ${dollarSymbol}scope.${dollarSymbol}baseRoute: '${uncapitalizedEntityName}';
+		${dollarSymbol}scope.${dollarSymbol}baseService = ${entity.name}Service;
+	    ${dollarSymbol}scope.${dollarSymbol}baseRoute = '${uncapitalizedEntityName}';
 
 	    ${dollarSymbol}injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
 	        ${dollarSymbol}scope: ${dollarSymbol}scope,
 	        ${dollarSymbol}state: ${dollarSymbol}state,
 	        ${dollarSymbol}stateParams: ${dollarSymbol}stateParams,
-	        ${dollarSymbol}notification : PlcNotificationService, 
-	        ${dollarSymbol}utils : PlcUtils
+	        PlcNotificationService : PlcNotificationService, 
+	        PlcUtils : PlcUtils
 	    });
 
 	  #foreach($link in $entity.selectedLinks)
