@@ -56,33 +56,33 @@
 
 			#if( $field.inputType == "textarea" )
 
-			<textarea id="${htmlId}" ng-model="${uncapitalizedEntityName}.${htmlName}" class="form-control" rows="3" $ng_disabled></textarea>
+			<textarea id="${htmlId}" ng-model="${uncapitalizedEntityName}.${htmlName}" name="${uncapitalizedEntityName}.${htmlName}" class="form-control" rows="3" $ng_disabled></textarea>
 			#elseif( $field.inputType == "dynamic-combo" )
 
-			<plc-dynamic-combo ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-item-description="descricao" ng-entity="${field.formattedName(0)}" />
+			<plc-dynamic-combo ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" name="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-item-description="descricao" ng-entity="${field.formattedName(0)}" />
 			#elseif( $field.inputType == "static-combo" )
 
-			<plc-static-combo ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}"/>
+			<plc-static-combo ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" name="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}"/>
 			#elseif( $field.inputType == "radiobox" )
 
-			<plc-radio ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" indexradio="{{${dollarSymbol}index}}"/>
+			<plc-radio ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" name="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" indexradio="{{${dollarSymbol}index}}"/>
 			#elseif( $field.inputType == "checkbox" )
 
-			<plc-check ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"/>
+			<plc-check ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" name="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"/>
 			#elseif( $field.inputType == "modal" )
 
 			#elseif( $field.inputType == "fileupload" )
 
 			#elseif( $field.inputType == "datepicker" )
 
-			<plc-date-picker ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  />
+			<plc-date-picker ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" name="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  />
 			#else
 
-			<input type="text" id="${htmlId}" ng-model="${uncapitalizedEntityName}.${htmlName}" class="form-control" maxLength="${field.guiMaxLength}" $ng_disabled/>
+			<input type="text" id="${htmlId}" ng-model="${uncapitalizedEntityName}.${htmlName}" name="${uncapitalizedEntityName}.${htmlName}" class="form-control" maxLength="${field.guiMaxLength}" $ng_disabled/>
 			#end
 			
 			#if($count==0)
-			<input type="hidden" ng-model="${uncapitalizedEntityName}.id" >
+			<input type="hidden" ng-model="${uncapitalizedEntityName}.id"  >
 			#end
 			#set($count=$count+1)
 
@@ -92,7 +92,7 @@
 
 		<div class="col-sd-2">
 
-			<button type="submit" class="btn btn-danger" ng-click="removeRow${entity.name}(${dollarSymbol}index);" >
+			<button type="submit" class="btn btn-danger" ng-click="removeItemDetail(${dollarSymbol}index);" >
 			  <i class="glyphicon glyphicon-erase"></i>
 			</button>
 
@@ -101,7 +101,7 @@
 	</div>
 	<br/>
 
-	<button type="button" class="btn btn-default" ng-click="addItem${entity.name}();" >Adicionar</button>
+	<button type="button" class="btn btn-default" ng-click="addItemDetail" >Adicionar</button>
 
 	
 </div>

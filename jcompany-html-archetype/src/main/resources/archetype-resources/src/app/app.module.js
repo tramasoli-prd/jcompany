@@ -6,7 +6,6 @@
 
   angular
     .module('${artifactId}', [
-                       'ngAnimate',
                        'ngCookies', 
                        'ngTouch', 
                        'ngSanitize', 
