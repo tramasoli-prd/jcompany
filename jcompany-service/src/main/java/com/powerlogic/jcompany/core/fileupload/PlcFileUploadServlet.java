@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.ws.rs.core.Response.Status;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.powerlogic.jcompany.commons.util.fileupload.PlcFileUploadUtil;
 
@@ -31,62 +34,81 @@ import com.powerlogic.jcompany.commons.util.fileupload.PlcFileUploadUtil;
 		)
 public class PlcFileUploadServlet extends HttpServlet {
 
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private PlcFileUploadUtil fileUploadUtil;
-	
-	
-	
+
+
+
 	/*
 	 * (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		
-		StringBuilder retorno = new StringBuilder("{");
+	public void doPost(HttpServletRequest request, HttpServletResponse response)  {
 
-		//Get all the parts from request and write it to the file on server
-		for (Part part : request.getParts()) {
-			InputStream inputStrem = part.getInputStream();
+		try{
 			
-			try {
-				Field fileName = part.getClass().getDeclaredField("fileName");
-				fileName.setAccessible(true);
-				
-				String subDiretorio = request.getContextPath().substring(request.getContextPath().indexOf("/")+1);
-				if (request.getUserPrincipal()!=null) {
-					subDiretorio = subDiretorio.concat(File.separator).concat(request.getUserPrincipal().getName()); 
+			StringBuilder retorno = new StringBuilder("{");
+
+			//Get all the parts from request and write it to the file on server
+			for (Part part : request.getParts()) {
+				InputStream inputStrem = part.getInputStream();
+
+				try {
+					Field fileName = part.getClass().getDeclaredField("fileName");
+					fileName.setAccessible(true);
+
+					String subDiretorio = request.getContextPath().substring(request.getContextPath().indexOf("/")+1);
+					if (request.getUserPrincipal()!=null) {
+						subDiretorio = subDiretorio.concat(File.separator).concat(request.getUserPrincipal().getName()); 
+					}
+
+					fileUploadUtil.saveFile(subDiretorio, (String) fileName.get(part), inputStrem);
+
+				} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+					e.printStackTrace();
 				}
 
-				fileUploadUtil.saveFile(subDiretorio, (String) fileName.get(part), inputStrem);
-				
-			} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-				e.printStackTrace();
-			}
-			
-			retorno.append("\"file\" : \"").append(part.getName()).append("\"");
+				retorno.append("\"file\" : ").append(StringUtils.substringAfter(part.getHeader("content-disposition"), "filename="));
 
+			}
+			retorno.append("}");
+			response.setContentType("application/json");
+			// Get the printwriter object from response to write the required json object to the output stream      
+			PrintWriter out = response.getWriter();
+			// Assuming your json object is **jsonObject**, perform the following, it will return your json object  
+			out.print(retorno.toString());
+
+			response.setHeader("Access-Control-Allow-Credentials", "true");
+			response.setHeader("Access-Control-Allow-Headers", "GET, POST, OPTIONS");
+			response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+			response.setHeader("Access-Control-Max-Age", "true");
+
+		} catch(Exception e ) {
+			try {
+				response.setStatus(Status.NOT_ACCEPTABLE.getStatusCode());
+				StringBuilder retorno = new StringBuilder("");
+				retorno.append("{\"messages\":{\"ERROR\":[{\"key\":\"FALHA_ADICIONAR_ARQUIVO_UPLOAD_026\",\"type\":\"ERROR\",\"message\":\"FALHA_ADICIONAR_ARQUIVO_UPLOAD_026\",\"args\":[\""+e.getMessage()+"\"]}]}}");
+				response.setContentType("application/json");	
+				PrintWriter out = response.getWriter();
+				out.print(retorno.toString());	
+				response.setHeader("Access-Control-Allow-Credentials", "true");
+				response.setHeader("Access-Control-Allow-Headers", "GET, POST, OPTIONS");
+				response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+				response.setHeader("Access-Control-Max-Age", "true");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
-		retorno.append("}");
-		response.setContentType("application/json");
-		// Get the printwriter object from response to write the required json object to the output stream      
-		PrintWriter out = response.getWriter();
-		// Assuming your json object is **jsonObject**, perform the following, it will return your json object  
-		out.print(retorno.toString());
-		
-		response.setHeader("Access-Control-Allow-Credentials", "true");
-		response.setHeader("Access-Control-Allow-Headers", "GET, POST, OPTIONS");
-		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
-		response.setHeader("Access-Control-Max-Age", "true");
-		
+
 	}
 
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doOptions(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
@@ -94,12 +116,12 @@ public class PlcFileUploadServlet extends HttpServlet {
 	@Override
 	protected void doOptions(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		response.setHeader("Access-Control-Allow-Headers", "GET, POST, OPTIONS");
 		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.setHeader("Access-Control-Max-Age", "true");
-		
+
 
 		super.doOptions(request, response);
 	}

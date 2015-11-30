@@ -4,21 +4,22 @@
 (function() {
   'use strict';
 
-  angular
-    .module('${PROJECT_NAME}')
-    .controller('${entity.name}Controller', '${entity.name}Controller );
+  var jcompanyModule = angular.module('jcompany-view');
+  jcompanyModule.${entity.name}ControllerConstructor = ${entity.name}Controller;
 
-  ${entity.name}Controller.${dollarSymbol}inject = ['${dollarSymbol}injector', '${dollarSymbol}scope', '${dollarSymbol}location', '${entity.name}Service', 'PlcNotificationService', 'PlcUtils'];
+  angular.module('${PROJECT_NAME}').controller('${entity.name}Controller', ${entity.name}Controller );
+  ${entity.name}Controller.${dollarSymbol}inject = ['${dollarSymbol}injector', '${dollarSymbol}scope', '${dollarSymbol}state', '${dollarSymbol}stateParams', '${entity.name}Service', 'PlcNotificationService', 'PlcUtils'];
 
   /** @ngInject */
 	function ${entity.name}Controller(${dollarSymbol}injector, ${dollarSymbol}scope, ${dollarSymbol}state, ${dollarSymbol}stateParams, ${entity.name}Service, PlcNotificationService, PlcUtils) {
+	
+		${dollarSymbol}scope.${dollarSymbol}baseService: ${entity.name}Service;
+	    ${dollarSymbol}scope.${dollarSymbol}baseRoute: '${uncapitalizedEntityName}';
 
   		${dollarSymbol}injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
 	        ${dollarSymbol}scope: ${dollarSymbol}scope,
 	        ${dollarSymbol}state: ${dollarSymbol}state,
 	        ${dollarSymbol}stateParams: ${dollarSymbol}stateParams,
-	        ${dollarSymbol}baseService: ${entity.name}Service,
-	        ${dollarSymbol}baseRoute: '${uncapitalizedEntityName}',
 	        ${dollarSymbol}notification : PlcNotificationService, 
 	        ${dollarSymbol}utils : PlcUtils
 	    });

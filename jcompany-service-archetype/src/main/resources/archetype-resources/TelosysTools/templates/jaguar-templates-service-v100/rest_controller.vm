@@ -42,7 +42,7 @@ public class ${entity.name}Rest extends PlcAbstractEntityRest<Long, ${entity.nam
    }
 
    @GET
-   @Path("/all")
+   @Path("/findAll")
    public List<${entity.name}Entity> findAll(@Context HttpServletRequest request, @Context UriInfo ui) throws PlcException {
     
 	   ${entity.name}Entity $fn.toLowerCase(${entity.name}) = new ${entity.name}Entity();
