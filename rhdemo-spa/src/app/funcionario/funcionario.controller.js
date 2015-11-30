@@ -28,38 +28,16 @@
 		$scope.detalhes = [
 		                   {
 		                	   titulo: "Dependente",
+		                	   name: "dependente",
 		                	   template: "app/funcionario/funcionariodet.html"
 		                   },
 		                   {
 		                	   titulo: "Histórico Profissional",
+		                	   name: "historicoProfissional",
 		                	   template: "app/funcionario/funcionariodet2.html"
 		                   }
 		                   ];
 
-
-		$scope.addItemDependente = function() {
-			if(!$scope.funcionario.dependente){
-				$scope.funcionario.dependente = [];
-			}
-
-			$scope.funcionario.dependente.push(new Object());
-		};
-
-		$scope.addItemHistoricoProfissional = function() {
-			if(!$scope.funcionario.historicoProfissional){
-				$scope.funcionario.historicoProfissional = [];
-			}
-			$scope.funcionario.historicoProfissional.push(new Object());
-		};
-
-
-		$scope.removeRowDependente = function(index){
-			$scope.funcionario.dependente.splice(index, 1);
-		};
-
-		$scope.removeRowHistoricoProfissional = function(index){
-			$scope.funcionario.historicoProfissional.splice(index, 1);
-		};
 
 
 		$scope.columnDefs = [

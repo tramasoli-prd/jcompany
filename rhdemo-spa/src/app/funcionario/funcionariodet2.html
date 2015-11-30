@@ -24,25 +24,25 @@
 
 	</div>
 
-	<div class="row" ng-repeat="row in funcionario.historicoProfissional">
+	<div class="row" ng-repeat="historicoProfissional in funcionario.historicoProfissional" plc-finish-render="ngRepeatFinished">
 
 		<div class="col-md-4">
-			<input type="text" ng-model="row.descricao" required ="" ng-required="true" maxlength="40" 		class="form-control obrigatorio">
-			<input type="hidden" ng-model="row.id" >
+			<input type="text" ng-model="historicoProfissional.descricao" name="historicoProfissional.descricao" 	class="form-control">
+			<input type="hidden" ng-model="historicoProfissional.id" >
 		    
 		</div>
 
 		<div class="col-md-2">    
-			<plc-date-picker ng-model="row.dataInicio"  />
+			<plc-date-picker ng-model="historicoProfissional.dataInicio" name="historicoProfissional.dataInicio"  />
 		</div>
 
 		<div class="col-md-2">    
-			<input type="number" ng-model="row.salario" required =""  ng-required="true"  class="form-control obrigatorio">     
+			<input type="number" ng-model="historicoProfissional.salario"   name="historicoProfissional.salario" class="form-control ">     
 		</div>
 
 		<div class="col-sd-2">
 
-			<button type="submit" class="btn btn-danger" ng-click="removeRowHistoricoProfissional($index);" >
+			<button type="submit" class="btn btn-danger" ng-click="funcionarioController.removeItemDetail('funcionario.historicoProfissional', $index);" >
 			  <i class="glyphicon glyphicon-erase"></i>
 			</button>
 
@@ -51,7 +51,7 @@
 	</div>
 	<br/>
 
-	<button type="button" class="btn btn-default" ng-click="addItemHistoricoProfissional();" >Adicionar</button>
+	<button type="button" class="btn btn-default" ng-click="funcionarioController.addItemDetail('funcionario.historicoProfissional');" >Adicionar</button>
 
 	
 </div>

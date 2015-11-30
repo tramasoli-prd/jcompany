@@ -13,14 +13,14 @@
 
 		<div class="col-md-6">
 			<label>Nome:</label> 
-			<input type="text" ng-model="funcionario.nome" class="form-control">
+			<input type="text" ng-model="funcionario.nome" name="nome" class="form-control">
 
 		</div>
 
 		<div class="col-md-2">
 
-			<label>CPF:</label> <input type="text" ng-model="funcionario.cpf"
-				class="form-control">
+			<label>CPF:</label> <input type="text" name="cpf" ng-model="funcionario.cpf"
+				class="form-control"> 
 
 		</div>
 	</div>
@@ -28,18 +28,18 @@
 	<div class="row">
 
 		<div class="col-md-2">
-			<plc-date-picker ng-model="funcionario.dataNascimento"
+			<plc-date-picker ng-model="funcionario.dataNascimento" name="dataNascimento"
 				label="Data Nasc.:" />
 		</div>
 
 		<div class="col-md-6">
-			<label>E-mail:</label> <input type="text"
+			<label>E-mail:</label> <input type="text" name="email"
 				ng-model="funcionario.email" class="form-control">
 		</div>
 
 		<div class="col-md-4">
-			<plc-check ng-model="funcionario.temCursoSuperior"
-				label="Tem curso superior" />
+			<plc-check ng-model="funcionario.temCursoSuperior" name="temCursoSuperior"
+				label="Tem curso superior?" />
 		</div>
 
 	</div>
@@ -49,7 +49,7 @@
 
 		<div class="col-md-4">
 
-			<plc-static-combo ng-model="funcionario.estadoCivil"
+			<plc-static-combo ng-model="funcionario.estadoCivil" name="estadoCivil"
 				label="Estado Civil:" ng-enum="estadocivil"
 				ng-enum-value="estadocivil" />
 
@@ -57,7 +57,7 @@
 
 		<div class="col-md-4">
 
-			<plc-dynamic-combo ng-model="funcionario.departamento"
+			<plc-dynamic-combo ng-model="funcionario.departamento" name="departamento"
 				label="Departamento:" ng-item-description="descricao"
 				ng-entity="departamento" />
 
@@ -65,7 +65,7 @@
 
 		<div class="col-sm-4" style="margin-top: 30px;">
 
-			<plc-radio ng-model="funcionario.sexo" label="Sexo:"
+			<plc-radio ng-model="funcionario.sexo" label="Sexo:" 
 				ng-item-description="descricao" ng-enum="sexo" ng-enum-value="sexo" />
 
 		</div>
@@ -78,7 +78,7 @@
 		<div class="col-md-12">
 
 			<label>Observação:</label>
-			<textarea class="form-control" ng-model="funcionario.observacao"
+			<textarea class="form-control" name="observacao" ng-model="funcionario.observacao"
 				rows="3"></textarea>
 
 		</div>
@@ -87,7 +87,7 @@
 
 	<div class="row">
 
-	   <plc-file-upload label="Foto:" ng-model="funcionario.foto" url="/funcionario/foto/{{funcionario.foto.id}}"
+	   <plc-file-upload label="Foto:" name="foto" ng-model="funcionario.foto" url="/funcionario/foto/{{funcionario.foto.id}}"
         model-filename="funcionario.foto.nome" />
 
 

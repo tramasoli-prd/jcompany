@@ -96,7 +96,6 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	@Column(length=1)
 	private Sexo sexo;
 	
-	@NotNull 
 	@Column(length=1)
 	private Boolean temCursoSuperior = false;
 	

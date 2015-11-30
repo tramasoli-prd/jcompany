@@ -58,6 +58,7 @@ public class HistoricoProfissionalEntity extends PlcVersionedEntity<Long> implem
 	private FuncionarioEntity funcionario;
 	
 	@Size(max = 40)
+	@NotNull
 	@Column
 	private String descricao;
 	
