@@ -18,32 +18,34 @@
 
 	</div>
 
-	<div class="row" ng-repeat="dependente in funcionario.dependente">
+	<div class="row" ng-repeat="dependente in funcionario.dependente" plc-finish-render="ngRepeatFinished">
 
 		<div class="col-md-6">
-			<input type="text" ng-model="dependente.nome" required ="" ng-required="true" maxlength="40" 		class="form-control obrigatorio">
+			<input type="text" ng-model="dependente.nome" name="dependente.nome" class="form-control">
 			<input type="hidden" ng-model="dependente.id" >
 		    
 		</div>
 
 		<div class="col-md-4">    
-			<plc-radio ng-model="dependente.sexo" ng-item-description="descricao"
+			<plc-radio ng-model="dependente.sexo" ng-item-description="descricao"  name="dependente.sexo"
         		ng-enum="sexo" ng-enum-value="sexo" indexradio="{{$index}}"/>
 
 		</div>
 
 		<div class="col-sd-2">
 
-			<button type="submit" class="btn btn-danger" ng-click="removeRowDependente($index);" >
+			<button type="submit" class="btn btn-danger" ng-click="funcionarioController.removeItemDetail('funcionario.dependente', $index);" >
 			  <i class="glyphicon glyphicon-erase"></i>
 			</button>
 
 		</div>
 
+		
+
 	</div>
 	<br/>
 
-	<button type="button" class="btn btn-default" ng-click="addItemDependente();" >Adicionar</button>
+	<button type="button" class="btn btn-default" ng-click="funcionarioController.addItemDetail('funcionario.dependente');" >Adicionar</button>
 
 	
 </div>

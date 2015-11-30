@@ -18,13 +18,15 @@
     // Using the injector for inheritance.
     $injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
         $scope: $scope,
-          $state: $state,
-          $stateParams: $stateParams,
-          PlcNotificationService: PlcNotificationService,
-          PlcUtils: PlcUtils
+        $state: $state,
+        $stateParams: $stateParams,
+        PlcNotificationService: PlcNotificationService,
+        PlcUtils: PlcUtils
     }); 
 
     this.allTabular();
+
+    console.log($scope);
 
   }
 

@@ -44,6 +44,7 @@ public class DependenteEntity extends PlcVersionedEntity<Long> implements IPlcLo
 	@Column(nullable=false,length=5)
 	private Long id;
 
+	@NotNull
 	@Size(max = 40)
 	@Column
 	private String nome;

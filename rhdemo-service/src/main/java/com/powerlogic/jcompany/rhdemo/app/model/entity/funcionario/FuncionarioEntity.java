@@ -20,7 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,11 +29,14 @@ import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.powerlogic.jcompany.commons.validation.Cpf;
+import com.powerlogic.jcompany.commons.validation.Email;
 import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.domain.EstadoCivil;
@@ -80,10 +82,12 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	@NotNull 
 	@Size(max = 11) 
 	@Column
+	@Cpf
 	private String cpf;
 	
 	@Size(max = 60) 
 	@Column
+	@Email
 	private String email;
 	
 	@Enumerated(EnumType.STRING)
@@ -96,7 +100,6 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	@Column(length=1)
 	private Sexo sexo;
 	
-	@NotNull 
 	@Column(length=1)
 	private Boolean temCursoSuperior = false;
 	
@@ -106,12 +109,13 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	
 	@Size(max = 255) 
 	@Column
+	@Pattern(regexp=".+@.+\\.[a-z]+")
 	private String observacao;
 	
-    @OneToMany (targetEntity = CurriculoEntity.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    @OrderBy("id")
-    @Valid
-    private List<CurriculoEntity> curriculo;
+//    @OneToMany (targetEntity = CurriculoEntity.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+//    @OrderBy("id")
+//    @Valid
+//    private List<CurriculoEntity> curriculo;
 
     @OneToOne (targetEntity = FotoEntity.class, cascade=CascadeType.ALL, orphanRemoval=true)    
     @JoinColumn(name="ID_FOTO")
@@ -293,19 +297,19 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 		this.observacao = observacao;
 	}
 
-	/**
-	 * @return the curriculo
-	 */
-	public List<CurriculoEntity> getCurriculo() {
-		return curriculo;
-	}
-
-	/**
-	 * @param curriculo the curriculo to set
-	 */
-	public void setCurriculo(List<CurriculoEntity> curriculo) {
-		this.curriculo = curriculo;
-	}
+//	/**
+//	 * @return the curriculo
+//	 */
+//	public List<CurriculoEntity> getCurriculo() {
+//		return curriculo;
+//	}
+//
+//	/**
+//	 * @param curriculo the curriculo to set
+//	 */
+//	public void setCurriculo(List<CurriculoEntity> curriculo) {
+//		this.curriculo = curriculo;
+//	}
 
 	/**
 	 * @return the foto

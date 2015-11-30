@@ -22,16 +22,16 @@
 
 	</div>
 
-	<div class="row" ng-repeat="uf in rows">
+	<div class="row" ng-repeat="uf in rows" ng-init="$last ? applyMetadata() : angular.noop()">
 
 		<div class="col-md-2">
-			<input type="text" ng-model="uf.sigla" required="" ng-required="true" maxlength="3" class="form-control obrigatorio" >
+			<input type="text" ng-model="uf.sigla"  name="sigla" class="form-control " >
 			<input type="hidden" ng-model="uf.id" >
 		    
 		</div>
 
 		<div class="col-md-6">    
-			<input type="text" ng-model="uf.nome" required="" ng-required="true" maxlength="50" class="form-control obrigatorio">     
+			<input type="text" ng-model="uf.nome" name="nome"  class="form-control">     
 		</div>
 
 		<div class="col-sd-2">

@@ -33,4 +33,9 @@
     "icon": "menu-icon fa fa-paperclip",
     "translate": "label.menu.funcionario"
   }
-]
+		  {
+    "text": "xxx",
+    "position": 0,
+    "heading": "true",
+    "translate": "label.menu"
+  },]

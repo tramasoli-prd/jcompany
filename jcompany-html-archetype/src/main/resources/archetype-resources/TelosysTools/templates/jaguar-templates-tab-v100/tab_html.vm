@@ -45,13 +45,13 @@
 	<div class="row" ng-repeat="row in rows">
 
 		<div class="col-md-2">
-			<input type="text" ng-model="row.uf.sigla" required ="" ng-required="true" maxlength="3" 		class="form-control obrigatorio">
+			<input type="text" ng-model="row.uf.sigla" 		class="form-control">
 			<input type="hidden" ng-model="row.uf.id" >
 		    
 		</div>
 
 		<div class="col-md-6">    
-			<input type="text" ng-model="row.uf.nome" required ="" ng-required="true" maxlength="50" class="form-control obrigatorio">     
+			<input type="text" ng-model="row.uf.nome" class="form-control">     
 		</div>
 
 		<div class="col-sd-2">
@@ -106,29 +106,29 @@
 			<label for="${htmlId}">{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}</label>
 			#if( $field.inputType == "textarea" )
 
-			<textarea id="${htmlId}" ng-model="${fn.uncapitalize($entity.name)}.${htmlName}" class="form-control" rows="3" $ng_disabled></textarea>
+			<textarea id="${htmlId}" ng-model="${fn.uncapitalize($entity.name)}.${htmlName}" name="${fn.uncapitalize($entity.name)}.${htmlName}" class="form-control" rows="3" $ng_disabled></textarea>
 			#elseif( $field.inputType == "dynamic-combo" )
 
-			<plc-dynamic-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-item-description="descricao" ng-entity="${field.formattedName(0)}" />
+			<plc-dynamic-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" name="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-item-description="descricao" ng-entity="${field.formattedName(0)}" />
 			#elseif( $field.inputType == "static-combo" )
 
-			<plc-static-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}"/>
+			<plc-static-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" name="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}"/>
 			#elseif( $field.inputType == "radiobox" )
 
-			<plc-radio ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" />
+			<plc-radio ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}"  name="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" />
 			#elseif( $field.inputType == "checkbox" )
 
-			<plc-check ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"/>
+			<plc-check ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" name="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"/>
 			#elseif( $field.inputType == "modal" )
 
 			#elseif( $field.inputType == "fileupload" )
 
 			#elseif( $field.inputType == "datepicker" )
 
-			<plc-date-picker ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  />
+			<plc-date-picker ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" name="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}"  label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  />
 			#else
 
-			<input type="text" id="${htmlId}" ng-model="${fn.uncapitalize($entity.name)}.${htmlName}" class="form-control" maxLength="${field.guiMaxLength}" $ng_disabled/>
+			<input type="text" id="${htmlId}" ng-model="${fn.uncapitalize($entity.name)}.${htmlName}" name="${fn.uncapitalize($entity.name)}.${htmlName}" class="form-control" maxLength="${field.guiMaxLength}" $ng_disabled/>
 			#end
 
 		</div>

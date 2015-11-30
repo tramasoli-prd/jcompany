@@ -20,6 +20,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -58,6 +59,7 @@ public class HistoricoProfissionalEntity extends PlcVersionedEntity<Long> implem
 	private FuncionarioEntity funcionario;
 	
 	@Size(max = 40)
+	@NotNull
 	@Column
 	private String descricao;
 	
@@ -70,6 +72,7 @@ public class HistoricoProfissionalEntity extends PlcVersionedEntity<Long> implem
 	@Min(value=0)
 	@NotNull
 	@Column(length=11, precision=11, scale=2)
+	@Digits(integer=11, fraction=2)
 	private BigDecimal salario;
 
 	/**

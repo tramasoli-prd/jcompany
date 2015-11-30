@@ -96,7 +96,7 @@
 <br/>
 	<div class="form-group">
 		<div class="col-sm-4">
-			<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.new();">Limpar</button>
+			<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.new();">Novo</button>
 			<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.save();">Salvar</button>
 			<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.list();">Listar</button>
 			<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.remove();">Excluir</button>
