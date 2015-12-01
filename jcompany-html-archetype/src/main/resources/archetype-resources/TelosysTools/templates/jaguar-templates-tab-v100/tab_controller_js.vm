@@ -8,16 +8,17 @@
   jcompanyModule.${entity.name}ControllerConstructor = ${entity.name}Controller;
 
   angular.module('${PROJECT_NAME}').controller('${entity.name}Controller', ${entity.name}Controller );
-  ${entity.name}Controller.${dollarSymbol}inject = ['${dollarSymbol}injector', '${dollarSymbol}scope', '${dollarSymbol}state', '${dollarSymbol}stateParams', '${entity.name}Service', 'PlcNotificationService', 'PlcUtils'];
+  ${entity.name}Controller.${dollarSymbol}inject = ['${dollarSymbol}injector', '${dollarSymbol}scope', '${dollarSymbol}state', '${dollarSymbol}stateParams', '${entity.name}Service', 'PlcNotificationService', 'PlcUtils', '${dollarSymbol}compile'];
 
   /** @ngInject */
-	function ${entity.name}Controller(${dollarSymbol}injector, ${dollarSymbol}scope, ${dollarSymbol}state, ${dollarSymbol}stateParams, ${entity.name}Service, PlcNotificationService, PlcUtils) {
+	function ${entity.name}Controller(${dollarSymbol}injector, ${dollarSymbol}scope, ${dollarSymbol}state, ${dollarSymbol}stateParams, ${entity.name}Service, PlcNotificationService, PlcUtils, ${dollarSymbol}compile) {
 	
 		${dollarSymbol}scope.${dollarSymbol}baseService = ${entity.name}Service;
 	    ${dollarSymbol}scope.${dollarSymbol}baseRoute = '${uncapitalizedEntityName}';
 
   		${dollarSymbol}injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
 	        ${dollarSymbol}scope: ${dollarSymbol}scope,
+			${dollarSymbol}compile: ${dollarSymbol}compile,
 	        ${dollarSymbol}state: ${dollarSymbol}state,
 	        ${dollarSymbol}stateParams: ${dollarSymbol}stateParams,
 	        PlcNotificationService : PlcNotificationService, 
