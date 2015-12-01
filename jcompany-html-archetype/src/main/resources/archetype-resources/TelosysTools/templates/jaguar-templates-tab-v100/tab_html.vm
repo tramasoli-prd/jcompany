@@ -56,11 +56,11 @@
 
 		<div class="col-sd-2">
 
-		   	<button type="submit" class="btn btn-primary" ng-click="saveRow($index);">
+		   	<button type="submit" class="btn btn-primary" >
 			  <i class="glyphicon glyphicon-save-file"></i>
 			</button>
 
-			<button type="submit" class="btn btn-danger" ng-click="removeRow($index);" ng-if="row.uf.id">
+			<button type="submit" class="btn btn-danger" ng-if="row.uf.id">
 			  <i class="glyphicon glyphicon-erase"></i>
 			</button>
 
