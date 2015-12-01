@@ -38,7 +38,7 @@
 		#end
 	#end
 
-	<div class="row" ng-repeat="${uncapitalizedEntityName} in ${mestre}.${uncapitalizedEntityName}"> 
+	<div class="row" ng-repeat="${uncapitalizedEntityName} in ${mestre}.${uncapitalizedEntityName}" plc-finish-render="ngRepeatFinished"> 
 
 	#set($count = 0)
 	#foreach( $field in $dataFields )
@@ -92,7 +92,7 @@
 
 		<div class="col-sd-2">
 
-			<button type="submit" class="btn btn-danger" ng-click="removeItemDetail(${dollarSymbol}index);" >
+			<button type="submit" class="btn btn-danger" ng-click="${mestre}Controller.removeItemDetail('${mestre}.${uncapitalizedEntityName}',${dollarSymbol}index);" >
 			  <i class="glyphicon glyphicon-erase"></i>
 			</button>
 
@@ -101,7 +101,7 @@
 	</div>
 	<br/>
 
-	<button type="button" class="btn btn-default" ng-click="addItemDetail" >Adicionar</button>
+	<button type="button" class="btn btn-default" ng-click="${mestre}Controller.addItemDetail('${mestre}.${uncapitalizedEntityName}'" >Adicionar</button>
 
 	
 </div>

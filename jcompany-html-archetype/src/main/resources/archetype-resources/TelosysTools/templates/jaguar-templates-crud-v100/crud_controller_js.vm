@@ -35,18 +35,6 @@
       } 
 	);
 
-    ${dollarSymbol}scope.addItemDetail = function() {
-      if(!${dollarSymbol}scope.${uncapitalizedEntityName}.${link.formattedFieldName(0)}){
-        ${dollarSymbol}scope.${uncapitalizedEntityName}.${link.formattedFieldName(0)} = [];
-      }
-
-      ${dollarSymbol}scope.${uncapitalizedEntityName}.${link.formattedFieldName(0)}.push(new Object());
-    };
-
-    ${dollarSymbol}scope.removeItemDetail = function(index){
-        ${dollarSymbol}scope.${uncapitalizedEntityName}.${link.formattedFieldName(0)}.splice(index, 1);
-    };
-
 		#end
 	  #end	
 	${dollarSymbol}scope.columnDefs = [
