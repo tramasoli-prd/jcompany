@@ -1,0 +1,75 @@
+#set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
+#set( $_= "$" )
+##--------------------------------------------------------------------------------------------------------
+##--------------------------------------------------------------------------------------------------------
+## Key fields = fields in Primary Key    
+#set( $keyFields = $entity.keyAttributes )
+##--------------------------------------------------------------------------------------------------------
+## Data fields = fields not in Primary Key    
+#set( $dataFields = $entity.nonKeyAttributes )
+##--------------------------------------------------------------------------------------------------------
+## All fields ( ordered fiels : 1) fields in Primary Key 2) fields not in primary key    
+#set( $allFields = $fn.concatLists($keyFields, $dataFields) )
+##--------------------------------------------------------------------------------------------------------
+<div class="container-fluid">
+	<div class="panel .panel-default">
+		<div class=".panel-heading"> {{ 'label.${uncapitalizedEntityName}.titulo' | translate }} </div>
+	</div>
+	<div class="row header" >
+        <div class="col-md-2">
+            <label>Sigla</label>
+            
+        </div>
+
+        <div class="col-md-6">
+           
+            <label>Nome</label>
+			
+        </div>
+
+	</div>
+	<div class="row" ng-repeat="row in rows">
+
+		<div class="col-md-2">
+			<input type="text" ng-model="row.${fn.uncapitalize($entity.name)}.sigla" 		class="form-control">
+			<input type="hidden" ng-model="row.${fn.uncapitalize($entity.name)}.id" >
+		    
+		</div>
+
+		<div class="col-md-6">    
+			<input type="text" ng-model="row.${fn.uncapitalize($entity.name)}.nome" class="form-control">     
+		</div>
+
+		<div class="col-sd-2">
+
+		   	<button type="submit" class="btn btn-primary" >
+			  <i class="glyphicon glyphicon-save-file"></i>
+			</button>
+
+			<button type="submit" class="btn btn-danger" ng-if="row.${fn.uncapitalize($entity.name)}.id">
+			  <i class="glyphicon glyphicon-erase"></i>
+			</button>
+		</div>
+	</div>
+	<br/>
+</div>
+##--------------------------------------------------------------------------------------------------------
+	#set($count = 0)
+	#foreach( $field in $allFields )
+		#if( $field.isSelected() )
+			#set($htmlId      = "${uncapitalizedEntityName}_${field.name}" )
+			#set($htmlName    = $field.name )
+			#set($fields = [])
+			#set($ttt = $fields.add($field))
+			#set($referencedEntityTypes = $entity.referencedEntityTypes($fields) )
+			#set($ng_disabled = "")
+			#if( $field.isKeyElement() )
+				#set($ng_disabled = " ng-disabled=""true""")
+			#end
+			#set($count = $count + 1)
+			#if( $count % 3 == 1 )	
+			#end
+			#if( $count % 3 == 0 )		
+			#end
+		#end
+	#end
