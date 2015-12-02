@@ -28,25 +28,25 @@
         </div>
 
 	</div>
-	<div class="row" ng-repeat="row in rows">
+	<div class="row" ng-repeat="${fn.uncapitalize($entity.name)} in rows">
 
 		<div class="col-md-2">
-			<input type="text" ng-model="row.${fn.uncapitalize($entity.name)}.sigla" 		class="form-control">
-			<input type="hidden" ng-model="row.${fn.uncapitalize($entity.name)}.id" >
+			<input type="text" ng-model="${fn.uncapitalize($entity.name)}.sigla" 		class="form-control">
+			<input type="hidden" ng-model="${fn.uncapitalize($entity.name)}.id" >
 		    
 		</div>
 
 		<div class="col-md-6">    
-			<input type="text" ng-model="row.${fn.uncapitalize($entity.name)}.nome" class="form-control">     
+			<input type="text" ng-model="${fn.uncapitalize($entity.name)}.nome" class="form-control">     
 		</div>
 
 		<div class="col-sd-2">
 
-		   	<button type="submit" class="btn btn-primary" >
+		   	<button type="submit" class="btn btn-primary" ng-click="${fn.uncapitalize($entity.name)}Controller.saveRow();" >
 			  <i class="glyphicon glyphicon-save-file"></i>
 			</button>
 
-			<button type="submit" class="btn btn-danger" ng-if="row.${fn.uncapitalize($entity.name)}.id">
+			<button type="submit" class="btn btn-danger" ng-click="${fn.uncapitalize($entity.name)}Controller.removeRow();"  ng-if="${fn.uncapitalize($entity.name)}.id">
 			  <i class="glyphicon glyphicon-erase"></i>
 			</button>
 		</div>
