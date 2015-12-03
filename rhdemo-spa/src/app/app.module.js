@@ -22,7 +22,8 @@
                        'ngDialog', // modal
                        'jcompany-view',
                        'blockUI',
-                       'ui.bootstrap.datepicker'
+                       'ui.bootstrap.datepicker',
+                       'ui.utils.masks'
                        ]
     		);
 

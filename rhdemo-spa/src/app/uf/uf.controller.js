@@ -6,10 +6,10 @@
   jcompanyModule.UfControllerConstructor = UfController;
 
   angular.module('rhdemo').controller('UfController', UfController );
-  UfController.$inject = ['$injector', '$scope', '$state', '$stateParams', 'UfService', 'PlcNotificationService', 'PlcUtils'];
+  UfController.$inject = ['$injector', '$scope', '$compile', '$state', '$stateParams', 'UfService', 'PlcNotificationService', 'PlcUtils'];
 
   /** @ngInject */
-  function UfController($injector, $scope, $state, $stateParams, UfService, PlcNotificationService, PlcUtils) {
+  function UfController($injector, $scope, $compile, $state, $stateParams, UfService, PlcNotificationService, PlcUtils) {
 
     // required atributes in scope for inheritance.
     $scope.$baseService = UfService;
@@ -18,6 +18,7 @@
     // Using the injector for inheritance.
     $injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
         $scope: $scope,
+        $compile: $compile,
         $state: $state,
         $stateParams: $stateParams,
         PlcNotificationService: PlcNotificationService,
@@ -25,8 +26,6 @@
     }); 
 
     this.allTabular();
-
-    console.log($scope);
 
   }
 

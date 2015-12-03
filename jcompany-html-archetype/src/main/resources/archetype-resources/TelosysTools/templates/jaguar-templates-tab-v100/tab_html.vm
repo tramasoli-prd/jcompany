@@ -13,6 +13,7 @@
 #set( $allFields = $fn.concatLists($keyFields, $dataFields) )
 ##--------------------------------------------------------------------------------------------------------
 <div class="container-fluid">
+<form name="form" class="form-validate">
 	<div class="panel .panel-default">
 		<div class=".panel-heading"> {{ 'label.${uncapitalizedEntityName}.titulo' | translate }} </div>
 	</div>
@@ -29,7 +30,7 @@
         </div>
 
 	</div>
-	<div class="row" ng-repeat="${fn.uncapitalize($entity.name)} in rows">
+	<div class="row" ng-repeat="${fn.uncapitalize($entity.name)} in rows" plc-finish-render>
 
 		<div class="col-md-2">
 			<input type="text" ng-model="${fn.uncapitalize($entity.name)}.sigla" 		class="form-control">
@@ -53,6 +54,7 @@
 		</div>
 	</div>
 	<br/>
+</form>
 </div>
 ##--------------------------------------------------------------------------------------------------------
 	#set($count = 0)

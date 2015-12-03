@@ -1,5 +1,7 @@
 <div class="container-fluid">
 
+<form name="form" class="form-validate">
+
 	<div class="panel .panel-default">
 		<div class=".panel-heading">Cadastro de Funcion&aacute;rio</div>
 	</div>
@@ -13,7 +15,7 @@
 
 		<div class="col-md-6">
 			<label>Nome:</label> 
-			<input type="text" ng-model="funcionario.nome" name="nome" class="form-control">
+			<input type="text" ng-model="funcionario.nome" name="nome" required="" class="form-control">
 
 		</div>
 
@@ -29,7 +31,7 @@
 
 		<div class="col-md-2">
 			<plc-date-picker ng-model="funcionario.dataNascimento" name="dataNascimento"
-				label="Data Nasc.:" />
+				label="Data Nasc.:"  />
 		</div>
 
 		<div class="col-md-6">
@@ -109,7 +111,7 @@
 	<div class="form-group">
 		<div class="col-sm-4">
 			<button type="button" class="btn btn-default" ng-click="funcionarioController.new();">Limpar</button>
-			<button type="button" class="btn btn-default" ng-click="funcionarioController.save();">Salvar</button>
+			<button type="submit" class="btn btn-default" ng-click="funcionarioController.save();">Salvar</button>
 			<button type="button" class="btn btn-default" ng-click="funcionarioController.list();">Listar</button>
 			<button type="button" class="btn btn-default" ng-click="funcionarioController.remove();">Excluir</button>
 		</div>

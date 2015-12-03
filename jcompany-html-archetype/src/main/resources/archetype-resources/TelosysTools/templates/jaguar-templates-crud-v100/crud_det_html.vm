@@ -38,7 +38,7 @@
 		#end
 	#end
 
-	<div class="row" ng-repeat="${uncapitalizedEntityName} in ${mestre}.${uncapitalizedEntityName}" plc-finish-render="ngRepeatFinished"> 
+	<div class="row" ng-repeat="${uncapitalizedEntityName} in ${mestre}.${uncapitalizedEntityName}" plc-finish-render="${uncapitalizedEntityName}"> 
 
 	#set($count = 0)
 	#foreach( $field in $dataFields )

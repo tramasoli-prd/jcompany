@@ -6,8 +6,8 @@
   	jcompanyModule.FuncionarioControllerConstructor = FuncionarioController;
 
 	angular.module('rhdemo').controller('FuncionarioController', FuncionarioController );
-	FuncionarioController.$inject = ['$injector', '$scope', '$state', '$stateParams', 'FuncionarioService', 'PlcNotificationService', 'PlcUtils', 'FileUploader'];
-	function FuncionarioController($injector, $scope, $state, $stateParams, FuncionarioService, PlcNotificationService, PlcUtils, FileUploader) {
+	FuncionarioController.$inject = ['$injector', '$scope', '$state', '$stateParams', 'FuncionarioService', 'PlcNotificationService', 'PlcUtils', 'FileUploader', '$compile'];
+	function FuncionarioController($injector, $scope, $state, $stateParams, FuncionarioService, PlcNotificationService, PlcUtils, FileUploader, $compile) {
 
 
 
@@ -18,13 +18,14 @@
 		// Using the injector for inheritance.
 	    $injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
 	        $scope: $scope,
+	        $compile: $compile,
 	        $state: $state,
 	        $stateParams: $stateParams,
 	        PlcNotificationService: PlcNotificationService,
 	        PlcUtils: PlcUtils
 	    }); 
 
-
+	   
 		$scope.detalhes = [
 		                   {
 		                	   titulo: "Dependente",
