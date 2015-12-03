@@ -1,86 +1,56 @@
 
 Licença Pública de Marca 1.0, 2011, Powerlogic Consultoria e Sistemas S.A.
 
-
-
 		JAGUAR – FRAMEWORK DE DESENVOLVIMENTO JAVA
 
-Esta licença permite que você copie, distribua, compartilhe e transmita
+Esta licença permite que você copie, distribua, compartilhe e transmita em qualquer dispositivo físico ou virtual, mas não pode alterar, transformar ou construir sobre este marca.
 
-em qualquer dispositivo físico ou virtual, mas não pode alterar,
-
-transformar ou construir sobre este marca.
-
- 
-
-Esta marca é distribuída de forma livre mas, de nenhuma forma o autor
-
-ou o proprietário legal dela endossa o produto associado a esta marca.
+Esta marca é distribuída de forma livre mas, de nenhuma forma o autor ou o proprietário legal dela endossa o produto associado a esta marca.
 
 A íntegra desta licença está publicada no Portal do Sofware Público
 
 em www.softwarepublico.gov.br.
 
 
-		      LICENÇA PÚBLICA GERAL GNU
-                       Versão 2, junho de 1991
+		      LICENÇA PÚBLICA GERAL GNU - Versão 2, junho de 1991
 
- This is an unofficial translation of the GNU General Public License
- into Brazilian Portuguese. It was not published by the Free Software
-   Foundation, and does not legally state the distribution terms for
-   software that uses the GNU GPL -- only the original English text of
-   the GNU GPL does that. However, we hope that this translation will
-  help Brazilian Portuguese speakers understand the GNU GPL better.
+This is an unofficial translation of the GNU General Public License into Brazilian Portuguese. It was not published by the Free Software Foundation, and does not legally state the 
+distribution terms for software that uses the GNU GPL -- only the original English text of the GNU GPL does that. However, we hope that this translation will help 
+Brazilian Portuguese speakers understand the GNU GPL better.
 
-  Esta é uma tradução não-oficial da Licença Pública Geral GNU (&quot;GPL
-  GNU&quot;) para o português do Brasil. Ela não foi publicada pela Free
-Software Foundation, e legalmente não afirma os termos de distribuição
- de software que utiliza a GPL GNU -- apenas o texto original da GPL
- GNU, em inglês, faz isso. Contudo, esperamos que esta tradução ajude
- aos que utilizam o português do Brasil a entender melhor a GPL GNU.
+Esta é uma tradução não-oficial da Licença Pública Geral GNU para o português do Brasil. 
+Ela não foi publicada pela Free Software Foundation, e legalmente não afirma os termos de distribuição de software que utiliza a GPL GNU -- apenas o texto original da GPL GNU, em 
+inglês, faz isso. Contudo, esperamos que esta tradução ajude aos que utilizam o português do Brasil a entender melhor a GPL GNU.
 
-   Copyright (C) 1989, 1991 Free Software Foundation, Inc. 675 Mass Ave,
-                        Cambridge, MA 02139, USA
+   Copyright (C) 1989, 1991 Free Software Foundation, Inc. 675 Mass Ave, Cambridge, MA 02139, USA
 
-A qualquer pessoa é permitido copiar e distribuir cópias desse
-documento de licença, desde que sem qualquer alteração.
+A qualquer pessoa é permitido copiar e distribuir cópias desse documento de licença, desde que sem qualquer alteração.
 
                               Introdução
 
-  As licenças de muitos software são desenvolvidas para restringir sua
-liberdade de compartilhá-lo e mudá-lo. Contrária a isso, a Licença
-Pública Geral GNU pretende garantir sua liberdade de compartilhar e
-alterar software livres -- garantindo que o software será livre e
-gratuito para os seus usuários. Esta Licença Pública Geral aplica-se à
-maioria dos software da Free Software Foundation e a qualquer outro
-programa cujo autor decida aplicá-la. (Alguns outros software da FSF
-são cobertos pela Licença Pública Geral de Bibliotecas, no entanto.)
-Você pode aplicá-la também aos seus programas.
+As licenças de muitos software são desenvolvidas para restringir sua liberdade de compartilhá-lo e mudá-lo. Contrária a isso, a Licença Pública Geral GNU pretende garantir sua 
+liberdade de compartilhar e alterar software livres -- garantindo que o software será livre e gratuito para os seus usuários. Esta Licença Pública Geral aplica-se à maioria dos 
+software da Free Software Foundation e a qualquer outro programa cujo autor decida aplicá-la. (Alguns outros software da FSF são cobertos pela Licença Pública Geral de 
+Bibliotecas, no entanto.) Você pode aplicá-la também aos seus programas.
 
-  Quando nos referimos a software livre, estamos nos referindo a
-liberdade e não a preço. Nossa Licença Pública Geral foi desenvolvida
-para garantir que você tenha a liberdade de distribuir cópias de
-software livre (e cobrar por isso, se quiser); que você receba o
-código-fonte ou tenha acesso a ele, se quiser; que você possa mudar o
-software ou utilizar partes dele em novos programas livres e
-gratuitos; e que você saiba que pode fazer tudo isso.
+Quando nos referimos a software livre, estamos nos referindo a liberdade e não a preço. Nossa Licença Pública Geral foi desenvolvidapara garantir que você tenha a liberdade de 
+distribuir cópias de software livre (e cobrar por isso, se quiser); que você receba o código-fonte ou tenha acesso a ele, se quiser; que você possa mudar osoftware ou utilizar 
+partes dele em novos programas livres egratuitos; e que você saiba que pode fazer tudo isso.
 
-  Para proteger seus direitos, precisamos fazer restrições que impeçam
-a qualquer um negar estes direitos ou solicitar que você deles
-abdique. Estas restrições traduzem-se em certas responsabilidades para
-você, se você for distribuir cópias do software ou modificá-lo.
+Para proteger seus direitos, precisamos fazer restrições que impeçama qualquer um negar estes direitos ou solicitar que você deles abdique. Estas restrições traduzem-se em certas 
+responsabilidades para você, se você for distribuir cópias do software ou modificá-lo.
 
-  Por exemplo, se você distribuir cópias de um programa, gratuitamente
+Por exemplo, se você distribuir cópias de um programa, gratuitamente
 ou por alguma quantia, você tem que fornecer aos recebedores todos os
 direitos que você possui. Você tem que garantir que eles também
 recebam ou possam obter o código-fonte. E você tem que mostrar-lhes
 estes termos para que eles possam conhecer seus direitos.
 
-  Nós protegemos seus direitos em dois passos: (1) com copyright do
+Nós protegemos seus direitos em dois passos: (1) com copyright do
 software e (2) com a oferta desta licença, que lhe dá permissão legal
 para copiar, distribuir e/ou modificar o software.
 
-  Além disso, tanto para a proteção do autor quanto a nossa,
+Além disso, tanto para a proteção do autor quanto a nossa,
 gostaríamos de certificar-nos que todos entendam que não há qualquer
 garantia nestes software livres. Se o software é modificado por alguém
 mais e passado adiante, queremos que seus recebedores saibam que o que
