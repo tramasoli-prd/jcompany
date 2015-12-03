@@ -1,5 +1,6 @@
 #set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
 #set( $_= "$" )
+#set( $dollarSymbol= "$" )
 ##--------------------------------------------------------------------------------------------------------
 ##--------------------------------------------------------------------------------------------------------
 ## Key fields = fields in Primary Key    
@@ -42,11 +43,11 @@
 
 		<div class="col-sd-2">
 
-		   	<button type="submit" class="btn btn-primary" ng-click="${fn.uncapitalize($entity.name)}Controller.saveRow();" >
+		   	<button type="submit" class="btn btn-primary" ng-click="${fn.uncapitalize($entity.name)}Controller.saveRow(${dollarSymbol}index);" >
 			  <i class="glyphicon glyphicon-save-file"></i>
 			</button>
 
-			<button type="submit" class="btn btn-danger" ng-click="${fn.uncapitalize($entity.name)}Controller.removeRow();"  ng-if="${fn.uncapitalize($entity.name)}.id">
+			<button type="submit" class="btn btn-danger" ng-click="${fn.uncapitalize($entity.name)}Controller.removeRow(${dollarSymbol}index);"  ng-if="${fn.uncapitalize($entity.name)}.id">
 			  <i class="glyphicon glyphicon-erase"></i>
 			</button>
 		</div>
