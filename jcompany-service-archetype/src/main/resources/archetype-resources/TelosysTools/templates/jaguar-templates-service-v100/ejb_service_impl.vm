@@ -5,6 +5,7 @@ import javax.inject.Inject;
 
 import com.powerlogic.jcompany.core.model.repository.IPlcEntityRepository;
 import com.powerlogic.jcompany.core.model.service.PlcAbstractServiceEntity;
+import com.powerlogic.jcompany.commons.interceptor.validation.PlcValidationInterceptor;
 import ${REPOSITORY_PKG}.${entity.name}Repository;
 import ${SERVICE_INTERFACE_PKG}.I${entity.name}Service;
 import ${ENTITY_PKG}.${entity.name}Entity;
@@ -17,6 +18,7 @@ import ${ENTITY_PKG}.${entity.name}Entity;
  */
 
 @Stateless
+@Interceptors ({PlcValidationInterceptor.class})
 public class ${entity.name}ServiceImpl extends PlcAbstractServiceEntity<Long,  ${entity.name}Entity> implements  I${entity.name}Service {
 
 	@Inject
@@ -26,6 +28,11 @@ public class ${entity.name}ServiceImpl extends PlcAbstractServiceEntity<Long,  $
 	@Override
 	protected IPlcEntityRepository<Long, ${entity.name}Entity> getEntityRepository() {
 		return $fn.toLowerCase(${entity.name})Repository;
+	}
+
+	@Override
+	public ${entity.name}Entity save(@Valid ${entity.name}Entity entity) throws PlcException {
+		return super.save(entity);
 	}
 
 }
