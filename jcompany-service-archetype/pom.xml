@@ -4,7 +4,7 @@
 
   <groupId>powerlogic.jaguar.jcompany</groupId>
   <artifactId>jcompany-service-archetype</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>maven-archetype</packaging>
 
   <name>jcompany-service-archetype</name>
