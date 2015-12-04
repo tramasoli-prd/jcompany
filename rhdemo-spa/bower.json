@@ -31,11 +31,7 @@
     "angular-i18n": "~1.4.7",
     "angular-translate-loader-url": "~2.8.1",
     "ng-dialog": "~0.5.5",
-<<<<<<< HEAD
     "jcompany-view": "~0.0.55",
-=======
-    "jcompany-view": "~0.0.54",
->>>>>>> branch 'master' of http://gitlab.cast.com.br/powerlogic/jcompany.git
     "angular-block-ui": "~0.2.2",
     "angular-input-masks": "~2.1.1"
   },
