@@ -1,0 +1,90 @@
+#set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
+#set( $_= "$" )
+#set( $dollarSymbol= "$" )
+##--------------------------------------------------------------------------------------------------------
+##--------------------------------------------------------------------------------------------------------
+## Key fields = fields in Primary Key    
+#set( $keyFields = $entity.keyAttributes )
+##--------------------------------------------------------------------------------------------------------
+## Data fields = fields not in Primary Key    
+#set( $dataFields = $entity.nonKeyAttributes )
+##--------------------------------------------------------------------------------------------------------
+## All fields ( ordered fiels : 1) fields in Primary Key 2) fields not in primary key    
+#set( $allFields = $fn.concatLists($keyFields, $dataFields) )
+##--------------------------------------------------------------------------------------------------------
+<div class="container-fluid">
+<form name="form" class="form-validate">
+	<div class="panel .panel-default">
+		<div class=".panel-heading"> {{ 'label.${uncapitalizedEntityName}.titulo' | translate }} </div>
+	</div>
+	<div class="row header" >
+
+#foreach( $field in $allFields )
+		#if( $field.isSelected() && !$field.name.contains("pk"))
+			#set($htmlId      = "${uncapitalizedEntityName}_${field.name}" )
+			#set($htmlName    = $field.name )
+			#set($fields = [])
+			#set($ttt = $fields.add($field))
+			#set($referencedEntityTypes = $entity.referencedEntityTypes($fields) )
+			#set($ng_disabled = "")
+			#if( $field.isKeyElement() )
+				#set($ng_disabled = " ng-disabled=""true""")
+			#end
+		<div class="col-md-4">
+			<label>$htmlName</label>
+		</div>
+		#end
+	#end
+	</div>
+	<div class="row" ng-repeat="${fn.uncapitalize($entity.name)} in rows" plc-finish-render>
+	<input type="hidden" ng-model="${fn.uncapitalize($entity.name)}.id" >
+#foreach( $field in $allFields )
+		#if( $field.isSelected() && !$field.name.contains("pk"))
+			#set($htmlId      = "${uncapitalizedEntityName}_${field.name}" )
+			#set($htmlName    = $field.name )
+			#set($fields = [])
+			#set($ttt = $fields.add($field))
+			#set($referencedEntityTypes = $entity.referencedEntityTypes($fields) )
+			#set($ng_disabled = "")
+			#if( $field.isKeyElement() )
+				#set($ng_disabled = " ng-disabled=""true""")
+			#end
+
+		<div class="col-md-4">
+			<input type="text" ng-model="${fn.uncapitalize($entity.name)}.$htmlName" 	name="$htmlName"	class="form-control">
+		</div>
+		#end
+	#end
+
+		<div class="col-sd-2">
+		   	<button type="button" class="btn btn-primary" ng-click="${fn.uncapitalize($entity.name)}Controller.saveRow(${dollarSymbol}index);" >
+			  <i class="glyphicon glyphicon-save-file"></i>
+			</button>
+			<button type="button" class="btn btn-danger" ng-click="${fn.uncapitalize($entity.name)}Controller.removeRow(${dollarSymbol}index);"  ng-if="${fn.uncapitalize($entity.name)}.id">
+			  <i class="glyphicon glyphicon-erase"></i>
+			</button>
+		</div>
+	</div>
+	<br/>
+</form>
+</div>
+##--------------------------------------------------------------------------------------------------------
+	#set($count = 0)
+	#foreach( $field in $allFields )
+		#if( $field.isSelected() )
+			#set($htmlId      = "${uncapitalizedEntityName}_${field.name}" )
+			#set($htmlName    = $field.name )
+			#set($fields = [])
+			#set($ttt = $fields.add($field))
+			#set($referencedEntityTypes = $entity.referencedEntityTypes($fields) )
+			#set($ng_disabled = "")
+			#if( $field.isKeyElement() )
+				#set($ng_disabled = " ng-disabled=""true""")
+			#end
+			#set($count = $count + 1)
+			#if( $count % 3 == 1 )	
+			#end
+			#if( $count % 3 == 0 )		
+			#end
+		#end
+	#end
