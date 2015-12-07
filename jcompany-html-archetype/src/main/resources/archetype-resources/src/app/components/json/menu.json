@@ -8,7 +8,7 @@
   {
     "text": "Pagina Inicial",
     "position": 1,
-    "sref": "inicial",
+    "sref": "home",
     "icon": "menu-icon fa fa-tachometer",
     "translate": "label.menu.inicial"
   }
