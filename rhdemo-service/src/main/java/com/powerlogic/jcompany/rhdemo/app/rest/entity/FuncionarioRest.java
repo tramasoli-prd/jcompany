@@ -1,7 +1,6 @@
 package com.powerlogic.jcompany.rhdemo.app.rest.entity;
 
 import java.io.File;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -26,7 +24,6 @@ import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.core.rest.entity.PlcAbstractEntityRest;
 import com.powerlogic.jcompany.core.rest.messages.PlcMessageIntercept;
-import com.powerlogic.jcompany.core.rest.util.PlcDateParam;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoConteudoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FuncionarioEntity;
@@ -45,35 +42,6 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 	@Inject
 	private PlcFileUploadUtil fileUploadUtil;
 
-	@GET
-	@Path("/findAll")
-	public List<FuncionarioEntity> findAll(@Context HttpServletRequest request, @Context UriInfo ui,
-			 @QueryParam("nome") String nome,
-			 @QueryParam("cpf") String cpf,
-			 @QueryParam("email") String email,
-			 @QueryParam("dataNascimento") PlcDateParam dataNascimento) throws PlcException {
-
-		FuncionarioEntity funcionario = new FuncionarioEntity();
-
-		if (StringUtils.isNoneBlank(nome)) {
-			funcionario.setNome(nome);
-		}
-
-		if (StringUtils.isNoneBlank(cpf)) {
-			funcionario.setCpf(cpf);
-		}
-
-		if (dataNascimento != null) {
-			funcionario.setDataNascimento(dataNascimento.getDate());
-		}
-		
-		if (StringUtils.isNoneBlank(email)) {
-			funcionario.setEmail(email);
-		}
-		
-
-		return getEntityService().findAll(funcionario);
-	}
 
 	@Override
 	protected FuncionarioService getEntityService() {

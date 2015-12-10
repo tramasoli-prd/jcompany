@@ -29,12 +29,6 @@ public class UnidadeFederativaRest extends PlcAbstractEntityRest<Long, UnidadeFe
 	@Inject
 	private UnidadeFederativaService unidadeFederativaService;
 	
-	
-	@GET
-	@Path("/findAll")
-	public List<UnidadeFederativaEntity> findAll() throws PlcException	{
-		return getEntityService().findAll();
-	}
 
 	@GET
 	@Path("/findByNome")

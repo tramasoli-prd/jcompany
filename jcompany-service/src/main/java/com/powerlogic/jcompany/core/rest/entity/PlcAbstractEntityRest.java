@@ -3,9 +3,25 @@ package com.powerlogic.jcompany.core.rest.entity;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.UriInfo;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.PropertyUtilsBean;
+import org.apache.commons.beanutils.converters.DateConverter;
+import org.apache.commons.beanutils.converters.DateTimeConverter;
 
 import com.powerlogic.jcompany.commons.util.message.PlcMsgUtil;
 import com.powerlogic.jcompany.commons.util.validation.PlcValidationConstraintsDTO;
@@ -29,8 +45,30 @@ extends PlcAbstractRest implements IPlcEntityModelRest<PK, E, A> {
 	@Inject
 	private PlcValidationInvariantUtil validationInvariantUtil;
 
-	protected List<E> findAll() throws PlcException {
-		List<E> lista = getEntityService().findAll();
+	protected BeanUtilsBean beanUtilsBean ;
+
+
+	@GET
+	@Path("/findAll")
+	public List<E> findAll(@Context HttpServletRequest request, @Context UriInfo ui) throws PlcException {
+
+		E entity = newEntity();
+
+		try {
+
+			MultivaluedMap<String, String> queryParams = ui.getQueryParameters();
+			Map<String, String[]> formData = new HashMap<String, String[]>();
+			for (String paramName : queryParams.keySet()) {
+				formData.put(paramName, new String[]{queryParams.getFirst(paramName)});
+			}
+
+			getBeanUtilsBean().populate(entity, formData);
+
+		}catch(Exception e){
+			throw new PlcException(PlcBeanMessages.FALHA_OPERACAO_003);
+		}
+
+		List<E> lista = getEntityService().findAll(entity);
 		if (lista==null || lista.size()==0) {
 			msgUtil.msg(PlcBeanMessages.NENHUM_REGISTRO_ENCONTRADO_022, PlcMessageType.INFO);
 		}
@@ -93,6 +131,26 @@ extends PlcAbstractRest implements IPlcEntityModelRest<PK, E, A> {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+
+	public BeanUtilsBean getBeanUtilsBean() {
+
+		if (beanUtilsBean==null) {
+			DateTimeConverter dtConverter = new DateConverter();
+			dtConverter.setPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
+			ConvertUtilsBean convertUtilsBean = new ConvertUtilsBean();
+			convertUtilsBean.deregister(Date.class);
+			convertUtilsBean.register(dtConverter, Date.class);
+
+			beanUtilsBean = new BeanUtilsBean(convertUtilsBean, new PropertyUtilsBean());
+		}
+		return beanUtilsBean;
+	}
+
+	public void setBeanUtilsBean(BeanUtilsBean beanUtilsBean) {
+		this.beanUtilsBean = beanUtilsBean;
 	}
 
 }
