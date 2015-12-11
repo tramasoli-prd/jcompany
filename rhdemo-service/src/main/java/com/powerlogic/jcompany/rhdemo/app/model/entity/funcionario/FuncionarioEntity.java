@@ -109,7 +109,6 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	
 	@Size(max = 255) 
 	@Column
-	@Pattern(regexp=".+@.+\\.[a-z]+")
 	private String observacao;
 	
 //    @OneToMany (targetEntity = CurriculoEntity.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)

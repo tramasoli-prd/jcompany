@@ -68,8 +68,6 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 	@POST
 	@Path("/savefunc")
 	public FuncionarioEntity save(@Context HttpServletRequest request, @Context UriInfo ui, FuncionarioEntity entity) throws PlcException {
-		setMasterIntoDetails(entity, entity.getDependente(), "funcionario");
-		setMasterIntoDetails(entity, entity.getHistoricoProfissional(), "funcionario");
 		recuperaFotoDoDisco(request, entity);
 		return super.save(entity);
 	}

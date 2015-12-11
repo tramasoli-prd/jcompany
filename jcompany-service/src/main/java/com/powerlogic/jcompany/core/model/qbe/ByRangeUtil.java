@@ -15,6 +15,12 @@
  */
 package com.powerlogic.jcompany.core.model.qbe;
 
+import static com.google.common.collect.Lists.newArrayList;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -22,11 +28,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.util.List;
-
-import static com.google.common.collect.Lists.newArrayList;
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 
 /**
  * Helper to create a predicate out of {@link Range}s.

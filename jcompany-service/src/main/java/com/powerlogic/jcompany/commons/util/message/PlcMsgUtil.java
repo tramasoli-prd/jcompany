@@ -6,9 +6,9 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 
 import com.powerlogic.jcompany.core.exception.PlcException;
+import com.powerlogic.jcompany.core.messages.IPlcMessageKey;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.messages.PlcMessageEntry;
-import com.powerlogic.jcompany.core.messages.IPlcMessageKey;
 import com.powerlogic.jcompany.core.messages.PlcMessageMap;
 import com.powerlogic.jcompany.core.messages.PlcMessageType;
 

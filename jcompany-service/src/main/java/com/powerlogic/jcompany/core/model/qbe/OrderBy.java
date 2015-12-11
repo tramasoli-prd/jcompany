@@ -15,15 +15,16 @@
  */
 package com.powerlogic.jcompany.core.model.qbe;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import javax.persistence.metamodel.Attribute;
-import java.io.Serializable;
-import java.util.List;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.powerlogic.jcompany.core.model.qbe.OrderByDirection.ASC;
 import static com.powerlogic.jcompany.core.model.qbe.OrderByDirection.DESC;
+
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.metamodel.Attribute;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Holder class for search ordering used by the {@link SearchParameters}.

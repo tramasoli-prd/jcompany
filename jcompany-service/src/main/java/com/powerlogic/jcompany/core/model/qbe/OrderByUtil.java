@@ -15,6 +15,10 @@
  */
 package com.powerlogic.jcompany.core.model.qbe;
 
+import static com.google.common.collect.Lists.newArrayList;
+
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -22,9 +26,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
-import java.util.List;
-
-import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * Helper to create list of {@link javax.persistence.criteria.Order} out of {@link OrderBy}s.

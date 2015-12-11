@@ -15,6 +15,12 @@
  */
 package com.powerlogic.jcompany.core.model.qbe;
 
+import static com.google.common.collect.Lists.newArrayList;
+import static javax.persistence.metamodel.Attribute.PersistentAttributeType.MANY_TO_ONE;
+import static javax.persistence.metamodel.Attribute.PersistentAttributeType.ONE_TO_ONE;
+
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -26,11 +32,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.SingularAttribute;
-import java.util.List;
-
-import static com.google.common.collect.Lists.newArrayList;
-import static javax.persistence.metamodel.Attribute.PersistentAttributeType.MANY_TO_ONE;
-import static javax.persistence.metamodel.Attribute.PersistentAttributeType.ONE_TO_ONE;
 
 @Named
 @Singleton

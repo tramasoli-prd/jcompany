@@ -28,9 +28,8 @@ import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
-import com.powerlogic.jcompany.core.model.entity.IPlcVersionedEntity;
 import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
-import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
+import com.powerlogic.jcompany.core.model.entity.IPlcVersionedEntity;
 import com.powerlogic.jcompany.core.model.qbe.PlcQBERepository;
 import com.powerlogic.jcompany.core.util.ConstantUtil;
 

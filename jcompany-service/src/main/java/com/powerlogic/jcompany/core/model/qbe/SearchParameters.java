@@ -15,16 +15,6 @@
  */
 package com.powerlogic.jcompany.core.model.qbe;
 
-import com.google.common.base.Function;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import javax.persistence.metamodel.Attribute;
-import javax.persistence.metamodel.SingularAttribute;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Lists.transform;
@@ -32,6 +22,18 @@ import static com.google.common.collect.Maps.newHashMap;
 import static com.google.common.collect.Sets.newHashSet;
 import static com.powerlogic.jcompany.core.model.qbe.PropertySelector.newPropertySelector;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.persistence.metamodel.Attribute;
+import javax.persistence.metamodel.SingularAttribute;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import com.google.common.base.Function;
 
 /*
  * The SearchParameters is used to pass search parameters to the DAO layer.

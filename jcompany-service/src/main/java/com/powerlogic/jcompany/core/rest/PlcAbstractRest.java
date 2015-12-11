@@ -2,7 +2,6 @@ package com.powerlogic.jcompany.core.rest;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.core.CacheControl;

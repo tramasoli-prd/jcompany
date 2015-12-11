@@ -15,12 +15,13 @@
  */
 package com.powerlogic.jcompany.core.model.qbe;
 
-import javax.persistence.metamodel.Attribute;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.collect.Lists.newArrayList;
+
 import java.io.Serializable;
 import java.util.List;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.collect.Lists.newArrayList;
+import javax.persistence.metamodel.Attribute;
 
 /**
  * Holder class for path used by the {@link OrderBy}, {@link PropertySelector}, {@link TermSelector} and {@link SearchParameters}.

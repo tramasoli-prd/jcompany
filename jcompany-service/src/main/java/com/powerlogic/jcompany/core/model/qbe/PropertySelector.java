@@ -15,14 +15,15 @@
  */
 package com.powerlogic.jcompany.core.model.qbe;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.collect.Lists.newArrayList;
 
-import javax.persistence.metamodel.Attribute;
 import java.io.Serializable;
 import java.util.List;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.collect.Lists.newArrayList;
+import javax.persistence.metamodel.Attribute;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Used to construct OR predicate for a property value. In other words you can search

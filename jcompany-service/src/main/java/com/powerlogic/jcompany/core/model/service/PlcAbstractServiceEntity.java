@@ -11,7 +11,6 @@ import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 import com.powerlogic.jcompany.core.model.entity.IPlcVersionedEntity;
-import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 import com.powerlogic.jcompany.core.model.repository.IPlcEntityRepository;
 
 public abstract class PlcAbstractServiceEntity <PK extends Serializable, E extends IPlcEntityModel<PK>> implements IPlcEntityService<PK, E> {

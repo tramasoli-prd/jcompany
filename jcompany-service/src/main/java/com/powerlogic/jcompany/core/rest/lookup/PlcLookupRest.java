@@ -21,7 +21,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import com.powerlogic.jcompany.core.commons.config.PlcConfiguration;
 import com.powerlogic.jcompany.core.exception.PlcException;

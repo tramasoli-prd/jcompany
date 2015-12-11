@@ -15,9 +15,10 @@
  */
 package com.powerlogic.jcompany.core.model.qbe;
 
-import javax.persistence.metamodel.Attribute;
 import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.metamodel.Attribute;
 
 /**
  * Range support for {@link Comparable} types.

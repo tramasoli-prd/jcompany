@@ -1,8 +1,11 @@
 package com.powerlogic.jcompany.core.rest.entity;
 
+import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -16,12 +19,13 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.UriInfo;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.apache.commons.beanutils.converters.DateConverter;
 import org.apache.commons.beanutils.converters.DateTimeConverter;
+import org.apache.commons.lang3.StringUtils;
 
 import com.powerlogic.jcompany.commons.util.message.PlcMsgUtil;
 import com.powerlogic.jcompany.commons.util.validation.PlcValidationConstraintsDTO;
@@ -87,10 +91,13 @@ extends PlcAbstractRest implements IPlcEntityModelRest<PK, E, A> {
 
 	@Override
 	public E save(E entity) throws PlcException {
+		setEntityIntoCollections(entity);
 		E e = getEntityService().save(entity);
 		msgUtil.msg(PlcBeanMessages.DADOS_SALVOS_SUCESSO_000, PlcMessageType.SUCCESS); 
 		return e; 
 	}
+
+
 
 	@Override
 	public boolean remove(E entity) throws PlcException {
@@ -104,15 +111,29 @@ extends PlcAbstractRest implements IPlcEntityModelRest<PK, E, A> {
 		throw new UnsupportedOperationException();
 	}
 
-	protected void setMasterIntoDetails(Object entity, List list, String property) {
-		if (list!=null) {
-			for(Object o: list) {
+	protected void setEntityIntoCollections(E entity) {
+		String entityName = StringUtils.removeEnd(entity.getClass().getSimpleName(), "Entity").toLowerCase();
+		PropertyDescriptor[] propertyDescriptors = PropertyUtils.getPropertyDescriptors(entity);
+		for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
+			if (Collection.class.isAssignableFrom(propertyDescriptor.getPropertyType())) {
+				try {
+					setEntityIntoCollection(entity, (Collection)PropertyUtils.getProperty(entity, propertyDescriptor.getName()), entityName);
+				} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+				}
+			}
+		}
+	}
+
+	protected void setEntityIntoCollection(Object entity, Collection<E> collection, String property) {
+		if (collection!=null) {
+			for(Object o: collection) {
 				try {
 					Field f = o.getClass().getDeclaredField(property);
-					f.setAccessible(true);
-					f.set(o, entity);
+					if (f!=null) {
+						f.setAccessible(true);
+						f.set(o, entity);
+					}
 				} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-					e.printStackTrace();
 				}
 			}
 		}
