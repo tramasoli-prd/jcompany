@@ -46,7 +46,7 @@
 		#elseif( $field.inputType == "static-combo" )
 		<plc-static-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" name="${htmlName}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}"/>
 		#elseif( $field.inputType == "radiobox" )
-		<plc-radio ng-model="${fn.uncapitalize($entity.name)}.${field.fsormattedName(0)}" name="${htmlName}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" />
+		<plc-radio ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" name="${htmlName}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" />
 		#elseif( $field.inputType == "checkbox" )
 		<plc-check ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" name="${htmlName}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"/>
 		#elseif( $field.inputType == "datepicker" )
