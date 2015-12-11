@@ -1,5 +1,11 @@
 package ${target.javaPackageFromFolder($SRC)};
 
+${generator.generateWithExtra(
+				"${target.javaPackageFromFolder($SRC)}.${target.fileNameWithoutExtension()}" , 
+				"configuration.properties", 
+				"${RES}/META-INF", 
+				"configuration.vm",
+				"A" )}
 
 public enum ${target.fileNameWithoutExtension()} {
     

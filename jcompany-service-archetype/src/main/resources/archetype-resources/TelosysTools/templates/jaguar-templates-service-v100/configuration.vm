@@ -1,0 +1,2 @@
+
+${fn.removeEnd($fn.uncapitalize($target.entityName), "Entity")}=${ENTITY_PKG}.${target.entityName}
