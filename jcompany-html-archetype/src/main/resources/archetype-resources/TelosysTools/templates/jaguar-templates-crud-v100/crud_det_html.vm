@@ -92,7 +92,7 @@
 
 		<div class="col-sd-2">
 
-			<button type="submit" class="btn btn-danger" ng-click="${mestre}Controller.removeRow('${mestre}.${uncapitalizedEntityName}', ${dollarSymbol}index);" >
+			<button type="submit" class="btn btn-danger" ng-click="${mestre}Controller.removeItemDetail('${mestre}.${uncapitalizedEntityName}', ${dollarSymbol}index);" >
 			  <i class="glyphicon glyphicon-erase"></i>
 			</button>
 
