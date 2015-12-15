@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Tue Dec 15 14:52:52 BRST 2015:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância a816c00e-0151-a68f-10a6-00000bb630c8
+no diretório de banco de dados C:\Users\baldini\AppData\Local\Temp\gfembed2426339298968444319tmp\lib\databases\embedded_default 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_40-b26
+user.dir=D:\git2\jcompany\jcompany-unit-test
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=null
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''

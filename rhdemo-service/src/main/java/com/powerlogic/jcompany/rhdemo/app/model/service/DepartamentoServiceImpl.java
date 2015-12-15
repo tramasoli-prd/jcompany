@@ -11,7 +11,7 @@ import com.powerlogic.jcompany.rhdemo.app.model.entity.DepartamentoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.repository.DepartamentoRepository;
 
 @Stateless
-public class DepartamentoServiceImpl extends PlcAbstractServiceEntity<Long, DepartamentoEntity> implements DepartamentoService {
+public class DepartamentoServiceImpl extends PlcAbstractServiceEntity<Long, DepartamentoEntity> implements IDepartamentoService {
 	
 	@Inject
 	private DepartamentoRepository departamentoRepository;

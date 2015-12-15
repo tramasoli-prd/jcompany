@@ -15,7 +15,7 @@ import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
 import com.powerlogic.jcompany.core.rest.entity.PlcAbstractEntityRest;
 import com.powerlogic.jcompany.core.rest.messages.PlcMessageIntercept;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.DepartamentoEntity;
-import com.powerlogic.jcompany.rhdemo.app.model.service.DepartamentoService;
+import com.powerlogic.jcompany.rhdemo.app.model.service.IDepartamentoService;
 
 @PlcAuthenticated
 @Path("/entity/departamento")
@@ -25,7 +25,7 @@ import com.powerlogic.jcompany.rhdemo.app.model.service.DepartamentoService;
 public class DepartamentoRest extends PlcAbstractEntityRest<Long, DepartamentoEntity, Object> {
 	
    @Inject
-   private DepartamentoService departamentoService;
+   private IDepartamentoService departamentoService;
 
    @GET
    @Path("/findByRoot")
@@ -35,7 +35,7 @@ public class DepartamentoRest extends PlcAbstractEntityRest<Long, DepartamentoEn
    
 
    @Override
-   protected DepartamentoService getEntityService() {
+   protected IDepartamentoService getEntityService() {
       return departamentoService;
    }
 
