@@ -11,10 +11,12 @@ package com.powerlogic.jcompany.commons.util.message;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.validation.ConstraintViolation;
 
 import org.apache.commons.lang3.StringUtils;
 
+@ApplicationScoped
 public class PlcMessageUtil {
 
 	public String[]  availableInvariantMessages(Set<ConstraintViolation<Object>> validationMessages)  {

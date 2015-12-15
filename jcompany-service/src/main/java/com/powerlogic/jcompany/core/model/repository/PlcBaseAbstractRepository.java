@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,7 +20,6 @@ import javax.persistence.criteria.Root;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.PropertyUtilsBean;
 
-import com.powerlogic.jcompany.commons.util.message.PlcMessageUtil;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
 import com.powerlogic.jcompany.core.commons.search.PlcPagination;
 import com.powerlogic.jcompany.core.exception.PlcException;
@@ -40,9 +38,6 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 	protected abstract EntityManager getEntityManager();
 
 	public abstract Class<E> getEntityType();
-	
-	@Inject
-	protected PlcMessageUtil messageUtil;
 
 	@Override
 	public E get(PK id) {
@@ -85,8 +80,6 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 			throw PlcBeanMessages.REGISTROS_CONCORRENTES_011.create();
 		} catch (PlcException e) {
 			throw e;
-//		} catch (ConstraintViolationException e) {
-//			throw PlcBeanMessages.FALHA_VALIDACAO_023.create(messageUtil.availableInvariantMessages(e.getConstraintViolations()));
 		} catch (Exception e) {
 			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
 		}

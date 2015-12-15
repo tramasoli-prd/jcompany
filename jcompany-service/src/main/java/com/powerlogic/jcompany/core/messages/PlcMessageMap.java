@@ -1,5 +1,6 @@
 package com.powerlogic.jcompany.core.messages;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -12,8 +13,10 @@ import java.util.Map.Entry;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class PlcMessageMap
-{
+public class PlcMessageMap implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private Map<PlcMessageType, List<PlcMessageEntry>> messages = new HashMap<>();
 
 	public Map<PlcMessageType, List<PlcMessageEntry>> getMessages()

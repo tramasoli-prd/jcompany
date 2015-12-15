@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -25,10 +27,8 @@ import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
  * Serviço dinâmicos para realização de validação invariante, vinculada ao
  * modelo de domínio e podendo ser ativada em qualquer camada
  */
-public class PlcValidationInvariantUtil implements Serializable {
-
-
-	private static final long serialVersionUID = 1L;
+@ApplicationScoped
+public class PlcValidationInvariantUtil {
 
 	protected Validator validator;
 

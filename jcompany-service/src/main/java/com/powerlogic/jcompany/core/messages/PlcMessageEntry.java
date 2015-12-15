@@ -1,71 +1,75 @@
 package com.powerlogic.jcompany.core.messages;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class PlcMessageEntry
-{
-   private IPlcMessageKey key;
+public class PlcMessageEntry implements Serializable {
 
-   private PlcMessageType type;
+	private static final long serialVersionUID = 1L;
 
-   private String message;
+	private IPlcMessageKey key;
 
-   private String[] args;
+	private PlcMessageType type;
 
-   public PlcMessageEntry(IPlcMessageKey key, PlcMessageType type)
-   {
-      this.key = key;
-      this.type = type;
-   }
+	private String message;
 
-   public PlcMessageEntry(IPlcMessageKey key, PlcMessageType type, String... args)
-   {
-      this(key, type);
-      this.args = args;
-   }
+	private String[] args;
 
-   public PlcMessageType getType()
-   {
-      return type;
-   }
+	public PlcMessageEntry(IPlcMessageKey key, PlcMessageType type)
+	{
+		this.key = key;
+		this.type = type;
+	}
 
-   public IPlcMessageKey getKey()
-   {
-      return key;
-   }
+	public PlcMessageEntry(IPlcMessageKey key, PlcMessageType type, String... args)
+	{
+		this(key, type);
+		this.args = args;
+	}
 
-   public String getMessage()
-   {
-      if (message != null && !message.isEmpty())
-      {
-         return message;
-      }
-      return key.getName();
-   }
+	public PlcMessageType getType()
+	{
+		return type;
+	}
 
-   void setMessage(String message)
-   {
-      this.message = message;
-   }
+	public IPlcMessageKey getKey()
+	{
+		return key;
+	}
 
-   public String[] getArgs()
-   {
-      return args;
-   }
+	public String getMessage()
+	{
+		if (message != null && !message.isEmpty())
+		{
+			return message;
+		}
+		return key.getName();
+	}
 
-   void setArgs(String[] args)
-   {
-      this.args = args;
-   }
+	void setMessage(String message)
+	{
+		this.message = message;
+	}
 
-   @Override
-   public String toString()
-   {
-      return getMessage();
-   }
-   
-   
+	public String[] getArgs()
+	{
+		return args;
+	}
+
+	void setArgs(String[] args)
+	{
+		this.args = args;
+	}
+
+	@Override
+	public String toString()
+	{
+		return getMessage();
+	}
+
+
 	@Override
 	public int hashCode() {
 		return key.getName().hashCode();
