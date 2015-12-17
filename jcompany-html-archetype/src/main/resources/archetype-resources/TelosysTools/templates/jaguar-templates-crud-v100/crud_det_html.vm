@@ -1,0 +1,107 @@
+#set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
+#set( $dollarSymbol= "$" )
+##--------------------------------------------------------------------------------------------------------
+##--------------------------------------------------------------------------------------------------------
+## Key fields = fields in Primary Key    
+#set( $keyFields = $entity.keyAttributes )
+##--------------------------------------------------------------------------------------------------------
+## Data fields = fields not in Primary Key    
+#set( $dataFields = $entity.nonKeyAttributes )
+##--------------------------------------------------------------------------------------------------------
+## All fields ( ordered fiels : 1) fields in Primary Key 2) fields not in primary key    
+#set( $allFields = $fn.concatLists($keyFields, $dataFields) )
+##--------------------------------------------------------------------------------------------------------
+
+<div class="container-fluid">
+
+	
+	<div class="row header" > 
+
+	#foreach( $field in $dataFields )
+	
+		#if( $field.isSelected() && $field.inputType != "mestre")
+
+        <div class="col-md-2">
+   
+            <label>{{ 'label.${uncapitalizedEntityName}.${field.formattedName(0)}' | translate }}</label>
+            
+        </div>
+		#end
+	#end
+
+	</div>
+
+	#set($mestre = "")
+	#foreach( $field in $entity.getAttributesByCriteria($const.IN_SELECTED_LINKS) )
+		#if($field.inputType == "mestre")
+			#set($mestre = $field.name)
+		#end
+	#end
+
+	<div class="row" ng-repeat="${uncapitalizedEntityName} in ${mestre}.${uncapitalizedEntityName}"> 
+
+	#set($count = 0)
+	#foreach( $field in $dataFields )
+	
+		#if( $field.isSelected() && $field.inputType != "mestre")
+			#set($htmlId      = "${uncapitalizedEntityName}_${field.name}" )
+			#set($htmlName    = $field.name )
+			#set($ng_disabled = "")
+
+			#if( $field.isKeyElement() )
+				#set($ng_disabled = " ng-disabled=""true""")
+			#end
+
+		<div class="col-md-2">
+
+			#if( $field.inputType == "textarea" )
+
+			<textarea id="${htmlId}" ng-model="${uncapitalizedEntityName}.${htmlName}" name="${mestre}.{{${dollarSymbol}index}}.${uncapitalizedEntityName}" class="form-control" rows="3" $ng_disabled></textarea>
+			#elseif( $field.inputType == "dynamic-combo" )
+
+			<plc-dynamic-combo ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-item-description="descricao" ng-entity="${field.formattedName(0)}" name="${mestre}.{{${dollarSymbol}index}}.${uncapitalizedEntityName}" />
+			#elseif( $field.inputType == "static-combo" )
+
+			<plc-static-combo ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" name="${mestre}.{{${dollarSymbol}index}}.${uncapitalizedEntityName}"/>
+			#elseif( $field.inputType == "radiobox" )
+
+			<plc-radio ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" indexradio="{{${dollarSymbol}index}}" name="${mestre}.{{${dollarSymbol}index}}.${uncapitalizedEntityName}" />
+			#elseif( $field.inputType == "checkbox" )
+
+			<plc-check ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" name="${mestre}.{{${dollarSymbol}index}}.${uncapitalizedEntityName}" />
+			#elseif( $field.inputType == "modal" )
+
+			#elseif( $field.inputType == "fileupload" )
+
+			#elseif( $field.inputType == "datepicker" )
+
+			<plc-date-picker ng-model="${uncapitalizedEntityName}.${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" name="${mestre}.{{${dollarSymbol}index}}.${uncapitalizedEntityName}"   />
+			#else
+
+			<input type="text" id="${htmlId}_{{${dollarSymbol}index}" ng-model="${uncapitalizedEntityName}.${htmlName}" class="form-control" maxLength="${field.guiMaxLength}" name="${mestre}.{{${dollarSymbol}index}}.${uncapitalizedEntityName}" $ng_disabled />
+			#end
+			
+			#if($count==0)
+			<input type="hidden" ng-model="${uncapitalizedEntityName}.id" >
+			#end
+			#set($count=$count+1)
+
+		</div>
+		#end
+	#end
+
+		<div class="col-sd-2">
+
+			<button type="submit" class="btn btn-danger" ng-click="${mestre}Controller.removeItemDetail('${mestre}.${uncapitalizedEntityName}', ${dollarSymbol}index);" >
+			  <i class="glyphicon glyphicon-erase"></i>
+			</button>
+
+		</div>
+
+	</div>
+	<br/>
+
+	<button type="button" class="btn btn-default" ng-click="${mestre}Controller.addItemDetail('${mestre}.${uncapitalizedEntityName}');" >Adicionar</button>
+
+	
+</div>
