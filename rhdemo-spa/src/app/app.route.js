@@ -8,7 +8,14 @@
     /** @ngInject */
   function RouterConfig($stateProvider, $urlRouterProvider) {
     
-   
+	     $stateProvider
+	      .state('login', {
+	        url: '/plc-login',
+	        templateUrl: 'plc-login.html',
+	        controller: 'PlcLoginController',
+	        controllerAs: 'loginCt',
+	        access: 'public'
+	      });
 
 
      $stateProvider

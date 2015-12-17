@@ -14,7 +14,8 @@
 			url: '/uf',
 			templateUrl: 'app/uf/uf.html',
 			controller: 'UfController',
-			controllerAs: 'ufController'
+			controllerAs: 'ufController',
+			access: 'public'
 		});
 	}
 

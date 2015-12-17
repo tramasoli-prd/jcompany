@@ -10,6 +10,9 @@
 
 	function AppController($scope, $cookies, $state, $window, PlcAuthService, $stateParams, PlcMenuLoader, PlcMenu) {
 
+		this.getUser = PlcAuthService.getUser;
+		
+		
 		/**  
 		 * Sidebar Toggle & Cookie Control
 		 */
@@ -61,7 +64,7 @@
 
 		}
 
-
+		
 
 		$scope.profileA = function() {  
 			document.getElementById('profile').className= "item dropdown open";
