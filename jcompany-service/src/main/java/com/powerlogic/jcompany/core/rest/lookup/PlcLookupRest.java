@@ -26,9 +26,9 @@ import com.powerlogic.jcompany.core.commons.config.PlcConfiguration;
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.model.service.IPlcEntityService;
 import com.powerlogic.jcompany.core.rest.PlcAbstractRest;
-import com.powerlogic.jcompany.core.rest.auth.PlcAuthenticated;
+import com.powerlogic.jcompany.core.rest.auth.PlcNotAuthenticated;
 
-@PlcAuthenticated
+@PlcNotAuthenticated
 @Path("/entity/lookup")
 @Produces({ MediaType.APPLICATION_JSON })
 @Consumes({ MediaType.APPLICATION_JSON })
