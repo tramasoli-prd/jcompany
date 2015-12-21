@@ -34,7 +34,7 @@ import javax.validation.Payload;
 @Documented
 @Target({ FIELD, METHOD })
 @Retention(RUNTIME)
-@Constraint(validatedBy = EmailValidator.class)
+@Constraint(validatedBy = TelefoneValidator.class)
 public @interface Telefone {
 
 	Class<?>[] groups() default {};
