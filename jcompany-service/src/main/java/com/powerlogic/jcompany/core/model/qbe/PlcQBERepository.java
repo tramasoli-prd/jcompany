@@ -51,32 +51,46 @@ import com.powerlogic.jcompany.core.model.entity.IPlcVersionedEntity;
 import com.powerlogic.jcompany.core.model.repository.IPlcEntityRepository;
 
 /**
+ * 
+ * Query by Example
+ * 
+ * 
  * JPA 2 {@link PlcQBERepository} implementation
  */
 public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEntityModel<PK>> implements IPlcEntityRepository<PK, E> {
+	
     @Inject
     protected ByExampleUtil byExampleUtil;
+    
     @Inject
     protected ByPatternUtil byPatternUtil;
+    
     @Inject
     protected ByRangeUtil byRangeUtil;
+    
     @Inject
     protected ByNamedQueryUtil byNamedQueryUtil;
+    
     @Inject
     protected ByPropertySelectorUtil byPropertySelectorUtil;
+    
     @Inject
     protected OrderByUtil orderByUtil;
+    
     @Inject
     protected MetamodelUtil metamodelUtil;
+    
     @Inject
     private JpaUtil jpaUtil;
+    
     @Inject
     protected ByFullTextUtil byFullTextUtil;
+    
     protected List<SingularAttribute<?, ?>> indexedAttributes;
 
     protected Logger log;
 
-    /*
+    /**
      * This constructor needs the real type of the generic type E so it can be given to the {@link javax.persistence.EntityManager}.
      */
     public PlcQBERepository() {
@@ -121,11 +135,16 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      * @param entity an E instance having a primary key set
      * @return the corresponding E persistent instance or null if none could be found.
      */
-    
     public E get(E entity) {
         return entity == null ? null : getById(entity.getId());
     }
 
+	/** 
+	 * Abstract Method forçando a implementação na classe concreta.
+	 * 
+	 * Deve ser realizada uma injeção da EntityManager default.
+	 *  
+	 */
     protected abstract EntityManager getEntityManager();
     
     public abstract Class<E> getEntityType();
@@ -147,17 +166,15 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      *
      * @param entity the entity to refresh.
      */
-    
     public void refresh(E entity) {
         if (getEntityManager().contains(entity)) {
             getEntityManager().refresh(entity);
         }
     }
 
-    /*
+    /**
      * Find and load all instances.
      */
-    
     public List<E> find() {
     	SearchParameters sp = new SearchParameters();
     	sp.caseInsensitive().startingLike();    	
@@ -170,7 +187,6 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      * @param entity a sample entity whose non-null properties may be used as search hints
      * @return the entities matching the search.
      */
-    
     public List<E> find(E entity) {
     	SearchParameters sp = new SearchParameters();
     	sp.caseInsensitive().startingLike();
@@ -183,7 +199,6 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      * @param searchParameters carries additional search information
      * @return the entities matching the search.
      */
-    
     public List<E> find(SearchParameters searchParameters) {
         return find(getNew(), searchParameters);
     }
@@ -195,8 +210,8 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      * @param sp     carries additional search information
      * @return the entities matching the search.
      */
-    
     public List<E> find(E entity, SearchParameters sp) {
+    	
     	if (IPlcVersionedEntity.class.isAssignableFrom(entity.getClass())) {
     		((IPlcVersionedEntity)entity).setVersao(null);
     		((IPlcVersionedEntity)entity).setSituacao(PlcSituacao.A);
@@ -232,7 +247,7 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
         return entities;
     }
 
-    /*
+    /**
      * Find a list of E property.
      *
      * @param propertyType type of the property
@@ -241,12 +256,11 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      * @param path         the path to the property
      * @return the entities property matching the search.
      */
-    
     public <T> List<T> findProperty(Class<T> propertyType, E entity, SearchParameters sp, String path) {
         return findProperty(propertyType, entity, sp, metamodelUtil.toAttributes(path, getEntityType()));
     }
 
-    /*
+    /**
      * Find a list of E property.
      *
      * @param propertyType type of the property
@@ -255,12 +269,11 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      * @param attributes   the list of attributes to the property
      * @return the entities property matching the search.
      */
-    
     public <T> List<T> findProperty(Class<T> propertyType, E entity, SearchParameters sp, Attribute<?, ?>... attributes) {
         return findProperty(propertyType, entity, sp, newArrayList(attributes));
     }
 
-    /*
+    /**
      * Find a list of E property.
      *
      * @param propertyType type of the property
@@ -269,7 +282,6 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      * @param attributes   the list of attributes to the property
      * @return the entities property matching the search.
      */
-    
     public <T> List<T> findProperty(Class<T> propertyType, E entity, SearchParameters sp, List<Attribute<?, ?>> attributes) {
         if (sp.hasNamedQuery()) {
             return byNamedQueryUtil.findByNamedQuery(sp);
@@ -310,7 +322,6 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      * @param sp carries additional search information
      * @return the number of entities matching the search.
      */
-    
     public int findCount(SearchParameters sp) {
         return findCount(getNew(), sp);
     }
@@ -321,7 +332,6 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      * @param entity a sample entity whose non-null properties may be used as search hint
      * @return the number of entities matching the search.
      */
-    
     public int findCount(E entity) {
         return findCount(entity, new SearchParameters());
     }
@@ -333,7 +343,6 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      * @param sp     carries additional search information
      * @return the number of entities matching the search.
      */
-    
     public int findCount(E entity, SearchParameters sp) {
         checkNotNull(entity, "The entity cannot be null");
         checkNotNull(sp, "The searchParameters cannot be null");
@@ -374,7 +383,6 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      * @param path   the path to the property
      * @return the number of entities matching the search.
      */
-    
     public int findPropertyCount(E entity, SearchParameters sp, String path) {
         return findPropertyCount(entity, sp, metamodelUtil.toAttributes(path, getEntityType()));
     }
@@ -387,7 +395,6 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      * @param attributes the list of attributes to the property
      * @return the number of entities matching the search.
      */
-    
     public int findPropertyCount(E entity, SearchParameters sp, Attribute<?, ?>... attributes) {
         return findPropertyCount(entity, sp, newArrayList(attributes));
     }
@@ -400,7 +407,6 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      * @param attributes the list of attributes to the property
      * @return the number of entities matching the search.
      */
-    
     public int findPropertyCount(E entity, SearchParameters sp, List<Attribute<?, ?>> attributes) {
         if (sp.hasNamedQuery()) {
             return byNamedQueryUtil.numberByNamedQuery(sp).intValue();
@@ -435,11 +441,9 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
         return findUnique(getNew(), sp);
     }
 
-    
     public E findUnique(E e) {
         return findUnique(e, new SearchParameters());
     }
-
     
     public E findUnique(E entity, SearchParameters sp) {
         E result = findUniqueOrNone(entity, sp);
@@ -448,23 +452,20 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
         }
         throw new NoResultException("Developper: You expected 1 result but found none !");
     }
-
     
     public E findUniqueOrNone(SearchParameters sp) {
         return findUniqueOrNone(getNew(), sp);
     }
-
     
     public E findUniqueOrNone(E entity) {
         return findUniqueOrNone(entity, new SearchParameters());
     }
 
-    /*
+    /**
      * We request at most 2, if there's more than one then we throw a {@link javax.persistence.NonUniqueResultException}
      *
      * @throws javax.persistence.NonUniqueResultException
      */
-    
     public E findUniqueOrNone(E entity, SearchParameters sp) {
         // this code is an optimization to prevent using a count
         sp.setFirst(0);
@@ -479,18 +480,15 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
             return results.iterator().next();
         }
     }
-
     
     public E findUniqueOrNew(SearchParameters sp) {
         return findUniqueOrNew(getNew(), sp);
     }
-
     
     public E findUniqueOrNew(E e) {
         return findUniqueOrNew(e, new SearchParameters());
     }
 
-    
     public E findUniqueOrNew(E entity, SearchParameters sp) {
         E result = findUniqueOrNone(entity, sp);
         if (result != null) {
@@ -531,7 +529,7 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
         return byPatternUtil.byPattern(root, builder, sp, type);
     }
 
-    /*
+    /**
      * You may override this method to add a Predicate to the default find method.
      */
     protected <R> Predicate byMandatoryPredicate(CriteriaQuery<?> criteriaQuery, Root<E> root, CriteriaBuilder builder, E entity, SearchParameters sp) {
@@ -543,7 +541,6 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      *
      * @param entity the entity to be saved or updated.
      */
-    
     public E save(E entity) {
         checkNotNull(entity, "The entity to save cannot be null");
 
@@ -564,28 +561,25 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
         return null;
     }
 
-    /*
+    /**
      * Persist the given entity.
      */
-    
     public void persist(E entity) {
         getEntityManager().persist(entity);
     }
 
-    /*
+    /**
      * Merge the state of the given entity into the current persistence context.
      */
-    
     public E merge(E entity) {
         return getEntityManager().merge(entity);
     }
 
-    /*
+    /**
      * Delete the given entity E from the repository.
      *
      * @param entity the entity to be deleted.
      */
-    
     public void delete(E entity) {
         if (getEntityManager().contains(entity)) {
             getEntityManager().remove(entity);
@@ -604,10 +598,10 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
     protected List<SingularAttribute<?, ?>> buildIndexedAttributes(Class<E> type) {
         List<SingularAttribute<?, ?>> ret = newArrayList();
         for (Method m : type.getMethods()) {
-        	//TODO Baldini
-//            if (m.getAnnotation(Field.class) != null) {
-//                ret.add(metamodelUtil.toAttribute(jpaUtil.methodToProperty(m), type));
-//            }
+        	// TODO Powerlogic/Jaguar
+        	//      if (m.getAnnotation(Field.class) != null) {
+        	//          ret.add(metamodelUtil.toAttribute(jpaUtil.methodToProperty(m), type));
+        	//      }
         }
         return ret;
     }
@@ -620,13 +614,12 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
     // Util
     // -----------------
 
-    /*
+    /**
      * Helper to determine if the passed given property is null. Used mainly on binary lazy loaded property.
      *
      * @param id       the entity id
      * @param property the property to check
      */
-    
     public boolean isPropertyNull(PK id, SingularAttribute<E, ?> property) {
         checkNotNull(id, "The id cannot be null");
         checkNotNull(property, "The property cannot be null");
@@ -644,11 +637,10 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
         return typedQuery.getSingleResult().intValue() == 1;
     }
 
-    /*
+    /**
      * Return the optimistic version value, if any.
      */
     @SuppressWarnings("unchecked")
-    
     public Comparable<Object> getVersion(E entity) {
         EntityType<E> entityType = getEntityManager().getMetamodel().entity(getEntityType());
         if (!entityType.hasVersionAttribute()) {
@@ -657,7 +649,7 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
         return (Comparable<Object>) jpaUtil.getValue(entity, getVersionAttribute(entityType));
     }
 
-    /*
+    /**
      * _HACK_ too bad that JPA does not provide this entityType.getVersion();
      * <p>
      * http://stackoverflow.com/questions/13265094/generic-way-to-get-jpa-entity-version

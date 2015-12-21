@@ -1,12 +1,28 @@
+/*  																													
+	    			       Jaguar-jCompany Developer Suite.																		
+			    		        Powerlogic 2015-2020.
+			    		    
+		Please read licensing information in your installation directory.
+		Contact Powerlogic for more information or contribute with this project. 
+			site...: www.powerlogic.org																								
+			e-mail.: suporte@powerlogic.com.br
+*/
+
 package com.powerlogic.jcompany.commons.util.fileupload;
 
 import java.io.Serializable;
 
+/**
+ * 
+ * PlcFileDTO para manipular o conteúdo dos arquivos anexados.
+ * 
+ * @category DTO
+ * @since 1.0.0
+ * @author Powerlogic
+ *
+ */
 public class PlcFileDTO implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 

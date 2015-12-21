@@ -1,6 +1,15 @@
+/*  																													
+	    			       Jaguar-jCompany Developer Suite.																		
+			    		        Powerlogic 2015-2020.
+			    		    
+		Please read licensing information in your installation directory.
+		Contact Powerlogic for more information or contribute with this project. 
+			site...: www.powerlogic.org																								
+			e-mail.: suporte@powerlogic.com.br
+*/
+
 package com.powerlogic.jcompany.commons.util.validation;
 
-import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +20,6 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -24,14 +32,31 @@ import com.powerlogic.jcompany.commons.util.interpolator.ResourceBundleMessageIn
 import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 
 /**
- * Serviço dinâmicos para realização de validação invariante, vinculada ao
- * modelo de domínio e podendo ser ativada em qualquer camada
+ * 
+ * Serviço dinâmicos para realização de validação invariante, vinculada ao modelo de domínio e podendo ser ativada em qualquer camada.
+ * 
+ * @category Util
+ * @since 1.0.0
+ * @author Powerlogic
+ *
  */
 @ApplicationScoped
 public class PlcValidationInvariantUtil {
 
+	/**
+	 * Validator: API Java EE
+	 */
 	protected Validator validator;
 
+	/**
+	 * Cria e Configura um Validator
+	 * 
+	 * Utiliza a classe ResourceBundleMessageInterpolator para fazer a manipulação dinâmica do conteúdo das Mensagens/
+	 * 
+	 * Os arquivos PlcMessages e AppMessages contém as chaves e valores das mensagens.
+	 * 
+	 * @return validator
+	 */
 	public Validator getValidator() {
 		if (validator==null) {
 			validator = Validation.byDefaultProvider()
@@ -52,6 +77,7 @@ public class PlcValidationInvariantUtil {
 		return validator;
 	}
 
+	
 	public void setValidator(Validator validator) {
 		this.validator = validator;
 	}
@@ -76,6 +102,14 @@ public class PlcValidationInvariantUtil {
 
 	}
 
+	/**
+	 * Recupera as Constraints da classe que será validada. 
+	 * 
+	 * @param clazz
+	 * @return constraints PlcValidationConstraintsDTO
+	 * @throws NoSuchFieldException
+	 * @throws SecurityException
+	 */
 	public PlcValidationConstraintsDTO getConstraintsForClass (Class clazz) throws NoSuchFieldException, SecurityException {
 
 

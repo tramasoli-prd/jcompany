@@ -1,10 +1,14 @@
 /*  																													
 	    			       Jaguar-jCompany Developer Suite.																		
-			    		        Powerlogic 2010-2014.
+			    		        Powerlogic 2015-2020.
+			    		    
+		Please read licensing information in your installation directory.
+		Contact Powerlogic for more information or contribute with this project. 
+			site...: www.powerlogic.org																								
+			e-mail.: suporte@powerlogic.com.br
+*/
 
-		Please read licensing information in your installation directory.Contact Powerlogic for more 
-		information or contribute with this project: suporte@powerlogic.com.br - www.powerlogic.com.br																								
- */ 
+
 package com.powerlogic.jcompany.core.rest.auth;
 
 import java.io.Serializable;
@@ -21,8 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 
 /**
- * jCompany. Value Object. Encapsula dados de Perfil do usuÃ¡rio correntemente
- * autenticado na sessÃ£o.
+ * Encapsula dados de Perfil do usuário correntemente autenticado na sessÃ£o.
  * 
  */
 @XmlRootElement
@@ -34,17 +37,17 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 	public static final String PROPERTY = PlcAuthenticatedUserInfo.class.getName();
 
 	/**
-	 * Login do usuÃ¡rio autenticado
+	 * Login do usuário autenticado
 	 */
 	private String login;
 
 	/**
-	 * Nome completo do usuÃ¡rio autenticado
+	 * Nome completo do usuário autenticado
 	 */
 	private String name;
 
 	/**
-	 * Apelido ou nome pelo qual o usuÃ¡rio Ã© conhecido.<br>
+	 * Apelido ou nome pelo qual o usuário Ã© conhecido.<br>
 	 * O mÃ©todo <code>getDisplayName()</code> retorna o apelido, se
 	 * preenchido, se nÃ£o, o nome.
 	 * 
@@ -53,7 +56,7 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 	private String nickname;
 
 	/**
-	 * Valor para timeout da sessÃ£o do usuÃ¡rio. Se informado, sobrepÃµe a
+	 * Valor para timeout da sessÃ£o do usuário. Se informado, sobrepÃµe a
 	 * informaÃ§Ã£o do web.xml.
 	 * 
 	 * @since jCompany 3.x
@@ -61,12 +64,12 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 	private Long timeout;
 
 	/**
-	 * Email do usuÃ¡rio autenticado
+	 * Email do usuário autenticado
 	 */
 	private String email;
 
 	/**
-	 * Identificador de empresa corrente do usuÃ¡rio autenticado em formato String
+	 * Identificador de empresa corrente do usuário autenticado em formato String
 	 */
 	private String company;
 
@@ -87,23 +90,23 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 
 
 	/**
-	 * Grupos (de usuÃ¡rios) dos quais o usuÃ¡rio Ã© membro.
+	 * Grupos (de usuários) dos quais o usuário Ã© membro.
 	 */
 	private List<String> groups = new ArrayList<String>();
 
 	/**
-	 * Roles do usuÃ¡rio.
+	 * Roles do usuário.
 	 */
 	private List<String> roles = new ArrayList<String>();
 
 	/**
-	 * Filtros do usuÃ¡rio. Adicionar no padrÃ£o plcUsuarioPerfilVO.getFiltros().add("nomeFiltro#valor");
+	 * Filtros do usuário. Adicionar no padrÃ£o plcUsuarioPerfilVO.getFiltros().add("nomeFiltro#valor");
 	 * @since jcompany 5.5
 	 */
 	private List<String> filters = new ArrayList<String>();
 
 	/**
-	 * Lista de horÃ¡rios obtidos da aplicaÃ§Ã£o, perfil e usuÃ¡rio
+	 * Lista de horÃ¡rios obtidos da aplicaÃ§Ã£o, perfil e usuário
 	 */
 	private List schedule = new ArrayList();
 
@@ -124,7 +127,7 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 	private Map<String, Object> resources = new HashMap<String, Object>();
 
 	/**
-	 * O acesso geral do usuÃ¡rio na aplicaÃ§Ã£o foi negado?
+	 * O acesso geral do usuário na aplicaÃ§Ã£o foi negado?
 	 * <p>
 	 * Esta propriedade nÃ£o Ã© populada automaticamente pelo jCompany, a nÃ£o ser
 	 * que o JSecurity esteja configurado, ficando a cargo do desenvolvedor
@@ -136,7 +139,7 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 	private boolean accessDenied = false;
 
 	/**
-	 * O usuÃ¡rio autenticou com certificado?
+	 * O usuário autenticou com certificado?
 	 * <p>
 	 * Esta propriedade nÃ£o Ã© populada automaticamente pelo jCompany, a nÃ£o ser
 	 * que o JSecurity esteja configurado, ficando a cargo do desenvolvedor
@@ -148,7 +151,7 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 	private boolean authCertificate;
 
 	/**
-	 * O usuÃ¡rio autenticou com certificado Ãºnico?
+	 * O usuário autenticou com certificado Ãºnico?
 	 * <p>
 	 * Esta propriedade nÃ£o Ã© populada automaticamente pelo jCompany, a nÃ£o ser
 	 * que o JSecurity esteja configurado, ficando a cargo do desenvolvedor
@@ -160,7 +163,7 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 	private boolean personalCertificate;
 
 	/**
-	 * O usuÃ¡rio Ã© obrigado a estar autenticado com certificado para acessar a
+	 * O usuário Ã© obrigado a estar autenticado com certificado para acessar a
 	 * aplicaÃ§Ã£o?
 	 * <p>
 	 * Esta propriedade nÃ£o Ã© populada automaticamente pelo jCompany, a nÃ£o ser
@@ -173,7 +176,7 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 	private boolean certificateRequired;
 
 	/**
-	 * O usuÃ¡rio Ã© obrigado a estar autenticado com certificado Ãºnico para
+	 * O usuário Ã© obrigado a estar autenticado com certificado Ãºnico para
 	 * acessar a aplicaÃ§Ã£o?
 	 * <p>
 	 * Esta propriedade nÃ£o Ã© populada automaticamente pelo jCompany, a nÃ£o ser
@@ -224,8 +227,8 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 	private int searchGroupCertificate = 1;
 
 	/**
-	 * Flag indicando se o profile do usuÃ¡rio foi carregado com sucesso. Esse
-	 * controle serve para evitar que o usuÃ¡rio tenha acesso total Ã  aplicaÃ§Ã£o
+	 * Flag indicando se o profile do usuário foi carregado com sucesso. Esse
+	 * controle serve para evitar que o usuário tenha acesso total Ã  aplicaÃ§Ã£o
 	 * se ocorrer alguma pane durante a configuraÃ§Ã£o do profile. Qualquer
 	 * tentativa de acesso a qualquer recurso serÃ¡ negada.
 	 * 
@@ -249,8 +252,8 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 
 
 	/**
-	 * Verifica se o usuÃ¡rio possui a role informada. Procura nos grupos do
-	 * usuÃ¡rio e nas roles.
+	 * Verifica se o usuário possui a role informada. Procura nos grupos do
+	 * usuário e nas roles.
 	 * 
 	 * @param role
 	 * @return
@@ -310,7 +313,7 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 	}
 
 	/**
-	 * Maps com registro de classes e seguranÃ§a vertival para o usuÃ¡rios
+	 * Maps com registro de classes e seguranÃ§a vertival para o usuários
 	 * nestas classes, conforme padrÃ£o descrito no @see PlcPerfilUsuarioBO
 	 */
 	public java.util.Map getPlcVerticalSecurity(){
@@ -318,7 +321,7 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 	}
 
 	/**
-	 * Lista com horÃ¡rios registrados para o usuÃ¡rio, perfil ou aplicaÃ§Ã£o
+	 * Lista com horÃ¡rios registrados para o usuário, perfil ou aplicaÃ§Ã£o
 	 */
 	public List getSchedule() {
 		return schedule;
@@ -344,7 +347,7 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 	}
 
 	/**
-	 * jCompany 20.  Exibe login do usuÃ¡rio se nÃ£o for nulo
+	 * jCompany 20.  Exibe login do usuário se nÃ£o for nulo
 	 * @return login
 	 */
 	public String toString() {

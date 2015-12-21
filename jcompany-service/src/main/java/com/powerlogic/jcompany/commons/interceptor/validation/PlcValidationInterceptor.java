@@ -1,3 +1,13 @@
+/*  																													
+	    			       Jaguar-jCompany Developer Suite.																		
+			    		        Powerlogic 2015-2020.
+			    		    
+		Please read licensing information in your installation directory.
+		Contact Powerlogic for more information or contribute with this project. 
+			site...: www.powerlogic.org																								
+			e-mail.: suporte@powerlogic.com.br
+*/
+
 package com.powerlogic.jcompany.commons.interceptor.validation;
 
 import java.lang.annotation.Annotation;
@@ -14,6 +24,19 @@ import com.powerlogic.jcompany.commons.util.validation.PlcValidationInvariantUti
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 
+/**
+ * 
+ * Interceptor para realizar a validação dos dados enviados através do Formulário.
+ * 
+ * Após criar a entidade as validações do Bean Validation são verificadas.
+ * 
+ * A verificação das propriedades da entidade quando ocorrerem, disparam exceção para o Front-End.
+ * 
+ * @category Interceptor
+ * @since 1.0.0
+ * @author Powerlogic
+ *
+ */
 public class PlcValidationInterceptor  {
 
 	@Inject
@@ -22,6 +45,15 @@ public class PlcValidationInterceptor  {
 	@Inject
 	private PlcMessageUtil messageUtil;
 	
+	/**
+	 * Interceptor para validadar a entidade da requisição.
+	 * 
+	 * Trata a exceção e dispara uma mensagem para o Back-End.
+	 * 
+	 * @param context
+	 * @return
+	 * @throws Exception
+	 */
 	@AroundInvoke
 	public Object intercept(InvocationContext context) throws Exception {
 		
@@ -41,7 +73,9 @@ public class PlcValidationInterceptor  {
 
 	/**
 	 * Método para a validação invariante do formulário na gravação simples.
-	 * @return true se tudo estiver válido.
+	 * 
+	 * @param entityPlc
+	 * @param groups
 	 */
 	public void checkBeanValidation(Object entityPlc, Class<?>... groups)  {
 

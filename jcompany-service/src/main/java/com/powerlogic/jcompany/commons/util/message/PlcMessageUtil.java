@@ -1,10 +1,12 @@
 /*  																													
 	    			       Jaguar-jCompany Developer Suite.																		
-			    		        Powerlogic 2010-2014.
-
-		Please read licensing information in your installation directory.Contact Powerlogic for more 
-		information or contribute with this project: suporte@powerlogic.com.br - www.powerlogic.com.br																								
- */
+			    		        Powerlogic 2015-2020.
+			    		    
+		Please read licensing information in your installation directory.
+		Contact Powerlogic for more information or contribute with this project. 
+			site...: www.powerlogic.org																								
+			e-mail.: suporte@powerlogic.com.br
+*/
 
 package com.powerlogic.jcompany.commons.util.message;
 
@@ -16,9 +18,25 @@ import javax.validation.ConstraintViolation;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * 
+ * Utilitário para manipulação dinâmico dos conteúdos das mensagens.
+ * 
+ * @category Util
+ * @since 1.0.0
+ * @author Powerlogic
+ *
+ */
 @ApplicationScoped
 public class PlcMessageUtil {
 
+	/**
+	 * 
+	 * Retorna as mensagens de validação invariante dos campos, fazendo a troca dos tokens pelo nome da propriedade (valores reais).
+	 * 
+	 * @param validationMessages
+	 * @return array com mensagens traduzidas
+	 */
 	public String[]  availableInvariantMessages(Set<ConstraintViolation<Object>> validationMessages)  {
 
 		if (validationMessages!=null) {

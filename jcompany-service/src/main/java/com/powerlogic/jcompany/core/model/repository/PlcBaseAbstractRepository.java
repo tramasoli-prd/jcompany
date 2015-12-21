@@ -1,3 +1,13 @@
+/*  																													
+	    			       Jaguar-jCompany Developer Suite.																		
+			    		        Powerlogic 2015-2020.
+			    		    
+		Please read licensing information in your installation directory.
+		Contact Powerlogic for more information or contribute with this project. 
+			site...: www.powerlogic.org																								
+			e-mail.: suporte@powerlogic.com.br
+*/
+
 package com.powerlogic.jcompany.core.model.repository;
 
 import java.io.Serializable;
@@ -31,10 +41,33 @@ import com.powerlogic.jcompany.core.model.entity.IPlcVersionedEntity;
 import com.powerlogic.jcompany.core.model.qbe.PlcQBERepository;
 import com.powerlogic.jcompany.core.util.ConstantUtil;
 
+/**
+ * 
+ * Base Abstrata para serviços ou objetos de negócio que fazem o acesso aos repositorios de dados.<p>
+ * 
+ * Encapsulam os acessos a base de dados, que nesse caso utiliza a EntityManager que é injetada pelo Servidor de Aplicação.
+ * 
+ * São invocados através dos Serviços/Services que implementa (PlcAbstractServiceEntity) que por sua vez faz o controle transacional (commit/rolback).
+ * 
+ * Classe ancestral para serviços de acesso a dados<p>
+ * 
+ * Ver conceito de Repository na teoria de Domain Driven-Design.
+ * 
+ * @category Repository
+ * @since 1.0.0
+ * @author Powerlogic
+ * 
+ */
 public abstract class PlcBaseAbstractRepository<PK extends Serializable, E extends IPlcEntityModel<PK>> extends PlcQBERepository<PK, E>  {
 
 	private static PropertyUtilsBean propertyUtilsBean = BeanUtilsBean.getInstance().getPropertyUtils();
 
+	/** 
+	 * Abstract Method forçando a implementação na classe concreta.
+	 * Deve ser realizada uma injeção da EntityManager default.
+	 *  
+	 * @see com.powerlogic.jcompany.core.model.qbe.PlcQBERepository#getEntityManager()
+	 */
 	protected abstract EntityManager getEntityManager();
 
 	public abstract Class<E> getEntityType();

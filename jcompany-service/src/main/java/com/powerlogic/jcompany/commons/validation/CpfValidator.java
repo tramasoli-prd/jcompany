@@ -1,3 +1,13 @@
+/*  																													
+	    			       Jaguar-jCompany Developer Suite.																		
+			    		        Powerlogic 2015-2020.
+			    		    
+		Please read licensing information in your installation directory.
+		Contact Powerlogic for more information or contribute with this project. 
+			site...: www.powerlogic.org																								
+			e-mail.: suporte@powerlogic.com.br
+*/
+
 package com.powerlogic.jcompany.commons.validation;
 
 import javax.validation.ConstraintValidator;
@@ -6,7 +16,14 @@ import javax.validation.ConstraintValidatorContext;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * CPF constraint validation.
+ * Validação invariável para CPF. 
+ * 
+ * Valida CPF, considerando ok se chegou com null ou "".
+ * 
+ * @category Validator
+ * @since 1.0.0
+ * @author Powerlogic
+ *
  */
 public class CpfValidator implements ConstraintValidator<Cpf, String> {
 
@@ -14,6 +31,10 @@ public class CpfValidator implements ConstraintValidator<Cpf, String> {
 	public void initialize(final Cpf constraintAnnotation) {
 	}
 
+	/**
+	 * Verica se o CPF é Válido
+	 * @see javax.validation.ConstraintValidator#isValid(java.lang.Object, javax.validation.ConstraintValidatorContext)
+	 */
 	@Override
 	public boolean isValid(String cpf, final ConstraintValidatorContext context) {
 		boolean result = false;
@@ -25,6 +46,11 @@ public class CpfValidator implements ConstraintValidator<Cpf, String> {
 		return result;
 	}
 	
+	/**
+	 * Verifica a validade do CPF
+	 * @param cpf
+	 * @return Boolean.TRUE se for valido e Boolean.False para os casos não válidos.
+	 */
 	private boolean isValido(String cpf) {
 		cpf = cpf.replace(".", "").replace("-", "");
         if (cpf.length() != 11 && !StringUtils.isNumeric(cpf))
@@ -34,11 +60,11 @@ public class CpfValidator implements ConstraintValidator<Cpf, String> {
 	}
 
 	
-	public  String gerarDigitoVerificador(String num) {
+	private  String gerarDigitoVerificador(String num) {
 		return obterDV(num, false, 2);
 	}
 
-	public String obterDV (String fonte, boolean dezPorX, int quantidadeDigitos) {
+	private String obterDV (String fonte, boolean dezPorX, int quantidadeDigitos) {
 		if (quantidadeDigitos > 1) {
 			String parcial = obterDV(fonte, dezPorX);
 			return parcial + obterDV(fonte + parcial, dezPorX, --quantidadeDigitos);
@@ -47,7 +73,7 @@ public class CpfValidator implements ConstraintValidator<Cpf, String> {
 		}
 	}
 	
-	public String obterDV (String fonte, boolean dezPorX) {
+	private String obterDV (String fonte, boolean dezPorX) {
 		
 		int peso = fonte.length() + 1;
 		int dv = 0;

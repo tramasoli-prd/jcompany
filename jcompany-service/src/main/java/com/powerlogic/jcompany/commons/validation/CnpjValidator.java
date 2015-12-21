@@ -1,3 +1,13 @@
+/*  																													
+	    			       Jaguar-jCompany Developer Suite.																		
+			    		        Powerlogic 2015-2020.
+			    		    
+		Please read licensing information in your installation directory.
+		Contact Powerlogic for more information or contribute with this project. 
+			site...: www.powerlogic.org																								
+			e-mail.: suporte@powerlogic.com.br
+*/
+
 package com.powerlogic.jcompany.commons.validation;
 
 import javax.validation.ConstraintValidator;
@@ -5,7 +15,16 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.apache.commons.lang3.StringUtils;
 
-
+/**
+ * Validação invariável para CNPJ. 
+ * 
+ * Valida CNPJ, considerando ok se chegou com null ou "".
+ * 
+ * @category Validator
+ * @since 1.0.0
+ * @author Powerlogic
+ *
+ */
 public class CnpjValidator implements ConstraintValidator<Cnpj, String> {
 
 	@Override

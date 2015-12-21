@@ -1,9 +1,27 @@
+/*  																													
+	    			       Jaguar-jCompany Developer Suite.																		
+			    		        Powerlogic 2015-2020.
+			    		    
+		Please read licensing information in your installation directory.
+		Contact Powerlogic for more information or contribute with this project. 
+			site...: www.powerlogic.org																								
+			e-mail.: suporte@powerlogic.com.br
+*/
+
 package com.powerlogic.jcompany.core.messages;
 
 import com.powerlogic.jcompany.core.exception.PlcException;
 
-public enum PlcBeanMessages implements IPlcMessageKey
-{
+/**
+ * 
+ * Enum para centralização das Mensagens Controladas pelo Framework.
+ * 
+ * @category Enum
+ * @author Powerlogic
+ * @since Jaguar 1.0.0
+ */
+public enum PlcBeanMessages implements IPlcMessageKey {
+	
 	DADOS_SALVOS_SUCESSO_000,
 	FALHA_LOGIN_001,
 	FALHA_SOLICITACAO_002,
