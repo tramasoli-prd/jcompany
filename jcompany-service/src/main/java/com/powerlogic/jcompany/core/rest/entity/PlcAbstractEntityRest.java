@@ -48,8 +48,7 @@ import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 import com.powerlogic.jcompany.core.model.service.IPlcEntityService;
 import com.powerlogic.jcompany.core.rest.PlcAbstractRest;
 
-public abstract class PlcAbstractEntityRest <PK extends Serializable, E extends IPlcEntityModel<PK>, A>
-extends PlcAbstractRest implements IPlcEntityModelRest<PK, E, A> {
+public abstract class PlcAbstractEntityRest <PK extends Serializable, E extends IPlcEntityModel<PK>, A> extends PlcAbstractRest implements IPlcEntityModelRest<PK, E, A> {
 
 	protected abstract IPlcEntityService<PK, E> getEntityService();
 
@@ -83,9 +82,11 @@ extends PlcAbstractRest implements IPlcEntityModelRest<PK, E, A> {
 		}
 
 		List<E> lista = getEntityService().findAll(entity);
+		
 		if (lista==null || lista.size()==0) {
 			msgUtil.msg(PlcBeanMessages.NENHUM_REGISTRO_ENCONTRADO_022, PlcMessageType.INFO);
 		}
+		
 		return lista;
 	}
 
