@@ -13,13 +13,14 @@ package com.powerlogic.jcompany.core.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -29,31 +30,25 @@ import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 
 @MappedSuperclass
 @EntityListeners(PlcVersionedListener.class)
+@Access(AccessType.PROPERTY)
 public abstract class PlcVersionedEntity<PK extends Serializable> implements IPlcVersionedEntity<PK> {
 	
 	private static final long serialVersionUID = 1L;
+
+	private Integer versao = 0;
+
+	private Date dataCriacao;
+
+	private String usuarioAtualizacao;
+
+	private Date dataAtualizacao;
+
+	private PlcSituacao situacao;
 
 	@Version
 	@NotNull
 	@Column(name = "VERSAO_REGISTRO")
 	@Digits(integer = 8, fraction = 0)
-	private Integer versao = 0;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATA_CRIACAO", updatable = false)
-	private Date dataCriacao;
-
-	@Column(name = "NM_ULT_ALTERACAO", length = 150)
-	private String usuarioAtualizacao;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DT_ULT_ALTERACAO")
-	private Date dataAtualizacao;
-
-	@Enumerated(EnumType.STRING)
-	@Column(name = "IN_SITUACAO_REGISTRO", nullable = false, length = 1)
-	private PlcSituacao situacao;
-
 	public Integer getVersao() {
 		return versao;
 	}
@@ -62,6 +57,8 @@ public abstract class PlcVersionedEntity<PK extends Serializable> implements IPl
 		this.versao = versao;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "DATA_CRIACAO", updatable = false)
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}
@@ -69,7 +66,8 @@ public abstract class PlcVersionedEntity<PK extends Serializable> implements IPl
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-
+	
+	@Column(name = "NM_ULT_ALTERACAO", length = 150)
 	public String getUsuarioAtualizacao() {
 		return usuarioAtualizacao;
 	}
@@ -78,6 +76,8 @@ public abstract class PlcVersionedEntity<PK extends Serializable> implements IPl
 		this.usuarioAtualizacao = usuarioAtualizacao;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "DT_ULT_ALTERACAO")
 	public Date getDataAtualizacao() {
 		return dataAtualizacao;
 	}
@@ -86,6 +86,14 @@ public abstract class PlcVersionedEntity<PK extends Serializable> implements IPl
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
+	@Override
+	public boolean isIdSet() {
+		if(getId()!=null)
+			return true;
+		return false;
+	}
+
+	@Transient
 	public PlcSituacao getSituacao() {
 		return situacao;
 	}
@@ -94,10 +102,5 @@ public abstract class PlcVersionedEntity<PK extends Serializable> implements IPl
 		this.situacao = situacao;
 	}
 	
-	@Override
-	public boolean isIdSet() {
-		if(getId()!=null)
-			return true;
-		return false;
-	}
+	
 }
