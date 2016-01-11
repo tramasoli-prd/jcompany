@@ -294,7 +294,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 			query = nqcCheckConstraintsBeforeRemove.query();
 
 			if (entity instanceof IPlcLogicalExclusion) {
-				query = query + " and o.situacao = :situacao";
+				//query = query + " and o.situacao = :situacao";
 			}
 
 			Query q = getEntityManager().createQuery(query);
@@ -305,7 +305,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 				for (Parameter<?> parameter : parameters) {
 					if(propertyUtilsBean.isReadable(entity, parameter.getName())) {
 						if (parameter.getName().equals("situacao")) {
-							q.setParameter(parameter.getName(), PlcSituacao.A);
+						//	q.setParameter(parameter.getName(), PlcSituacao.A);
 						} else if (parameter.getName().equals("id") && entity.getId()==null) {
 							q.setParameter(parameter.getName(), 0);
 						} else {

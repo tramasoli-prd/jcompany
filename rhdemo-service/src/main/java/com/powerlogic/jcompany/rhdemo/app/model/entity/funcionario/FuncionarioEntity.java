@@ -53,7 +53,7 @@ import com.powerlogic.jcompany.rhdemo.app.model.entity.DepartamentoEntity;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @NamedQueries({
-	@NamedQuery(name = "FuncionarioEntity.find", query = "SELECT f from FuncionarioEntity f where f.situacao = :situacao order by f.id asc")
+	@NamedQuery(name = "FuncionarioEntity.find", query = "SELECT f from FuncionarioEntity f order by f.id asc")
 })
 public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcLogicalExclusion {
 

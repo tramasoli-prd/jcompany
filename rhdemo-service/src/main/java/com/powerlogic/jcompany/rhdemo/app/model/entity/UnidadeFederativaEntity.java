@@ -24,7 +24,7 @@ import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @NamedQueries({
-	@NamedQuery(name = "UnidadeFederativaEntity.findByNome", query = "SELECT u FROM UnidadeFederativaEntity u WHERE u.nome = :nome AND u.situacao = :situacao") 
+	@NamedQuery(name = "UnidadeFederativaEntity.findByNome", query = "SELECT u FROM UnidadeFederativaEntity u WHERE u.nome = :nome") 
 })
 public class UnidadeFederativaEntity extends PlcVersionedEntity<Long> implements IPlcLogicalExclusion {
 
