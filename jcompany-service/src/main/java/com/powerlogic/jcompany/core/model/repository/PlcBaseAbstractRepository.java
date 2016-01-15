@@ -25,6 +25,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
@@ -223,8 +224,12 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 			CriteriaQuery<E> query = builder.createQuery(getEntityType());
 
 			Root<E> from = query.from(getEntityType());
-
-			query.select(from).where(builder.equal(from.get(ConstantUtil.QUERY_PARAM_SITUACAO), PlcSituacao.A));
+			
+			if (entity instanceof IPlcLogicalExclusion){
+				query.select(from).where(builder.equal(from.get(ConstantUtil.QUERY_PARAM_SITUACAO), PlcSituacao.A));
+			}else{
+				query.select(from);
+			}
 
 			return createQuery(query).getResultList();
 
