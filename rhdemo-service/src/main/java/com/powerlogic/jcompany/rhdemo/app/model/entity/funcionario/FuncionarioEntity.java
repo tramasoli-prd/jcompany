@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.powerlogic.jcompany.commons.validation.Cpf;
 import com.powerlogic.jcompany.commons.validation.Email;
+import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.domain.EstadoCivil;
@@ -128,6 +129,18 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	@OneToMany (targetEntity = DependenteEntity.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="funcionario", orphanRemoval=true)
 	@Valid
 	private List<DependenteEntity> dependente;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "IN_SITUACAO_REGISTRO", nullable = false, length = 1)
+	private PlcSituacao situacao;
+	
+	public PlcSituacao getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(PlcSituacao situacao) {
+		this.situacao = situacao;
+	}
 	
 	/** atributo para repassar o nome do arquivo vindo do upload
 	 */

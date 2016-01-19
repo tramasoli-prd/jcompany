@@ -12,13 +12,10 @@ package com.powerlogic.jcompany.core.model.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-@Access(AccessType.PROPERTY)
-public abstract class PlcBaseEntity<PK extends Serializable> implements IPlcBaseEntity<PK> {
+public abstract class PlcBaseEntity<PK extends Serializable> implements IPlcEntityModel<PK> {
 	
 	private static final long serialVersionUID = 1L;
  

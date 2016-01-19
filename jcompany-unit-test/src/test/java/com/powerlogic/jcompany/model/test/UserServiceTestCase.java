@@ -37,7 +37,7 @@ public class UserServiceTestCase extends PlcAbstractArquillianTestCase {
 	}
 
 	@Test
-	public void testAInsereFuncionario() throws Exception
+	public void testAInsereUsuario() throws Exception
 	{
 
 		UserEntity usuario = new UserEntity();
@@ -50,7 +50,7 @@ public class UserServiceTestCase extends PlcAbstractArquillianTestCase {
 	}
 
 	@Test
-	public void testBVerificaFuncionario() {
+	public void testBVerificaExistenciaUsuario() {
 
 		UserEntity usuario = (UserEntity)userService.get(1L);
 
@@ -61,7 +61,7 @@ public class UserServiceTestCase extends PlcAbstractArquillianTestCase {
 	}	
 
 	@Test
-	public void testCExcluirFuncionarioComArquivo() throws Exception
+	public void testCExcluirUsuario() throws Exception
 	{
 
 		UserEntity usuario = new UserEntity();
@@ -75,7 +75,7 @@ public class UserServiceTestCase extends PlcAbstractArquillianTestCase {
 	}	
 
 	@Test
-	public void testDVerificaFuncionarioComArquivo() throws Exception
+	public void testDVerificaNaoExistenciaUsuario() throws Exception
 	{
 
 		try {

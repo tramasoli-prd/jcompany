@@ -2,6 +2,8 @@ package com.powerlogic.jcompany.rhdemo.app.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +17,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 
@@ -44,6 +47,18 @@ public class UnidadeFederativaEntity extends PlcVersionedEntity<Long> implements
 	@Size(max = 2) 
 	@NotNull
 	private String sigla;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "IN_SITUACAO_REGISTRO", nullable = false, length = 1)
+	private PlcSituacao situacao;
+	
+	public PlcSituacao getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(PlcSituacao situacao) {
+		this.situacao = situacao;
+	}
 
 	public Long getId() {
 		return id;

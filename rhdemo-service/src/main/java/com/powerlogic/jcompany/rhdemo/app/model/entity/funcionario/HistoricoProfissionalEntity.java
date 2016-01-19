@@ -8,6 +8,8 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +32,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 /**
@@ -75,6 +78,18 @@ public class HistoricoProfissionalEntity extends PlcVersionedEntity<Long> implem
 	@Digits(integer=11, fraction=2)
 	private BigDecimal salario;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "IN_SITUACAO_REGISTRO", nullable = false, length = 1)
+	private PlcSituacao situacao;
+	
+	public PlcSituacao getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(PlcSituacao situacao) {
+		this.situacao = situacao;
+	}
+	
 	/**
 	 * @return true Se funcionário não tiver curso superior ou tiver e salario for maior que 1.000,000
 	 */

@@ -10,7 +10,11 @@
 
 package com.powerlogic.jcompany.core.model.entity;
 
-public interface IPlcLogicalExclusion
-{
+import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 
+public interface IPlcLogicalExclusion {
+
+	public PlcSituacao getSituacao();
+	public void setSituacao(PlcSituacao situacao);
+	
 }

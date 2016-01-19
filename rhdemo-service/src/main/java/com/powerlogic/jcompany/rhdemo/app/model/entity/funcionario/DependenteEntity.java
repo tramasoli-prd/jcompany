@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.domain.Sexo;
@@ -59,6 +60,18 @@ public class DependenteEntity extends PlcVersionedEntity<Long> implements IPlcLo
 	@XmlTransient
 	private FuncionarioEntity funcionario;	
  	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "IN_SITUACAO_REGISTRO", nullable = false, length = 1)
+	private PlcSituacao situacao;
+	
+	public PlcSituacao getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(PlcSituacao situacao) {
+		this.situacao = situacao;
+	}
+	
     /*
      * Construtor padrão
      */

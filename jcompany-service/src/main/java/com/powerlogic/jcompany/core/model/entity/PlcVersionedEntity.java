@@ -30,25 +30,28 @@ import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 
 @MappedSuperclass
 @EntityListeners(PlcVersionedListener.class)
-@Access(AccessType.PROPERTY)
-public abstract class PlcVersionedEntity<PK extends Serializable> implements IPlcVersionedEntity<PK> {
+@Access(AccessType.FIELD)
+public abstract class PlcVersionedEntity<PK extends Serializable> extends PlcBaseEntity<PK> implements IPlcVersionedEntity<PK> {
 	
 	private static final long serialVersionUID = 1L;
-
-	private Integer versao = 0;
-
-	private Date dataCriacao;
-
-	private String usuarioAtualizacao;
-
-	private Date dataAtualizacao;
-
-	private PlcSituacao situacao;
 
 	@Version
 	@NotNull
 	@Column(name = "VERSAO_REGISTRO")
 	@Digits(integer = 8, fraction = 0)
+	private Integer versao = 0;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "DATA_CRIACAO", updatable = false)
+	private Date dataCriacao;
+
+	@Column(name = "NM_ULT_ALTERACAO", length = 150)
+	private String usuarioAtualizacao;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "DT_ULT_ALTERACAO")
+	private Date dataAtualizacao;
+
 	public Integer getVersao() {
 		return versao;
 	}
@@ -57,8 +60,6 @@ public abstract class PlcVersionedEntity<PK extends Serializable> implements IPl
 		this.versao = versao;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATA_CRIACAO", updatable = false)
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}
@@ -67,7 +68,6 @@ public abstract class PlcVersionedEntity<PK extends Serializable> implements IPl
 		this.dataCriacao = dataCriacao;
 	}
 	
-	@Column(name = "NM_ULT_ALTERACAO", length = 150)
 	public String getUsuarioAtualizacao() {
 		return usuarioAtualizacao;
 	}
@@ -76,8 +76,6 @@ public abstract class PlcVersionedEntity<PK extends Serializable> implements IPl
 		this.usuarioAtualizacao = usuarioAtualizacao;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DT_ULT_ALTERACAO")
 	public Date getDataAtualizacao() {
 		return dataAtualizacao;
 	}
@@ -86,21 +84,5 @@ public abstract class PlcVersionedEntity<PK extends Serializable> implements IPl
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
-	@Override
-	public boolean isIdSet() {
-		if(getId()!=null)
-			return true;
-		return false;
-	}
-
-	@Transient
-	public PlcSituacao getSituacao() {
-		return situacao;
-	}
-
-	public void setSituacao(PlcSituacao situacao) {
-		this.situacao = situacao;
-	}
-	
 	
 }

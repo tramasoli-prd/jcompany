@@ -140,8 +140,8 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 	protected void logicalRemove(E entity) {
 
 		try {
-	    	if (IPlcVersionedEntity.class.isAssignableFrom(entity.getClass())) {
-	    		((IPlcVersionedEntity)entity).setSituacao(PlcSituacao.E);
+	    	if (IPlcLogicalExclusion.class.isAssignableFrom(entity.getClass())) {
+	    		((IPlcLogicalExclusion)entity).setSituacao(PlcSituacao.E);
 	    	}
 			getEntityManager().merge(entity);
 		} catch (PlcException e) {
@@ -166,8 +166,8 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 
 		try {
 
-	    	if (IPlcVersionedEntity.class.isAssignableFrom(entity.getClass())) {
-	    		((IPlcVersionedEntity)entity).setSituacao(PlcSituacao.I);
+	    	if (IPlcLogicalExclusion.class.isAssignableFrom(entity.getClass())) {
+	    		((IPlcLogicalExclusion)entity).setSituacao(PlcSituacao.I);
 	    	}
 			getEntityManager().merge(entity);
 

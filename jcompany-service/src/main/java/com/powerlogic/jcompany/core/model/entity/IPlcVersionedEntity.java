@@ -29,6 +29,4 @@ public interface IPlcVersionedEntity<PK extends Serializable> extends IPlcEntity
 	public Date getDataAtualizacao();
 	public void setDataAtualizacao(Date dataAtualizacao);
 
-	public PlcSituacao getSituacao();
-	public void setSituacao(PlcSituacao situacao);
 }
