@@ -22,6 +22,7 @@ package ${target.javaPackageFromFolder($SRC)};
 
 import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
 import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
+import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 
 ${generator.generateWithExtra(
 				$entity.databaseTable , 
@@ -191,6 +192,17 @@ $jpa.linkAnnotations(4, $link, $allMappedFields)
 #end 
 #end  
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "IN_SITUACAO_REGISTRO", nullable = false, length = 1)
+	private PlcSituacao situacao;
+	
+	public PlcSituacao getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(PlcSituacao situacao) {
+		this.situacao = situacao;
+	}
 
 $java.toStringMethod($entity, $selectecFields, "compositePrimaryKey", 4)
 }
