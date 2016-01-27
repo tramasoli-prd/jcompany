@@ -75,6 +75,8 @@ public class ByPropertySelectorUtil {
             } else {
                 predicates.add(jpaUtil.andPredicate(builder, selectorPredicates));
             }
+        } else if (selector.isNotIncludingNullSet()) {
+            predicates.add(builder.isNotNull(jpaUtil.getPath(root, selector.getAttributes())));
         }
     }
 
@@ -92,6 +94,8 @@ public class ByPropertySelectorUtil {
             } else {
                 predicates.add(jpaUtil.andPredicate(builder, selectorPredicates));
             }
+        } else if (selector.isNotIncludingNullSet()) {
+            predicates.add(builder.isNotNull(jpaUtil.getPath(root, selector.getAttributes())));
         }
     }
 

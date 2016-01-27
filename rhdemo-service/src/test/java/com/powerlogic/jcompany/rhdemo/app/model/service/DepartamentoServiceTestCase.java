@@ -1,6 +1,8 @@
 package com.powerlogic.jcompany.rhdemo.app.model.service;
 
 
+import java.util.List;
+
 import javax.ejb.EJB;
 
 import org.jboss.arquillian.junit.Arquillian;
@@ -21,56 +23,74 @@ public class DepartamentoServiceTestCase extends AppAbstractArquillianTestCase {
 	
 	
 	@Test
-	public void insereFuncionario() throws Exception
+	public void insereDepartamento() throws Exception
 	{
 
 		DepartamentoEntity departamento = new DepartamentoEntity();
-		departamento.setDescricao("Departamento Teste");
-
-		departamento = (DepartamentoEntity)departamentoService.save(departamento);
-		
+		departamento.setDescricao("Departamento Test 1");
+		departamento = (DepartamentoEntity)departamentoService.save(departamento);		
 		Assert.assertTrue(departamento.getId()==1);
 		
 	}
+	
+	@Test
+	public void insereDepartamento2() throws Exception
+	{
 
-//	@Test
-//	public void testBVerificaFuncionario() {
-//
-//		UserEntity usuario = (UserEntity)userService.get(1L);
-//
-//		Assert.assertTrue(usuario!=null);
-//		Assert.assertTrue(usuario.getId()==1);
-//		Assert.assertTrue(usuario.getName().equals("Baldini"));
-//		
-//	}	
-//	
-//	@Test
-//	public void testCExcluirFuncionarioComArquivo() throws Exception
-//	{
-//
-//		UserEntity usuario = new UserEntity();
-//		usuario.setId(1l);
-//		usuario.setVersao(1);
-//		
-//		userService.remove(usuario);
-//
-//		Assert.assertTrue(true);
-//		
-//	}	
-//	
-//	@Test
-//	public void testDVerificaFuncionarioComArquivo() throws Exception
-//	{
-//
-//		try {
-//			UserEntity usuario = (UserEntity)userService.get(1L);
-//			Assert.assertTrue(true);
-//		} catch (Exception e) {
-//			Assert.assertTrue(e.toString().contains("Não foi possível recuperar um registro"));
-//		}
-//
-//		
-//	}		
+		DepartamentoEntity departamento = new DepartamentoEntity();
+		departamento.setDescricao("Departamento Test 2");
+		departamento.setDepartamentoPai(new DepartamentoEntity(1L));
+		departamento = (DepartamentoEntity)departamentoService.save(departamento);		
+		Assert.assertTrue(departamento.getId()==2);
+		
+	}
+	
+	@Test
+	public void pesquisaDepartamentoPaiNull() throws Exception
+	{
+
+		DepartamentoEntity departamento = new DepartamentoEntity();
+		departamento.setPesquisaPaiIsNull(true);
+		List<DepartamentoEntity> departamentos = departamentoService.findAll(departamento);
+		Assert.assertTrue(departamentos.size()==1);
+		Assert.assertTrue(departamentos.get(0).getId()==1);
+		
+	}
+	
+	@Test
+	public void pesquisaDepartamentoPaiNotNull() throws Exception
+	{
+
+		DepartamentoEntity departamento = new DepartamentoEntity();
+		departamento.setPesquisaPaiIsNotNull(true);
+		List<DepartamentoEntity> departamentos = departamentoService.findAll(departamento);
+		Assert.assertTrue(departamentos.size()==1);
+		Assert.assertTrue(departamentos.get(0).getId()==2);
+		
+	}
+
+	@Test
+	public void pesquisaDepartamentoDescricaoNull() throws Exception
+	{
+
+		DepartamentoEntity departamento = new DepartamentoEntity();
+		departamento.setPesquisaDescricaoIsNull(true);
+		List<DepartamentoEntity> departamentos = departamentoService.findAll(departamento);
+		Assert.assertTrue(departamentos.size()==0);
+		
+	}
+
+	@Test
+	public void pesquisaDepartamentoDescricaoNotNull() throws Exception
+	{
+
+		DepartamentoEntity departamento = new DepartamentoEntity();
+		departamento.setPesquisaDescricaoIsNotNull(true);
+		List<DepartamentoEntity> departamentos = departamentoService.findAll(departamento);
+		Assert.assertTrue(departamentos.size()==2);
+		Assert.assertTrue(departamentos.get(0).getId()==1);
+		
+	}
 }
 
 
