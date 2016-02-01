@@ -25,7 +25,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
@@ -38,7 +37,6 @@ import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
-import com.powerlogic.jcompany.core.model.entity.IPlcVersionedEntity;
 import com.powerlogic.jcompany.core.model.qbe.PlcQBERepository;
 import com.powerlogic.jcompany.core.util.ConstantUtil;
 

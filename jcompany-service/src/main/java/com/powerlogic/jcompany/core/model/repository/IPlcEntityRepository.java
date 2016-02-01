@@ -19,10 +19,12 @@ import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 
 /**
- * @author igor
- *
- * @param <PK>
- * @param <E>
+ * 
+ * Interface base dos repositorios, métodos de acesso aos dados das camadas de modelo.
+ * 
+ * @author Powerlogic
+ * @category Repositoy
+ * @since 1.0.0
  */
 public interface IPlcEntityRepository<PK extends Serializable, E extends IPlcEntityModel<PK>> {
 	
