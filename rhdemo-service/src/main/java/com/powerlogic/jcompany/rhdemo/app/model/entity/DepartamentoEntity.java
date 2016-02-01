@@ -128,6 +128,43 @@ public class DepartamentoEntity extends PlcVersionedEntity<Long> implements IPlc
 		this.departamentoPai = departamentoPai;
 	}
 
-	
 
+	private transient boolean pesquisaPaiIsNull;
+	private transient boolean pesquisaPaiIsNotNull;
+	private transient boolean pesquisaDescricaoIsNull;
+	private transient boolean pesquisaDescricaoIsNotNull;
+
+	public boolean isPesquisaPaiIsNull() {
+		return pesquisaPaiIsNull;
+	}
+
+	public void setPesquisaPaiIsNull(boolean pesquisaPaiIsNull) {
+		this.pesquisaPaiIsNull = pesquisaPaiIsNull;
+	}
+
+	public boolean isPesquisaPaiIsNotNull() {
+		return pesquisaPaiIsNotNull;
+	}
+
+	public void setPesquisaPaiIsNotNull(boolean pesquisaPaiIsNotNull) {
+		this.pesquisaPaiIsNotNull = pesquisaPaiIsNotNull;
+	}
+
+	public boolean isPesquisaDescricaoIsNull() {
+		return pesquisaDescricaoIsNull;
+	}
+
+	public void setPesquisaDescricaoIsNull(boolean pesquisaDescricaoIsNull) {
+		this.pesquisaDescricaoIsNull = pesquisaDescricaoIsNull;
+	}
+
+	public boolean isPesquisaDescricaoIsNotNull() {
+		return pesquisaDescricaoIsNotNull;
+	}
+
+	public void setPesquisaDescricaoIsNotNull(boolean pesquisaDescricaoIsNotNull) {
+		this.pesquisaDescricaoIsNotNull = pesquisaDescricaoIsNotNull;
+	}
+
+	
 }

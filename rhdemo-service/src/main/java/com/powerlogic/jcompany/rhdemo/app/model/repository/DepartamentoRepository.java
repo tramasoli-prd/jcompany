@@ -3,9 +3,12 @@ package com.powerlogic.jcompany.rhdemo.app.model.repository;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.metamodel.ManagedType;
 
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
+import com.powerlogic.jcompany.core.model.qbe.PropertySelector;
+import com.powerlogic.jcompany.core.model.qbe.SearchParameters;
 import com.powerlogic.jcompany.core.model.repository.PlcAbstractRepository;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.DepartamentoEntity;
 
@@ -26,49 +29,68 @@ public class DepartamentoRepository extends PlcAbstractRepository<Long, Departam
 	public List<DepartamentoEntity> findAll(DepartamentoEntity departamento) {
 
 		try {
+			SearchParameters sp = new SearchParameters();
+
+			if (departamento.isPesquisaPaiIsNull()) {
+
+				// Testando com departamento pai is null -------
+				ManagedType<DepartamentoEntity> mt = getEntityManager().getMetamodel().entity(DepartamentoEntity.class);
+				PropertySelector<DepartamentoEntity, Object> ps = PropertySelector.newPropertySelector(mt.getAttribute("departamentoPai"));
+				ps.selected((Object)null);
+				sp.addProperty(ps);
+				// ------
+
+			} 
 			
-//			CriteriaBuilder builder = criteriaBuilder();
-//
-//			CriteriaQuery<DepartamentoEntity> query = builder.createQuery(getEntityType());
-//
-//			Root<DepartamentoEntity> from = query.from(getEntityType());
-//
-//			//TODO: Colocar generico no framework...
-//			List<Predicate> predicates= new ArrayList<Predicate>();
-//
-//			Predicate situacao = builder.equal(from.get(ConstantUtil.QUERY_PARAM_SITUACAO), PlcSituacao.A);
-//		    predicates.add(situacao);
-//			
-//			if(StringUtils.isNoneBlank(departamento.getDescricao())) {
-//			    Predicate nome = builder.like(from.<String>get("descricao"), departamento.getDescricao());
-//			    predicates.add(nome);
-//			}
-//			
-//			if(departamento.getDepartamentoPai() != null) {
-//			    Predicate departamentoPai = builder.equal(from.<DepartamentoEntity>get("departamentoPai"), departamento.getDepartamentoPai());
-//			    predicates.add(departamentoPai);
-//			}
-//			 
-//			query.where(predicates.toArray(new Predicate[]{}));
-//			
-//			return createQuery(query).getResultList();
-			
-			return find(departamento);
-			
+			if (departamento.isPesquisaPaiIsNotNull()){
+
+				// Testando com departamento pai is not null -------
+				ManagedType<DepartamentoEntity> mt = getEntityManager().getMetamodel().entity(DepartamentoEntity.class);
+				PropertySelector<DepartamentoEntity, Object> ps = PropertySelector.newPropertySelector(mt.getAttribute("departamentoPai"));
+				ps.withoutNull();
+				sp.addProperty(ps);
+				// ------
+
+			}
+
+			if (departamento.isPesquisaDescricaoIsNull()){
+
+				// Testando com descricao is null -------
+				ManagedType<DepartamentoEntity> mt = getEntityManager().getMetamodel().entity(DepartamentoEntity.class);
+				PropertySelector<DepartamentoEntity, String> ps = PropertySelector.newPropertySelector(mt.getAttribute("descricao"));
+				ps.selected((String)null);
+				sp.addProperty(ps);
+				// ------
+
+			} 
+
+			if (departamento.isPesquisaDescricaoIsNotNull()){
+
+				// Testando com descricao is not null -------
+				ManagedType<DepartamentoEntity> mt = getEntityManager().getMetamodel().entity(DepartamentoEntity.class);
+				PropertySelector<DepartamentoEntity, String> ps = PropertySelector.newPropertySelector(mt.getAttribute("descricao"));
+				ps.withoutNull();
+				sp.addProperty(ps);
+				// ------
+
+			}
+
+			return find(departamento, sp);
+
 		} catch (PlcException e) {
 			throw e;
 		} catch (Exception e) {
 			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
 		}
-		
+
 	}
 
-	
+
 	public DepartamentoEntity findByRoot(Long id) {
 		//Buscar pelo Pai
 		return null;
 	}
-	
+
 	@Override
 	public List<DepartamentoEntity> findAll() throws PlcException {
 		//throw AppErrorMessage.TESTE_MESSAGE_ERROR_APP_01.create();

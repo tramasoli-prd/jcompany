@@ -13,6 +13,7 @@ package com.powerlogic.jcompany.core.model.entity;
 import java.io.Serializable;
 
 import javax.persistence.MappedSuperclass;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * 
@@ -28,6 +29,7 @@ public abstract class PlcBaseEntity<PK extends Serializable> implements IPlcEnti
 	private static final long serialVersionUID = 1L;
  
  
+	@XmlTransient
 	@Override
 	public boolean isIdSet() {
 		if(getId()!=null)
