@@ -1,10 +1,11 @@
 <!doctype html>
-<html ng-app="rhdemo">
+<html ng-app="rhdemo" lang="pt_BR">
 <head>
 <meta charset="utf-8">
 <title>RHDEMO</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
+<base href="#{contextUrl}" />
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
@@ -18,111 +19,17 @@
 <!-- css files will be automatically insert here -->
 <!-- endinject -->
 <!-- endbuild -->
+
 </head>
-<body ng-controller="AppController">
+<body >
 	<!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-	<!-- BEGIN Page Wrapper -->
-	<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+	
 
-		<!-- Sidebar -->
-		<div id="sidebar-wrapper">
-			<ul class="sidebar">
-				<li class="sidebar-main"><a ng-click="toggleSidebar()">
-						RhDemo <span class="menu-icon glyphicon glyphicon-transfer"></span>
-				</a></li>
+	<div ui-view></div>
 
-				<li ng-class="getMenuItemPropClasses(item)"
-					ng-repeat="item in menuItems | orderBy:'position'"
-					ng-init="pIndex = $index"
-					ng-include="'app/components/template/menu-template.html'"
-					ng-click="toggleCollapse(pIndex, true)"></li>
-
-
-			</ul>
-			<div class="sidebar-footer">
-				<div class="col-xs-4">
-					<a href="http://www.powerlogic.com.br" target="_blank">
-						Powerlogic </a>
-				</div>
-				<div class="col-xs-4">
-					<a href="javascript:alert('Em desenvolvimento, volte em breve')">
-						Ajuda </a>
-				</div>
-				<div class="col-xs-4">
-					<a href="#" ng-click="logout()" title="Desconectar"> <i
-						class="fa fa-power-off fa-lg"></i> Sair
-					</a>
-				</div>
-			</div>
-		</div>
-		<!-- End Sidebar -->
-
-		<div id="content-wrapper">
-			<div class="page-content">
-
-				<!-- Header Bar -->
-				<div class="row header">
-					<div class="col-xs-12">
-						<div class="user pull-right">
-							<div id="profile" ng-mouseover="profileA()"
-								ng-mouseleave="profileI()" class="item dropdown">
-								<a class="dropdown-toggle"> <img
-									src="assets/images/avatar.jpg">
-								</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li class="dropdown-header">{{getUser().name}}</li>
-									<!--li class="divider"></li>
-                      <li class="link">
-                        <a >
-                          Profile
-                        </a>
-                      </li-->
-									<li class="divider"></li>
-									<li class="dropdown-header">
-										<div plc-language-select></div>
-									</li>
-									<li class="divider"></li>
-									<li class="link"><a ng-click="logout()" href="#">
-											Logout </a></li>
-								</ul>
-
-							</div>
-
-							<div id="notification" ng-mouseover="notificationA()"
-								ng-mouseleave="notificationI()" class="item dropdown"
-								style="margin-right: 10px;">
-								<a href="#" class="dropdown-toggle"> <i class="fa fa-bell-o"></i>
-								</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li class="dropdown-header">Notificações</li>
-									<li class="divider"></li>
-									<li><a>Sem Notificações</a></li>
-								</ul>
-							</div>
-
-						</div>
-						<div class="meta">
-							<div class="page">P&aacute;gina Principal</div>
-							<div class="breadcrumb-links">Inicial / Painel</div>
-
-						</div>
-					</div>
-
-				</div>
-				<!-- End Header Bar -->
-
-				<div ui-view></div>
-
-			</div>
-			<!-- End Page Content -->
-		</div>
-		<!-- End Content Wrapper -->
-
-	</div>
-	<!-- End Page Wrapper -->
 
 	<!-- build:js(src) scripts/vendor.js -->
 	<!-- bower:js -->

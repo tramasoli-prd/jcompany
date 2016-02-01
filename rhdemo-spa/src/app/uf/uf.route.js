@@ -11,11 +11,20 @@
 
 		$stateProvider
 		.state('uf', {
+			abstract: true,
 			url: '/uf',
+			templateUrl: 'app/app.html',
+			controller: 'AppController',
+			controllerAs: 'appController'	
+		});
+		
+		$stateProvider
+		.state('uf.tab', {
+			url: '/uftab',
 			templateUrl: 'app/uf/uf.html',
 			controller: 'UfController',
 			controllerAs: 'ufController',
-			access: 'public'
+			access: 'private'
 		});
 	}
 

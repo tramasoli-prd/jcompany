@@ -12,7 +12,9 @@
 		.state('departamento', {
 			abstract: true,
 			url: '/departamento',
-			templateUrl: 'app/components/template/single-page-template.html'
+			templateUrl: 'app/app.html',
+			controller: 'AppController',
+			controllerAs: 'appController'	
 		});
 
 		$stateProvider

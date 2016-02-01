@@ -8,14 +8,14 @@
   {
     "text": "Pagina Inicial",
     "position": 1,
-    "sref": "home",
+    "sref": "app.inicial",
     "icon": "menu-icon fa fa-tachometer",
     "translate": "label.menu.inicial"
   },
   {
     "text": "Unidade Federativa",
     "position" : 2,
-    "sref": "uf",
+    "sref": "uf.tab",
     "icon": "menu-icon fa fa-compass",
     "translate": "label.menu.uf"
   },

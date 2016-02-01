@@ -37,12 +37,12 @@
 		<shared-cache-mode>NONE</shared-cache-mode>
 
 		<properties>
-			<!-- Websphere Liberty  -->
-			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.OraclePlatform" />
+			<!-- Websphere Liberty
+			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.OraclePlatform" />   -->
 			 
-			<!-- Weblogic  
+			<!-- Weblogic  -->
 			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.oracle.Oracle11Platform" />
-			-->
+			
 			<property name="eclipselink.target-server" value="WebLogic" />
 			<property name="eclipselink.logging.logger" value="DefaultLogger" />
 			<property name="eclipselink.logging.level" value="ALL" />

@@ -12,7 +12,9 @@
 		.state('funcionario', {
 			abstract: true,
 			url: '/funcionario',
-			templateUrl: 'app/components/template/single-page-template.html'
+			templateUrl: 'app/app.html',
+			controller: 'AppController',
+			controllerAs: 'appController'	
 		});
 
 		$stateProvider

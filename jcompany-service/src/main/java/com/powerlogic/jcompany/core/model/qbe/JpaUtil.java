@@ -263,6 +263,8 @@ public class JpaUtil {
             throw propagate(e);
         }
     }
+    
+    
 
     public <T, A> SingularAttribute<? super T, A> attribute(ManagedType<? super T> mt, Attribute<? super T, A> attr) {
         return mt.getSingularAttribute(attr.getName(), attr.getJavaType());
