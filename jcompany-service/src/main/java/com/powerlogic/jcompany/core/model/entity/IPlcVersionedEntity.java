@@ -13,8 +13,14 @@ package com.powerlogic.jcompany.core.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
-
+/**
+ * 
+ * Interface para utilizar a Auditoria Mínima
+ * 
+ * @author Powerlogic
+ * @category Entity
+ * @since 1.0.0
+ */
 public interface IPlcVersionedEntity<PK extends Serializable> extends IPlcEntityModel<PK> {
 
 	Integer getVersao();

@@ -12,6 +12,14 @@ package com.powerlogic.jcompany.core.model.entity;
 
 import java.io.Serializable;
 
+/**
+ * 
+ * Interface Base para IOC a partir das chamadas REST
+ * 
+ * @author Powerlogic
+ * @category Entity
+ * @since 1.0.0
+ */
 public interface IPlcEntityModel<PK extends Serializable> extends Serializable {
 
 	PK getId();
