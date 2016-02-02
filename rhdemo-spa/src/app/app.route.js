@@ -35,7 +35,8 @@
 			controllerAs: 'inicialController'
 		});
 		
-
+		
+		$locationProvider.html5Mode(true)
 		$urlRouterProvider.otherwise('/app/inicial');
 	}
 
