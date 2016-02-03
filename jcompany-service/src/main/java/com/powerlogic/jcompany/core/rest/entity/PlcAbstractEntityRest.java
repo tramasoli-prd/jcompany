@@ -1,12 +1,12 @@
 /*  																													
 	    			       Jaguar-jCompany Developer Suite.																		
 			    		        Powerlogic 2015-2020.
-			    		    
+
 		Please read licensing information in your installation directory.
 		Contact Powerlogic for more information or contribute with this project. 
 			site...: www.powerlogic.org																								
 			e-mail.: suporte@powerlogic.com.br
-*/
+ */
 
 package com.powerlogic.jcompany.core.rest.entity;
 
@@ -16,7 +16,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,16 +29,14 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.UriInfo;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
-import org.apache.commons.beanutils.ConvertUtilsBean;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.beanutils.PropertyUtilsBean;
-import org.apache.commons.beanutils.converters.DateConverter;
-import org.apache.commons.beanutils.converters.DateTimeConverter;
 import org.apache.commons.lang3.StringUtils;
 
 import com.powerlogic.jcompany.commons.util.message.PlcMsgUtil;
 import com.powerlogic.jcompany.commons.util.validation.PlcValidationConstraintsDTO;
 import com.powerlogic.jcompany.commons.util.validation.PlcValidationInvariantUtil;
+import com.powerlogic.jcompany.core.bean.PlcConvertUtilsBean;
 import com.powerlogic.jcompany.core.commons.search.PlcPagedResult;
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
@@ -82,11 +79,11 @@ public abstract class PlcAbstractEntityRest <PK extends Serializable, E extends 
 		}
 
 		List<E> lista = getEntityService().findAll(entity);
-		
+
 		if (lista==null || lista.size()==0) {
 			msgUtil.msg(PlcBeanMessages.NENHUM_REGISTRO_ENCONTRADO_022, PlcMessageType.INFO);
 		}
-		
+
 		return lista;
 	}
 
@@ -167,19 +164,12 @@ public abstract class PlcAbstractEntityRest <PK extends Serializable, E extends 
 
 
 	public BeanUtilsBean getBeanUtilsBean() {
-
 		if (beanUtilsBean==null) {
-			DateTimeConverter dtConverter = new DateConverter();
-			dtConverter.setPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-
-			ConvertUtilsBean convertUtilsBean = new ConvertUtilsBean();
-			convertUtilsBean.deregister(Date.class);
-			convertUtilsBean.register(dtConverter, Date.class);
-
-			beanUtilsBean = new BeanUtilsBean(convertUtilsBean, new PropertyUtilsBean());
+			beanUtilsBean = new BeanUtilsBean(new PlcConvertUtilsBean(), new PropertyUtilsBean());
 		}
 		return beanUtilsBean;
 	}
+
 
 	public void setBeanUtilsBean(BeanUtilsBean beanUtilsBean) {
 		this.beanUtilsBean = beanUtilsBean;
