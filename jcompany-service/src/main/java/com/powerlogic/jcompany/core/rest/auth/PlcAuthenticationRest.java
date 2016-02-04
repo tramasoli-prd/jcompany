@@ -1,12 +1,12 @@
 /*  																													
 	    			       Jaguar-jCompany Developer Suite.																		
 			    		        Powerlogic 2015-2020.
-			    		    
+
 		Please read licensing information in your installation directory.
 		Contact Powerlogic for more information or contribute with this project. 
 			site...: www.powerlogic.org																								
 			e-mail.: suporte@powerlogic.com.br
-*/
+ */
 
 package com.powerlogic.jcompany.core.rest.auth;
 
@@ -37,131 +37,131 @@ import com.powerlogic.jcompany.core.rest.PlcAbstractRest;
 @Consumes({ MediaType.APPLICATION_JSON })
 public class PlcAuthenticationRest extends PlcAbstractRest
 {
-   @Inject
-   private PlcAuthenticationProvider authProvider;
+	@Inject
+	private PlcAuthenticationProvider authProvider;
 
-   @GET
-   @Path("/user")
-   public PlcAuthenticatedUserInfo user(@Context HttpServletRequest request) throws PlcException
-   {
-      return getUserInfo(request);
-   }
+	@GET
+	@Path("/user")
+	public PlcAuthenticatedUserInfo user(@Context HttpServletRequest request) throws PlcException
+	{
+		return getUserInfo(request);
+	}
 
 
 
-   @POST
-   @Path("/login")
-   @PlcNotAuthenticated
-   public PlcAuthenticatedUserInfo login(@Context HttpServletRequest request, Map<String, String> data)
-            throws PlcException
-   {
-      String username = data.get("username");
-      String password = data.get("password");
+	@POST
+	@Path("/login")
+	@PlcNotAuthenticated
+	public PlcAuthenticatedUserInfo login(@Context HttpServletRequest request, Map<String, String> data)
+			throws PlcException
+	{
+		String username = data.get("username");
+		String password = data.get("password");
 
-      if (username == null || username.isEmpty() || password == null || password.isEmpty())
-      {
-         throw new WebApplicationException(Status.BAD_REQUEST);
-      }
-      // authenticate!
-      try
-      {
-    	  if (request.getUserPrincipal()==null) {
-    		  request.login(username, password);
-    	  }
-      }
-      catch (Exception e)
-      {
-         // e.printStackTrace();
-         userLogout(request);
-         if (e.getCause() instanceof FailedLoginException)
-         {
-            throw PlcBeanMessages.FALHA_LOGIN_001.create();
-         }
-         throw PlcBeanMessages.FALHA_OPERACAO_003.create();
-      }
-      // create user info!
-      return userLogin(request);
-   }
+		if (username == null || username.isEmpty() || password == null || password.isEmpty())
+		{
+			throw new WebApplicationException(Status.BAD_REQUEST);
+		}
+		// authenticate!
+		try
+		{
+			if (request.getUserPrincipal()==null) {
+				request.login(username, password);
+			}
+		}
+		catch (Exception e)
+		{
+			// e.printStackTrace();
+			userLogout(request);
+			if (e.getCause() instanceof FailedLoginException)
+			{
+				throw PlcBeanMessages.FALHA_LOGIN_001.create();
+			}
+			throw PlcBeanMessages.FALHA_OPERACAO_003.create();
+		}
+		// create user info!
+		return userLogin(request);
+	}
 
-   @POST
-   @Path("/logout")
-   @PlcNotAuthenticated
-   public boolean logout(@Context HttpServletRequest request)
-   {
-      PlcAuthenticatedUserInfo userInfo = userLogout(request);
+	@POST
+	@Path("/logout")
+	@PlcNotAuthenticated
+	public boolean logout(@Context HttpServletRequest request)
+	{
+		PlcAuthenticatedUserInfo userInfo = userLogout(request);
 
-      if (userInfo != null)
-      {
-         return true;
-      }
-      return false;
-   }
+		if (userInfo != null)
+		{
+			return true;
+		}
+		return false;
+	}
 
-   protected PlcAuthenticatedUserInfo getUserInfo(HttpServletRequest request) throws PlcException
-   {
-      HttpSession session = request.getSession(false);
+	protected PlcAuthenticatedUserInfo getUserInfo(HttpServletRequest request) throws PlcException
+	{
+		HttpSession session = request.getSession(false);
 
-      if (session != null)
-      {
-         PlcAuthenticatedUserInfo user = (PlcAuthenticatedUserInfo) session.getAttribute(PlcAuthenticatedUserInfo.PROPERTY);
-         return user;
-      }
-      return null;
-   }
+		if (session != null)
+		{
+			PlcAuthenticatedUserInfo user = (PlcAuthenticatedUserInfo) session.getAttribute(PlcAuthenticatedUserInfo.PROPERTY);
+			return user;
+		}
+		return null;
+	}
 
-   @GET
-   @Path("/checkSession")
-   @PlcNotAuthenticated
-   public PlcAuthenticatedUserInfo checkSession(@Context HttpServletRequest request) throws PlcException
-   {
-      if (request != null)
-      {
-         HttpSession session = request.getSession(false);
+	@GET
+	@Path("/checkSession")
+	@PlcNotAuthenticated
+	public PlcAuthenticatedUserInfo checkSession(@Context HttpServletRequest request) throws PlcException
+	{
+		if (request != null)
+		{
+			HttpSession session = request.getSession(false);
 
-         if (session != null)
-         {
-            return (PlcAuthenticatedUserInfo) session.getAttribute(PlcAuthenticatedUserInfo.PROPERTY);
-         }
-      }
-      return null;
-   }
+			if (session != null)
+			{
+				return (PlcAuthenticatedUserInfo) session.getAttribute(PlcAuthenticatedUserInfo.PROPERTY);
+			}
+		}
+		return null;
+	}
 
-   protected PlcAuthenticatedUserInfo userLogin(HttpServletRequest request) throws PlcException
-   {
-      try
-      {
-         Principal userPrincipal = request.getUserPrincipal();
-         PlcAuthenticatedUserInfo userInfo;
-         userInfo = authProvider.createUser(userPrincipal, request.getRemoteHost());
-         request.getSession().setAttribute(PlcAuthenticatedUserInfo.PROPERTY, userInfo);
-         return userInfo;
-      }
-      catch (PlcException e)
-      {
-         userLogout(request);
-         throw e;
-      }
-      catch (Exception e)
-      {
-         userLogout(request);
-         throw PlcBeanMessages.FALHA_OPERACAO_003.create();
-      }
-   }
+	protected PlcAuthenticatedUserInfo userLogin(HttpServletRequest request) throws PlcException
+	{
+		try
+		{
+			Principal userPrincipal = request.getUserPrincipal();
+			PlcAuthenticatedUserInfo userInfo;
+			userInfo = authProvider.createUser(userPrincipal, request.getRemoteHost());
+			request.getSession().setAttribute(PlcAuthenticatedUserInfo.PROPERTY, userInfo);
+			return userInfo;
+		}
+		catch (PlcException e)
+		{
+			userLogout(request);
+			throw e;
+		}
+		catch (Exception e)
+		{
+			userLogout(request);
+			throw PlcBeanMessages.FALHA_OPERACAO_003.create();
+		}
+	}
 
-   protected PlcAuthenticatedUserInfo userLogout(HttpServletRequest request)
-   {
-      HttpSession session = request.getSession(false);
+	protected PlcAuthenticatedUserInfo userLogout(HttpServletRequest request)
+	{
+		HttpSession session = request.getSession(false);
 
-      if (session != null)
-      {
-         PlcAuthenticatedUserInfo userInfo = (PlcAuthenticatedUserInfo) session.getAttribute(PlcAuthenticatedUserInfo.PROPERTY);
-         if (userInfo != null)
-         {
-            session.removeAttribute(PlcAuthenticatedUserInfo.PROPERTY);
-         }
-         session.invalidate();
-         return userInfo;
-      }
-      return null;
-   }
+		if (session != null)
+		{
+			PlcAuthenticatedUserInfo userInfo = (PlcAuthenticatedUserInfo) session.getAttribute(PlcAuthenticatedUserInfo.PROPERTY);
+			if (userInfo != null)
+			{
+				session.removeAttribute(PlcAuthenticatedUserInfo.PROPERTY);
+			}
+			session.invalidate();
+			return userInfo;
+		}
+		return null;
+	}
 }
