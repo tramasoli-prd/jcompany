@@ -5,82 +5,85 @@
 	angular
 	.module('rhdemo')
 	.controller('AppController', AppController);
-
-	AppController.$inject = ['$scope', '$cookies','$state', '$window', 'PlcAuthService', '$stateParams', 'PlcMenuLoader', 'PlcMenu'];
-
-	function AppController($scope, $cookies, $state, $window, PlcAuthService, $stateParams, PlcMenuLoader, PlcMenu) {
-
-		this.getUser = PlcAuthService.getUser;
-		
+	
+	/** @ngInject */
+	function AppController($rootScope, $scope, $cookies, $state, $window, PlcAuthService, $stateParams, PlcMenuLoader, PlcMenu) {
+		var vm = this;
+		vm.toggle =  true;
+		vm.isLogged = PlcAuthService.isLogged();
+		vm.menuItems = [];
 		
 		/**  
 		 * Sidebar Toggle & Cookie Control
 		 */
 		var mobileView = 992;
 
-		$scope.getWidth = function() {
+		vm.getWidth = function() {
 			return window.innerWidth;
 		};
+		
+		
 
-		$scope.$watch($scope.getWidth, function(newValue) {
+		$scope.$watch(vm.getWidth, function(newValue) {
 			if (newValue >= mobileView) {
 				if (angular.isDefined($cookies.get('toggle'))) {
-					$scope.toggle = ! $cookies.get('toggle') ? false : true;
+					vm.toggle = ! $cookies.get('toggle') ? false : true;
 				} else {
-					$scope.toggle = true;
+					vm.toggle = true;
 				}
 			} else {
-				$scope.toggle = false;
+				vm.toggle = false;
 			}
 
 		}); 
 
-		$scope.toggleSidebar = function() {
-			$scope.toggle = !$scope.toggle;
-			$cookies.put('toggle', $scope.toggle);
+		vm.toggleSidebar = function() {
+			vm.toggle = !vm.toggle;
+			$cookies.put('toggle', vm.toggle);
 		};
 
 		window.onresize = function() {
 			$scope.$apply();
 		};
 
-		$scope.logout = function() {  
+		vm.logout = function() {  
 			PlcAuthService.logout()  
 			.then(function() { // not logged
-				$window.location.href = '/';   
+				$state.go('login');   
 			});
 
 		};
 
-		activate();
 
 		////////////////
-
-		function activate() {
+		var activate = function () {
 			// Load menu from json file
 			// ----------------------------------- 
-			PlcMenu.addMenuPath(PlcMenuLoader.getMenuPaths());
-			$scope.menuItems = PlcMenu.getMenuArray();
-
+			PlcMenu.clear();
+			var promisseMenu = PlcMenu.addMenuPath(PlcMenuLoader.getMenuPaths());
+			promisseMenu.then(function(menus) {
+				vm.menuItems = menus;
+		    });
 		}
-
 		
 
-		$scope.profileA = function() {  
+		vm.profileShow = function() {  
 			document.getElementById('profile').className= "item dropdown open";
 		};
 
-		$scope.profileI = function() {  
+		vm.profileHide = function() {  
 			document.getElementById('profile').className= "item dropdown";
 		};
 
-		$scope.notificationA = function() {  
+		vm.notificationShow = function() {  
 			document.getElementById('notification').className= "item dropdown open";
 		};
 
-		$scope.notificationI = function() {  
+		vm.notificationHide = function() {  
 			document.getElementById('notification').className= "item dropdown";
 		};
+		
+		activate();
 
 	}
 

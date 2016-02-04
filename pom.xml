@@ -24,7 +24,8 @@
  	<modules>
 		<module>jcompany-bom</module>
 		<module>jcompany-service</module>
-		<module>rhdemo-service</module>
+		<module>jcompany-unit-test</module>
+		<module>jcompany-service-archetype</module>
 	</modules>
  
 	<!-- 

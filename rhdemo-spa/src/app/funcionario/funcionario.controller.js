@@ -42,8 +42,8 @@
 
 
 		$scope.columnDefs = [
-		                     { field: 'id', displayName: 'Id', width: '10%'},
-		                     { field: 'nome', displayName: 'Nome', width: '25%'},
+		                     { field: 'id', displayName: 'Id', width: '5%'},
+		                     { field: 'nome', displayName: 'Nome', width: '20%'},
 		                     { field: 'email', displayName: 'E-mail', width: '20%'},
 		                     { field: 'cpf', displayName: 'CPF', width: '15%'},
 		                     { field: 'dataNascimento', displayName: 'Nascimento', width: '10%', cellFilter: 'date:\'dd/MM/yyyy\''},

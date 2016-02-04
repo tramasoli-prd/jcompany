@@ -17,8 +17,18 @@ import javax.persistence.PersistenceContext;
 
 import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 
-public abstract class PlcAbstractRepository<PK extends Serializable, E extends IPlcEntityModel<PK>> extends PlcBaseAbstractRepository<PK, E>
-{
+/**
+ * 
+ * Base Abstrata para serviços ou objetos de negócio que fazem o acesso aos repositorios de dados.<p>
+ * 
+ * Injeção da Entity Manager.
+ * 
+ * @category Repository
+ * @since 1.0.0
+ * @author Powerlogic
+ * 
+ */
+public abstract class PlcAbstractRepository<PK extends Serializable, E extends IPlcEntityModel<PK>> extends PlcBaseAbstractRepository<PK, E> {
 
 	@PersistenceContext(unitName = "jcompany-persistence-unit")
 	private EntityManager entityManager;

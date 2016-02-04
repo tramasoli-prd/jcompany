@@ -20,14 +20,20 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import com.powerlogic.jcompany.core.listener.PlcVersionedListener;
-import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 
+/**
+ * 
+ * Ancestral para todas as classes de Entidade (Entity) da aplicação utilizando a Auditoria Mínima.
+ * 
+ * @author Powerlogic
+ * @category Entity
+ * @since 1.0.0
+ */
 @MappedSuperclass
 @EntityListeners(PlcVersionedListener.class)
 @Access(AccessType.FIELD)
@@ -83,6 +89,5 @@ public abstract class PlcVersionedEntity<PK extends Serializable> extends PlcBas
 	public void setDataAtualizacao(Date dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
 	}
-
 	
 }
