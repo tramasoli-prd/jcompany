@@ -10,6 +10,7 @@
 
 package com.powerlogic.jcompany.core.rest.messages;
 
+import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.powerlogic.jcompany.core.messages.PlcMessageMap;
@@ -17,6 +18,7 @@ import com.powerlogic.jcompany.core.messages.PlcMessageMap;
 @XmlRootElement
 public class PlcResponseEntity {
 
+	@XmlAnyElement(lax=true)
 	private Object entity;
 	
 	private PlcMessageMap messageMap;

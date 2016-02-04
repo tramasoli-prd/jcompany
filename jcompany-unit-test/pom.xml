@@ -18,6 +18,8 @@
 		<version.eclipselink>2.6.1</version.eclipselink>
 		<version.glassfish>4.1.1</version.glassfish>
 		<version.arquillian-glassfish-embedded>1.0.0.CR4</version.arquillian-glassfish-embedded>
+		<version.arquillian.rest.client>1.0.0.Alpha4</version.arquillian.rest.client>
+		<version.jackson.module.jaxb.annotations>2.5.4</version.jackson.module.jaxb.annotations>
 
 	</properties>
 
@@ -34,6 +36,11 @@
 			<dependency>
 				<groupId>org.jboss.arquillian.junit</groupId>
 				<artifactId>arquillian-junit-container</artifactId>
+				<version>${version.arquillian}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.arquillian.test</groupId>
+				<artifactId>arquillian-test-spi</artifactId>
 				<version>${version.arquillian}</version>
 			</dependency>
 			<dependency>
@@ -57,6 +64,18 @@
 				<groupId>org.jboss.arquillian.container</groupId>
 				<artifactId>arquillian-glassfish-embedded-3.1</artifactId>
 				<version>${version.arquillian-glassfish-embedded}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.arquillian.extension</groupId>
+				<artifactId>arquillian-rest-client-impl-jersey</artifactId>
+				<version>${version.arquillian.rest.client}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.module</groupId>
+				<artifactId>jackson-module-jaxb-annotations</artifactId>
+				<version>${version.jackson.module.jaxb.annotations}</version>
 			</dependency>
 
 		</dependencies>
@@ -111,6 +130,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.jboss.arquillian.test</groupId>
+			<artifactId>arquillian-test-spi</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>powerlogic.jaguar.jcompany</groupId>
 			<artifactId>jcompany-bom</artifactId>
 			<version>${version.jcompany}</version>
@@ -123,6 +147,28 @@
 			<artifactId>jcompany-service</artifactId>
 			<version>${version.jcompany}</version>
 		</dependency>
+
+
+		<dependency>
+			<groupId>org.jboss.arquillian.extension</groupId>
+			<artifactId>arquillian-rest-client-impl-jersey</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>arquillian-core-spi</artifactId>
+					<groupId>org.jboss.arquillian.core</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>arquillian-container-test-spi</artifactId>
+					<groupId>org.jboss.arquillian.container</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+		</dependency>
+
 
 	</dependencies>
 
