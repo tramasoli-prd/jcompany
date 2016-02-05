@@ -81,8 +81,9 @@ public class PlcMsgUtil {
 	}
 
 	/**
-	 * Retorna Mensagens agrupadas que ocorreram no nível da requisição.
-	 * @return Mapa com as Mensgens que ocorreram no nível da requisição.
+	 * 
+	 * Limpa a lista de mensagens já adicionadas na pilha.
+	 * 
 	 */
 	public PlcMessageMap clearMensagens() {
 		return mensagens = new PlcMessageMap();
