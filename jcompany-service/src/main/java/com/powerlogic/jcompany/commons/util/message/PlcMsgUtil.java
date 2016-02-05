@@ -80,4 +80,11 @@ public class PlcMsgUtil {
 		}
 	}
 
+	/**
+	 * Retorna Mensagens agrupadas que ocorreram no nível da requisição.
+	 * @return Mapa com as Mensgens que ocorreram no nível da requisição.
+	 */
+	public PlcMessageMap clearMensagens() {
+		return mensagens = new PlcMessageMap();
+	}
 }
