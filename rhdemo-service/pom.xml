@@ -39,7 +39,10 @@
 									<phase>generate-sources</phase>
 									<configuration>
 										<tasks>
-										<exec executable="cmd" dir="\${project.basedir}\..\rhdemo-spa\" >
+										<exec executable="cmd" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="windows">
+										    <arg value="/c gulp build"/>
+										  </exec>
+										  <exec executable="karma" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
 										    <arg value="/c gulp build"/>
 										  </exec>
 										</tasks>
