@@ -39,9 +39,9 @@
 									<phase>generate-sources</phase>
 									<configuration>
 										<tasks>
-											<exec dir="${project.basedir}" executable="buildprod.bat"
-												failonerror="true">
-											</exec>
+										<exec executable="cmd" dir="\${project.basedir}\..\rhdemo-spa\" >
+										    <arg value="/c gulp build"/>
+										  </exec>
 										</tasks>
 									</configuration>
 									<id>prod</id>
@@ -51,7 +51,6 @@
 								</execution>
 							</executions>
 						</plugin>
-
 						<plugin>
 							<artifactId>maven-resources-plugin</artifactId>
 							<executions>
