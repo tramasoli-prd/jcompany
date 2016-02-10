@@ -15,6 +15,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.security.auth.login.FailedLoginException;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
@@ -160,6 +161,11 @@ public class PlcAuthenticationRest extends PlcAbstractRest
 				session.removeAttribute(PlcAuthenticatedUserInfo.PROPERTY);
 			}
 			session.invalidate();
+			try {
+				request.logout();
+			} catch (ServletException e) {
+				throw PlcBeanMessages.FALHA_OPERACAO_003.create();
+			}
 			return userInfo;
 		}
 		return null;
