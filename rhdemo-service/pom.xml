@@ -39,8 +39,22 @@
 									<phase>generate-sources</phase>
 									<configuration>
 										<tasks>
+										<!-- WINDOWS -->
+										<exec executable="cmd" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="windows">
+										    <arg value="/c npm install"/>
+										  </exec>
+										<exec executable="cmd" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="windows">
+										    <arg value="/c bower install"/>
+										  </exec>
 										<exec executable="cmd" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="windows">
 										    <arg value="/c gulp build"/>
+										  </exec>
+										<!-- UNIX -->
+										  <exec executable="karma" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
+											<arg value="/c npm install"/>
+										  </exec>
+										  <exec executable="karma" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
+											<arg value="/c bower install"/>
 										  </exec>
 										  <exec executable="karma" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
 										    <arg value="/c gulp build"/>
