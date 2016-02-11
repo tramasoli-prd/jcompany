@@ -80,4 +80,12 @@ public class PlcMsgUtil {
 		}
 	}
 
+	/**
+	 * 
+	 * Limpa a lista de mensagens já adicionadas na pilha.
+	 * 
+	 */
+	public PlcMessageMap clearMensagens() {
+		return mensagens = new PlcMessageMap();
+	}
 }

@@ -10,8 +10,10 @@
 
 package com.powerlogic.jcompany.core.rest.auth;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.container.DynamicFeature;
 import javax.ws.rs.container.ResourceInfo;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.FeatureContext;
 import javax.ws.rs.ext.Provider;
 
@@ -23,6 +25,10 @@ public class PlcAuthenticationFeature implements DynamicFeature
 {
    private static final Logger LOGGER = LoggerFactory.getLogger(PlcAuthenticationFeature.class);
 
+   @Context
+   private HttpServletRequest requestProxy;
+
+   
    @Override
    public void configure(ResourceInfo resourceInfo, FeatureContext context)
    {
@@ -38,7 +44,7 @@ public class PlcAuthenticationFeature implements DynamicFeature
 
    protected PlcAuthenticationFilter createFilter(PlcAuthenticated authenticated)
    {
-      return new PlcAuthenticationFilter(authenticated);
+      return new PlcAuthenticationFilter(authenticated, requestProxy);
    }
 
    private PlcAuthenticated getAuthenticated(ResourceInfo resourceInfo)
