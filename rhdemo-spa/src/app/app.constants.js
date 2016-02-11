@@ -5,7 +5,7 @@
 	.module('rhdemo')
 	.constant('$appName', 'RH DEMO')
 	.constant('$appVersion', '0.0.1')
-	.constant('$contextUrl', '/');
+	.constant('$contextUrl', '/rhdemo');
 
 	angular
 	.module('jcompany-view')

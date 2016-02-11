@@ -6,13 +6,13 @@
 	.config(UfRouterConfig);
 
 
-	function UfRouterConfig($stateProvider, $urlRouterProvider) {
+	function UfRouterConfig($stateProvider, $urlRouterProvider, $contextUrl) {
 
 
 		$stateProvider
 		.state('uf', {
 			abstract: true,
-			url: '/uf',
+			url: $contextUrl+'/uf',
 			templateUrl: 'app/app.html',
 			controller: 'AppController',
 			controllerAs: 'appController'	
