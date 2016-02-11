@@ -7,7 +7,7 @@
 		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>rhdemo-service</artifactId>
+	<artifactId>rhdemo</artifactId>
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>war</packaging>
 
