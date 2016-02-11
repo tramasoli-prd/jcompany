@@ -78,7 +78,7 @@
 										<goal>copy-resources</goal>
 									</goals>
 									<configuration>
-										<outputDirectory>${basedir}/target/rhdemo-service/</outputDirectory>
+										<outputDirectory>${basedir}/target/rhdemo/</outputDirectory>
 										<resources>
 											<resource>
 												<directory>../rhdemo-spa/dist/</directory>
@@ -89,6 +89,7 @@
 							</executions>
 						</plugin>
 					</plugins>
+					<finalName>rhdemo</finalName>
 			</build>
 		</profile>
 	</profiles>
