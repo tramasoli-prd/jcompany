@@ -24,15 +24,15 @@
 
 	<servlet>
 		<servlet-name>rest</servlet-name>
-		<!-- Weblogic  >
-		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class-->
+		<!-- Weblogic  -->
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		
 		<!-- JBOSS
 		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>  -->
 		
 		
-		<!-- Websphere Liberty  -->
-		<servlet-class>com.ibm.websphere.jaxrs.server.IBMRestServlet</servlet-class>
+		<!-- Websphere Liberty 
+		<servlet-class>com.ibm.websphere.jaxrs.server.IBMRestServlet</servlet-class> -->
 		
 		
 		<init-param>
