@@ -6,12 +6,12 @@
 	.config(DepartamentoRouterConfig);
 
 
-	function DepartamentoRouterConfig($stateProvider, $urlRouterProvider) {
+	function DepartamentoRouterConfig($stateProvider, $urlRouterProvider, $contextUrl) {
 
 		$stateProvider
 		.state('departamento', {
 			abstract: true,
-			url: '/departamento',
+			url: $contextUrl+'/departamento',
 			templateUrl: 'app/app.html',
 			controller: 'AppController',
 			controllerAs: 'appController'	

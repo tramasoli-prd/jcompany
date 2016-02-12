@@ -6,12 +6,12 @@
 	.config(FuncionarioRouterConfig);
 
 
-	function FuncionarioRouterConfig($stateProvider, $urlRouterProvider) {
+	function FuncionarioRouterConfig($stateProvider, $urlRouterProvider, $contextUrl) {
 
 		$stateProvider
 		.state('funcionario', {
 			abstract: true,
-			url: '/funcionario',
+			url: $contextUrl+'/funcionario',
 			templateUrl: 'app/app.html',
 			controller: 'AppController',
 			controllerAs: 'appController'	

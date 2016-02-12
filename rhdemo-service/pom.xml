@@ -1,14 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
- 	<parent>
+	<parent>
 		<groupId>powerlogic.jaguar.jcompany</groupId>
 		<artifactId>jcompany-bom</artifactId>
 		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>rhdemo-service</artifactId>
+	<artifactId>rhdemo</artifactId>
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>war</packaging>
 
@@ -23,7 +22,76 @@
 			<artifactId>jcompany-unit-test</artifactId>
 			<version>${version.jcompany}</version>
 			<scope>test</scope>
-		</dependency>				
+		</dependency>
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>prod</id>
+			<build>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-antrun-plugin</artifactId>
+							<version>1.7</version>
+							<executions>
+								<execution>
+									<phase>generate-sources</phase>
+									<configuration>
+										<tasks>
+										<!-- WINDOWS -->
+										<exec executable="cmd" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="windows">
+										    <arg value="/c npm install"/>
+										  </exec>
+										<exec executable="cmd" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="windows">
+										    <arg value="/c bower install"/>
+										  </exec>
+										<exec executable="cmd" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="windows">
+										    <arg value="/c gulp build"/>
+										  </exec>
+										<!-- UNIX -->
+										  <exec executable="karma" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
+											<arg value="/c npm install"/>
+										  </exec>
+										  <exec executable="karma" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
+											<arg value="/c bower install"/>
+										  </exec>
+										  <exec executable="karma" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
+										    <arg value="/c gulp build"/>
+										  </exec>
+										</tasks>
+									</configuration>
+									<id>prod</id>
+									<goals>
+										<goal>run</goal>
+									</goals>
+								</execution>
+							</executions>
+						</plugin>
+						<plugin>
+							<artifactId>maven-resources-plugin</artifactId>
+							<executions>
+								<execution>
+									<id>copy-resources</id>
+									<phase>prepare-package</phase>
+									<goals>
+										<goal>copy-resources</goal>
+									</goals>
+									<configuration>
+										<outputDirectory>${basedir}/target/rhdemo/</outputDirectory>
+										<resources>
+											<resource>
+												<directory>../rhdemo-spa/dist/</directory>
+											</resource>
+										</resources>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+					<finalName>rhdemo</finalName>
+			</build>
+		</profile>
+	</profiles>
 
 </project>

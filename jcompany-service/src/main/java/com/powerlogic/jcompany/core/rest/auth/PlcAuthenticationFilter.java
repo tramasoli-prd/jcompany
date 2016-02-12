@@ -34,9 +34,15 @@ public class PlcAuthenticationFilter implements ContainerRequestFilter
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException
 	{
-		PlcAuthenticatedUserInfo userInfo = (PlcAuthenticatedUserInfo)requestProxy.getSession().getAttribute(PlcAuthenticatedUserInfo.PROPERTY);
+		PlcAuthenticatedUserInfo userInfo = null;
+		try {
+			if (requestProxy!=null && requestProxy.getSession()!=null) {
+				userInfo = (PlcAuthenticatedUserInfo)requestProxy.getSession().getAttribute(PlcAuthenticatedUserInfo.PROPERTY);
+			} 
+		} catch(Exception e){}
 
-		if (userInfo == null)
+		// testar UserPrincipal ou userInfo 
+		if (requestContext.getSecurityContext().getUserPrincipal()==null && userInfo == null)
 		{
 			// not authenticated
 			requestContext.abortWith(Response.status(Status.UNAUTHORIZED).build());
