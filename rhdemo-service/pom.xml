@@ -51,13 +51,13 @@
 										  </exec>
 										<!-- UNIX -->
 										  <exec executable="karma" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
-											<arg value="/c npm install"/>
+											<arg value="npm install"/>
 										  </exec>
 										  <exec executable="karma" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
-											<arg value="/c bower install"/>
+											<arg value="bower install"/>
 										  </exec>
 										  <exec executable="karma" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
-										    <arg value="/c gulp build"/>
+										    <arg value="gulp build"/>
 										  </exec>
 										</tasks>
 									</configuration>
