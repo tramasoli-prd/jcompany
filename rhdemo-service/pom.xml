@@ -50,13 +50,13 @@
 										    <arg value="/c gulp build"/>
 										  </exec>
 										<!-- UNIX -->
-										  <exec executable="karma" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
-											<arg value="karma start"/>
+										  <exec executable="karma start" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
+											<arg value="npm install"/>
 										  </exec>
-										  <exec executable="karma" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
+										  <exec executable="karma start" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
 											<arg value="bower install"/>
 										  </exec>
-										  <exec executable="karma" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
+										  <exec executable="karma start" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
 										    <arg value="gulp build"/>
 										  </exec>
 										</tasks>
