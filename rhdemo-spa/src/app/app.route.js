@@ -6,11 +6,11 @@
 	.config(RouterConfig);
 
 	/** @ngInject */
-	function RouterConfig($stateProvider, $urlRouterProvider, $locationProvider) {
+	function RouterConfig($stateProvider, $urlRouterProvider, $locationProvider, $contextUrl) {
 
 		// the log-on screen
 		$stateProvider.state('login',{
-			url : '/plc-login',
+			url : $contextUrl+'/plc-login',
 			templateUrl: 'app/login/login.html',
 			controller: 'PlcLoginController',
 			controllerAs: 'plcLoginController',
@@ -20,7 +20,7 @@
 
 		$stateProvider
 		.state('app', {
-			url: '/app',
+			url: $contextUrl+'/app',
 			templateUrl: 'app/app.html',
 			controller: 'AppController',
 			controllerAs: 'appController'
@@ -36,8 +36,8 @@
 		});
 		
 		
-		$locationProvider.html5Mode(true)
-		$urlRouterProvider.otherwise('/app/inicial');
+		$locationProvider.html5Mode(false)
+		$urlRouterProvider.otherwise($contextUrl+'/app/inicial');
 	}
 
 })();
