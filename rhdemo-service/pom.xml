@@ -30,7 +30,27 @@
 			<id>prod</id>
 			<build>
 					<plugins>
-						<plugin>
+					  <plugin>
+						    <groupId>org.codehaus.mojo</groupId>
+						    <artifactId>exec-maven-plugin</artifactId>
+						    <configuration>
+						    	<workingDirectory>\${project.basedir}\..\rhdemo-spa\gulp\</workingDirectory>
+						      <executable>gulp</executable>
+						      <arguments>
+						        <argument>build</argument>
+						      </arguments>
+						    </configuration>
+						    <executions>
+						      <execution>
+						        <id>build-javascript</id>
+						        <phase>generate-resources</phase>
+						        <goals>
+						          <goal>exec</goal>
+						        </goals>
+						      </execution>
+						    </executions>
+						  </plugin>
+						<!-- plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-antrun-plugin</artifactId>
 							<version>1.7</version>
@@ -39,7 +59,6 @@
 									<phase>generate-sources</phase>
 									<configuration>
 										<tasks>
-										<!-- WINDOWS -->
 										<exec executable="cmd" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="windows">
 										    <arg value="/c npm install"/>
 										  </exec>
@@ -49,16 +68,16 @@
 										<exec executable="cmd" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="windows">
 										    <arg value="/c gulp build"/>
 										  </exec>
-										<!-- UNIX -->
+										  
 										  <exec executable="bash" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
 											<arg value="gulp build"/>
 										  </exec>
-										  <!-- exec executable="karma start" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
+										  <exec executable="karma start" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
 											<arg value="bower install"/>
 										  </exec>
 										  <exec executable="karma start" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
 										    <arg value="gulp build"/>
-										  </exec-->
+										  </exec>
 										</tasks>
 									</configuration>
 									<id>prod</id>
@@ -67,7 +86,7 @@
 									</goals>
 								</execution>
 							</executions>
-						</plugin>
+						</plugin-->
 						<plugin>
 							<artifactId>maven-resources-plugin</artifactId>
 							<executions>
