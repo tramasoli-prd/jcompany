@@ -9,6 +9,7 @@
 	FuncionarioController.$inject = ['$injector', '$scope', '$state', '$stateParams', 'FuncionarioService', 'PlcNotificationService', 'PlcUtils', 'FileUploader', '$compile'];
 	function FuncionarioController($injector, $scope, $state, $stateParams, FuncionarioService, PlcNotificationService, PlcUtils, FileUploader, $compile) {
 
+		var vm = this;
 
 
 		// required atributes in scope for inheritance.
@@ -25,6 +26,9 @@
 	        PlcUtils: PlcUtils
 	    }); 
 
+	    $scope.teste = function() {
+					console.log('r');
+				};
 	   
 		$scope.detalhes = [
 		                   {

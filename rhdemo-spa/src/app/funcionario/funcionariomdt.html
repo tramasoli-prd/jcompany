@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-<form name="form" class="form-validate">
+<form name="form" >
 
 	<div class="panel .panel-default">
 		<div class=".panel-heading">Cadastro de Funcion&aacute;rio</div>
@@ -51,7 +51,7 @@
 
 		<div class="col-md-4">
 
-			<plc-static-combo ng-model="funcionario.estadoCivil" name="estadoCivil"
+			<plc-static-combo ng-model="funcionario.estadoCivil" 
 				label="Estado Civil:" ng-enum="estadocivil"
 				ng-enum-value="estadocivil" />
 
@@ -67,7 +67,7 @@
 
 		<div class="col-sm-4" style="margin-top: 30px;">
 
-			<plc-radio ng-model="funcionario.sexo" label="Sexo:" 
+			<plc-radio ng-model="funcionario.sexo" label="Sexo:" ng-change="teste"
 				ng-item-description="descricao" ng-enum="sexo" ng-enum-value="sexo" />
 
 		</div>

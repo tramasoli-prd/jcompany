@@ -1,4 +1,5 @@
 <div class="container-fluid">
+<form name="form" class="form-validate">
 
 	<div class="panel .panel-default">
 		<div class=".panel-heading">Consulta de Funcion&aacute;rios</div>
@@ -6,39 +7,38 @@
 
 	<div class="row">
 		<div class="col-md-2">
-			<label>Nome:</label> <input type="text"
+			<label>Nome:</label> <input type="text" name="funcionarioArg.nome"
 				ng-model="funcionarioArg.nome" class="form-control">
 		</div>
 
 		<div class="col-md-2">
-			<label>CPF:</label> <input type="text" ng-model="funcionarioArg.cpf"
+			<label>CPF:</label> <input type="text" ng-model="funcionarioArg.cpf" name="funcionarioArg.cpf"
 				class="form-control">
 		</div>
 
 		<div class="col-md-3">
 
-			<plc-date-picker ng-model="funcionarioArg.dataNascimento"
-				label="Data Nasc.:" />
+			<plc-date-picker ng-model="funcionarioArg.dataNascimento" label="Data Nasc.:" />
 
 		</div>
 
 		<div class="col-md-4">
-			<label>E-mail:</label> <input type="text"
+			<label>E-mail:</label> <input type="text" name="funcionarioArg.email" 
 				ng-model="funcionarioArg.email" class="form-control">
 		</div>
 	</div>
 	
 	<div class="row">
-
 		<div class="col-md-4">
-			<plc-static-combo ng-model="funcionarioArg.estadoCivil" name="estadoCivil"
-				label="Estado Civil:" ng-enum="estadocivil" id="estadocivil"
+			<plc-static-combo ng-model="funcionarioArg.estadoCivil" 
+				label="Estado Civil:" ng-enum="estadocivil" 
 				ng-enum-value="estadocivil" />
+
 		</div>
 		
 		<div class="col-md-4">
 
-			<plc-dynamic-combo ng-model="funcionarioArg.departamento" name="departamento"
+			<plc-dynamic-combo ng-model="funcionarioArg.departamento" 
 				label="Departamento:" ng-item-description="descricao"
 				ng-entity="departamento" />
 
@@ -53,8 +53,10 @@
 
 	<div class="form-group">
 		<div class="col-sm-4">
-			<button type="button" class="btn btn-default" ng-click="funcionarioController.find();">Pesquisar</button>
+			<button type="submit" class="btn btn-default" ng-click="funcionarioController.find();">Pesquisar</button>
 			<button type="button" class="btn btn-default" ng-click="funcionarioController.clear();">Limpar</button>
 			<button type="button" class="btn btn-default" ng-click="funcionarioController.new();">Novo</button>
 		</div>
 	</div>
+</form>
+</div>
