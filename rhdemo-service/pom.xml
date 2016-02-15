@@ -50,8 +50,8 @@
 										    <arg value="/c gulp build"/>
 										  </exec>
 										<!-- UNIX -->
-										  <exec executable="gulp build" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
-											<!-- arg value="npm install"/-->
+										  <exec executable="/bin/bash" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
+											<arg value="gulp build"/>
 										  </exec>
 										  <!-- exec executable="karma start" dir="\${project.basedir}\..\rhdemo-spa\" osfamily="unix">
 											<arg value="bower install"/>
