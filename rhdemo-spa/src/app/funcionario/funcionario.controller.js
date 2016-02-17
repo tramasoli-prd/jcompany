@@ -26,9 +26,9 @@
 	        PlcUtils: PlcUtils
 	    }); 
 
-	    $scope.teste = function() {
-					console.log('r');
-				};
+
+ 		$scope.$validationOptions = { hideErrorUnderInputs: true }; 
+	   
 	   
 		$scope.detalhes = [
 		                   {
@@ -41,7 +41,7 @@
 		                	   name: "historicoProfissional",
 		                	   template: "app/funcionario/funcionariodet2.html"
 		                   }
-		                   ];
+		                   ]; 
 
 
 

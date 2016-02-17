@@ -15,7 +15,8 @@
 
         constructor: function() {
             PlcEntityService.call(this, {
-                 type: 'funcionario'
+                 type: 'funcionario',
+                 applyMetadata: false
             });
         },
 
