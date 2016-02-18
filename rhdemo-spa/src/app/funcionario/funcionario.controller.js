@@ -25,10 +25,6 @@
 	        PlcNotificationService: PlcNotificationService,
 	        PlcUtils: PlcUtils
 	    }); 
-
-
- 		$scope.$validationOptions = { hideErrorUnderInputs: true }; 
-	   
 	   
 		$scope.detalhes = [
 		                   {
