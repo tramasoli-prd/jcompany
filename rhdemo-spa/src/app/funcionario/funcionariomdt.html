@@ -1,7 +1,6 @@
+<form name="form" class="form-validate" novalidate ng-controller="FuncionarioController as funcionarioController" >
+
 <div class="container-fluid">
-
-<form name="form" class="form-validate" novalidate >
-
 	<div class="panel .panel-default">
 		<div class=".panel-heading">Cadastro de Funcion&aacute;rio</h1></div>
 	</div>
@@ -80,8 +79,7 @@
 	</div>
 
 	<div class="row">
-
-	   <plc-file-upload label="Foto:" name="foto" ng-model="funcionario.foto" url="/funcionario/foto/{{funcionario.foto.id}}"
+	   <plc-file-upload label="Foto:" name="foto" ng-model="funcionario.foto" url="/rest/entity/funcionario/foto/{{funcionario.foto.id}}"
         model-filename="funcionario.foto.nome" />
 
 
