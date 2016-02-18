@@ -15,7 +15,6 @@
 		// required atributes in scope for inheritance.
 		$scope.$baseService = FuncionarioService;
 		$scope.$baseRoute = 'funcionario';
-
 		// Using the injector for inheritance.
 	    $injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
 	        $scope: $scope,

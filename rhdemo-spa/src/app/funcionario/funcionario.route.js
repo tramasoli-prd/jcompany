@@ -20,17 +20,13 @@
 		$stateProvider
 		.state('funcionario.sel', {
 			url: '/funcionariosel',
-	        templateUrl: 'app/funcionario/funcionariosel.html',
-			controller: 'FuncionarioController',
-			controllerAs: 'funcionarioController'
+	        templateUrl: 'app/funcionario/funcionariosel.html'
 		});
 
 		$stateProvider
 		.state('funcionario.man', {
 			url: '/funcionariomdt/:id',
-	        templateUrl: 'app/funcionario/funcionariomdt.html',
-			controller: 'FuncionarioController',
-			controllerAs: 'funcionarioController'
+	        templateUrl: 'app/funcionario/funcionariomdt.html'
 		});
 	}
 	

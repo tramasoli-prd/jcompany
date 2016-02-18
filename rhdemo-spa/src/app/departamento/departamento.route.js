@@ -20,17 +20,13 @@
 		$stateProvider
 		.state('departamento.sel', {
 			url: '/departamentosel',
-			templateUrl: 'app/departamento/departamentosel.html',
-			controller: 'DepartamentoController',
-			controllerAs: 'departamentoController'
+			templateUrl: 'app/departamento/departamentosel.html'
 		});
 
 		$stateProvider
 		.state('departamento.man', {
 			url: '/departamentoman/:id',
-			templateUrl: 'app/departamento/departamentoman.html',
-			controller: 'DepartamentoController',
-			controllerAs: 'departamentoController'
+			templateUrl: 'app/departamento/departamentoman.html'
 		});
 	}
 	
