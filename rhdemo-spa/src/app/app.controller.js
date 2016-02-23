@@ -40,11 +40,11 @@
 		vm.toggleSidebar = function() {
 			vm.toggle = !vm.toggle;
 			$cookies.put('toggle', vm.toggle);
-		};
+		}
 
 		window.onresize = function() {
 			$scope.$apply();
-		};
+		}
 
 		vm.logout = function() {  
 			PlcAuthService.logout()  
@@ -52,10 +52,8 @@
 				$state.go('login');   
 			});
 
-		};
+		}
 
-
-		////////////////
 		var activate = function () {
 			// Load menu from json file
 			// ----------------------------------- 
