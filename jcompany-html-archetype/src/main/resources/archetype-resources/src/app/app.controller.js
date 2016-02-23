@@ -23,10 +23,8 @@
 
 			vm.getWidth = function() {
 				return window.innerWidth;
-			};
+			}
 			
-			
-
 			$scope.$watch(vm.getWidth, function(newValue) {
 				if (newValue >= mobileView) {
 					if (angular.isDefined($cookies.get('toggle'))) {
@@ -43,11 +41,11 @@
 			vm.toggleSidebar = function() {
 				vm.toggle = !vm.toggle;
 				$cookies.put('toggle', vm.toggle);
-			};
+			}
 
 			window.onresize = function() {
 				$scope.$apply();
-			};
+			}
 
 			vm.logout = function() {  
 				PlcAuthService.logout()  
@@ -55,10 +53,8 @@
 					$state.go('login');   
 				});
 
-			};
+			}
 
-
-			////////////////
 			var activate = function () {
 				// Load menu from json file
 				// ----------------------------------- 
