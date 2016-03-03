@@ -20,6 +20,95 @@
 		</dependency>
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>prod</id>
+			<build>
+					<plugins>
+					  <plugin>
+						    <groupId>org.codehaus.mojo</groupId>
+						    <artifactId>exec-maven-plugin</artifactId>
+						    <configuration>
+						    	<workingDirectory>\${project.basedir}\..\${artifactId}-view\gulp\</workingDirectory>
+						      <executable>gulp</executable>
+						      <arguments>
+						        <argument>build</argument>
+						      </arguments>
+						    </configuration>
+						    <executions>
+						      <execution>
+						        <id>build-javascript</id>
+						        <phase>generate-resources</phase>
+						        <goals>
+						          <goal>exec</goal>
+						        </goals>
+						      </execution>
+						    </executions>
+						  </plugin>
+						<!-- PLUGIN PARA INSTALAR NPM, GULP E BUILD A CRITERIO DO CLIENTE -->
+						<!-- plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-antrun-plugin</artifactId>
+							<version>1.7</version>
+							<executions>
+								<execution>
+									<phase>generate-sources</phase>
+									<configuration>
+										<tasks>
+										<exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
+										    <arg value="/c npm install"/>
+										  </exec>
+										<exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
+										    <arg value="/c bower install"/>
+										  </exec>
+										<exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
+										    <arg value="/c gulp build"/>
+										  </exec>
+										  
+										  <exec executable="bash" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="unix">
+											<arg value="gulp build"/>
+										  </exec>
+										  <exec executable="karma start" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="unix">
+											<arg value="bower install"/>
+										  </exec>
+										  <exec executable="karma start" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="unix">
+										    <arg value="gulp build"/>
+										  </exec>
+										</tasks>
+									</configuration>
+									<id>prod</id>
+									<goals>
+										<goal>run</goal>
+									</goals>
+								</execution>
+							</executions>
+						</plugin-->
+						<plugin>
+							<artifactId>maven-resources-plugin</artifactId>
+							<executions>
+								<execution>
+									<id>copy-resources</id>
+									<phase>prepare-package</phase>
+									<goals>
+										<goal>copy-resources</goal>
+									</goals>
+									<configuration>
+										<outputDirectory>${basedir}/target/${artifactId}/</outputDirectory>
+										<resources>
+											<resource>
+												<directory>../${artifactId}-view/dist/</directory>
+											</resource>
+										</resources>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+					<finalName>${artifactId}</finalName>
+			</build>
+		</profile>
+	</profiles>
+
 	<version>${version}</version>
 
 </project>
