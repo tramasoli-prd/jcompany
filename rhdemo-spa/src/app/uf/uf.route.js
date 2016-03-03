@@ -13,17 +13,13 @@
 		.state('uf', {
 			abstract: true,
 			url: $contextUrl+'/uf',
-			templateUrl: 'app/app.html',
-			controller: 'AppController',
-			controllerAs: 'appController'	
+			templateUrl: 'app/app.html'
 		});
 		
 		$stateProvider
 		.state('uf.tab', {
 			url: '/uftab',
 			templateUrl: 'app/uf/uf.html',
-			controller: 'UfController',
-			controllerAs: 'ufController',
 			access: 'private'
 		});
 	}

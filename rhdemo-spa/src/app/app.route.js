@@ -21,9 +21,7 @@
 		$stateProvider
 		.state('app', {
 			url: $contextUrl+'/app',
-			templateUrl: 'app/app.html',
-			controller: 'AppController',
-			controllerAs: 'appController'
+			templateUrl: 'app/app.html'
 		});
 		
 		$stateProvider
@@ -36,7 +34,7 @@
 		});
 		
 		
-		$locationProvider.html5Mode(false)
+		$locationProvider.html5Mode(false);
 		$urlRouterProvider.otherwise($contextUrl+'/app/inicial');
 	}
 

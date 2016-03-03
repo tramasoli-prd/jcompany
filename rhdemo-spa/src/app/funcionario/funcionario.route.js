@@ -12,9 +12,7 @@
 		.state('funcionario', {
 			abstract: true,
 			url: $contextUrl+'/funcionario',
-			templateUrl: 'app/app.html',
-			controller: 'AppController',
-			controllerAs: 'appController'	
+			templateUrl: 'app/app.html'	
 		});
 
 		$stateProvider

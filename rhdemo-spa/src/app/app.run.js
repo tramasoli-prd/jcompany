@@ -6,7 +6,7 @@
 	.run(runBlock);
 
 
-	function runBlock(PlcAuthService) {  
+	function runBlock(PlcAuthService, $rootScope, $window) {  
 		//aplica segurança
 		PlcAuthService.load();
 	}

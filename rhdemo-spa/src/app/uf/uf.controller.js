@@ -6,7 +6,6 @@
   jcompanyModule.UfControllerConstructor = UfController;
 
   angular.module('rhdemo').controller('UfController', UfController );
-  UfController.$inject = ['$injector', '$scope', '$compile', '$state', '$stateParams', 'UfService', 'PlcNotificationService', 'PlcUtils'];
 
   /** @ngInject */
   function UfController($injector, $scope, $compile, $state, $stateParams, UfService, PlcNotificationService, PlcUtils) {

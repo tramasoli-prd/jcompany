@@ -12,9 +12,7 @@
 		.state('departamento', {
 			abstract: true,
 			url: $contextUrl+'/departamento',
-			templateUrl: 'app/app.html',
-			controller: 'AppController',
-			controllerAs: 'appController'	
+			templateUrl: 'app/app.html'
 		});
 
 		$stateProvider
