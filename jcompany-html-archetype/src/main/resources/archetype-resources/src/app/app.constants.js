@@ -1,7 +1,6 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-${artifactId} = ${artifactId}.replace("-view", "");
 	
 	(function() {
 		'use strict';
