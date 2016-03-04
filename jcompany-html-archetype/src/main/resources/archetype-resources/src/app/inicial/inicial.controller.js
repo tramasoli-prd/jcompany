@@ -3,7 +3,7 @@
 
 
 	angular
-	.module('rhdemo')
+	.module('${artifactId}')
 	.controller('InicialController', InicialController);
 	
 	/** @ngInject */

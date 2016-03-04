@@ -36,12 +36,14 @@
       </includes>
       <excludes>
         <exclude>build.js</exclude>
+        <exclude>server.js</exclude>
       </excludes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
       <directory>gulp</directory>
       <includes>
         <include>build.js</include>
+        <include>server.js</include>
       </includes>
     </fileSet>
     <fileSet encoding="UTF-8">

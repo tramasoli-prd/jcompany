@@ -13,7 +13,6 @@
 		function AppController($rootScope, $scope, $cookies, $state, $window, PlcAuthService, $stateParams, PlcMenuLoader, PlcMenu) {
 			var vm = this;
 			vm.toggle =  true;
-			vm.isLogged = PlcAuthService.isLogged();
 			vm.menuItems = [];
 			
 			/**  
@@ -40,7 +39,7 @@
 
 			vm.toggleSidebar = function() {
 				vm.toggle = !vm.toggle;
-				$cookies.put('toggle', vm.toggle);
+				$cookies.put('toggle', 'vm.toggle');
 			}
 
 			window.onresize = function() {

@@ -1,17 +1,20 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-
+${artifactId} = ${artifactId}.replace("-view", "");
+	
 	(function() {
 		'use strict';
 
 		angular
 		.module('${artifactId}')
-		.constant('$contextUrl', '/');
+		.constant('$appVersion', '0.0.1')
+		.constant('$contextUrl', '');
 
 		angular
 		.module('jcompany-view')
+		.constant('$menuPath', 'app/components/json/menu.json')
 		.constant('$backendUrl', '${BACKEND-URL}');
 
-
+		
 	})();
