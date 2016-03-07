@@ -39,7 +39,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<version.junit>4.12</version.junit>
 		<version.commons-beanutils>1.9.2</version.commons-beanutils>
-		<version.guava>14.0.1</version.guava>
+		<version.guava>18.0</version.guava>
 
 		<version.arquillian>1.1.10.Final</version.arquillian>
 	</properties>
@@ -103,7 +103,6 @@
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
 				<version>${version.guava}</version>
-				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
@@ -172,7 +171,6 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
