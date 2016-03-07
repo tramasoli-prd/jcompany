@@ -101,6 +101,21 @@
 										</resources>
 									</configuration>
 								</execution>
+								<execution>
+									<id>copy-resources-compile</id>
+									<phase>prepare-package</phase>
+									<goals>
+										<goal>copy-resources</goal>
+									</goals>
+									<configuration>
+										<outputDirectory>${basedir}/target/${artifactId}/</outputDirectory>
+										<resources>
+											<resource>
+												<directory>../${artifactId}-view/dist/${artifactId}/</directory>
+											</resource>
+										</resources>
+									</configuration>
+								</execution>
 							</executions>
 						</plugin>
 					</plugins>
