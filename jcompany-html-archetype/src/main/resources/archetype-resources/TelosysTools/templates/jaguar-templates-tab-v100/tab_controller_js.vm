@@ -7,7 +7,7 @@
   var jcompanyModule = angular.module('jcompany-view');
   jcompanyModule.${entity.name}ControllerConstructor = ${entity.name}Controller;
 
-  angular.module('${PROJECT_NAME}').controller('${entity.name}Controller', ${entity.name}Controller );
+  angular.module('${PROJECT_NAME}').controller('${entity.name}Controller', ${entity.name}Controller);
   ${entity.name}Controller.${dollarSymbol}inject = ['${dollarSymbol}injector', '${dollarSymbol}scope', '${dollarSymbol}state', '${dollarSymbol}stateParams', '${entity.name}Service', 'PlcNotificationService', 'PlcUtils', '${dollarSymbol}compile'];
 
   /** @ngInject */

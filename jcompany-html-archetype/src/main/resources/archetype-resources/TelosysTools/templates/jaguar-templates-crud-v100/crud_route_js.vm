@@ -15,23 +15,19 @@
 		.state('${uncapitalizedEntityName}', {
 			abstract: true,
 			url: '/${uncapitalizedEntityName}',
-			templateUrl: 'app/components/template/single-page-template.html'
+			templateUrl: 'app/app.html'
 		});
 
 		${dollarSymbol}stateProvider
 		.state('${uncapitalizedEntityName}.sel', {
 			url: '/${uncapitalizedEntityName}sel',
-			templateUrl: 'app/${uncapitalizedEntityName}/${uncapitalizedEntityName}sel.html',
-			controller: '${entity.name}Controller',
-			controllerAs: '${uncapitalizedEntityName}Controller'
+			templateUrl: 'app/${uncapitalizedEntityName}/${uncapitalizedEntityName}sel.html'
 		});
 
 		${dollarSymbol}stateProvider
 		.state('${uncapitalizedEntityName}.man', {
 			url: '/${uncapitalizedEntityName}man/:id',
-			templateUrl: 'app/${uncapitalizedEntityName}/${uncapitalizedEntityName}man.html',
-			controller: '${entity.name}Controller',
-			controllerAs: '${uncapitalizedEntityName}Controller'
+			templateUrl: 'app/${uncapitalizedEntityName}/${uncapitalizedEntityName}man.html'
 		});
 	}
 	

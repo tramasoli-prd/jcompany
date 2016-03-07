@@ -8,7 +8,6 @@ import javax.interceptor.Interceptors;
 import com.powerlogic.jcompany.core.model.repository.IPlcEntityRepository;
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.model.service.PlcAbstractServiceEntity;
-import com.powerlogic.jcompany.commons.interceptor.validation.PlcValidationInterceptor;
 import ${REPOSITORY_PKG}.${entity.name}Repository;
 import ${SERVICE_INTERFACE_PKG}.I${entity.name}Service;
 import ${ENTITY_PKG}.${entity.name}Entity;
@@ -21,7 +20,6 @@ import ${ENTITY_PKG}.${entity.name}Entity;
  */
 
 @Stateless
-@Interceptors ({PlcValidationInterceptor.class})
 public class ${entity.name}ServiceImpl extends PlcAbstractServiceEntity<Long,  ${entity.name}Entity> implements  I${entity.name}Service {
 
 	@Inject
