@@ -25,7 +25,7 @@
 			<id>prod</id>
 			<build>
 					<plugins>
-					  <plugin>
+					  <!-- plugin>
 						    <groupId>org.codehaus.mojo</groupId>
 						    <artifactId>exec-maven-plugin</artifactId>
 						    <configuration>
@@ -44,9 +44,9 @@
 						        </goals>
 						      </execution>
 						    </executions>
-						  </plugin>
-						<!-- PLUGIN PARA INSTALAR NPM, GULP E BUILD A CRITERIO DO CLIENTE -->
-						<!-- plugin>
+						  </plugin-->
+						<!-- PLUGIN PARA INSTALAR NPM, GULP E BUILD, CRITERIO DO CLIENTE -->
+						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-antrun-plugin</artifactId>
 							<version>1.7</version>
@@ -55,21 +55,27 @@
 									<phase>generate-sources</phase>
 									<configuration>
 										<tasks>
-										<exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
+										<!-- exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
 										    <arg value="/c npm install"/>
-										  </exec>
-										<exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
+										  </exec-->
+										 <exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
 										    <arg value="/c bower install"/>
 										  </exec>
-										<exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
+										 <exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
+										    <arg value="/c gulp clean"/>
+										  </exec>
+										 <exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
 										    <arg value="/c gulp build"/>
 										  </exec>
 										  
 										  <exec executable="bash" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="unix">
-											<arg value="gulp build"/>
+											<arg value="npm install"/>
 										  </exec>
 										  <exec executable="karma start" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="unix">
 											<arg value="bower install"/>
+										  </exec>
+										  <exec executable="karma start" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="unix">
+											<arg value="gulp clean"/>
 										  </exec>
 										  <exec executable="karma start" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="unix">
 										    <arg value="gulp build"/>
@@ -82,7 +88,7 @@
 									</goals>
 								</execution>
 							</executions>
-						</plugin-->
+						</plugin>
 						<plugin>
 							<artifactId>maven-resources-plugin</artifactId>
 							<executions>
