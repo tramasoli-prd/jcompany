@@ -24,7 +24,6 @@ import com.powerlogic.jcompany.core.messages.PlcMessageType;
  * 
  * Mantém a exceção "raiz" para tratamento genérico e rastreio e manipulação.
  * 
- * @category Wrapper
  * @since 1.0.0
  * @author Powerlogic
  */
@@ -34,6 +33,15 @@ public class PlcException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
 	private PlcMessageMap messageMap;
+
+
+	/** Contrutor padrão para exceptions.
+	 *
+	 */
+	public PlcException() {
+		super();
+		getMessageMap().clear();
+	}
 
 	/**
 	 * Permite o disparo de mensagens controladas durante a execução da requisição.
@@ -111,7 +119,7 @@ public class PlcException extends RuntimeException {
 	/**
 	 * Converte o throwable e extrai a mensagem para adicionar no mapa.
 	 * 
-	 * @param throwable
+	 * @param throwable lancador
 	 */
 	protected void addThrowable(Throwable throwable) {
 		if (throwable != this && throwable instanceof PlcException) {
