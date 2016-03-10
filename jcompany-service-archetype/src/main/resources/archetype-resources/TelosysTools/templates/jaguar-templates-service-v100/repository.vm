@@ -1,8 +1,10 @@
 package ${target.javaPackageFromFolder($SRC)};
 
 import javax.enterprise.context.ApplicationScoped;
+import java.util.List;
 
 import com.powerlogic.jcompany.core.model.repository.PlcAbstractRepository;
+import com.powerlogic.jcompany.core.exception.PlcException;
 import ${REPOSITORY_PKG}.${entity.name}Repository;
 import ${ENTITY_PKG}.${entity.name}Entity;
 
@@ -19,6 +21,11 @@ public class ${entity.name}Repository extends PlcAbstractRepository<Long, ${enti
 	@Override
 	public Class<${entity.name}Entity> getEntityType() {
 		return ${entity.name}Entity.class;
+	}
+
+	@Override
+	public List<${entity.name}Entity> findAll(${entity.name}Entity entity) throws PlcException {
+		return super.find(entity);
 	}
 
 }

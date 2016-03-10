@@ -14,30 +14,22 @@
 					<input type="password" id="inputPassword" class="form-control"
 						required="" placeholder="Senha" ng-model="password" maxlength="20">
 
-
 					<div class="pwstrength_viewport_progress"></div>
-
-
 					<button class="btn btn-lg btn-primary btn-block" type="submit"
 						ng-disabled="isLoading()" ng-click="login($event)">Acessar</button>
-
-
 				</form>
-
 				<div class="form-links">
 					<a href="#">www.powerlogic.org</a>
 				</div>
 			</section>
 		</div>
-
 		<div class="col-md-4"></div>
-
-
 	</div>
-
-
 </div>
-
+<script>
+jQuery('#sidebar-wrapper').hide();
+jQuery('#sidebar').hide();
+</script>
 <style type="text/css">
 @CHARSET "UTF-8";
 /*
@@ -116,6 +108,11 @@ form[role=login]>div {
 
 .form-links a {
 	color: #fff;
+}
+
+
+#page-wrapper.open {
+    padding-left: 0px !important;
 }
 </style>
 

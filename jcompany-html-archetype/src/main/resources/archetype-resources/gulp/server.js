@@ -36,7 +36,7 @@ function browserSyncInit(baseDir, browser) {
   // server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', proxyHost: 'jsonplaceholder.typicode.com'});
 
   browserSync.instance = browserSync.init({
-    startPath: '/',
+    startPath: '/${artifactId}#',
     server: server,
     browser: browser
   });

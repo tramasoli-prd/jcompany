@@ -10,7 +10,6 @@
 	function AppController($rootScope, $scope, $cookies, $state, $window, PlcAuthService, $stateParams, PlcMenuLoader, PlcMenu) {
 		var vm = this;
 		vm.toggle =  true;
-		vm.isLogged = PlcAuthService.isLogged();
 		vm.menuItems = [];
 		
 		/**  
@@ -21,8 +20,6 @@
 		vm.getWidth = function() {
 			return window.innerWidth;
 		};
-		
-		
 
 		$scope.$watch(vm.getWidth, function(newValue) {
 			if (newValue >= mobileView) {
@@ -63,7 +60,6 @@
 				vm.menuItems = menus;
 		    });
 		}
-		
 
 		vm.profileShow = function() {  
 			document.getElementById('profile').className= "item dropdown open";

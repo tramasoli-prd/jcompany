@@ -6,7 +6,7 @@
   	jcompanyModule.FuncionarioControllerConstructor = FuncionarioController;
 
 	angular.module('rhdemo').controller('FuncionarioController', FuncionarioController );
-	FuncionarioController.$inject = ['$injector', '$scope', '$state', '$stateParams', 'FuncionarioService', 'PlcNotificationService', 'PlcUtils', 'FileUploader', '$compile'];
+	/** @ngInject */
 	function FuncionarioController($injector, $scope, $state, $stateParams, FuncionarioService, PlcNotificationService, PlcUtils, FileUploader, $compile) {
 
 		var vm = this;

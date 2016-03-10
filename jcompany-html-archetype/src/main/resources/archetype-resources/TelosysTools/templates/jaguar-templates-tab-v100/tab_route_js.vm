@@ -13,10 +13,15 @@
 
 		${dollarSymbol}stateProvider
 		.state('${uncapitalizedEntityName}', {
+			abstract: true,
 			url: '/${uncapitalizedEntityName}',
-			templateUrl: 'app/${uncapitalizedEntityName}/${uncapitalizedEntityName}.html',
-			controller: '${entity.name}Controller',
-			controllerAs: '${uncapitalizedEntityName}Controller'
+			templateUrl: 'app/app.html'
+		});
+
+		${dollarSymbol}stateProvider
+		.state('${uncapitalizedEntityName}.tab', {
+			url: '/${uncapitalizedEntityName}',
+			templateUrl: 'app/${uncapitalizedEntityName}/${uncapitalizedEntityName}.html'
 		});
 	}
 	

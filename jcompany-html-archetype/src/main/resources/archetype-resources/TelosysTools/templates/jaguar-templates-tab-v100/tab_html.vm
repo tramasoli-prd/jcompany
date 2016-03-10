@@ -13,9 +13,9 @@
 #set( $allFields = $fn.concatLists($keyFields, $dataFields) )
 ##--------------------------------------------------------------------------------------------------------
 <div class="container-fluid">
-<form name="form" class="form-validate">
+<form name="form" class="form-validate"  ng-controller="${entity.name}Controller as ${fn.uncapitalize($entity.name)}Controller">
 	<div class="panel .panel-default">
-		<div class=".panel-heading"> {{ 'label.${uncapitalizedEntityName}.titulo' | translate }} </div>
+		<div class=".panel-heading"> {{'label.${uncapitalizedEntityName}.titulo' | translate }} </div>
 	</div>
 	<div class="row header" >
 

@@ -9,7 +9,7 @@
 	DepartamentoController.$inject = ['$injector', '$scope', '$compile', '$state', '$stateParams','DepartamentoService', 'PlcNotificationService', 'PlcUtils'];
 	
 	function DepartamentoController($injector, $scope, $compile,  $state, $stateParams, DepartamentoService, PlcNotificationService, PlcUtils) {
-
+		var vm = this;
 	  	
 		// required atributes in scope for inheritance.
 		$scope.$baseService = DepartamentoService;
