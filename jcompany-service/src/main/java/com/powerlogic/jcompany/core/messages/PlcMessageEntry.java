@@ -10,9 +10,10 @@
 
 package com.powerlogic.jcompany.core.messages;
 
-import java.io.Serializable;
-
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Objects;
 
 @XmlRootElement
 public class PlcMessageEntry implements Serializable {
@@ -81,25 +82,23 @@ public class PlcMessageEntry implements Serializable {
 
 
 	@Override
-	public int hashCode() {
-		return key.getName().hashCode();
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		PlcMessageEntry that = (PlcMessageEntry) o;
+
+		return (type == that.type) && ((message != null) ? message.equals(that.message) :
+				((that.message == null) && Objects.deepEquals(args, that.args)));
+
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PlcMessageEntry other = (PlcMessageEntry) obj;
-		if (key == null) {
-			if (other.key != null)
-				return false;
-		} else if (!key.getName().equals(other.getKey().getName())) {
-			return false;
-		}
-		return true;
+	public int hashCode() {
+		int result = key != null ? key.hashCode() : 0;
+		result = 31 * result + (type != null ? type.hashCode() : 0);
+		result = 31 * result + (message != null ? message.hashCode() : 0);
+		result = 31 * result + Arrays.hashCode(args);
+		return result;
 	}
 }
