@@ -1,12 +1,12 @@
 /*  																													
 	    			       Jaguar-jCompany Developer Suite.																		
 			    		        Powerlogic 2015-2020.
-			    		    
+
 		Please read licensing information in your installation directory.
 		Contact Powerlogic for more information or contribute with this project. 
 			site...: www.powerlogic.org																								
 			e-mail.: suporte@powerlogic.com.br
-*/
+ */
 
 package com.powerlogic.jcompany.core.messages;
 
@@ -21,7 +21,7 @@ import com.powerlogic.jcompany.core.exception.PlcException;
  * @since Jaguar 1.0.0
  */
 public enum PlcBeanMessages implements IPlcMessageKey {
-	
+
 	DADOS_SALVOS_SUCESSO_000,
 	FALHA_LOGIN_001,
 	FALHA_SOLICITACAO_002,
@@ -53,18 +53,22 @@ public enum PlcBeanMessages implements IPlcMessageKey {
 	CAMPOS_NAO_PREENCHIDOS_FORMULARIO_028
 	;
 
-   public String getName()
-   {
-      return name();
-   }
+	public String getName()
+	{
+		return name();
+	}
 
-   public PlcException create()
-   {
-      return new PlcException(this);
-   }
+	public PlcException create()
+	{
+		return new PlcException(this);
+	}
 
-   public PlcException create(String... args)
-   {
-      return new PlcException(this, args);
-   }
+	public PlcException create(String... args) {
+		return new PlcException(this, args);
+	}
+
+	public PlcException create(Throwable e, String... args)
+	{
+		return new PlcException(e, this, args);
+	}
 }

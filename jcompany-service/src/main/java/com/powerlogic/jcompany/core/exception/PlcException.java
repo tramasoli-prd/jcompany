@@ -51,6 +51,10 @@ public class PlcException extends RuntimeException {
 	public PlcException(IPlcMessageKey key) {
 		addMessage(key);
 	}
+	
+	public PlcException(Throwable cause) {
+		super(cause);
+	}
 
 	/**
 	 * Permite o disparo de mensagens controladas durante a execução da requisição.
