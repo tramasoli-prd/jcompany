@@ -29,7 +29,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -97,7 +96,6 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	private EstadoCivil estadoCivil;
 	
 	@Enumerated(EnumType.STRING)
-	@NotNull 
 	@Column(length=1)
 	private Sexo sexo;
 	
