@@ -55,9 +55,9 @@
 									<phase>generate-sources</phase>
 									<configuration>
 										<tasks>
-										<!-- exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
+										<exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
 										    <arg value="/c npm install"/>
-										  </exec-->
+										  </exec>
 										 <exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
 										    <arg value="/c bower install"/>
 										  </exec>
@@ -107,21 +107,21 @@
 										</resources>
 									</configuration>
 								</execution>
-								<execution>
-									<id>copy-resources-compile</id>
-									<phase>prepare-package</phase>
-									<goals>
-										<goal>copy-resources</goal>
-									</goals>
-									<configuration>
-										<outputDirectory>${basedir}/target/${artifactId}/</outputDirectory>
-										<resources>
-											<resource>
-												<directory>../${artifactId}-view/dist/${artifactId}/</directory>
-											</resource>
-										</resources>
-									</configuration>
-								</execution>
+							<!-- execution>
+								<id>copy-resources-compile</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${basedir}/target/${artifactId}/</outputDirectory>
+									<resources>
+										<resource>
+											<directory>../${artifactId}-view/dist/${artifactId}/</directory>
+										</resource>
+									</resources>
+								</configuration>
+							</execution-->
 							</executions>
 						</plugin>
 					</plugins>
