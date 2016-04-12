@@ -11,7 +11,6 @@
 package com.powerlogic.jcompany.core.rest.auth;
 
 import java.io.IOException;
-import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.container.ContainerRequestContext;

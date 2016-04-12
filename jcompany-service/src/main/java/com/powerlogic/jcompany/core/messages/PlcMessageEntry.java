@@ -10,10 +10,11 @@
 
 package com.powerlogic.jcompany.core.messages;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class PlcMessageEntry implements Serializable {

@@ -1,18 +1,3 @@
-/*
- * Copyright 2015 JAXIO http://www.jaxio.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.powerlogic.jcompany.core.model.qbe;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -24,11 +9,11 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 import java.util.List;
 
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.ListJoin;
 import javax.persistence.criteria.Path;
@@ -53,10 +38,9 @@ public class ByExampleUtil {
 
     @Inject
     private JpaUtil jpaUtil;
-    @PersistenceContext
-    private EntityManager em;
 
-    public <T extends IPlcEntityModel<?>> Predicate byExampleOnEntity(Root<T> rootPath, T entityValue, CriteriaBuilder builder, SearchParameters sp) {
+
+    public <T extends IPlcEntityModel<?>> Predicate byExampleOnEntity(EntityManager em, Root<T> rootPath, T entityValue, CriteriaBuilder builder, SearchParameters sp) {
         if (entityValue == null) {
             return null;
         }
@@ -66,22 +50,22 @@ public class ByExampleUtil {
 
         List<Predicate> predicates = newArrayList();
         predicates.addAll(byExample(mt, rootPath, entityValue, sp, builder));
-        predicates.addAll(byExampleOnCompositePk(rootPath, entityValue, sp, builder));
-        predicates.addAll(byExampleOnXToOne(mt, rootPath, entityValue, sp, builder)); // 1 level deep only
+        predicates.addAll(byExampleOnCompositePk(em, rootPath, entityValue, sp, builder));
+        predicates.addAll(byExampleOnXToOne(em, mt, rootPath, entityValue, sp, builder)); // 1 level deep only
         predicates.addAll(byExampleOnXToMany(mt, rootPath, entityValue, sp, builder));
         return jpaUtil.concatPredicate(sp, builder, predicates);
     }
 
-    protected <T extends IPlcEntityModel<?>> List<Predicate> byExampleOnCompositePk(Root<T> root, T entity, SearchParameters sp, CriteriaBuilder builder) {
+    protected <T extends IPlcEntityModel<?>> List<Predicate> byExampleOnCompositePk(EntityManager em, Root<T> root, T entity, SearchParameters sp, CriteriaBuilder builder) {
         String compositePropertyName = jpaUtil.compositePkPropertyName(entity);
         if (compositePropertyName == null) {
             return emptyList();
         } else {
-            return newArrayList(byExampleOnEmbeddable(root.get(compositePropertyName), entity.getId(), sp, builder));
+            return newArrayList(byExampleOnEmbeddable(em, root.get(compositePropertyName), entity.getId(), sp, builder));
         }
     }
 
-    public <E> Predicate byExampleOnEmbeddable(Path<E> embeddablePath, E embeddableValue, SearchParameters sp, CriteriaBuilder builder) {
+    public <E> Predicate byExampleOnEmbeddable(EntityManager em, Path<E> embeddablePath, E embeddableValue, SearchParameters sp, CriteriaBuilder builder) {
         if (embeddableValue == null) {
             return null;
         }
@@ -123,7 +107,7 @@ public class ByExampleUtil {
      * entity's properties value.
      */
     @SuppressWarnings("unchecked")
-    public <T extends IPlcEntityModel<?>, M2O extends IPlcEntityModel<?>> List<Predicate> byExampleOnXToOne(ManagedType<T> mt, Root<T> mtPath, T mtValue,
+    public <T extends IPlcEntityModel<?>, M2O extends IPlcEntityModel<?>> List<Predicate> byExampleOnXToOne(EntityManager em, ManagedType<T> mt, Root<T> mtPath, T mtValue,
                                                                                                       SearchParameters sp, CriteriaBuilder builder) {
         List<Predicate> predicates = newArrayList();
         for (SingularAttribute<? super T, ?> attr : mt.getSingularAttributes()) {

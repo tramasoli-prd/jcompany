@@ -1,18 +1,3 @@
-/*
- * Copyright 2015 JAXIO http://www.jaxio.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.powerlogic.jcompany.core.model.qbe;
 
 import static com.google.common.collect.Iterables.concat;
@@ -31,7 +16,6 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 import javax.persistence.UniqueConstraint;
@@ -44,37 +28,36 @@ import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
 @Named
 @Singleton
 public class JpaUniqueUtil {
-    @PersistenceContext
-    private EntityManager entityManager;
+
     @Inject
     private JpaUtil jpaUtil;
 
     /*
      * Return the error code if the given property is already present in the database, returns null otherwise.
      */
-    public String validateSimpleUnique(IPlcEntityModel<?> entity, String property, Object value) {
+    public String validateSimpleUnique(EntityManager em, IPlcEntityModel<?> entity, String property, Object value) {
         Map<String, Object> values = newHashMap();
         values.put(property, value);
-        return existsInDatabaseOnAllObjects(entity, values) ? simpleUniqueConstraintError(entity, property) : null;
+        return existsInDatabaseOnAllObjects(em, entity, values) ? simpleUniqueConstraintError(entity, property) : null;
     }
 
     /*
      * Return a list of error codes for all composite unique and simple unique constraints violations.
      */
-    public List<String> validateUniques(IPlcEntityModel<?> entity) {
+    public List<String> validateUniques(EntityManager em, IPlcEntityModel<?> entity) {
         return newArrayList(concat( //
-                validateCompositeUniqueConstraints(entity), //
-                validateSimpleUniqueConstraints(entity) //
+                validateCompositeUniqueConstraints(em, entity), //
+                validateSimpleUniqueConstraints(em, entity) //
         ));
     }
 
-    private List<String> validateSimpleUniqueConstraints(IPlcEntityModel<?> entity) {
+    private List<String> validateSimpleUniqueConstraints(EntityManager em, IPlcEntityModel<?> entity) {
         return newArrayList(concat( //
-                validateSimpleUniqueConstraintsDefinedOnMethods(entity), //
-                validateSimpleUniqueConstraintsDefinedOnFields(entity)));
+                validateSimpleUniqueConstraintsDefinedOnMethods(em, entity), //
+                validateSimpleUniqueConstraintsDefinedOnFields(em, entity)));
     }
 
-    private List<String> validateSimpleUniqueConstraintsDefinedOnFields(IPlcEntityModel<?> entity) {
+    private List<String> validateSimpleUniqueConstraintsDefinedOnFields(EntityManager em, IPlcEntityModel<?> entity) {
         Class<?> entityClass = entity.getClass();
         List<String> errors = newArrayList();
         for (Field field : entityClass.getFields()) {
@@ -82,7 +65,7 @@ public class JpaUniqueUtil {
             if (column != null && column.unique()) {
                 Map<String, Object> values = newHashMap();
                 values.put(field.getName(), jpaUtil.getValueFromField(field, entity));
-                if (existsInDatabaseOnAllObjects(entity, values)) {
+                if (existsInDatabaseOnAllObjects(em, entity, values)) {
                     errors.add(simpleUniqueConstraintError(entity, field.getName()));
                 }
             }
@@ -90,7 +73,7 @@ public class JpaUniqueUtil {
         return errors;
     }
 
-    private List<String> validateSimpleUniqueConstraintsDefinedOnMethods(IPlcEntityModel<?> entity) {
+    private List<String> validateSimpleUniqueConstraintsDefinedOnMethods(EntityManager em, IPlcEntityModel<?> entity) {
         Class<?> entityClass = entity.getClass();
         List<String> errors = newArrayList();
         for (Method method : entityClass.getMethods()) {
@@ -99,7 +82,7 @@ public class JpaUniqueUtil {
                 Map<String, Object> values = newHashMap();
                 String property = jpaUtil.methodToProperty(method);
                 values.put(property, invokeMethod(method, entity));
-                if (existsInDatabaseOnAllObjects(entity, values)) {
+                if (existsInDatabaseOnAllObjects(em, entity, values)) {
                     errors.add(simpleUniqueConstraintError(entity, property));
                 }
             }
@@ -111,7 +94,7 @@ public class JpaUniqueUtil {
         return WordUtils.uncapitalize(jpaUtil.getEntityName(entity)) + "_" + property + "_already_exists";
     }
 
-    private List<String> validateCompositeUniqueConstraints(IPlcEntityModel<?> entity) {
+    private List<String> validateCompositeUniqueConstraints(EntityManager em, IPlcEntityModel<?> entity) {
         Class<?> entityClass = entity.getClass();
         Table table = entityClass.getAnnotation(Table.class);
         if (table == null) {
@@ -119,7 +102,7 @@ public class JpaUniqueUtil {
         }
         List<String> errors = newArrayList();
         for (UniqueConstraint uniqueConstraint : table.uniqueConstraints()) {
-            if (!checkCompositeUniqueConstraint(entity, entityClass, uniqueConstraint)) {
+            if (!checkCompositeUniqueConstraint(em, entity, entityClass, uniqueConstraint)) {
                 errors.add(compositeUniqueConstraintErrorCode(entity, uniqueConstraint));
             }
         }
@@ -131,10 +114,10 @@ public class JpaUniqueUtil {
                 + (uniqueConstraint.name() == null ? "composite_unique_constraint_error" : uniqueConstraint.name().toLowerCase());
     }
 
-    private boolean checkCompositeUniqueConstraint(IPlcEntityModel<?> entity, Class<?> entityClass, UniqueConstraint u) {
+    private boolean checkCompositeUniqueConstraint(EntityManager em, IPlcEntityModel<?> entity, Class<?> entityClass, UniqueConstraint u) {
         Map<String, Object> values = newHashMap();
         values.putAll(getPropertyConstraints(entity, entityClass, u, ""));
-        return !existsInDatabaseOnAllObjects(entity, values);
+        return !existsInDatabaseOnAllObjects(em, entity, values);
     }
 
     private Map<String, Object> getPropertyConstraints(Object entity, Class<?> entityClass, UniqueConstraint u, String prefix) {
@@ -173,7 +156,7 @@ public class JpaUniqueUtil {
         return null;
     }
 
-    private boolean existsInDatabaseOnAllObjects(IPlcEntityModel<?> entity, Map<String, Object> values) {
+    private boolean existsInDatabaseOnAllObjects(EntityManager em, IPlcEntityModel<?> entity, Map<String, Object> values) {
         if (entity == null || values == null || values.isEmpty()) {
             return false;
         }
@@ -195,7 +178,7 @@ public class JpaUniqueUtil {
             }
             sqlQuery += " id<>:id";
         }
-        TypedQuery<Long> query = entityManager.createQuery(sqlQuery, Long.class);
+        TypedQuery<Long> query = em.createQuery(sqlQuery, Long.class);
         for (Map.Entry<String, Object> property : values.entrySet()) {
             String propertyName = property.getKey();
             Object value = property.getValue();

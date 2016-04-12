@@ -1,18 +1,3 @@
-/*
- * Copyright 2015 JAXIO http://www.jaxio.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.powerlogic.jcompany.core.model.qbe;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -221,7 +206,7 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
     	}
    	
         if (sp.hasNamedQuery()) {
-            return byNamedQueryUtil.findByNamedQuery(sp);
+            return byNamedQueryUtil.findByNamedQuery(getEntityManager(), sp);
         }
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<E> criteriaQuery = builder.createQuery(getEntityType());
@@ -287,7 +272,7 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      */
     public <T> List<T> findProperty(Class<T> propertyType, E entity, SearchParameters sp, List<Attribute<?, ?>> attributes) {
         if (sp.hasNamedQuery()) {
-            return byNamedQueryUtil.findByNamedQuery(sp);
+            return byNamedQueryUtil.findByNamedQuery(getEntityManager(), sp);
         }
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = builder.createQuery(propertyType);
@@ -351,7 +336,7 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
         checkNotNull(sp, "The searchParameters cannot be null");
 
         if (sp.hasNamedQuery()) {
-            return byNamedQueryUtil.numberByNamedQuery(sp).intValue();
+            return byNamedQueryUtil.numberByNamedQuery(getEntityManager(), sp).intValue();
         }
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
 
@@ -412,7 +397,7 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
      */
     public int findPropertyCount(E entity, SearchParameters sp, List<Attribute<?, ?>> attributes) {
         if (sp.hasNamedQuery()) {
-            return byNamedQueryUtil.numberByNamedQuery(sp).intValue();
+            return byNamedQueryUtil.numberByNamedQuery(getEntityManager(), sp).intValue();
         }
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Long> criteriaQuery = builder.createQuery(Long.class);
@@ -517,7 +502,7 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
 
 
     protected Predicate byExample(Root<E> root, CriteriaBuilder builder, SearchParameters sp, E entity) {
-        return byExampleUtil.byExampleOnEntity(root, entity, builder, sp);
+        return byExampleUtil.byExampleOnEntity(getEntityManager(), root, entity, builder, sp);
     }
 
     protected Predicate byPropertySelectors(Root<E> root, CriteriaBuilder builder, SearchParameters sp) {
@@ -529,7 +514,7 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
     }
 
     protected Predicate byPattern(Root<E> root, CriteriaBuilder builder, SearchParameters sp, Class<E> type) {
-        return byPatternUtil.byPattern(root, builder, sp, type);
+        return byPatternUtil.byPattern(getEntityManager(), root, builder, sp, type);
     }
 
     /**
