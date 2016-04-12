@@ -13,7 +13,7 @@
     "angular-toastr": "~1.5.0",
     "moment": "~2.10.6",
     "animate.css": "~3.4.0",
-    "angular": "~1.4.9",
+    "angular": "~1.5.3",
     "rdash-ui": "~1.0.1",
     "angular-ui-router": "~0.2.15",
     "bootstrap": "~3.3.5",
@@ -30,7 +30,7 @@
     "angular-i18n": "~1.4.7",
     "angular-translate-loader-url": "~2.8.1",
     "ng-dialog": "~0.5.5",
-    "jcompany-view": "1.0.5",
+    "jcompany-view": "1.0.7",
     "angular-block-ui": "~0.2.2",
     "angular-input-masks": "~2.1.1",
     "angular-validation-ghiscoding": "^1.4.22"
@@ -56,6 +56,6 @@
     }
   },
   "resolutions": {
-    "angular": "~1.4.9"
+    "angular": "~1.5.3"
   }
 }

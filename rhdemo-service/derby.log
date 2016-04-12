@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Thu Feb 04 14:04:23 BRST 2016:
- Inicializando o Derby vers„o The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): inst‚ncia a816c00e-0152-ad07-0296-00000e009988
-no diretÛrio de banco de dados C:\Users\baldini\AppData\Local\Temp\gfembed2287145279195082727tmp\lib\databases\embedded_default 
+Fri Apr 08 15:29:20 BRT 2016:
+ Inicializando o Derby vers√£o The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): inst√¢ncia a816c00e-0153-f722-b63f-0000097c7200
+no diret√≥rio de banco de dados C:\Users\MasterUdi\AppData\Local\Temp\gfembed2816827856814161668tmp\lib\databases\embedded_default 
 
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_40-b26
-user.dir=D:\git2\jcompany\rhdemo-service
-os.name=Windows 7
+user.dir=D:\gitnew2\jcompany2016\rhdemo-service
+os.name=Windows 8.1
 os.arch=amd64
-os.version=6.1
+os.version=6.3
 derby.system.home=null
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''

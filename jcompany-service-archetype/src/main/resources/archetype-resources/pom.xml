@@ -29,7 +29,7 @@
 						    <groupId>org.codehaus.mojo</groupId>
 						    <artifactId>exec-maven-plugin</artifactId>
 						    <configuration>
-						    	<workingDirectory>\${project.basedir}\..\${artifactId}-view\gulp\</workingDirectory>
+						    	<workingDirectory>\${project.basedir}\..\\${artifactId}-view\gulp\</workingDirectory>
 						      <executable>gulp</executable>
 						      <arguments>
 						        <argument>build</argument>
@@ -55,29 +55,29 @@
 									<phase>generate-sources</phase>
 									<configuration>
 										<tasks>
-										<!-- exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
+										<exec executable="cmd" dir="\${project.basedir}\..\\${artifactId}-view\" osfamily="windows">
 										    <arg value="/c npm install"/>
-										  </exec-->
-										 <exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
+										  </exec>
+										 <exec executable="cmd" dir="\${project.basedir}\..\\${artifactId}-view\" osfamily="windows">
 										    <arg value="/c bower install"/>
 										  </exec>
-										 <exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
+										 <exec executable="cmd" dir="\${project.basedir}\..\\${artifactId}-view\" osfamily="windows">
 										    <arg value="/c gulp clean"/>
 										  </exec>
-										 <exec executable="cmd" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="windows">
+										 <exec executable="cmd" dir="\${project.basedir}\..\\${artifactId}-view\" osfamily="windows">
 										    <arg value="/c gulp build"/>
 										  </exec>
 										  
-										  <exec executable="bash" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="unix">
+										  <exec executable="bash" dir="\${project.basedir}\..\\${artifactId}-view\" osfamily="unix">
 											<arg value="npm install"/>
 										  </exec>
-										  <exec executable="karma start" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="unix">
+										  <exec executable="karma start" dir="\${project.basedir}\..\\${artifactId}-view\" osfamily="unix">
 											<arg value="bower install"/>
 										  </exec>
-										  <exec executable="karma start" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="unix">
+										  <exec executable="karma start" dir="\${project.basedir}\..\\${artifactId}-view\" osfamily="unix">
 											<arg value="gulp clean"/>
 										  </exec>
-										  <exec executable="karma start" dir="\${project.basedir}\..\${artifactId}-view\" osfamily="unix">
+										  <exec executable="karma start" dir="\${project.basedir}\..\\${artifactId}-view\" osfamily="unix">
 										    <arg value="gulp build"/>
 										  </exec>
 										</tasks>
@@ -107,21 +107,21 @@
 										</resources>
 									</configuration>
 								</execution>
-								<execution>
-									<id>copy-resources-compile</id>
-									<phase>prepare-package</phase>
-									<goals>
-										<goal>copy-resources</goal>
-									</goals>
-									<configuration>
-										<outputDirectory>${basedir}/target/${artifactId}/</outputDirectory>
-										<resources>
-											<resource>
-												<directory>../${artifactId}-view/dist/${artifactId}/</directory>
-											</resource>
-										</resources>
-									</configuration>
-								</execution>
+							<!-- execution>
+								<id>copy-resources-compile</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${basedir}/target/${artifactId}/</outputDirectory>
+									<resources>
+										<resource>
+											<directory>../${artifactId}-view/dist/${artifactId}/</directory>
+										</resource>
+									</resources>
+								</configuration>
+							</execution-->
 							</executions>
 						</plugin>
 					</plugins>
