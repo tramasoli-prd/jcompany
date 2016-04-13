@@ -36,46 +36,41 @@ import com.powerlogic.jcompany.core.rest.PlcAbstractRest;
 @PlcAuthenticated
 @Produces({ MediaType.APPLICATION_JSON })
 @Consumes({ MediaType.APPLICATION_JSON })
-public class PlcAuthenticationRest extends PlcAbstractRest
-{
+public class PlcAuthenticationRest extends PlcAbstractRest {
+	
 	@Inject
 	private PlcAuthenticationProvider authProvider;
+	
+	@Inject
+	private PlcProfileProvider profileProvider;
 
 	@GET
 	@Path("/user")
-	public PlcAuthenticatedUserInfo user(@Context HttpServletRequest request) throws PlcException
-	{
+	public PlcAuthenticatedUserInfo user(@Context HttpServletRequest request) throws PlcException {
 		return getUserInfo(request);
 	}
-
 
 
 	@POST
 	@Path("/login")
 	@PlcNotAuthenticated
 	public PlcAuthenticatedUserInfo login(@Context HttpServletRequest request, Map<String, String> data)
-			throws PlcException
-	{
+			throws PlcException {
 		String username = data.get("username");
 		String password = data.get("password");
 
-		if (username == null || username.isEmpty() || password == null || password.isEmpty())
-		{
+		if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
 			throw new WebApplicationException(Status.BAD_REQUEST);
 		}
 		// authenticate!
-		try
-		{
+		try {
 			if (request.getUserPrincipal()==null) {
 				request.login(username, password);
 			}
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			// e.printStackTrace();
 			userLogout(request);
-			if (e.getCause() instanceof FailedLoginException)
-			{
+			if (e.getCause() instanceof FailedLoginException) {
 				throw PlcBeanMessages.FALHA_LOGIN_001.create();
 			}
 			throw PlcBeanMessages.FALHA_OPERACAO_003.create();
@@ -87,23 +82,19 @@ public class PlcAuthenticationRest extends PlcAbstractRest
 	@POST
 	@Path("/logout")
 	@PlcNotAuthenticated
-	public boolean logout(@Context HttpServletRequest request)
-	{
+	public boolean logout(@Context HttpServletRequest request) {
 		PlcAuthenticatedUserInfo userInfo = userLogout(request);
 
-		if (userInfo != null)
-		{
+		if (userInfo != null) {
 			return true;
 		}
 		return false;
 	}
 
-	protected PlcAuthenticatedUserInfo getUserInfo(HttpServletRequest request) throws PlcException
-	{
+	protected PlcAuthenticatedUserInfo getUserInfo(HttpServletRequest request) throws PlcException {
 		HttpSession session = request.getSession(false);
 
-		if (session != null)
-		{
+		if (session != null) {
 			PlcAuthenticatedUserInfo user = (PlcAuthenticatedUserInfo) session.getAttribute(PlcAuthenticatedUserInfo.PROPERTY);
 			return user;
 		}
@@ -113,51 +104,40 @@ public class PlcAuthenticationRest extends PlcAbstractRest
 	@GET
 	@Path("/checkSession")
 	@PlcNotAuthenticated
-	public PlcAuthenticatedUserInfo checkSession(@Context HttpServletRequest request) throws PlcException
-	{
-		if (request != null)
-		{
+	public PlcAuthenticatedUserInfo checkSession(@Context HttpServletRequest request) throws PlcException {
+		if (request != null) {
 			HttpSession session = request.getSession(false);
 
-			if (session != null)
-			{
+			if (session != null) {
 				return (PlcAuthenticatedUserInfo) session.getAttribute(PlcAuthenticatedUserInfo.PROPERTY);
 			}
 		}
 		return null;
 	}
 
-	protected PlcAuthenticatedUserInfo userLogin(HttpServletRequest request) throws PlcException
-	{
-		try
-		{
+	protected PlcAuthenticatedUserInfo userLogin(HttpServletRequest request) throws PlcException {
+		try {
 			Principal userPrincipal = request.getUserPrincipal();
 			PlcAuthenticatedUserInfo userInfo;
 			userInfo = authProvider.createUser(userPrincipal, request.getRemoteHost());
 			request.getSession().setAttribute(PlcAuthenticatedUserInfo.PROPERTY, userInfo);
+			userInfo = profileProvider.carregaProfileUsuario(request);
 			return userInfo;
-		}
-		catch (PlcException e)
-		{
+		} catch (PlcException e) {
 			userLogout(request);
 			throw e;
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			userLogout(request);
 			throw PlcBeanMessages.FALHA_OPERACAO_003.create();
 		}
 	}
 
-	protected PlcAuthenticatedUserInfo userLogout(HttpServletRequest request)
-	{
+	protected PlcAuthenticatedUserInfo userLogout(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 
-		if (session != null)
-		{
+		if (session != null) {
 			PlcAuthenticatedUserInfo userInfo = (PlcAuthenticatedUserInfo) session.getAttribute(PlcAuthenticatedUserInfo.PROPERTY);
-			if (userInfo != null)
-			{
+			if (userInfo != null) {
 				session.removeAttribute(PlcAuthenticatedUserInfo.PROPERTY);
 			}
 			session.invalidate();
