@@ -8,7 +8,7 @@ import com.powerlogic.jcompany.core.exception.PlcException;
 @Stateless
 public class PlcProfileProvider {
 	
-	public PlcAuthenticatedUserInfo carregaProfileUsuario(HttpServletRequest request) throws PlcException {
+	public PlcAuthenticatedUserInfo createProfile(HttpServletRequest request) throws PlcException {
 		return (PlcAuthenticatedUserInfo)request.getSession().getAttribute(PlcAuthenticatedUserInfo.PROPERTY);
 	}
 
