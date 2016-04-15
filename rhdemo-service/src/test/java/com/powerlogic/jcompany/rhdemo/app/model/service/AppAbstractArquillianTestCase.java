@@ -27,8 +27,8 @@ public abstract class AppAbstractArquillianTestCase extends PlcAbstractArquillia
 
 		j.addAsResource("META-INF/persistence.xml", ArchivePaths.create("META-INF/persistence.xml"));
 		j.addAsResource("META-INF/beans.xml", ArchivePaths.create("META-INF/beans.xml"));
-		j.addAsResource("PlcMessages.properties", ArchivePaths.create("PlcMessages.properties"));
-		j.addAsResource("AppMessages.properties", ArchivePaths.create("AppMessages.properties"));
+		j.addAsResource("PlcMessages_pt_BR.properties", ArchivePaths.create("PlcMessages_pt_BR.properties"));
+		j.addAsResource("AppMessages_pt_BR.properties", ArchivePaths.create("AppMessages_pt_BR.properties"));
 		j.setWebXML("META-INF/web.xml");		
 
 		return j;
