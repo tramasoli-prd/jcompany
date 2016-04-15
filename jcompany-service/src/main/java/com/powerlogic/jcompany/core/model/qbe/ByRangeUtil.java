@@ -1,11 +1,6 @@
 package com.powerlogic.jcompany.core.model.qbe;
 
-import static com.google.common.collect.Lists.newArrayList;
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
-
-import java.util.List;
-
+import org.apache.commons.collections.CollectionUtils;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,6 +9,14 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 /**
  * Helper to create a predicate out of {@link Range}s.
@@ -45,7 +48,23 @@ public class ByRangeUtil {
     private static <D extends Comparable<? super D>, E> Predicate buildRangePredicate(Range<E, D> range, Root<E> root, CriteriaBuilder builder) {
         Predicate rangePredicate = null;
         Path<D> path = JpaUtil.getInstance().getPath(root, range.getAttributes());
-        if (range.isBetween()) {
+        if (range.isBetween() && CollectionUtils.isNotEmpty(range.getAttributes())) {
+            Calendar initDate = new GregorianCalendar();
+            Calendar endDate = new GregorianCalendar();
+
+            initDate.setTime((Date)range.getFrom());
+            initDate.set(Calendar.HOUR_OF_DAY, 0);
+            initDate.set(Calendar.MINUTE, 0);
+            initDate.set(Calendar.SECOND, 0);
+
+            endDate.setTime((Date)range.getTo());
+            endDate.set(Calendar.HOUR_OF_DAY, 23);
+            endDate.set(Calendar.MINUTE, 59);
+            endDate.set(Calendar.SECOND, 59);
+
+            range.from((D)initDate.getTime());
+            range.to((D)endDate.getTime());
+
             rangePredicate = builder.between(path, range.getFrom(), range.getTo());
         } else if (range.isFromSet()) {
             rangePredicate = builder.greaterThanOrEqualTo(path, range.getFrom());

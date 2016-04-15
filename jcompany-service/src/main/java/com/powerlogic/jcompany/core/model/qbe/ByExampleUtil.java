@@ -1,32 +1,25 @@
 package com.powerlogic.jcompany.core.model.qbe;
 
-import static com.google.common.collect.Lists.newArrayList;
-import static java.util.Collections.emptyList;
-import static javax.persistence.metamodel.Attribute.PersistentAttributeType.EMBEDDED;
-import static javax.persistence.metamodel.Attribute.PersistentAttributeType.MANY_TO_ONE;
-import static javax.persistence.metamodel.Attribute.PersistentAttributeType.ONE_TO_ONE;
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
-
-import java.util.List;
-
+import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.ListJoin;
-import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import javax.persistence.metamodel.ManagedType;
 import javax.persistence.metamodel.PluralAttribute;
 import javax.persistence.metamodel.SingularAttribute;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.*;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.powerlogic.jcompany.core.model.entity.IPlcEntityModel;
+import static com.google.common.collect.Lists.newArrayList;
+import static java.util.Collections.emptyList;
+import static javax.persistence.metamodel.Attribute.PersistentAttributeType.*;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
  * Helper to create predicate by example. It processes associated entities (1 level deep).
@@ -94,6 +87,27 @@ public class ByExampleUtil {
                     if (isNotEmpty((String) attrValue)) {
                         predicates.add(jpaUtil.stringPredicate(mtPath.get(jpaUtil.stringAttribute(mt, attr)), attrValue, sp, builder));
                     }
+                } else if (attr.getJavaType() == Date.class){
+
+                    Calendar initDate = new GregorianCalendar();
+                    Calendar endDate = new GregorianCalendar();
+
+                    initDate.setTime((Date)attrValue);
+                    initDate.set(Calendar.HOUR_OF_DAY, 0);
+                    initDate.set(Calendar.MINUTE, 0);
+                    initDate.set(Calendar.SECOND, 0);
+
+                    endDate.setTime((Date)attrValue);
+                    endDate.set(Calendar.HOUR_OF_DAY, 23);
+                    endDate.set(Calendar.MINUTE, 59);
+                    endDate.set(Calendar.SECOND, 59);
+
+                    Range<T, Date> r = Range.newRange(attr);
+                    r.from(initDate.getTime());
+                    r.to(endDate.getTime());
+
+                    predicates.add(builder.between((Expression<? extends Date>) mtPath.get(jpaUtil.attribute(mt, attr)), r.getFrom(), r.getTo()));
+
                 } else {
                     predicates.add(builder.equal(mtPath.get(jpaUtil.attribute(mt, attr)), attrValue));
                 }
