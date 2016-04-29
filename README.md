@@ -1,4 +1,3 @@
-
 Licença Pública de Marca 1.0, 2011, Powerlogic Consultoria e Sistemas S.A.
 
 		JAGUAR – FRAMEWORK DE DESENVOLVIMENTO JAVA
