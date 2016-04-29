@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jcompany.iml" filepath="$PROJECT_DIR$/jcompany.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jcompany-bom/jcompany-bom.iml" filepath="$PROJECT_DIR$/jcompany-bom/jcompany-bom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jcompany-service/jcompany-service.iml" filepath="$PROJECT_DIR$/jcompany-service/jcompany-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jcompany-service-archetype/jcompany-service-archetype.iml" filepath="$PROJECT_DIR$/jcompany-service-archetype/jcompany-service-archetype.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jcompany-unit-test/jcompany-unit-test.iml" filepath="$PROJECT_DIR$/jcompany-unit-test/jcompany-unit-test.iml" />
+    </modules>
+  </component>
+</project>
