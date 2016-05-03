@@ -31,7 +31,7 @@ Siga os seguintes passos parar realizar sua contribuição para o jCompany.
 
   Passos para atualização do Fork.
 
-  5.1 - $ git fetch http://gitpub.cast.com.br/powerlogic/jcompany.git master
+  5.1 - $ git fetch http://gitpub.cast.com.br/castgroup/jcompany.git master
   	(baixa conteúdo a branch master do repositório principal, ficando disponível no FETCH_HEAD);
 
   5.2 - $ git checkout -b User/jcompany-master FETCH_HEAD
@@ -39,7 +39,7 @@ Siga os seguintes passos parar realizar sua contribuição para o jCompany.
 
   5.3 - $ git checkout master
   	(trocar a branch selecionada para a master);
-
+  	
   5.4 - 4	$ git merge --no-ff User/jcompany-master
   	(realiza o merge da branch master com a branch "User/jcompany-master" );
 
