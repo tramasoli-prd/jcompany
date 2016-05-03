@@ -40,7 +40,7 @@ Siga os seguintes passos parar realizar sua contribuição para o jCompany.
   5.3 - $ git checkout master
   	(trocar a branch selecionada para a master);
   	
-  5.4 - 4	$ git merge --no-ff User/jcompany-master
+  5.4 - $ git merge --no-ff User/jcompany-master
   	(realiza o merge da branch master com a branch "User/jcompany-master" );
 
   5.5 - Caso haja conflitos esses devem ser resolvidos manualmente. Em arquivos cujo o merge está resolvido o usuário contribuidor deve executar o comando:
