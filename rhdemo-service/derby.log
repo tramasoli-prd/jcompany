@@ -11,3 +11,5 @@ os.arch=amd64
 os.version=6.3
 derby.system.home=null
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+teste
+teste
