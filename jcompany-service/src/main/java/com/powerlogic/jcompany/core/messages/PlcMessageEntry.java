@@ -89,7 +89,7 @@ public class PlcMessageEntry implements Serializable {
 
 		PlcMessageEntry that = (PlcMessageEntry) o;
 
-		return (type == that.type) && ((message != null) ? message.equals(that.message) :
+		return (key == that.key) && (type == that.type) && ((message != null) ? message.equals(that.message) :
 				((that.message == null) && Objects.deepEquals(args, that.args)));
 
 	}
