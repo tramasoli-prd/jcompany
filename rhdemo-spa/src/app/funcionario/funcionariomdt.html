@@ -8,17 +8,17 @@
 	<div class="row">
 	
 		<div class="col-md-2">
-			<label>Id:</label> 
+			<label>{{'label.id' | translate}}:</label> 
 			<input type="text" ng-model="funcionario.id" name="funcionario.id" class="form-control" ng-disabled="true">
 		</div>
 
 		<div class="col-md-6">
-			<label>Nome:</label> 
+			<label>{{'label.funcionario.nome' | translate}}:</label> 
 			<input type="text" ng-model="funcionario.nome"  name="funcionario.nome" validation="required" class="form-control">
 		</div>
 
 		<div class="col-md-2">
-			<label>CPF:</label> 
+			<label>{{'label.funcionario.cpf' | translate}}:</label> 
 			<input type="text" ng-model="funcionario.cpf" name="funcionario.cpf" class="form-control"> 
 		</div>
 	</div>
@@ -30,7 +30,7 @@
 		</div>
 
 		<div class="col-md-6">
-			<label>E-mail:</label> 
+			<label>{{'label.funcionario.email' | translate}}:</label> 
 			<input type="text"  ng-model="funcionario.email" name="funcionario.email" class="form-control">
 		</div>
 
@@ -71,7 +71,7 @@
 
 		<div class="col-md-12">
 
-			<label>Observação:</label>
+			<label>{{'label.observacao' | translate}}:</label>
 			<textarea class="form-control" ng-model="funcionario.observacao"  name="funcionario.observacao" rows="3"></textarea>
 
 		</div>
