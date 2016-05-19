@@ -6,20 +6,20 @@
 	</div>
 
 	<div class="row">
-	
+
 		<div class="col-md-2">
-			<label>{{'label.id' | translate}}:</label> 
+			<label>{{'label.id' | translate}}:</label>
 			<input type="text" ng-model="funcionario.id" name="funcionario.id" class="form-control" ng-disabled="true">
 		</div>
 
 		<div class="col-md-6">
-			<label>{{'label.funcionario.nome' | translate}}:</label> 
+			<label>{{'label.funcionario.nome' | translate}}:</label>
 			<input type="text" ng-model="funcionario.nome"  name="funcionario.nome" validation="required" class="form-control">
 		</div>
 
 		<div class="col-md-2">
-			<label>{{'label.funcionario.cpf' | translate}}:</label> 
-			<input type="text" ng-model="funcionario.cpf" name="funcionario.cpf" class="form-control"> 
+			<label>{{'label.funcionario.cpf' | translate}}:</label>
+			<input type="text" ng-model="funcionario.cpf" name="funcionario.cpf" class="form-control">
 		</div>
 	</div>
 
@@ -30,7 +30,7 @@
 		</div>
 
 		<div class="col-md-6">
-			<label>{{'label.funcionario.email' | translate}}:</label> 
+			<label>{{'label.funcionario.email' | translate}}:</label>
 			<input type="text"  ng-model="funcionario.email" name="funcionario.email" class="form-control">
 		</div>
 
@@ -45,7 +45,7 @@
 
 		<div class="col-md-4">
 
-			<plc-static-combo ng-model="funcionario.estadoCivil" name="funcionario.estadoCivil" label="Estado Civil:" ng-enum="estadocivil" 
+			<plc-static-combo ng-model="funcionario.estadoCivil" name="funcionario.estadoCivil" label="Estado Civil:" ng-enum="estadocivil"
 				ng-enum-value="estadocivil" />
 
 		</div>
@@ -59,7 +59,7 @@
 
 		<div class="col-sm-4" style="margin-top: 30px;">
 
-			<plc-radio ng-model="funcionario.sexo" label="Sexo:" 
+			<plc-radio ng-model="funcionario.sexo" label="Sexo:"
 				ng-item-description="descricao" ng-enum="sexo" ng-enum-value="sexo" />
 
 		</div>
@@ -89,10 +89,10 @@
 
 	<div class="form-group">
 
-		<accordion close-others="oneAtATime"> <accordion-group
+		<uib-accordion close-others="oneAtATime"> <uib-accordion-group
 			heading="{{detalhe.titulo}}" ng-repeat="detalhe in detalhes">
 		<div ng-include="detalhe.template"></div>
-		</accordion-group> </accordion>
+		</uib-accordion-group> </uib-accordion>
 
 	</div>
 
@@ -100,7 +100,7 @@
 
 	<div class="form-group">
 
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 			<button type="button" class="btn btn-default" ng-click="funcionarioController.new();">Limpar</button>
 			<button type="submit" class="btn btn-default" ng-click="funcionarioController.save();">Salvar</button>
 			<button type="button" class="btn btn-default" ng-click="funcionarioController.list();">Listar</button>
