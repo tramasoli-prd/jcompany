@@ -1,7 +1,7 @@
 <div class="container-fluid" ng-controller="DepartamentoController as departamentoController">
 
 
-	<form name="form" class="form-validate">
+	<form name="form" class="form-validate" novalidate>
 
 	<div class="panel .panel-default">
 		<div class=".panel-heading">
@@ -11,17 +11,17 @@
 
 	<div class="row">
         <div class="col-md-4" >
-            
+
           	<label>{{'label.id' | translate}}:</label>
   			<input type="text" ng-model="departamento.id" class="form-control" disabled="disabled">
-           
+
         </div>
 
         <div class="col-md-8">
-           
+
             <label>{{'label.descricao' | translate}}:</label>
-			<input type="text" name="descricao" ng-model="departamento.descricao"  class="form-control">
-            
+			<input type="text" name="departamento.descricao" ng-model="departamento.descricao"  class="form-control">
+
         </div>
 	</div>
 
@@ -29,7 +29,7 @@
 
 		<plc-aggregate-modal label="Departamento Pai:" ng-model="departamento.departamentoPai" ng-model-lookup="descricao"
 			template="app/departamento/departamentosel.html" />
-		
+
     </div>
 
 	<div class="form-group">

@@ -4,11 +4,12 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 	<display-name>rhdemo-service</display-name>
+
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>indexrest.html</welcome-file>
 	</welcome-file-list>
 
-	<!--  JBOSS
+	<!--  JBOSS -->
 	<context-param>
 		<param-name>resteasy.servlet.mapping.prefix</param-name>
 		<param-value>/rest</param-value>
@@ -17,18 +18,18 @@
 		<param-name>resteasy.scan</param-name>
 		<param-value>true</param-value>
 	</context-param>
-	-->	
+
 	<session-config>
 		<session-timeout>20</session-timeout>
 	</session-config>
 
 	<servlet>
 		<servlet-name>rest</servlet-name>
-		<!-- Weblogic  -->
-		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-		
-		<!-- JBOSS
-		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>  -->
+		<!-- Weblogic
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class> -->
+
+		<!-- JBOSS -->
+		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
 		
 		
 		<!-- Websphere Liberty 
@@ -39,11 +40,11 @@
 			<param-name>javax.ws.rs.Application</param-name>
 			<param-value>com.powerlogic.jcompany.core.rest.PlcApplication</param-value>
 		</init-param>
-		<!-- Weblogic  -->
+		<!-- Weblogic
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
 			<param-value>com.powerlogic.jcompany.core.rest, com.powerlogic.jcompany.rhdemo.app.rest</param-value>
-		</init-param>
+		</init-param> -->
 		
 		<load-on-startup>1</load-on-startup>
 	</servlet>

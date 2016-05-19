@@ -1,14 +1,14 @@
 package com.powerlogic.jcompany.model.test;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.interceptor.Interceptors;
-import javax.validation.Valid;
-
 import com.powerlogic.jcompany.commons.interceptor.validation.PlcValidationInterceptor;
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.model.repository.IPlcEntityRepository;
 import com.powerlogic.jcompany.core.model.service.PlcAbstractServiceEntity;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.interceptor.Interceptors;
+import javax.validation.Valid;
 
 /**
  * EJB Service for "Funcionario"
@@ -23,7 +23,6 @@ public class UserServiceImpl extends PlcAbstractServiceEntity<Long,  UserEntity>
 
 	@Inject
 	private UserRepository userRepository;
-
 
 	@Override
 	protected IPlcEntityRepository<Long, UserEntity> getEntityRepository() {

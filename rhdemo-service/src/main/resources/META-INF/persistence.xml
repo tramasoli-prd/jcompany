@@ -7,13 +7,13 @@
 
 		<description>RH Demo Persistence Unit</description>
 
-		<!-- Weblogic e Websphere Liberty -->
+		<!-- Weblogic e Websphere Liberty
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<jta-data-source>jdbc/rhdemo</jta-data-source> 
-		
-		<!-- JBOSS 
+		<jta-data-source>jdbc/rhdemo</jta-data-source> -->
+
+		<!-- JBOSS -->
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/jdbc/rhdemo</jta-data-source> -->
+		<jta-data-source>java:/jdbc/rhdemo</jta-data-source>
 		 
 		 
 		<mapping-file>META-INF/orm.xml</mapping-file>
@@ -40,7 +40,7 @@
 			<!-- Websphere Liberty
 			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.OraclePlatform" />   -->
 			 
-			<!-- Weblogic  -->
+			<!-- Weblogic
 			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.oracle.Oracle11Platform" />
 			
 			<property name="eclipselink.target-server" value="WebLogic" />
@@ -50,7 +50,15 @@
 			<property name="eclipselink.logging.parameters" value="true" />
 			<property name="eclipselink.logging.timestamp" value="true" />
 			
-			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation" value="create-tables" />-->
+
+
+
+			<!---->
+			<property name="show_sql" value="true"/>
+			<property name="format_sql" value="true"/>
+			<property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+
 		</properties>
 	</persistence-unit>
 </persistence>

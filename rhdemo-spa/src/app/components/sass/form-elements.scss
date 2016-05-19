@@ -1,10 +1,10 @@
 /* ========================================================================
      Component: form-elements
  ========================================================================== */
- 
+
 /**
  * Custom form elements
- *    - Checkbox 
+ *    - Checkbox
  *    - Radios
  *    - Switch
  *    - Rounded inputs
@@ -12,7 +12,7 @@
 
 //
 // CHECKBOX AND RADIOS
-// 
+//
 
 $ui-fg-color: $brand-primary;
 $ui-bg-color: #ddd;
@@ -26,7 +26,7 @@ $ui-bg-color: #ddd;
 
   & span:after {
    height: $hg - 2; width: $hg - 2;
-  }  
+  }
 }
 
 .c-checkbox{
@@ -44,7 +44,7 @@ $ui-bg-color: #ddd;
     position: absolute;
     margin-left: 0 !important;
   }
-  
+
   // the element that replaces the input
   span {
     position: relative;
@@ -117,7 +117,7 @@ $ui-bg-color: #ddd;
   /* override for radio */
   input[type=radio]:checked + span{
     background-color: #fff;
-    &:before{ 
+    &:before{
       color: $ui-fg-color;
     }
   }
@@ -149,7 +149,7 @@ $ui-bg-color: #ddd;
       margin-top: -($sz/2);
       margin-left: -($sz/2);
       border-radius: 500px;
-      
+
     }
   }
 
@@ -167,7 +167,7 @@ $ui-bg-color: #ddd;
   /* override for radio */
   input[type=radio]:checked + span{
     background-color: #fff;
-    &:before{ 
+    &:before{
       background-color: $ui-fg-color;
     }
   }
@@ -227,7 +227,7 @@ $switch-sm-hg: $switch-sm-wd/2;
   z-index: -1;
 }
 
-.switch { 
+.switch {
   & span {
     position: relative;
     display: inline-block;
@@ -250,8 +250,8 @@ $switch-sm-hg: $switch-sm-wd/2;
    border-radius: 400px;
    box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
    -webkit-transition: all .2s;
-  } 
-  
+  }
+
   &.switch-lg { @include switch-variant($switch-lg-wd, $switch-lg-hg); }
   &.switch-sm { @include switch-variant($switch-sm-wd, $switch-sm-hg); }
 }
@@ -303,9 +303,9 @@ $switch-sm-hg: $switch-sm-wd/2;
 .note-editor {
   background-image: -webkit-linear-gradient(#eee .1em, transparent .1em);
   background-image: linear-gradient(#eee .1em, transparent .1em);
-  
+
   background-size: 100% 20px;
-  background-color: #fff; 
+  background-color: #fff;
 
   line-height: 20px;
   margin-top: 5px;
@@ -314,9 +314,9 @@ $switch-sm-hg: $switch-sm-wd/2;
   border: none;
   $margin-color: $brand-warning;
   &.note-editor-margin {
-    background-image: 
+    background-image:
       -webkit-linear-gradient(0deg, transparent 49px, lighten($margin-color, 30%) 49px, lighten($margin-color, 30%) 51px, transparent 51px), -webkit-linear-gradient(#eee .1em, transparent .1em);
-    background-image: 
+    background-image:
       linear-gradient(90deg, transparent 49px, lighten($margin-color, 30%) 49px, lighten($margin-color, 30%) 51px, transparent 51px),
       linear-gradient(#eee .1em, transparent .1em);
     padding-left: 55px;
