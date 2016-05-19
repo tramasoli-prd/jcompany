@@ -310,7 +310,11 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 						if (parameter.getName().equals("situacao")) {
 						//	q.setParameter(parameter.getName(), PlcSituacao.A);
 						} else if (parameter.getName().equals("id") && entity.getId()==null) {
-							q.setParameter(parameter.getName(), 0);
+							if (parameter.getParameterType().isAssignableFrom(Long.class)) {
+								q.setParameter(parameter.getName(), 0L);	
+							} else {
+								q.setParameter(parameter.getName(), 0);
+							}
 						} else {
 							q.setParameter(parameter.getName(), propertyUtilsBean.getProperty(entity, parameter.getName()));
 						}
