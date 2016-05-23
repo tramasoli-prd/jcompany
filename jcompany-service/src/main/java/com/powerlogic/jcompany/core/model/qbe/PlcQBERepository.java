@@ -5,6 +5,7 @@ import static com.google.common.collect.Lists.newArrayList;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +22,7 @@ import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Selection;
 import javax.persistence.metamodel.Attribute;
 import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.PluralAttribute;
@@ -214,7 +216,16 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
             criteriaQuery.distinct(true);
         }
         Root<E> root = criteriaQuery.from(getEntityType());
-
+        
+        //multiselect
+        if (!sp.getMultiSelect().isEmpty()) {
+        	List<Selection<?>> select = new ArrayList<Selection<?>>();
+        	for (String field : sp.getMultiSelect()) {
+        		select.add(root.get(field));
+			}
+        	criteriaQuery.multiselect(select);
+        }
+        
         // predicate
         Predicate predicate = getPredicate(criteriaQuery, root, builder, entity, sp);
         if (predicate != null) {
