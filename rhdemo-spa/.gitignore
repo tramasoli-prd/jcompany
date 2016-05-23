@@ -5,6 +5,7 @@ node_modules/
 coverage/
 .sass-cache/
 .idea/
+*.iml
 .tmp/
 *.log
 *.prefs

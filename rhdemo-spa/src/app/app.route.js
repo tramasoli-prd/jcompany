@@ -16,14 +16,14 @@
 			controllerAs: 'plcLoginController',
 			access: 'public'
 		})
-		
+
 
 		$stateProvider
 		.state('app', {
 			url: $contextUrl+'/app',
 			templateUrl: 'app/app.html'
 		});
-		
+
 		$stateProvider
 		.state('app.inicial', {
 			url: '/inicial',
@@ -32,8 +32,8 @@
 			controller: 'InicialController',
 			controllerAs: 'inicialController'
 		});
-		
-		
+
+
 		$locationProvider.html5Mode(false);
 		$urlRouterProvider.otherwise($contextUrl+'/app/inicial');
 	}

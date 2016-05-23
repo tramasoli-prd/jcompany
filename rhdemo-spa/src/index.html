@@ -5,7 +5,7 @@
 <title>RHDEMO</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
-<!--base href="/rhdemo/"--> 
+<!--base href="/rhdemo/"-->
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
@@ -29,8 +29,8 @@
 <!-- BEGIN Page Wrapper -->
 <div id="page-wrapper" ng-class="{'open': appController.toggle}" ng-cloak>
 
-	<!-- Sidebar --> 
-	<div id="sidebar-wrapper" style="display:none">
+	<!-- Sidebar -->
+	<div id="sidebar-wrapper" ng-show="user != null">
 		<ul class="sidebar">
 			<li class="sidebar-main"><a
 				ng-click="appController.toggleSidebar()"> RhDemo <span
@@ -67,7 +67,7 @@
 		<div class="page-content">
 
 			<!-- Header Bar -->
-			<div id="sidebar" class="row header" style="display:none" >
+			<div id="sidebar" class="row header" ng-show="user != null" >
 				<div class="col-xs-12">
 					<div class="user pull-right">
 						<div id="profile" ng-mouseover="appController.profileShow()"
@@ -76,7 +76,7 @@
 								src="assets/images/avatar.jpg"> </a>
 							<ul class="dropdown-menu dropdown-menu-right">
 								<li class="dropdown-header">{{user.name}}</li>
-								
+
 								<li class="divider"></li>
 								<li class="dropdown-header">
 									<div plc-language-select></div>

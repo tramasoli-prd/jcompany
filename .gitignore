@@ -1,6 +1,7 @@
 /jcompany-service/bin
 .settings/
-
-
+.idea/
+*/**/.iml
+*.iml
 /jcompany-service-archetype/target
 /jcompany-html-archetype/target
