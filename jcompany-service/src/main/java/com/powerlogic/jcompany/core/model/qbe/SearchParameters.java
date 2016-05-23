@@ -56,6 +56,9 @@ public class SearchParameters implements Serializable {
 
     private Set<OrderBy> orders = newHashSet();
 
+    //  Specify the selection properties that are to be returned in the query result.
+    private List<String> multiSelect = newArrayList();
+    
     // technical parameters
     private boolean caseSensitive = true;
 
@@ -740,8 +743,12 @@ public class SearchParameters implements Serializable {
     public SearchParameters distinct() {
         return distinct(true);
     }
+    
+    public List<String> getMultiSelect() {
+		return multiSelect;
+	}
 
-    @Override
+	@Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
