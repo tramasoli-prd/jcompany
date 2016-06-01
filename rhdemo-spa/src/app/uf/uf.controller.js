@@ -2,27 +2,18 @@
 (function() {
   'use strict';
 
-  var jcompanyModule = angular.module('jcompany-view');
-  jcompanyModule.UfControllerConstructor = UfController;
-
   angular.module('rhdemo').controller('UfController', UfController );
 
   /** @ngInject */
-  function UfController($injector, $scope, $compile, $state, $stateParams, UfService, PlcNotificationService, PlcUtils) {
+  function UfController($scope, $controller, UfService) {
+
+    var vm = this;
 
     // required atributes in scope for inheritance.
     $scope.$baseService = UfService;
     $scope.$baseRoute = 'uf';
 
-    // Using the injector for inheritance.
-    $injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
-        $scope: $scope,
-        $compile: $compile,
-        $state: $state,
-        $stateParams: $stateParams,
-        PlcNotificationService: PlcNotificationService,
-        PlcUtils: PlcUtils
-    }); 
+    angular.extend(vm, $controller('PlcBaseController', {$scope: $scope}));
 
     this.allTabular();
 

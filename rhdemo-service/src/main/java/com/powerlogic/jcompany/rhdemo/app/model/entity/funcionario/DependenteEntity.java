@@ -1,32 +1,18 @@
 package com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario;
 
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
+import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
+import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
+import com.powerlogic.jcompany.rhdemo.app.model.domain.Sexo;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
-import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
-import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
-import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
-import com.powerlogic.jcompany.rhdemo.app.model.domain.Sexo;
 /**
  * Classe Concreta gerada a partir do assistente
  */
@@ -51,7 +37,6 @@ public class DependenteEntity extends PlcVersionedEntity<Long> implements IPlcLo
 	private String nome;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(length=1)
 	private Sexo sexo;
 	
 	@ManyToOne (targetEntity = FuncionarioEntity.class, fetch = FetchType.LAZY)

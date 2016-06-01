@@ -1,28 +1,26 @@
 (function() {
-	'use strict';
+  'use strict';
 
-	angular
-	.module('rhdemo')
-	.factory('DepartamentoService', DepartamentoService);
+  angular
+    .module('rhdemo')
+    .factory('DepartamentoService', DepartamentoService);
 
-	DepartamentoService.$inject = ['PlcEntityService', 'PlcUtils'];
-
-	/** @ngInject */
-	function DepartamentoService(PlcEntityService, PlcUtils) {
+  /** @ngInject */
+  function DepartamentoService(PlcEntityService, $class) {
 
 
-		var Service = $class(PlcEntityService, {
+    var Service = $class.createClass(PlcEntityService, {
 
-			constructor: function() {
-				PlcEntityService.call(this, {
-					type: 'departamento'
-				});
-			}
+      constructor: function() {
+        PlcEntityService.call(this, {
+          type: 'departamento'
+        });
+      }
 
-		});
+    });
 
 
-		return new Service();
-	}
+    return new Service();
+  }
 
 })();

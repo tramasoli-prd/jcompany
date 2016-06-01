@@ -1,40 +1,18 @@
 package com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario;
 
 
-import java.math.BigDecimal;
-import java.util.Date;
+import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
+import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
+import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
-import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
-import com.powerlogic.jcompany.core.model.entity.IPlcLogicalExclusion;
-import com.powerlogic.jcompany.core.model.entity.PlcVersionedEntity;
+import java.math.BigDecimal;
+import java.util.Date;
 /**
  * Classe Concreta gerada a partir do assistente
  */
@@ -69,7 +47,7 @@ public class HistoricoProfissionalEntity extends PlcVersionedEntity<Long> implem
 	@Past
 	@NotNull
 	@Column(length=11)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataInicio;
 	
 	@Min(value=0)

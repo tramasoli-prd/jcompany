@@ -12,22 +12,22 @@
 	<div class="row">
         <div class="col-md-4" >
 
-          	<label>{{'label.id' | translate}}:</label>
+          	<label>{{'label.departamento.id' | translate}}:</label>
   			<input type="text" ng-model="departamento.id" class="form-control" disabled="disabled">
 
         </div>
 
         <div class="col-md-8">
 
-            <label>{{'label.descricao' | translate}}:</label>
-			<input type="text" name="departamento.descricao" ng-model="departamento.descricao"  class="form-control">
+            <label>{{'label.departamento.descricao' | translate}}:</label>
+			<input type="text" label="{{'label.departamento.descricao' | translate}}"  name="departamento.descricao" ng-model="departamento.descricao"  class="form-control">
 
         </div>
 	</div>
 
 	<div class="row">
 
-		<plc-aggregate-modal label="Departamento Pai:" ng-model="departamento.departamentoPai" ng-model-lookup="descricao"
+		<plc-aggregate-modal label="{{'label.departamento.departamentoPai' | translate}}" ng-model="departamento.departamentoPai" ng-model-lookup="descricao"
 			template="app/departamento/departamentosel.html" />
 
     </div>

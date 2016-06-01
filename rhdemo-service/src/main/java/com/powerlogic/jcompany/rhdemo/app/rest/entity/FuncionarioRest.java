@@ -1,25 +1,5 @@
 package com.powerlogic.jcompany.rhdemo.app.rest.entity;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.*;
-import javax.ws.rs.core.Response.ResponseBuilder;
-
-import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
-import com.powerlogic.jcompany.core.messages.PlcMessageType;
-import org.apache.commons.lang3.StringUtils;
-
 import com.powerlogic.jcompany.commons.util.fileupload.PlcFileDTO;
 import com.powerlogic.jcompany.commons.util.fileupload.PlcFileUploadUtil;
 import com.powerlogic.jcompany.core.exception.PlcException;
@@ -30,6 +10,17 @@ import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoConteudoE
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FuncionarioEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.service.FuncionarioService;
+import org.apache.commons.lang3.StringUtils;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.ws.rs.core.UriInfo;
+import java.io.File;
 
 @PlcAuthenticated
 @Path("/entity/funcionario")
@@ -43,7 +34,6 @@ public class FuncionarioRest extends PlcAbstractEntityRest<Long, FuncionarioEnti
 
 	@Inject
 	private PlcFileUploadUtil fileUploadUtil;
-
 
 	@Override
 	protected FuncionarioService getEntityService() {

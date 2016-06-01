@@ -2,12 +2,10 @@
 (function() {
 	'use strict';
 
-	var jcompanyModule = angular.module('jcompany-view');
-  	jcompanyModule.FuncionarioControllerConstructor = FuncionarioController;
-
 	angular.module('rhdemo').controller('FuncionarioController', FuncionarioController );
+
 	/** @ngInject */
-	function FuncionarioController($injector, $scope, $state, $stateParams, FuncionarioService, PlcNotificationService, PlcUtils, FileUploader, $compile) {
+	function FuncionarioController($scope, $controller, FuncionarioService) {
 
 		var vm = this;
 
@@ -15,16 +13,9 @@
 		// required atributes in scope for inheritance.
 		$scope.$baseService = FuncionarioService;
 		$scope.$baseRoute = 'funcionario';
-		// Using the injector for inheritance.
-	    $injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
-	        $scope: $scope,
-	        $compile: $compile,
-	        $state: $state,
-	        $stateParams: $stateParams,
-	        PlcNotificationService: PlcNotificationService,
-	        PlcUtils: PlcUtils
-	    }); 
-	   
+
+    angular.extend(vm, $controller('PlcBaseController', {$scope: $scope}));
+
 		$scope.detalhes = [
 		                   {
 		                	   titulo: "Dependente",
@@ -36,17 +27,17 @@
 		                	   name: "historicoProfissional",
 		                	   template: "app/funcionario/funcionariodet2.html"
 		                   }
-		                   ]; 
+		                   ];
 
 
 
 		$scope.columnDefs = [
-		                     { field: 'id', displayName: 'Id', width: '5%'},
-		                     { field: 'nome', displayName: 'Nome', width: '20%'},
-		                     { field: 'email', displayName: 'E-mail', width: '20%'},
-		                     { field: 'cpf', displayName: 'CPF', width: '15%'},
-		                     { field: 'dataNascimento', displayName: 'Nascimento', width: '10%', cellFilter: 'date:\'dd/MM/yyyy\''},
-		                     { field: 'departamento.descricao', displayName: 'Departamento', width: '20%'}
+		                     { field: 'id', displayName: 'label.funcionario.id',  headerCellFilter:'translate', width: '5%'},
+		                     { field: 'nome', displayName: 'label.funcionario.nome',headerCellFilter:'translate', width: '20%'},
+		                     { field: 'email', displayName: 'label.funcionario.email', headerCellFilter:'translate', width: '20%'},
+		                     { field: 'cpf', displayName: 'label.funcionario.cpf', headerCellFilter:'translate', width: '15%'},
+		                     { field: 'dataNascimento', displayName: 'label.funcionario.dataNascimento', headerCellFilter:'translate', width: '15%', cellFilter: 'date:\'dd/MM/yyyy\''},
+		                     { field: 'departamento.descricao', displayName: 'label.funcionario.departamento', headerCellFilter:'translate', width: '20%'}
 		                     ]
 
 		$scope.uploaderFilter =[
@@ -59,7 +50,7 @@
 		                        	}
 		                        }]
 
-		
+
 
 	}
 

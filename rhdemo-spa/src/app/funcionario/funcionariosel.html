@@ -1,46 +1,50 @@
 <div class="container-fluid">
-<form name="form" class="form-validate" ng-controller="FuncionarioController as funcionarioController">
+<form name="form" class="form-validate" ng-controller="FuncionarioController as funcionarioController" novalidate>
 	<div class="panel .panel-default">
 		<div class=".panel-heading">Consulta de Funcion&aacute;rios</div>
 	</div>
 
 	<div class="row">
 		<div class="col-md-2">
-			<label>{{'label.funcionario.nome' | translate}}:</label> <input type="text" name="funcionarioArg.nome"
-				ng-model="funcionarioArg.nome" class="form-control">
+			<label for="nome">{{'label.funcionario.nome' | translate}}:</label>
+      <input type="text" id="nome" name="funcionarioArg.nome" ng-maxlength="40" ng-minlength="5"
+				ng-model="funcionarioArg.nome" class="form-control" label="{{'label.funcionario.nome' | translate}}">
 		</div>
 
 		<div class="col-md-2">
-			<label>{{'label.funcionario.cpf' | translate}}:</label> <input type="text" ng-model="funcionarioArg.cpf" name="funcionarioArg.cpf"
-				class="form-control">
+			<label for="cpf">{{'label.funcionario.cpf' | translate}}:</label>
+      <input id="cpf" type="text" ng-model="funcionarioArg.cpf" ui-br-cpf-mask name="funcionarioArg.cpf"
+             placeholder="___.___.___-__" uib-tooltip="Digite um CPF válido"
+             label="{{'label.funcionario.cpf' | translate}}" class="form-control">
 		</div>
 
 		<div class="col-md-3">
 
-			<plc-date-picker ng-model="funcionarioArg.dataNascimento" label="Data Nasc.:" />
+			<plc-date-picker name="funcionarioArg.dataNascimento" ng-model="funcionarioArg.dataNascimento"
+                       label="{{'label.funcionario.dataNascimento' | translate}}:" invalid-date-alert
+                       placeholder="__/__/____" uib-tooltip="Digite a data de nascimento do funcionário no formato DD/MM/AAAA" />
 
 		</div>
 
 		<div class="col-md-4">
-			<label>{{'label.funcionario.email' | translate}}:</label> <input type="text" name="funcionarioArg.email" 
-				ng-model="funcionarioArg.email" class="form-control">
+			<label for="email">{{'label.funcionario.email' | translate}}:</label>
+      <input id="email" type="text" name="funcionarioArg.email" ng-maxlength="50" ng-minlength="5"
+				ng-model="funcionarioArg.email" placeholder="Digite um e-mail válido" label="{{'label.funcionario.email' | translate}}"
+        ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"  class="form-control">
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="col-md-4">
-			<plc-static-combo ng-model="funcionarioArg.estadoCivil" 
-				label="Estado Civil:" ng-enum="estadocivil" 
+			<plc-static-combo ng-model="funcionarioArg.estadoCivil" no-selected-value="[Selecione...]"
+				label="{{'label.funcionario.estadoCivil' | translate}}" ng-enum="estadocivil"
 				ng-enum-value="estadocivil" />
-
 		</div>
-		
+
 		<div class="col-md-4">
-
-			<plc-dynamic-combo ng-model="funcionarioArg.departamento" 
-				label="Departamento:" ng-item-description="descricao"
+			<plc-dynamic-combo ng-model="funcionarioArg.departamento" no-selected-value="[Selecione...]"
+				label="{{'label.funcionario.departamento' | translate}}" ng-item-description="descricao"
 				ng-entity="departamento" />
-
 		</div>
 	</div>
 
