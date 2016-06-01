@@ -10,6 +10,6 @@
   angular
     .module('jcompany-view')
     .constant('$menuPath', 'app/components/json/menu.json')
-    .constant('$backendUrl', 'http://localhost:8080/rhdemo');
+    .constant('$backendUrl', '{{ENVIRONMENT.dev}}');
 
 })();

@@ -9,12 +9,9 @@
 
 		var vm = this;
 
-
-		// required atributes in scope for inheritance.
 		$scope.$baseService = FuncionarioService;
 		$scope.$baseRoute = 'funcionario';
-
-    angular.extend(vm, $controller('PlcBaseController', {$scope: $scope}));
+    
 
 		$scope.detalhes = [
 		                   {
@@ -50,7 +47,7 @@
 		                        	}
 		                        }]
 
-
+    angular.extend(vm, $controller('PlcBaseController', {$scope: $scope}));
 
 	}
 

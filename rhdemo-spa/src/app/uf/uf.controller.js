@@ -9,14 +9,12 @@
 
     var vm = this;
 
-    // required atributes in scope for inheritance.
     $scope.$baseService = UfService;
     $scope.$baseRoute = 'uf';
 
-    angular.extend(vm, $controller('PlcBaseController', {$scope: $scope}));
-
     this.allTabular();
 
+    angular.extend(vm, $controller('PlcBaseController', {$scope: $scope}));
   }
 
 })();

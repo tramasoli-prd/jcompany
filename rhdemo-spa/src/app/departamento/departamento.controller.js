@@ -9,15 +9,8 @@
 
 		var vm = this;
 
-    // required atributes in scope for inheritance.
     $scope.$baseService = DepartamentoService;
     $scope.$baseRoute = 'departamento';
-
-    vm.beforeEdit  =  function (id) {
-      console.log(id);
-    };
-
-    angular.extend(vm, $controller('PlcBaseController', {$scope: $scope}));
 
 		$scope.columnDefs = [
 		                     { field: 'id', displayName: 'label.departamento.id', headerCellFilter:'translate', width: '10%'},
@@ -25,6 +18,7 @@
 		                     { field: 'departamentoPai.descricao', displayName: 'label.departamento.departamentoPai', headerCellFilter:'translate', width: '40%'}
 		                    ]
 
+    angular.extend(vm, $controller('PlcBaseController', {$scope: $scope}));
 
 	}
 
