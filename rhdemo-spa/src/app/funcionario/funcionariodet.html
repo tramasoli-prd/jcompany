@@ -1,33 +1,33 @@
 <div class="container-fluid">
 
-	
+
 
 	<div class="row header" >
 
         <div class="col-md-6">
-   
+
             <label>{{'label.funcionario.nome' | translate}}</label>
-            
+
         </div>
 
         <div class="col-md-4">
-           
+
             <label>{{'label.funcionario.sexo' | translate}}</label>
-			
+
         </div>
 
 	</div>
 
-	<div class="row" ng-repeat="dependente in funcionario.dependente" plc-finish-render="dependente" >
+	<div class="row" ng-repeat="dependente in funcionario.dependente" plc-finish-render="funcionario.dependente">
 
 		<div class="col-md-6">
-			<input type="text" ng-model="dependente.nome" name="dependente.{{$index}}.nome" class="form-control">
+			<input type="text" ng-model="dependente.nome" label="{{'label.funcionario.nome' | translate}}" ng-required="true" name="dependente.{{$index}}.nome" class="form-control">
 			<input type="hidden" ng-model="dependente.id" >
-		    
+
 		</div>
 
-		<div class="col-md-4">    
-			<plc-radio ng-model="dependente.sexo" ng-item-description="descricao"  name="dependente.{{$index}}.sexo"
+		<div class="col-md-4">
+			<plc-radio ng-model="dependente.sexo" ng-item-description="descricao" label="{{'label.funcionario.sexo' | translate}}"  name="dependente.{{$index}}.sexo"
         		ng-enum="sexo" ng-enum-value="sexo" indexradio="{{$index}}"/>
 		</div>
 
@@ -39,12 +39,12 @@
 
 		</div>
 
-		
+
 
 	</div>
 	<br/>
 
 	<button type="button" class="btn btn-default" ng-click="funcionarioController.addItemDetail('funcionario.dependente');" >Adicionar</button>
 
-	
+
 </div>

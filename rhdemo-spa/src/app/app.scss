@@ -17,8 +17,6 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
   padding: 0.2em 0;
 }
 
-
-
 .box > .icon { text-align: center; position: relative; }
 .box > .icon > .image { position: relative; z-index: 2; margin: auto; width: 88px; height: 88px; border: 8px solid white; line-height: 88px; border-radius: 50%; background: #2d3e63; vertical-align: middle; }
 .box > .icon:hover > .image { background: #738bc0; }
@@ -64,7 +62,7 @@ body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 14px;
     line-height: 1.42857;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     background-position: right;
 }
 

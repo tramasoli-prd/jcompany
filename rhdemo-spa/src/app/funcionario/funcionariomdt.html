@@ -8,34 +8,37 @@
 	<div class="row">
 
 		<div class="col-md-2">
-			<label>{{'label.id' | translate}}:</label>
+			<label>{{'label.funcionario.id'  | translate}}:</label>
 			<input type="text" ng-model="funcionario.id" name="funcionario.id" class="form-control" ng-disabled="true">
 		</div>
 
 		<div class="col-md-6">
 			<label>{{'label.funcionario.nome' | translate}}:</label>
-			<input type="text" ng-model="funcionario.nome"  name="funcionario.nome" validation="required" class="form-control">
+			<input type="text" ng-model="funcionario.nome"  name="funcionario.nome"  label="{{'label.funcionario.nome' | translate}}" class="form-control">
 		</div>
 
 		<div class="col-md-2">
 			<label>{{'label.funcionario.cpf' | translate}}:</label>
-			<input type="text" ng-model="funcionario.cpf" name="funcionario.cpf" class="form-control">
+			<input type="text" ng-model="funcionario.cpf" name="funcionario.cpf" ui-br-cpf-mask class="form-control"
+             placeholder="___.___.___-__" uib-tooltip="Digite um CPF válido"
+             label="{{'label.funcionario.cpf' | translate}}">
 		</div>
 	</div>
 
 	<div class="row">
 
 		<div class="col-md-2">
-			<plc-date-picker ng-model="funcionario.dataNascimento" label="Data Nasc.:"  />
+			<plc-date-picker ng-model="funcionario.dataNascimento" label="{{'label.funcionario.dataNascimento' | translate}}"
+                       invalid-date-alert placeholder="__/__/____" uib-tooltip="Digite a data de nascimento do funcionário no formato DD/MM/AAAA" />
 		</div>
 
 		<div class="col-md-6">
 			<label>{{'label.funcionario.email' | translate}}:</label>
-			<input type="text"  ng-model="funcionario.email" name="funcionario.email" class="form-control">
+			<input type="text"  ng-model="funcionario.email"  placeholder="Digite um e-mail válido" label="{{'label.funcionario.email' | translate}}" name="funcionario.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"  class="form-control">
 		</div>
 
 		<div class="col-md-4">
-			<plc-check ng-model="funcionario.temCursoSuperior"  label="Tem curso superior?" />
+			<plc-check ng-model="funcionario.temCursoSuperior"  label="{{'label.funcionario.temCursoSuperior' | translate}}" />
 		</div>
 
 	</div>
@@ -45,21 +48,21 @@
 
 		<div class="col-md-4">
 
-			<plc-static-combo ng-model="funcionario.estadoCivil" name="funcionario.estadoCivil" label="Estado Civil:" ng-enum="estadocivil"
-				ng-enum-value="estadocivil" />
+			<plc-static-combo ng-model="funcionario.estadoCivil" name="funcionario.estadoCivil" label="{{'label.funcionario.estadoCivil' | translate}}" ng-enum="estadocivil"
+                        no-selected-value="[Selecione...]" ng-enum-value="estadocivil" />
 
 		</div>
 
 		<div class="col-md-4">
 
-			<plc-dynamic-combo ng-model="funcionario.departamento" label="Departamento:" ng-item-description="descricao"
-				ng-entity="departamento" />
+			<plc-dynamic-combo ng-model="funcionario.departamento"  ng-item-description="descricao"
+                         label="{{'label.funcionario.departamento' | translate}}"  no-selected-value="[Selecione...]" ng-entity="departamento" />
 
 		</div>
 
 		<div class="col-sm-4" style="margin-top: 30px;">
 
-			<plc-radio ng-model="funcionario.sexo" label="Sexo:"
+			<plc-radio ng-model="funcionario.sexo" label="{{'label.funcionario.sexo' | translate}}"
 				ng-item-description="descricao" ng-enum="sexo" ng-enum-value="sexo" />
 
 		</div>
@@ -71,7 +74,7 @@
 
 		<div class="col-md-12">
 
-			<label>{{'label.observacao' | translate}}:</label>
+			<label>{{'label.funcionario.observacao' | translate}}:</label>
 			<textarea class="form-control" ng-model="funcionario.observacao"  name="funcionario.observacao" rows="3"></textarea>
 
 		</div>

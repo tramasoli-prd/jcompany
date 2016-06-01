@@ -5,36 +5,34 @@
     .module('rhdemo')
     .factory('FuncionarioService', FuncionarioService);
 
-  FuncionarioService.$inject = ['PlcEntityService', 'PlcUtils'];
-
   /** @ngInject */
-  function FuncionarioService(PlcEntityService, PlcUtils) {
+  function FuncionarioService(PlcEntityService, PlcUtils, $class) {
 
-  	 
-  	var Service = $class(PlcEntityService, {
 
-        constructor: function() {
-            PlcEntityService.call(this, {
-                 type: 'funcionario',
-                 applyMetadata: false
-            });
-        },
+    var Service = $class.createClass(PlcEntityService, {
 
-        /* METODOS REST */
-        _all: function(funcionario) {
-            var url = PlcUtils.encodeURIParams(funcionario);
-            return this._get('/all?'+url);
-        },
+      constructor: function() {
+        PlcEntityService.call(this, {
+          type: 'funcionario',
+          applyMetadata: true
+        });
+      },
 
-        save: function(data) {
-            return this._post('/savefunc', data);
-        },
+      /* METODOS REST */
+      _all: function(funcionario) {
+        var url = PlcUtils.encodeURIParams(funcionario);
+        return this._get('/all?'+url);
+      },
 
-       
+      save: function(data) {
+        return this._post('/savefunc', data);
+      },
+
+
     });
 
 
     return new Service();
   }
-  
+
 })();

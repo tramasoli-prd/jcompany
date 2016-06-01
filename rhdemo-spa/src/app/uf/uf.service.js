@@ -5,23 +5,22 @@
     .module('rhdemo')
     .factory('UfService', UfService);
 
-  UfService.$inject = ['PlcEntityService'];
+  /** @ngInject */
+  function UfService(PlcEntityService, $class) {
 
-  function UfService(PlcEntityService) {
 
-  	 
-  	var Service = $class(PlcEntityService, {
+    var Service = $class.createClass(PlcEntityService, {
 
-        constructor: function() {
-            PlcEntityService.call(this, {
-                 type: 'unidadefederativa'
-            });
-        }
-       
+      constructor: function() {
+        PlcEntityService.call(this, {
+          type: 'unidadefederativa'
+        });
+      }
+
     });
 
 
     return new Service();
   }
-  
+
 })();

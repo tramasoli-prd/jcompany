@@ -47,24 +47,20 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	private Long id;
 	
 	@NotNull 
-	@Size(max = 40) 
+	@Size(min=5, max = 40)
 	@Column
 	private String nome;
-	
+
+	@NotNull
 	@Past
-	@NotNull 
-	@Column(length=11) 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataNascimento;
 	
 	@NotNull 
-	@Size(max = 11) 
-	@Column
 	@Cpf
 	private String cpf;
 	
 	@Size(max = 60) 
-	@Column
 	@Email
 	private String email;
 	
@@ -74,7 +70,7 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	private EstadoCivil estadoCivil;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(length=1)
+	@NotNull
 	private Sexo sexo;
 	
 	@Column(length=1)

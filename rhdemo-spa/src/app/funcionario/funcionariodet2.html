@@ -3,39 +3,39 @@
 	<div class="row header" >
 
         <div class="col-md-4">
-   
-            <label>{{'label.descricao' | translate}}</label>
-            
+
+            <label>{{'label.funcionario.descricao' | translate}}</label>
+
         </div>
 
         <div class="col-md-2">
-           
-            <label>{{'label.datainicio' | translate}}</label>
-			
+
+            <label>{{'label.funcionario.datainicio' | translate}}</label>
+
         </div>
 
          <div class="col-md-2">
-           
+
             <label>{{'label.funcionario.salario' | translate}}</label>
-			
+
         </div>
 
 	</div>
 
-	<div class="row" ng-repeat="historicoProfissional in funcionario.historicoProfissional" plc-finish-render="historicoProfissional">
+	<div class="row" ng-repeat="historicoProfissional in funcionario.historicoProfissional">
 
 		<div class="col-md-4">
-			<input type="text" ng-model="historicoProfissional.descricao" name="historicoProfissional.{{$index}}.descricao" 	class="form-control">
+			<input type="text" label="{{'label.funcionario.descricao' | translate}}" ng-model="historicoProfissional.descricao" name="historicoProfissional.{{$index}}.descricao" 	class="form-control">
 			<input type="hidden" ng-model="historicoProfissional.id" >
-		    
+
 		</div>
 
-		<div class="col-md-2">    
-			<plc-date-picker ng-model="historicoProfissional.dataInicio" name="historicoProfissional.{{$index}}.dataInicio"/>
+		<div class="col-md-2">
+			<plc-date-picker  ng-model="historicoProfissional.dataInicio" name="historicoProfissional.{{$index}}.dataInicio"/>
 		</div>
 
-		<div class="col-md-2">    
-			<input type="text" ng-model="historicoProfissional.salario" maxlength="13" ui-money-mask name="historicoProfissional.{{$index}}.salario" class="form-control">     
+		<div class="col-md-2">
+			<input type="text" label="{{'label.funcionario.salario' | translate}}" ng-model="historicoProfissional.salario" maxlength="13" ui-money-mask name="historicoProfissional.{{$index}}.salario" class="form-control">
 		</div>
 
 		<div class="col-sd-2">
@@ -51,6 +51,6 @@
 
 	<button type="button" class="btn btn-default" ng-click="funcionarioController.addItemDetail('funcionario.historicoProfissional');" >Adicionar</button>
 
-	
+
 </div>
 </form>
