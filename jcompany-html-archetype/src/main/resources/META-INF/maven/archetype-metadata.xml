@@ -37,6 +37,7 @@
       <excludes>
         <exclude>build.js</exclude>
         <exclude>server.js</exclude>
+        <exclude>conf.js</exclude>
       </excludes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
@@ -44,6 +45,7 @@
       <includes>
         <include>build.js</include>
         <include>server.js</include>
+        <include>conf.js</include>
       </includes>
     </fileSet>
     <fileSet encoding="UTF-8">
