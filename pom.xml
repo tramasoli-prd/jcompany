@@ -27,7 +27,7 @@
 		<module>jcompany-unit-test</module>
 		<module>jcompany-service-archetype</module>
 		<module>jcompany-html-archetype</module>
-		<!--<module>rhdemo-service</module>-->
+		<module>rhdemo-service</module>
 		<!--<module>rhdemo-spa</module>-->
 	</modules>
  
