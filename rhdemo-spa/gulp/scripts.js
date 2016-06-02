@@ -16,13 +16,13 @@ gulp.task('scripts-replace', function(){
   var constantPath;
 
   if (argv.dev !== undefined){
-    constantPath = path.join(conf.paths.constants, '/app.constants.dev.js');
+    constantPath = path.join(conf.paths.templates, '/app.constants.dev.js');
   }else if (argv.tst !== undefined){
-    constantPath = path.join(conf.paths.constants, '/app.constants.tst.js');
+    constantPath = path.join(conf.paths.templates, '/app.constants.tst.js');
   }else if (argv.prd !== undefined){
-    constantPath = path.join(conf.paths.constants, '/app.constants.prd.js');
+    constantPath = path.join(conf.paths.templates, '/app.constants.prd.js');
   }else{
-    constantPath = path.join(conf.paths.constants, '/app.constants.dev.js');
+    constantPath = path.join(conf.paths.templates, '/app.constants.dev.js');
   }
 
   return gulp.src([constantPath])

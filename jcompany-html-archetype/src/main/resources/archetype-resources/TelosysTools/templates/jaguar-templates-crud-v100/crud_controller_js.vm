@@ -3,65 +3,54 @@
 (function() {
   'use strict';
 
-  var jcompanyModule = angular.module('jcompany-view');
-  jcompanyModule.${entity.name}ControllerConstructor = ${entity.name}Controller;
   angular.module('${PROJECT_NAME}').controller('${entity.name}Controller', ${entity.name}Controller );
 
-  ${entity.name}Controller.${dollarSymbol}inject = ['${dollarSymbol}injector','${dollarSymbol}scope', '${dollarSymbol}state', '${entity.name}Service', 'PlcNotificationService', 'FileUploader', '${dollarSymbol}stateParams', 'PlcUtils', '${dollarSymbol}compile'];
-
   /** @ngInject */
-  function ${entity.name}Controller(${dollarSymbol}injector, ${dollarSymbol}scope, ${dollarSymbol}state, ${entity.name}Service, PlcNotificationService,  FileUploader, ${dollarSymbol}stateParams, PlcUtils, ${dollarSymbol}compile) {
-  
+  function ${entity.name}Controller(${dollarSymbol}scope, ${dollarSymbol}controller, ${entity.name}Service) {
+    var vm = this;
 		${dollarSymbol}scope.${dollarSymbol}baseService = ${entity.name}Service;
 	    ${dollarSymbol}scope.${dollarSymbol}baseRoute = '${uncapitalizedEntityName}';
 
-	    ${dollarSymbol}injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
-	        ${dollarSymbol}scope: ${dollarSymbol}scope,
-			${dollarSymbol}compile: ${dollarSymbol}compile,
-	        ${dollarSymbol}state: ${dollarSymbol}state,
-	        ${dollarSymbol}stateParams: ${dollarSymbol}stateParams,
-	        PlcNotificationService : PlcNotificationService, 
-	        PlcUtils : PlcUtils
-	    });
-
 		${dollarSymbol}scope.detalhes = [];
 	  #foreach($link in $entity.selectedLinks)
-		#if($link.isCardinalityOneToMany()) 
+		#if($link.isCardinalityOneToMany())
 	#set($nameDetail = ${fn.firstCharToUpperCase($link.formattedFieldName(0))})
 
-	
+
     ${dollarSymbol}scope.detalhes.push(
       {
         titulo: "${nameDetail}",
 		name: "$fn.uncapitalize(${nameDetail})",
         template: "app/${uncapitalizedEntityName}/${uncapitalizedEntityName}_${fn.uncapitalize($link.formattedFieldName(0))}.html"
-      } 
+      }
 	);
 
 		#end
-	  #end	
+	  #end
 
 
  	#foreach($link in $entity.selectedLinks)
 		#if($link.isCardinalityOneToMany())
 
-    
+
 	  ${generator.generate(
-					$link.targetTableName , 
-					"${uncapitalizedEntityName}_${fn.uncapitalize($link.formattedFieldName(0))}.html", 
-					$target.folder, 
+					$link.targetTableName ,
+					"${uncapitalizedEntityName}_${fn.uncapitalize($link.formattedFieldName(0))}.html",
+					$target.folder,
 					"crud_det_html.vm" )}
 		#end
       #end
 
 	${dollarSymbol}scope.columnDefs = [
-                         { field: 'id', displayName: 'Id', width: '10%'}
- 		//,{ field: 'nome', displayName: 'Nome', width: '25%'}
-        //,{ field: 'email', displayName: 'E-mail', width: '20%'}
-        //,{ field: 'cpf', displayName: 'CPF', width: '15%'}
-        //,{ field: 'dataNascimento', displayName: 'Nascimento', width: '10%', cellFilter: 'date:\'dd/MM/yyyy\''}
-        //,{ field: 'departamento.descricao', displayName: 'Departamento', width: '20%'}
+                         { field: 'id', displayName: 'label.id', headerCellFilter:'translate', width: '10%'}
+ 		//,{ field: 'nome', displayName: 'Nome', headerCellFilter:'translate', width: '25%'}
+        //,{ field: 'email', displayName: 'E-mail', headerCellFilter:'translate', width: '20%'}
+        //,{ field: 'cpf', displayName: 'CPF', headerCellFilter:'translate', width: '15%'}
+        //,{ field: 'dataNascimento', displayName: 'Nascimento', width: '10%', headerCellFilter:'translate', cellFilter: 'date:\'dd/MM/yyyy\''}
+        //,{ field: 'departamento.descricao', displayName: 'Departamento', headerCellFilter:'translate', width: '20%'}
                 ]
+
+    angular.extend(vm, $controller('PlcBaseController', {$scope: $scope}));
   }
 })();
 

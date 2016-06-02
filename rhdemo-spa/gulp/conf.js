@@ -16,7 +16,7 @@ exports.paths = {
   dist: 'dist',
   tmp: '.tmp',
   e2e: 'e2e',
-  constants: 'src/assets/templates'
+  templates: 'src/assets/templates'
 };
 
 /** confiration for environment types

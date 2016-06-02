@@ -7,12 +7,10 @@
     .module('${PROJECT_NAME}')
     .factory('${entity.name}Service', ${entity.name}Service);
 
-  ${entity.name}Service.${dollarSymbol}inject = ['PlcEntityService', 'PlcUtils'];
-
   /** @ngInject */
-  function ${entity.name}Service(PlcEntityService, PlcUtils) {
+  function ${entity.name}Service(PlcEntityService, ${dollarSymbol}class) {
 
-  	var Service = ${dollarSymbol}class(PlcEntityService, {
+  	var Service = ${dollarSymbol}class.createClass(PlcEntityService, {
         constructor: function() {
             PlcEntityService.call(this, {
                  type: '${uncapitalizedEntityName}'
@@ -21,5 +19,5 @@
 	});
     return new Service();
   }
-  
+
 })();

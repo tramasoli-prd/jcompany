@@ -15,7 +15,20 @@ exports.paths = {
   src: 'src',
   dist: 'dist',
   tmp: '.tmp',
-  e2e: 'e2e'
+  e2e: 'e2e',
+  templates: 'src/assets/templates'
+};
+
+/** confiration for environment types
+ *
+ * @type {{AMBIENTE: {dev: string, tst: string, prd: string}}}
+ */
+exports.environment = {
+
+  "ENVIRONMENT":{
+    "dev" : "http://localhost:8080/rhdemo"
+  }
+
 };
 
 /**
