@@ -4,28 +4,19 @@
 (function() {
   'use strict';
 
-  var jcompanyModule = angular.module('jcompany-view');
-  jcompanyModule.${entity.name}ControllerConstructor = ${entity.name}Controller;
-
   angular.module('${PROJECT_NAME}').controller('${entity.name}Controller', ${entity.name}Controller);
-  ${entity.name}Controller.${dollarSymbol}inject = ['${dollarSymbol}injector', '${dollarSymbol}scope', '${dollarSymbol}state', '${dollarSymbol}stateParams', '${entity.name}Service', 'PlcNotificationService', 'PlcUtils', '${dollarSymbol}compile'];
 
   /** @ngInject */
-	function ${entity.name}Controller(${dollarSymbol}injector, ${dollarSymbol}scope, ${dollarSymbol}state, ${dollarSymbol}stateParams, ${entity.name}Service, PlcNotificationService, PlcUtils, ${dollarSymbol}compile) {
+	function ${entity.name}Controller(${dollarSymbol}scope, ${dollarSymbol}controller, ${entity.name}Service){
 	
+		var vm = this;
 		${dollarSymbol}scope.${dollarSymbol}baseService = ${entity.name}Service;
 	    ${dollarSymbol}scope.${dollarSymbol}baseRoute = '${uncapitalizedEntityName}';
 
-  		${dollarSymbol}injector.invoke(jcompanyModule.PlcBaseControllerConstructor, this, {
-	        ${dollarSymbol}scope: ${dollarSymbol}scope,
-			${dollarSymbol}compile: ${dollarSymbol}compile,
-	        ${dollarSymbol}state: ${dollarSymbol}state,
-	        ${dollarSymbol}stateParams: ${dollarSymbol}stateParams,
-	        PlcNotificationService : PlcNotificationService, 
-	        PlcUtils : PlcUtils
-	    });
+  		
 
-   this.allTabular();
+   		this.allTabular();
+		angular.extend(vm, ${dollarSymbol}controller('PlcBaseController', {${dollarSymbol}scope: ${dollarSymbol}scope}));
   }
 
 })();

@@ -8,7 +8,7 @@
 	version="3.0">
 	<display-name>${artifactId}</display-name>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>indexrest.html</welcome-file>
 	</welcome-file-list>
 
 	<servlet>

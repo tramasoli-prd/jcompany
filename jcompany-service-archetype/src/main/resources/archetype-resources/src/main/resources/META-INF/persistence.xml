@@ -38,16 +38,17 @@
 			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.OraclePlatform" />   -->
 			 
 			<!-- Weblogic
-			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.oracle.Oracle11Platform" />
+			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.oracle.Oracle11Platform" /> -->
 			
-			<property name="eclipselink.target-server" value="WebLogic" />
+			<!--
+			<property name="eclipselink.target-server" value="Default" />
 			<property name="eclipselink.logging.logger" value="DefaultLogger" />
 			<property name="eclipselink.logging.level" value="ALL" />
 			<property name="eclipselink.logging.level.sql" value="ALL" />
 			<property name="eclipselink.logging.parameters" value="true" />
-			<property name="eclipselink.logging.timestamp" value="true" />
+			<property name="eclipselink.logging.timestamp" value="true" />-->
 			
-			<property name="eclipselink.ddl-generation" value="create-tables" />-->
+			<!-- <property name="eclipselink.ddl-generation" value="create-tables" />-->
 
 
 
