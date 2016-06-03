@@ -5,7 +5,7 @@
 	<groupId>powerlogic.jaguar.jcompany</groupId>
 	<artifactId>rhdemo-spa</artifactId>
 	<modelVersion>4.0.0</modelVersion>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>pom</packaging>
 
 </project>
