@@ -87,12 +87,12 @@
 #if( $temDetalhe == "1" )
 	<br />
 	<div class="form-group">
-		<accordion close-others="oneAtATime">
-			<accordion-group heading="{{detalhe.titulo}}" ng-repeat="detalhe in detalhes">
+		<uib-accordion close-others="oneAtATime">
+			<uib-accordion-group heading="{{detalhe.titulo}}" ng-repeat="detalhe in detalhes">
 				<div ng-include="detalhe.template"></div>
-			</accordion-group>
-</accordion>
-</div>
+			</uib-accordion-group>
+		</uib-accordion>
+	</div>
 #end
 <br/>
 	<div class="form-group">

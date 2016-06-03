@@ -15,8 +15,9 @@
 
   		
 
-   		this.allTabular();
+   		
 		angular.extend(vm, ${dollarSymbol}controller('PlcBaseController', {${dollarSymbol}scope: ${dollarSymbol}scope}));
+		vm.allTabular();
   }
 
 })();

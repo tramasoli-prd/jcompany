@@ -42,7 +42,7 @@
       #end
 
 	${dollarSymbol}scope.columnDefs = [
-                         { field: 'id', displayName: 'label.id', headerCellFilter:'translate', width: '10%'}
+                         { field: 'id', displayName: 'label.${uncapitalizedEntityName}.id', headerCellFilter:'translate', width: '10%'}
  		//,{ field: 'nome', displayName: 'Nome', headerCellFilter:'translate', width: '25%'}
         //,{ field: 'email', displayName: 'E-mail', headerCellFilter:'translate', width: '20%'}
         //,{ field: 'cpf', displayName: 'CPF', headerCellFilter:'translate', width: '15%'}
@@ -50,7 +50,7 @@
         //,{ field: 'departamento.descricao', displayName: 'Departamento', headerCellFilter:'translate', width: '20%'}
                 ]
 
-    angular.extend(vm, $controller('PlcBaseController', {$scope: $scope}));
+    angular.extend(vm, ${dollarSymbol}controller('PlcBaseController', {${dollarSymbol}scope: ${dollarSymbol}scope}));
   }
 })();
 
