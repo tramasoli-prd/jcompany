@@ -26,7 +26,7 @@ exports.paths = {
 exports.environment = {
 
   "ENVIRONMENT":{
-    "dev" : "http://localhost:8080/rhdemo"
+    "dev" : "${BACKEND-URL}"
   }
 
 };
