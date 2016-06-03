@@ -9,7 +9,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>powerlogic.jaguar.jcompany</groupId>
 	<artifactId>jcompany-bom</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
 	<name>jCompany BOM</name>
@@ -29,7 +29,7 @@
 	]]></description>
 
 	<properties>
-		<version.jcompany>1.0.1</version.jcompany>
+		<version.jcompany>1.0.2-SNAPSHOT</version.jcompany>
 		<version.rs-api>2.0.1</version.rs-api>
 		<version.javaee>7.0</version.javaee>
 		<version.slf4j>1.7.12</version.slf4j>
@@ -214,7 +214,7 @@
 						<manifestEntries>
 							<Extension-Name>${project.artifactId}</Extension-Name>
 							<Specification-Vendor>Powerlogic</Specification-Vendor>
-							<Specification-Version>1.0.1</Specification-Version>
+							<Specification-Version>1.0.2-SNAPSHOT</Specification-Version>
 							<Implementation-Vendor-Id>powerlogic.jaguar.jcompany</Implementation-Vendor-Id>
 							<Implementation-Vendor>jCompany</Implementation-Vendor>
 							<Implementation-Version>${project.version}</Implementation-Version>

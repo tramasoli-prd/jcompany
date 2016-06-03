@@ -14,7 +14,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>powerlogic.jaguar.base</groupId>
 	<artifactId>jcompany</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2-SNAPSHOT</version>
 	
 	<packaging>pom</packaging>
 	<name>jCompany Framework</name>
