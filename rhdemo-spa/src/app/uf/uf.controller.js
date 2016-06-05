@@ -12,9 +12,10 @@
     $scope.$baseService = UfService;
     $scope.$baseRoute = 'uf';
 
-    this.allTabular();
+    
 
     angular.extend(vm, $controller('PlcBaseController', {$scope: $scope}));
+    vm.allTabular();
   }
 
 })();
