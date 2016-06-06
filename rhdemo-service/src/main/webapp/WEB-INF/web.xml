@@ -6,7 +6,7 @@
 	<display-name>rhdemo-service</display-name>
 
 	<welcome-file-list>
-		<welcome-file>indexrest.html</welcome-file>
+		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
 	<!--  WILDFLY 
