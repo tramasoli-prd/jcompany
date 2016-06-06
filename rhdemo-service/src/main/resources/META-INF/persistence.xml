@@ -11,7 +11,7 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<jta-data-source>jdbc/rhdemo</jta-data-source> 
 
-		<!-- JBOSS 
+		<!-- WILDFLY 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:/jdbc/rhdemo</jta-data-source>-->
 		 
@@ -37,11 +37,11 @@
 		<shared-cache-mode>NONE</shared-cache-mode>
 
 		<properties>
-			<!-- Websphere Liberty
-			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.OraclePlatform" />   -->
+			<!-- Websphere Liberty -->
+			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.OraclePlatform" />   
 			 
 			<!-- Weblogic
-			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.oracle.Oracle11Platform" />
+			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.oracle.Oracle11Platform" />-->
 			
 			<property name="eclipselink.target-server" value="WebLogic" />
 			<property name="eclipselink.logging.logger" value="DefaultLogger" />
@@ -50,14 +50,14 @@
 			<property name="eclipselink.logging.parameters" value="true" />
 			<property name="eclipselink.logging.timestamp" value="true" />
 			
-			<property name="eclipselink.ddl-generation" value="create-tables" />-->
+			<property name="eclipselink.ddl-generation" value="create-tables" />
 
 
 
-			<!---->
+			<!--WILDFLY
 			<property name="show_sql" value="true"/>
 			<property name="format_sql" value="true"/>
-			<property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+			<property name="hibernate.enable_lazy_load_no_trans" value="true"/> -->
 
 		</properties>
 	</persistence-unit>
