@@ -373,3 +373,5 @@ programas proprietários. Se seu programa é uma biblioteca de
 sub-rotinas, você deve considerar mais útil permitir ligar aplicações
 proprietárias com a biblioteca. Se isto é o que você deseja, use a
 Licença Pública Geral de Bibliotecas GNU, ao invés desta Licença.
+
+Olisses passou por aqui!
