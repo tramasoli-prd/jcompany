@@ -18,6 +18,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Fetch;
 import javax.persistence.criteria.FetchParent;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
@@ -217,11 +218,32 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
         }
         Root<E> root = criteriaQuery.from(getEntityType());
         
+        //FIXME para usar o multiselect deve-se criar um construtor na classe principal para receber o retorno
+        // procurar uma forma de implementar um resultTransformer 
+        
         //multiselect
         if (!sp.getMultiSelect().isEmpty()) {
         	List<Selection<?>> select = new ArrayList<Selection<?>>();
+        	Join join = null;
         	for (String field : sp.getMultiSelect()) {
-        		select.add(root.get(field));
+        		
+        		if (field.indexOf("_") > -1) {
+        			String[] campos = field.split("_");
+        			Integer count = 1;        			
+        			while (count < campos.length) {
+        				if (count == 1) {
+        					join = root.join(field.split("_")[count - 1], JoinType.LEFT);
+        				} else {
+        					join = join.join(field.split("_")[count - 1], JoinType.LEFT);
+        				}       
+        				count++;
+        			}
+        			
+        			select.add(join.get(field.split("_")[count - 1]));
+        		} else {
+        			select.add(root.get(field));        			
+        		}
+        		
 			}
         	criteriaQuery.multiselect(select);
         }

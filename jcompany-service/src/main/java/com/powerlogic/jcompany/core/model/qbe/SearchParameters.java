@@ -57,6 +57,7 @@ public class SearchParameters implements Serializable {
     private Set<OrderBy> orders = newHashSet();
 
     //  Specify the selection properties that are to be returned in the query result.
+    // need to create a constructor to receive a return
     private List<String> multiSelect = newArrayList();
     
     // technical parameters
