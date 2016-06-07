@@ -106,6 +106,12 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	@Column(name = "IN_SITUACAO_REGISTRO", nullable = false, length = 1)
 	private PlcSituacao situacao;
 	
+	@Transient
+	private Date dataNascimentoFiltroInicio;
+	@Transient
+	private Date dataNascimentoFiltroFim;
+	
+	
 	public PlcSituacao getSituacao() {
 		return situacao;
 	}
@@ -352,6 +358,36 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 		this.uploadFileName = uploadFileName;
 	}
 
+	/**
+	 * @return the dataNascimentoFiltroInicio
+	 */
+	public Date getDataNascimentoFiltroInicio() {
+		return dataNascimentoFiltroInicio;
+	}
+
+	/**
+	 * @param dataNascimentoFiltroInicio the dataNascimentoFiltroInicio to set
+	 */
+	public void setDataNascimentoFiltroInicio(Date dataNascimentoFiltroInicio) {
+		this.dataNascimentoFiltroInicio = dataNascimentoFiltroInicio;
+	}
+
+	/**
+	 * @return the dataNascimentoFiltroFim
+	 */
+	public Date getDataNascimentoFiltroFim() {
+		return dataNascimentoFiltroFim;
+	}
+
+	/**
+	 * @param dataNascimentoFiltroFim the dataNascimentoFiltroFim to set
+	 */
+	public void setDataNascimentoFiltroFim(Date dataNascimentoFiltroFim) {
+		this.dataNascimentoFiltroFim = dataNascimentoFiltroFim;
+	}
+
+	
+	
 	
 
 }

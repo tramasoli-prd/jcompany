@@ -54,6 +54,28 @@ public class DepartamentoEntity extends PlcVersionedEntity<Long> implements IPlc
 		this.id = id;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @param descricao
+	 */
+	public DepartamentoEntity(Long id, String descricao) {
+		this.id = id;
+		this.descricao = descricao;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param descricao
+	 */
+	public DepartamentoEntity(Long id, String descricao, String descricaoDepartamentoPai) {
+		this.id = id;
+		this.descricao = descricao;
+		this.departamentoPai = new DepartamentoEntity();
+		this.departamentoPai.setDescricao(descricaoDepartamentoPai);
+	}
+	
 	/** atributo chave primaria
 	 */
 	@Id

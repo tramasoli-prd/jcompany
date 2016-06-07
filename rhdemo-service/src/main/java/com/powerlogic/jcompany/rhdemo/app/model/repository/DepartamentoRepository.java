@@ -7,6 +7,8 @@ import javax.persistence.metamodel.ManagedType;
 
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
+import com.powerlogic.jcompany.core.model.qbe.OrderBy;
+import com.powerlogic.jcompany.core.model.qbe.OrderByDirection;
 import com.powerlogic.jcompany.core.model.qbe.PropertySelector;
 import com.powerlogic.jcompany.core.model.qbe.SearchParameters;
 import com.powerlogic.jcompany.core.model.repository.PlcAbstractRepository;
@@ -74,6 +76,13 @@ public class DepartamentoRepository extends PlcAbstractRepository<Long, Departam
 				// ------
 
 			}
+			
+			ManagedType<DepartamentoEntity> mt = getEntityManager().getMetamodel().entity(DepartamentoEntity.class);
+			sp.addOrderBy(new OrderBy(OrderByDirection.ASC, mt.getAttribute("descricao")));
+			
+			sp.getMultiSelect().add("id");
+			sp.getMultiSelect().add("descricao");
+			sp.getMultiSelect().add("departamentoPai.descricao");
 
 			return find(departamento, sp);
 

@@ -1,22 +1,16 @@
 package com.powerlogic.jcompany.rhdemo.app.model.repository;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
-import org.apache.commons.lang3.StringUtils;
+import javax.persistence.metamodel.ManagedType;
 
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
-import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
+import com.powerlogic.jcompany.core.model.qbe.Range;
+import com.powerlogic.jcompany.core.model.qbe.SearchParameters;
 import com.powerlogic.jcompany.core.model.repository.PlcAbstractRepository;
-import com.powerlogic.jcompany.core.util.ConstantUtil;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FuncionarioEntity;
 
@@ -36,44 +30,36 @@ public class FuncionarioRepository extends PlcAbstractRepository<Long, Funcionar
 	public List<FuncionarioEntity> findAll(FuncionarioEntity funcionario) {
 	
 		try {
-//			
-//			CriteriaBuilder builder = criteriaBuilder();
-//
-//			CriteriaQuery<FuncionarioEntity> query = builder.createQuery(getEntityType());
-//
-//			Root<FuncionarioEntity> from = query.from(getEntityType());
-//
-//			query.select(from).where(builder.equal(from.get(ConstantUtil.QUERY_PARAM_SITUACAO), PlcSituacao.A));
-//			
-//			//TODO: Colocar generico no framework...
-//			List<Predicate> predicates= new ArrayList<Predicate>();
-//			
-//			if(StringUtils.isNoneBlank(funcionario.getNome())) {
-//			    Predicate nome = builder.like(from.<String>get("nome"), funcionario.getNome());
-//			    predicates.add(nome);
-//			}
-//			
-//			if(StringUtils.isNoneBlank(funcionario.getCpf())) {
-//			    Predicate cpf = builder.like(from.<String>get("cpf"), funcionario.getCpf());
-//			    predicates.add(cpf);
-//			}
-//			 
-//			if(StringUtils.isNoneBlank(funcionario.getEmail())) {
-//			    Predicate email = builder.like(from.<String>get("email"), funcionario.getEmail());
-//			    predicates.add(email);
-//			}
-//			
-//			if(funcionario.getDataNascimento() != null) {
-//			    Predicate dataNascimento = builder.equal(from.<Date>get("dataNascimento"), funcionario.getDataNascimento());
-//			    predicates.add(dataNascimento);
-//			}			
-//			
-//			query.where(predicates.toArray(new Predicate[]{}));
-//			
-//			return createQuery(query).getResultList();
 			
 			funcionario.setTemCursoSuperior(null);
-			return find(funcionario);
+			
+			SearchParameters sp = new SearchParameters();
+			Range<FuncionarioEntity, Date> dataNascimentoRange = null;
+
+			if (funcionario.getDataNascimentoFiltroInicio() != null || funcionario.getDataNascimentoFiltroFim() != null){
+				
+				ManagedType<FuncionarioEntity> mt = getEntityManager().getMetamodel().entity(FuncionarioEntity.class);
+				
+				if(funcionario.getDataNascimentoFiltroInicio() != null) {
+					dataNascimentoRange = Range.newRange(mt.getAttribute("dataNascimento"));
+					dataNascimentoRange.from(funcionario.getDataNascimentoFiltroInicio());
+				}
+
+				if(funcionario.getDataNascimentoFiltroFim() != null) {
+					if(dataNascimentoRange == null) {
+						dataNascimentoRange = Range.newRange(mt.getAttribute("dataNascimento"));
+					}
+					dataNascimentoRange.to(funcionario.getDataNascimentoFiltroFim() );
+				}
+
+				if(dataNascimentoRange != null) {
+					sp.range(dataNascimentoRange);
+				}
+
+			}
+			
+			
+			return find(funcionario, sp);
 			
 		} catch (PlcException e) {
 			throw e;

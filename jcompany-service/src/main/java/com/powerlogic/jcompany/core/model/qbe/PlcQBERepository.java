@@ -202,7 +202,7 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
     public List<E> find(E entity, SearchParameters sp) {
     	
     	if (IPlcVersionedEntity.class.isAssignableFrom(entity.getClass())) {
-    		((IPlcVersionedEntity)entity).setVersao(null);
+    		((IPlcVersionedEntity<?>)entity).setVersao(null);
     	}
     	if (IPlcLogicalExclusion.class.isAssignableFrom(entity.getClass())) {
     		((IPlcLogicalExclusion)entity).setSituacao(PlcSituacao.A);
@@ -217,37 +217,7 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
             criteriaQuery.distinct(true);
         }
         Root<E> root = criteriaQuery.from(getEntityType());
-        
-        //FIXME para usar o multiselect deve-se criar um construtor na classe principal para receber o retorno
-        // procurar uma forma de implementar um resultTransformer 
-        
-        //multiselect
-        if (!sp.getMultiSelect().isEmpty()) {
-        	List<Selection<?>> select = new ArrayList<Selection<?>>();
-        	Join join = null;
-        	for (String field : sp.getMultiSelect()) {
-        		
-        		if (field.indexOf("_") > -1) {
-        			String[] campos = field.split("_");
-        			Integer count = 1;        			
-        			while (count < campos.length) {
-        				if (count == 1) {
-        					join = root.join(field.split("_")[count - 1], JoinType.LEFT);
-        				} else {
-        					join = join.join(field.split("_")[count - 1], JoinType.LEFT);
-        				}       
-        				count++;
-        			}
-        			
-        			select.add(join.get(field.split("_")[count - 1]));
-        		} else {
-        			select.add(root.get(field));        			
-        		}
-        		
-			}
-        	criteriaQuery.multiselect(select);
-        }
-        
+
         // predicate
         Predicate predicate = getPredicate(criteriaQuery, root, builder, entity, sp);
         if (predicate != null) {
@@ -256,6 +226,9 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
 
         // fetches
         fetches(sp, root);
+        
+        //multi Select
+        multiSelect(sp, criteriaQuery, root);
 
         // order by
         criteriaQuery.orderBy(orderByUtil.buildJpaOrders(sp.getOrders(), root, builder, sp));
@@ -267,6 +240,43 @@ public abstract class PlcQBERepository<PK extends Serializable, E extends IPlcEn
 
         return entities;
     }
+
+	/**
+	 * @param sp
+	 * @param criteriaQuery
+	 * @param root
+	 */
+	private void multiSelect(SearchParameters sp, CriteriaQuery<E> criteriaQuery, Root<E> root) {
+		//FIXME para usar o multiselect deve-se criar um construtor na classe principal para receber o retorno
+        // procurar uma forma de implementar um resultTransformer 
+        
+        //multiselect
+        if (!sp.getMultiSelect().isEmpty()) {
+        	List<Selection<?>> select = new ArrayList<Selection<?>>();
+        	Join<?, ?> join = null;
+        	for (String field : sp.getMultiSelect()) {
+        		
+        		if (field.indexOf(".") > -1) {
+        			String[] campos = field.split("\\.");
+        			Integer count = 1;        			
+        			while (count < campos.length) {
+        				if (count == 1) {
+        					join = root.join(field.split("\\.")[count - 1], JoinType.LEFT);
+        				} else {
+        					join = join.join(field.split("\\.")[count - 1], JoinType.LEFT);
+        				}       
+        				count++;
+        			}
+        			
+        			select.add(join.get(field.split("\\.")[count - 1]));
+        		} else {
+        			select.add(root.get(field));        			
+        		}
+        		
+			}
+        	criteriaQuery.multiselect(select);
+        }
+	}
 
     /**
      * Find a list of E property.
