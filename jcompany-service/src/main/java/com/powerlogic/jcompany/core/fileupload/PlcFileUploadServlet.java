@@ -10,11 +10,8 @@
 
 package com.powerlogic.jcompany.core.fileupload;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.lang.reflect.Field;
+import com.powerlogic.jcompany.commons.util.fileupload.PlcFileUploadUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -25,10 +22,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.ws.rs.core.Response.Status;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.powerlogic.jcompany.commons.util.fileupload.PlcFileUploadUtil;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 
 
 /** Servlet responsavel pelo upload de arquivos.
@@ -70,17 +67,14 @@ public class PlcFileUploadServlet extends HttpServlet {
 				InputStream inputStrem = part.getInputStream();
 
 				try {
-					Field fileName = part.getClass().getDeclaredField("fileName");
-					fileName.setAccessible(true);
 
 					String subDiretorio = request.getContextPath().substring(request.getContextPath().indexOf("/")+1);
 					if (request.getUserPrincipal()!=null) {
 						subDiretorio = subDiretorio.concat(File.separator).concat(request.getUserPrincipal().getName()); 
 					}
+					fileUploadUtil.saveFile(subDiretorio, getFileName(part), inputStrem);
 
-					fileUploadUtil.saveFile(subDiretorio, (String) fileName.get(part), inputStrem);
-
-				} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+				} catch (SecurityException | IllegalArgumentException e) {
 					e.printStackTrace();
 				}
 
@@ -116,6 +110,20 @@ public class PlcFileUploadServlet extends HttpServlet {
 			}
 		}
 
+	}
+
+	/** recupera o filename
+	 *
+	 * @param part
+	 * @return
+     */
+	private String getFileName(Part part) {
+		for (String cd : part.getHeader("content-disposition").split(";")) {
+			if (cd.trim().startsWith("filename")) {
+				return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+			}
+		}
+		return null;
 	}
 
 
