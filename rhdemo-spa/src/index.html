@@ -40,7 +40,7 @@
 			<li ng-class="getMenuItemPropClasses(item)"
 				ng-repeat="item in appController.menuItems | orderBy:'position'"
 				ng-init="pIndex = $index"
-				ng-include="'app/components/template/menu-template.html'"
+				ng-include="'app/components/menu/menu-template.html'"
 				ng-click="appController.toggleCollapse(pIndex, true)"></li>
 
 

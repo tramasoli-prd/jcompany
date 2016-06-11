@@ -30,9 +30,14 @@ import java.util.List;
 @Access(AccessType.FIELD)
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+
+
 @NamedQueries({
-	@NamedQuery(name = "FuncionarioEntity.find", query = "SELECT f from FuncionarioEntity f order by f.id asc")
+	@NamedQuery(name = "FuncionarioEntity.find", 
+			query = "SELECT f from FuncionarioEntity f where f.situacao = :situacao order by f.id asc")
 })
+
+
 public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcLogicalExclusion {
 
 	/**
@@ -123,7 +128,7 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	/** atributo para repassar o nome do arquivo vindo do upload
 	 */
 	@Transient
-	private String uploadFileName; 
+	private String fileName; 
 	
 	@AssertTrue(message="{funcionario.valida.maioridade}")
 	public boolean isMaiorDeIdade() {
@@ -345,17 +350,17 @@ public class FuncionarioEntity extends PlcVersionedEntity<Long> implements IPlcL
 	}
 
 	/**
-	 * @return the uploadFileName
+	 * @return the fileName
 	 */
-	public String getUploadFileName() {
-		return uploadFileName;
+	public String getFileName() {
+		return fileName;
 	}
 
 	/**
-	 * @param uploadFileName the uploadFileName to set
+	 * @param fileName the fileName to set
 	 */
-	public void setUploadFileName(String uploadFileName) {
-		this.uploadFileName = uploadFileName;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	/**

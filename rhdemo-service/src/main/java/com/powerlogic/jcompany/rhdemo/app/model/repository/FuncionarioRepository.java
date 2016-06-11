@@ -1,13 +1,16 @@
 package com.powerlogic.jcompany.rhdemo.app.model.repository;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.metamodel.ManagedType;
 
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
+import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
 import com.powerlogic.jcompany.core.model.qbe.Range;
 import com.powerlogic.jcompany.core.model.qbe.SearchParameters;
 import com.powerlogic.jcompany.core.model.repository.PlcAbstractRepository;
@@ -69,6 +72,24 @@ public class FuncionarioRepository extends PlcAbstractRepository<Long, Funcionar
 		
 	
 	}
+	
+	/** Recupera a lista de funcionarios.
+	 * 
+	 * @return
+	 */
+	public List<FuncionarioEntity> recuperaListaFuncionariosAtivos(){
+		
+		SearchParameters sp = new SearchParameters();
+		sp.setNamedQuery("FuncionarioEntity.find");
+		Map<String, Object> parameters =  new HashMap<>();
+		parameters.put("situacao", PlcSituacao.A);
+		sp.setNamedQueryParameters(parameters);
+		return find(sp);
+		
+	}
+	
+	
+	
 
 	public FotoEntity getFoto(Long idFoto) {
 		FotoEntity fe= getEntityManager().find(FotoEntity.class, idFoto);

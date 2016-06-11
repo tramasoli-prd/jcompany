@@ -1,7 +1,7 @@
-<div class="container-fluid" ng-controller="DepartamentoController as departamentoController">
+<div class="container-fluid" >
 
 
-	<form name="form" class="form-validate" novalidate>
+	<form name="form" class="form-validate" novalidate ng-controller="DepartamentoController as departamentoController">
 
 	<div class="panel .panel-default">
 		<div class=".panel-heading">
@@ -20,7 +20,7 @@
         <div class="col-md-8">
 
             <label>{{'label.departamento.descricao' | translate}}:</label>
-			<input type="text" label="{{'label.departamento.descricao' | translate}}" ng-required="true"  name="departamento.descricao" ng-model="departamento.descricao"  class="form-control">
+			<input type="text" label="{{'label.departamento.descricao' | translate}}"  name="departamento.descricao" ng-model="departamento.descricao"  class="form-control">
 
         </div>
 	</div>
