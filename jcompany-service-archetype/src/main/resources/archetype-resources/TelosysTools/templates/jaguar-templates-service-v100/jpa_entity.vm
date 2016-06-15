@@ -52,7 +52,11 @@ import javax.xml.bind.annotation.*;
  */
 
 $jpa.entityAnnotations(0, $entity)
-@SequenceGenerator(name = "SE_${entity.databaseTable}", sequenceName = "SE_${entity.databaseTable}")
+// Set your sequence SE_${entity.databaseTable} to increment the same value of allocationSize for best insert performance. 
+// If your alocationSize was greater than your sequence increment you will get an error. 
+// Default alocationSize is 50.
+// Look at: https://vcfvct.wordpress.com/2016/04/23/jpa-sequencegenerator-with-allocationsize-1-performance-tuning/
+@SequenceGenerator(name = "SE_${entity.databaseTable}", sequenceName = "SE_${entity.databaseTable}", allocationSize=50, schema="{entity.databaseSchema}")
 @Access(AccessType.FIELD)
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
