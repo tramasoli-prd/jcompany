@@ -79,7 +79,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		} catch (PlcException e) {
 			throw e;
 		} catch (Exception e) {
-			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
+			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e, e.getMessage());
 		}
 	}
 
@@ -94,7 +94,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		} catch (PlcException e) {
 			throw e;
 		} catch (Exception e) {
-			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
+			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e, e.getMessage());
 		}
 	}
 
@@ -113,7 +113,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		} catch (PlcException e) {
 			throw e;
 		} catch (Exception e) {
-			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
+			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e, e.getMessage());
 		}
 
 		return entity;
@@ -131,7 +131,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		} catch (PlcException e) {
 			throw e;
 		} catch (Exception e) {
-			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
+			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e, e.getMessage());
 		}
 	}
 
@@ -145,7 +145,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		} catch (PlcException e) {
 			throw e;
 		} catch (Exception e) {
-			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
+			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e, e.getMessage());
 		}
 	}
 
@@ -155,7 +155,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		} catch (PlcException e) {
 			throw e;
 		} catch (Exception e) {
-			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
+			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e, e.getMessage());
 		}
 	}
 
@@ -172,7 +172,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		} catch (PlcException e) {
 			throw e;
 		} catch (Exception e) {
-			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
+			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e, e.getMessage());
 		}
 	}
 
@@ -191,7 +191,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		} catch (PlcException e) {
 			throw e;
 		} catch (Exception e) {
-			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
+			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e, e.getMessage());
 		}
 	}
 
@@ -208,7 +208,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		} catch (PlcException e) {
 			throw e;
 		} catch (Exception e) {
-			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
+			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e, e.getMessage());
 		}
 	}
 
@@ -234,7 +234,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		} catch( PlcException e){
 			throw e;
 		} catch( Exception e){ 
-			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
+			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e, e.getMessage());
 		}
 	}
 
@@ -250,7 +250,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		} catch( PlcException e){
 			throw e;
 		} catch( Exception e){ 
-			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
+			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e, e.getMessage());
 		}
 	}
 
@@ -259,7 +259,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		try {
 			return getEntityManager().getCriteriaBuilder();
 		} catch (Exception e) {
-			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
+			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e, e.getMessage());
 		}
 
 	}
@@ -269,7 +269,7 @@ public abstract class PlcBaseAbstractRepository<PK extends Serializable, E exten
 		try {
 			return getEntityManager().createQuery(query);
 		} catch (Exception e) {
-			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e.getMessage());
+			throw PlcBeanMessages.FALHA_PERSISTENCIA_20.create(e, e.getMessage());
 		}
 	}
 
