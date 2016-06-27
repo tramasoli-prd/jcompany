@@ -1,6 +1,5 @@
 package ${target.javaPackageFromFolder($SRC)};
 
-import javax.enterprise.context.ApplicationScoped;
 import java.util.List;
 
 import com.powerlogic.jcompany.core.model.repository.PlcAbstractRepository;
@@ -15,7 +14,6 @@ import ${ENTITY_PKG}.${entity.name}Entity;
  *
  */
 
-@ApplicationScoped
 public class ${entity.name}Repository extends PlcAbstractRepository<Long, ${entity.name}Entity> {
 
 	@Override

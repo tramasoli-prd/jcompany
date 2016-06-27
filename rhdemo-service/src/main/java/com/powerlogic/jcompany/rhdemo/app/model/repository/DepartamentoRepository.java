@@ -1,10 +1,5 @@
 package com.powerlogic.jcompany.rhdemo.app.model.repository;
 
-import java.util.List;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.metamodel.ManagedType;
-
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.model.qbe.OrderBy;
@@ -14,7 +9,9 @@ import com.powerlogic.jcompany.core.model.qbe.SearchParameters;
 import com.powerlogic.jcompany.core.model.repository.PlcAbstractRepository;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.DepartamentoEntity;
 
-@ApplicationScoped
+import javax.persistence.metamodel.ManagedType;
+import java.util.List;
+
 public class DepartamentoRepository extends PlcAbstractRepository<Long, DepartamentoEntity> {
 
 

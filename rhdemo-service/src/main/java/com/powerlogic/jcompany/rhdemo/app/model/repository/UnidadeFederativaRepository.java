@@ -1,12 +1,9 @@
 package com.powerlogic.jcompany.rhdemo.app.model.repository;
 
-import javax.enterprise.context.ApplicationScoped;
-
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.model.repository.PlcAbstractRepository;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.UnidadeFederativaEntity;
 
-@ApplicationScoped
 public class UnidadeFederativaRepository extends PlcAbstractRepository<Long, UnidadeFederativaEntity> {
 	
 	public UnidadeFederativaEntity save(UnidadeFederativaEntity entity) throws PlcException {
