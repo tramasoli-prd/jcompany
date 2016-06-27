@@ -1,13 +1,5 @@
 package com.powerlogic.jcompany.rhdemo.app.model.repository;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.metamodel.ManagedType;
-
 import com.powerlogic.jcompany.core.exception.PlcException;
 import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
 import com.powerlogic.jcompany.core.model.domain.PlcSituacao;
@@ -17,7 +9,12 @@ import com.powerlogic.jcompany.core.model.repository.PlcAbstractRepository;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FotoEntity;
 import com.powerlogic.jcompany.rhdemo.app.model.entity.funcionario.FuncionarioEntity;
 
-@ApplicationScoped
+import javax.persistence.metamodel.ManagedType;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class FuncionarioRepository extends PlcAbstractRepository<Long, FuncionarioEntity> {
 	
 	public FuncionarioEntity save(FuncionarioEntity entity) throws PlcException {
