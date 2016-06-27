@@ -6,10 +6,10 @@
     .factory('UfService', UfService);
 
   /** @ngInject */
-  function UfService(PlcEntityService, $class) {
+  function UfService(PlcEntityService, PlcInherit) {
 
 
-    var Service = $class.createClass(PlcEntityService, {
+    var Service = PlcInherit.createClass(PlcEntityService, {
 
       constructor: function() {
         PlcEntityService.call(this, {

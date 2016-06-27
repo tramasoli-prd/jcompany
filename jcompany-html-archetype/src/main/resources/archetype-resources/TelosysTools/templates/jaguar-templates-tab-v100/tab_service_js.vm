@@ -8,9 +8,9 @@
     .factory('${entity.name}Service', ${entity.name}Service);
 
   /** @ngInject */
-  function ${entity.name}Service(PlcEntityService, ${dollarSymbol}class) {
+  function ${entity.name}Service(PlcEntityService, PlcInherit) {
 
-  	var Service = ${dollarSymbol}class.createClass(PlcEntityService, {
+  	var Service = PlcInherit.createClass(PlcEntityService, {
         constructor: function() {
             PlcEntityService.call(this, {
                  type: '${uncapitalizedEntityName}'
@@ -19,5 +19,5 @@
     });
     return new Service();
   }
-  
+
 })();
