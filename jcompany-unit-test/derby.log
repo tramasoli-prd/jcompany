@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Tue Jan 19 10:23:59 BRST 2016:
- Inicializando o Derby vers√£o The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): inst√¢ncia a816c00e-0152-59d7-7760-00000b59e108
-no diret√≥rio de banco de dados C:\Users\baldini\AppData\Local\Temp\gfembed1882480915379053561tmp\lib\databases\embedded_default 
+Mon Jun 27 13:31:54 BRT 2016:
+ Inicializando o Derby vers„o The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): inst‚ncia a816c00e-0155-92b3-f373-0000082702f0
+no diretÛrio de banco de dados C:\Users\leandro.silva\AppData\Local\Temp\gfembed3698057424206293894tmp\lib\databases\embedded_default 
 
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_40-b26
-user.dir=D:\git2\jcompany\jcompany-unit-test
+java.runtime.version=1.8.0_66-b18
+user.dir=C:\JetBrains\gitpub\jcompany\jcompany-unit-test
 os.name=Windows 7
 os.arch=amd64
 os.version=6.1
