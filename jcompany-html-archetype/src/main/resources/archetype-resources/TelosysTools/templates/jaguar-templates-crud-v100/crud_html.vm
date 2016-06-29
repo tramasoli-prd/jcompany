@@ -11,8 +11,8 @@
 ## All fields ( ordered fiels : 1) fields in Primary Key 2) fields not in primary key
 #set( $allFields = $fn.concatLists($keyFields, $dataFields) )
 ##--------------------------------------------------------------------------------------------------------
-<div class="container-fluid" ng-controller="${entity.name}Controller as ${fn.uncapitalize($entity.name)}Controller" >
-<form name="form" class="form-validate">
+<div class="container-fluid" >
+<form name="form" class="form-validate"  ng-controller="${entity.name}Controller as ${fn.uncapitalize($entity.name)}Controller">
 	<div class="panel .panel-default">
 		<div class=".panel-heading">{{ 'label.${uncapitalizedEntityName}.titulo' | translate }}</div>
 	</div>
@@ -30,7 +30,7 @@
 	#set($ng_disabled = " ng-disabled=""true""")
 #end
 #set($count = $count + 1)
-#if(!($field.inputType == "modal" || $field.inputType == "fileupload"))
+#if(!($field.inputType == "fileupload"))
 #set($isModalOrFileuploadPrev = false)
 #if( $count % 3 == 1 )
 <div class="row">
@@ -45,7 +45,9 @@
 		<plc-dynamic-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" name="${htmlName}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-item-description="descricao" ng-entity="${field.formattedName(0)}" />
 		#elseif( $field.inputType == "static-combo" )
 		<plc-static-combo ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" name="${htmlName}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}"/>
-		#elseif( $field.inputType == "radiobox" )
+    #elseif( $field.inputType == "modal" )
+    <plc-aggregate-modal label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" ng-model-lookup="descricao"		template="app/${fn.uncapitalize($entity.name)}/${fn.uncapitalize($entity.name)}modal.html" />
+    #elseif( $field.inputType == "radiobox" )
 		<plc-radio ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" name="${htmlName}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"  ng-item-description="descricao" ng-enum="${field.formattedName(0)}" ng-enum-value="${field.name}" />
 		#elseif( $field.inputType == "checkbox" )
 		<plc-check ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" name="${htmlName}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}"/>
@@ -67,11 +69,9 @@
 #if( $count % 3 == 3 )
 	</div>
 			#end
-	#if($field.inputType == "modal" || $field.inputType == "fileupload")
+	#if($field.inputType == "fileupload")
 	<div class="row">
-	#if( $field.inputType == "modal" )
-		<plc-aggregate-modal label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" ng-model-lookup="descricao"		template="app/${fn.uncapitalize($entity.name)}/${fn.uncapitalize($entity.name)}modal.html" />
-				#elseif( $field.inputType == "fileupload" )
+	#if( $field.inputType == "fileupload" )
 		<plc-file-upload name="${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" url="/${fn.uncapitalize($entity.name)}/${field.formattedName(0)}/{{${fn.uncapitalize($entity.name)}.${field.formattedName(0)}.id}}"	model-filename="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}.nome" />
 				#end
 	</div>

@@ -27,11 +27,15 @@
 
     <div class="row">
 
-      <plc-aggregate-modal label="{{'label.departamento.departamentoPai' | translate}}"
-                           ng-model="departamento.departamentoPai" ng-model-lookup="descricao"
-                           template="app/departamento/departamentomodal.html" />
+      <div class="col-md-4" >
+        <plc-aggregate-modal label="{{'label.departamento.departamentoPai' | translate}}"
+                             ng-model="departamento.departamentoPai" ng-model-lookup="descricao"
+                             template="app/departamento/departamentomodal.html" />
+      </div>
+
 
     </div>
+
 
     <div class="form-group">
       <div class="col-sm-4">

@@ -2,18 +2,18 @@
 #set( $_= "$" )
 ##--------------------------------------------------------------------------------------------------------
 ##--------------------------------------------------------------------------------------------------------
-## Key fields = fields in Primary Key    
+## Key fields = fields in Primary Key
 #set( $keyFields = $entity.keyAttributes )
 ##--------------------------------------------------------------------------------------------------------
-## Data fields = fields not in Primary Key    
+## Data fields = fields not in Primary Key
 #set( $dataFields = $entity.nonKeyAttributes )
 ##--------------------------------------------------------------------------------------------------------
-## All fields ( ordered fiels : 1) fields in Primary Key 2) fields not in primary key    
+## All fields ( ordered fiels : 1) fields in Primary Key 2) fields not in primary key
 #set( $allFields = $fn.concatLists($keyFields, $dataFields) )
 ##--------------------------------------------------------------------------------------------------------
 
-<div class="container-fluid" ng-controller="${entity.name}Controller as ${fn.uncapitalize($entity.name)}Controller"  >
-<form name="form" class="form-validate">
+<div class="container-fluid"  >
+<form name="form" class="form-validate" ng-controller="${entity.name}Controller as ${fn.uncapitalize($entity.name)}Controller" >
 	<div class="panel .panel-default">
 		<div class=".panel-heading">{{ 'label.${uncapitalizedEntityName}.titulo.sel' | translate }}</div>
 	</div>
