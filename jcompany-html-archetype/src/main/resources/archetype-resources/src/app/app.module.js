@@ -6,16 +6,14 @@
 
   angular
     .module('${artifactId}', [
+        'ngAnimate',
         'ngCookies',
         'ngTouch',
         'ngSanitize',
         'ngMessages',
         'ngAria',
         'ui.router',
-        'ui.bootstrap',
-        'ui.bootstrap.accordion',
-        'ui.bootstrap.datepicker',
-        'ui.bootstrap.tooltip',
+        'ui.bootstrap'
         'ui-notification',
         'ui.grid', //grid
         'ui.grid.pagination', // suporte a paginacao no grid
