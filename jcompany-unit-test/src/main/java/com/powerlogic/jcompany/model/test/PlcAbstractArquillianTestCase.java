@@ -1,24 +1,22 @@
 package com.powerlogic.jcompany.model.test;
 
-import java.io.InputStream;
-
-import javax.ws.rs.core.Response;
-
-import org.apache.commons.io.IOUtils;
-import org.codehaus.jettison.json.JSONObject;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.powerlogic.jcompany.commons.interceptor.validation.PlcValidationInterceptor;
 import com.powerlogic.jcompany.commons.util.fileupload.PlcFileUploadUtil;
 import com.powerlogic.jcompany.commons.util.interpolator.IResourceBundleLocator;
-import com.powerlogic.jcompany.commons.util.message.PlcMessageUtil;
+import com.powerlogic.jcompany.commons.util.message.PlcMsgUtil;
 import com.powerlogic.jcompany.commons.util.validation.PlcValidationInvariantUtil;
 import com.powerlogic.jcompany.commons.validation.CepValidator;
 import com.powerlogic.jcompany.core.PlcApplicationLifecycle;
 import com.powerlogic.jcompany.core.messages.PlcMessageMap;
 import com.powerlogic.jcompany.core.rest.messages.PlcResponseEntity;
+import org.apache.commons.io.IOUtils;
+import org.codehaus.jettison.json.JSONObject;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+
+import javax.ws.rs.core.Response;
+import java.io.InputStream;
 
 /**
  * Classe abstrata de testes com arquillian
@@ -40,7 +38,7 @@ public abstract class PlcAbstractArquillianTestCase {
         j.addPackages(true, PlcValidationInterceptor.class.getPackage());
         j.addPackages(true, PlcFileUploadUtil.class.getPackage());
         j.addPackages(true, IResourceBundleLocator.class.getPackage());
-        j.addPackages(true, PlcMessageUtil.class.getPackage());
+        j.addPackages(true, PlcMsgUtil.class.getPackage());
         j.addPackages(true, PlcValidationInvariantUtil.class.getPackage());
         j.addPackages(true, PlcApplicationLifecycle.class.getPackage());
  

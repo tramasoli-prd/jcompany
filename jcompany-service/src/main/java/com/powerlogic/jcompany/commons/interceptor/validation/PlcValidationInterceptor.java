@@ -10,19 +10,19 @@
 
 package com.powerlogic.jcompany.commons.interceptor.validation;
 
-import java.lang.annotation.Annotation;
-import java.util.Set;
+import com.powerlogic.jcompany.commons.util.validation.PlcValidationInvariantUtil;
+import com.powerlogic.jcompany.core.exception.PlcException;
+import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
-
-import com.powerlogic.jcompany.commons.util.message.PlcMessageUtil;
-import com.powerlogic.jcompany.commons.util.validation.PlcValidationInvariantUtil;
-import com.powerlogic.jcompany.core.exception.PlcException;
-import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
+import java.lang.annotation.Annotation;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * 
@@ -41,9 +41,45 @@ public class PlcValidationInterceptor  {
 
 	@Inject
 	private PlcValidationInvariantUtil validationUtil;
-	
-	@Inject
-	private PlcMessageUtil messageUtil;
+
+
+	/**
+	 *
+	 * Retorna as mensagens de validação invariante dos campos, fazendo a troca dos tokens pelo nome da propriedade (valores reais).
+	 *
+	 * @param validationMessages
+	 * @return array com mensagens traduzidas
+	 */
+	public String[]  availableInvariantMessages(Set<ConstraintViolation<Object>> validationMessages)  {
+
+		if (validationMessages!=null) {
+			String[] mensagens = new String[validationMessages.size()];
+
+			String msg=null;
+			String msgCampo=null;
+
+			Iterator<ConstraintViolation<Object>> iterator = validationMessages.iterator();
+			int i=0;
+			while(iterator.hasNext()) {
+				ConstraintViolation<Object> cv = iterator.next();
+
+				msg = cv.getMessage();
+
+				int posIni = msg.indexOf("{");
+				if (posIni>-1) {
+					int posFim = msg.indexOf("}");
+					String token = msg.substring(posIni,posFim+1);
+					msgCampo = cv.getPropertyPath().toString();
+					msg = StringUtils.replaceOnce(msg,token,msgCampo);
+				}
+				mensagens[i++] = msg;
+
+			}
+			return mensagens;
+		}
+		return null;
+
+	}
 	
 	/**
 	 * Interceptor para validadar a entidade da requisição.
@@ -96,7 +132,7 @@ public class PlcValidationInterceptor  {
 
 		//invocando a validação
 		if (!validacaoInvarianteOk) {
-			throw PlcBeanMessages.FALHA_VALIDACAO_023.create(messageUtil.availableInvariantMessages(cv));
+			throw PlcBeanMessages.FALHA_VALIDACAO_023.create(availableInvariantMessages(cv));
 		}
 		
 	}
