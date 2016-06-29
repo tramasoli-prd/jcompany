@@ -70,7 +70,7 @@
 	#if($field.inputType == "modal" || $field.inputType == "fileupload")
 	<div class="row">
 	#if( $field.inputType == "modal" )
-		<plc-aggregate-modal label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" ng-model-lookup="descricao"		template="app/${fn.uncapitalize($entity.name)}/${fn.uncapitalize($entity.name)}sel.html" />
+		<plc-aggregate-modal label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" ng-model-lookup="descricao"		template="app/${fn.uncapitalize($entity.name)}/${fn.uncapitalize($entity.name)}modal.html" />
 				#elseif( $field.inputType == "fileupload" )
 		<plc-file-upload name="${field.formattedName(0)}" label="{{ 'label.${fn.uncapitalize($entity.name)}.${field.formattedName(0)}' | translate }}" ng-model="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}" url="/${fn.uncapitalize($entity.name)}/${field.formattedName(0)}/{{${fn.uncapitalize($entity.name)}.${field.formattedName(0)}.id}}"	model-filename="${fn.uncapitalize($entity.name)}.${field.formattedName(0)}.nome" />
 				#end
