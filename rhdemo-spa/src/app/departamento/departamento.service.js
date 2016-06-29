@@ -13,8 +13,7 @@
 
       constructor: function() {
         PlcEntityService.call(this, {
-          type: 'departamento',
-          applyMetadata: false
+          type: 'departamento'
         });
       }
 

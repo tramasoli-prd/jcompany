@@ -1,5 +1,5 @@
-<div class="container-fluid" >
-<form name="form" class="form-validate" novalidate ng-controller="DepartamentoController as departamentoController">
+<div class="container-fluid">
+<form name="form" class="form-validate" novalidate >
 	<div class="panel .panel-default">
 		<div class=".panel-heading">
 		 Consulta de Departamentos
@@ -23,9 +23,9 @@
 
 	<div class="form-group">
 	    <div class="col-sm-4">
-	    	<button type="button" class="btn btn-default" ng-click="departamentoController.find();" >Pesquisar</button>
-	    	<button type="button" class="btn btn-default" ng-click="departamentoController.clear();" >Limpar</button>
-	    	<button type="button" class="btn btn-default" ng-click="departamentoController.new();" >Novo</button>
+	    	<button type="button" class="btn btn-default" ng-click="departamentoModalController.find();" >Pesquisar</button>
+	    	<button type="button" class="btn btn-default" ng-click="departamentoModalController.clear();" >Limpar</button>
+	    	<button type="button" class="btn btn-default" ng-click="closeThisDialog('button')">Fechar</button>
 	    </div>
 	</div>
 </form>
