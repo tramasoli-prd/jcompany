@@ -10,8 +10,11 @@
 
 package com.powerlogic.jcompany.core.rest.auth;
 
-import java.security.Principal;
-import java.util.Map;
+import com.powerlogic.jcompany.core.commons.config.PlcConfiguration;
+import com.powerlogic.jcompany.core.exception.PlcException;
+import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.security.auth.login.FailedLoginException;
@@ -21,17 +24,24 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response.Status;
-
-import com.powerlogic.jcompany.core.exception.PlcException;
-import com.powerlogic.jcompany.core.messages.PlcBeanMessages;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class PlcAuthenticationService  {
+
+	private static final Logger log = LoggerFactory.getLogger(PlcAuthenticationService.class);
 	
 	@Inject
 	private PlcAuthenticationProvider authProvider;
 	
 	@Inject
 	private PlcProfileProvider profileProvider;
+
+	@Inject
+	private PlcConfiguration config;
+
 
 	public PlcAuthenticatedUserInfo user(@Context HttpServletRequest request) throws PlcException {
 		return getUserInfo(request);
@@ -98,7 +108,7 @@ public class PlcAuthenticationService  {
 		try {
 			Principal userPrincipal = request.getUserPrincipal();
 			PlcAuthenticatedUserInfo userInfo;
-			userInfo = authProvider.createUser(userPrincipal, request.getRemoteHost());
+			userInfo = authProvider.createUser(userPrincipal, request.getRemoteHost(), getRoles(request));
 			request.getSession().setAttribute(PlcAuthenticatedUserInfo.PROPERTY, userInfo);
 			userInfo = profileProvider.createProfile(request);
 			return userInfo;
@@ -109,6 +119,27 @@ public class PlcAuthenticationService  {
 			userLogout(request);
 			throw PlcBeanMessages.FALHA_OPERACAO_003.create();
 		}
+	}
+
+	private List<String> getRoles(HttpServletRequest request){
+
+		List<String> roles = new ArrayList<>();
+
+		try {
+			String r = config.get("roles");
+			String[] a = r.split(",");
+
+			for(String role : a) {
+				if(request.isUserInRole(role)) {
+					roles.add(role);
+				}
+			}
+
+		}catch (Exception e){
+			log.warn(e.getMessage());
+		}
+
+		return roles;
 	}
 
 	protected PlcAuthenticatedUserInfo userLogout(HttpServletRequest request) {

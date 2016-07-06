@@ -11,16 +11,16 @@
 
 		$scope.$baseService = FuncionarioService;
 		$scope.$baseRoute = 'funcionario';
-    
+
 
 		$scope.detalhes = [
 		                   {
-		                	   titulo: "Dependente",
+		                	   titulo: "label.heading.det1.funcionario",
 		                	   name: "dependente",
 		                	   template: "app/funcionario/funcionariodet.html"
 		                   },
 		                   {
-		                	   titulo: "Histórico Profissional",
+		                	   titulo: "label.heading.det2.funcionario",
 		                	   name: "historicoProfissional",
 		                	   template: "app/funcionario/funcionariodet2.html"
 		                   }

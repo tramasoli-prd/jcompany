@@ -10,19 +10,18 @@
 
 package com.powerlogic.jcompany.core.rest.auth;
 
-import java.security.Principal;
-import java.util.ArrayList;
+import com.powerlogic.jcompany.core.exception.PlcException;
 
 import javax.enterprise.context.ApplicationScoped;
-
-import com.powerlogic.jcompany.core.exception.PlcException;
+import java.security.Principal;
+import java.util.List;
 
 @ApplicationScoped
 public class PlcAuthenticationProvider {
 	
 
-	public PlcAuthenticatedUserInfo createUser(final Principal userPrincipal, final String host) throws PlcException {
-		PlcAuthenticatedUserInfo user = new PlcAuthenticatedUserInfo(userPrincipal.getName(), host, new ArrayList<String>());
+	public PlcAuthenticatedUserInfo createUser(final Principal userPrincipal, final String host, final List<String> roles) throws PlcException {
+		PlcAuthenticatedUserInfo user = new PlcAuthenticatedUserInfo(userPrincipal.getName(), host, roles);
 		return user;
 	}
 }

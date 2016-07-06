@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
 	<div class="panel .panel-default">
-		<div class=".panel-heading">Cadastro de Funcion&aacute;rio</h1></div>
+		<div class=".panel-heading">{{'label.heading.man.funcionario' | translate}}</h1></div>
 	</div>
 
 	<div class="row">
@@ -93,7 +93,7 @@
 	<div class="form-group">
 
 		<uib-accordion close-others="oneAtATime"> <uib-accordion-group
-			heading="{{detalhe.titulo}}" ng-repeat="detalhe in detalhes">
+			heading="{{detalhe.titulo | translate}}" ng-repeat="detalhe in detalhes">
 		<div ng-include="detalhe.template"></div>
 		</uib-accordion-group> </uib-accordion>
 
@@ -114,3 +114,4 @@
 
 
 </div>
+</form>

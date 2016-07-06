@@ -27,7 +27,7 @@
 			templateUrl: 'app/departamento/departamentoman.html'
 		});
 	}
-	
+
 })();
 
 

@@ -19,13 +19,13 @@
 			controllerAs: 'plcLoginController',
 			access: 'public'
 		});
-		
+
 		$stateProvider
 		.state('app', {
 			url: '/app',
 			templateUrl: 'app/app.html'
 		});
-		
+
 		$stateProvider
 		.state('app.inicial', {
 			url: '/inicial',
@@ -34,7 +34,14 @@
 			controller: 'InicialController',
 			controllerAs: 'inicialController'
 		});
-		
+
+    $stateProvider
+      .state('app.403', {
+        url: '/403',
+        parent: 'app',
+        templateUrl: 'app/errors/error403.html'
+      });
+
 		$locationProvider.html5Mode(false)
 		$urlRouterProvider.otherwise('/app/inicial');
 	}

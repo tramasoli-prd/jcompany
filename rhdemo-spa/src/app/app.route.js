@@ -33,6 +33,13 @@
 			controllerAs: 'inicialController'
 		});
 
+    $stateProvider
+      .state('app.403', {
+        url: '/403',
+        parent: 'app',
+        templateUrl: 'app/errors/error403.html'
+      });
+
 
 		$locationProvider.html5Mode(false);
 		$urlRouterProvider.otherwise($contextUrl+'/app/inicial');

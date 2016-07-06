@@ -1,7 +1,7 @@
 <div class="container-fluid">
 <form name="form" class="form-validate" ng-controller="FuncionarioController as funcionarioController" novalidate>
 	<div class="panel .panel-default">
-		<div class=".panel-heading">Consulta de Funcion&aacute;rios</div>
+		<div class=".panel-heading">{{'label.heading.sel.funcionario' | translate}}</div>
 	</div>
 
 	<div class="row">
@@ -21,7 +21,7 @@
 		<div class="col-md-3">
 
 			<plc-date-picker name="funcionarioArg.dataNascimento" ng-model="funcionarioArg.dataNascimento"
-                       label="{{'label.funcionario.dataNascimento' | translate}}:" invalid-date-alert
+                       label="{{'label.funcionario.dataNascimento' | translate}}" invalid-date-alert
                        placeholder="__/__/____" uib-tooltip="Digite a data de nascimento do funcionário no formato DD/MM/AAAA" />
 
 		</div>

@@ -20,8 +20,8 @@
         'ngDialog', // modal
         'jcompany-view',
         'blockUI',
-        'ui.utils.masks'
-
+        'ui.utils.masks',
+        'idf.br-filters'
       ]
     );
 

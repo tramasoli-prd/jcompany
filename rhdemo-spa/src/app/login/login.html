@@ -16,7 +16,7 @@
 
 					<div class="pwstrength_viewport_progress"></div>
 					<button class="btn btn-lg btn-primary btn-block" type="submit"
-						ng-disabled="isLoading()" ng-click="login($event)">Acessar</button>
+						ng-disabled="isLoading()" ng-click="login($event)">{{'label.entrar' | translate}}</button>
 				</form>
 				<div class="form-links">
 					<a href="#">www.powerlogic.org</a>
@@ -28,7 +28,6 @@
 </div>
 
 <style type="text/css">
-@CHARSET "UTF-8";
 /*
 over-ride "Weak" message, show font in dark grey
 */
@@ -48,17 +47,6 @@ over-ride "Weak" message, show font in dark grey
 	font-size: 16px;
 	height: auto;
 	padding: 10px;
-	@
-	include
-	box-sizing(border-box);
-	&:
-	focus
-	{
-	z-index
-	:
-	2;
-}
-
 }
 body {
 	background: url(assets/images/jcompany-background.jpg) no-repeat center

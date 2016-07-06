@@ -10,20 +10,15 @@
 
 package com.powerlogic.jcompany.core.rest.auth;
 
-import java.util.Map;
+import com.powerlogic.jcompany.core.exception.PlcException;
+import com.powerlogic.jcompany.core.rest.PlcAbstractRest;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-
-import com.powerlogic.jcompany.core.exception.PlcException;
-import com.powerlogic.jcompany.core.rest.PlcAbstractRest;
+import java.util.Map;
 
 @Path("/auth")
 @PlcAuthenticated
@@ -33,14 +28,6 @@ public class PlcAuthenticationRest extends PlcAbstractRest {
 	
 	@Inject
 	private PlcAuthenticationService authService;
-	
-
-	@GET
-	@Path("/user")
-	public PlcAuthenticatedUserInfo user(@Context HttpServletRequest request) throws PlcException {
-		return authService.user(request);
-	}
-
 
 	@POST
 	@Path("/login")

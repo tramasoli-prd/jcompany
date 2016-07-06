@@ -7,7 +7,7 @@
 	.controller('AppController', AppController);
 
 	/** @ngInject */
-	function AppController($rootScope, $scope, $cookies, $state, $window, PlcAuthService, $stateParams, PlcMenuLoader, PlcMenu) {
+	function AppController($scope, $cookies, $state, PlcAuthService) {
 		var vm = this;
 		vm.toggle =  true;
 		vm.menuItems = [];
@@ -51,17 +51,6 @@
 
 		}
 
-		var activate = function () {
-			// Load menu from json file
-			// -----------------------------------
-			PlcMenu.clear();
-			var promisseMenu = PlcMenu.addMenuPath(PlcMenuLoader.getMenuPaths());
-			promisseMenu.then(function(menus) {
-				vm.menuItems = menus;
-		    });
-
-		}
-
 		vm.profileShow = function() {
 			document.getElementById('profile').className= "item dropdown open";
 		};
@@ -77,8 +66,6 @@
 		vm.notificationHide = function() {
 			document.getElementById('notification').className= "item dropdown";
 		};
-
-		activate();
 
 	}
 

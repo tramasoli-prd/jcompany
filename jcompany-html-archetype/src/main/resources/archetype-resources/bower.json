@@ -26,6 +26,7 @@
     "angular-file-upload": "2.3.3",
     "angular-block-ui": "0.2.2",
     "angular-input-masks": "2.3.0",
+    "angular-br-filters": "0.6.0",
     "angular-validation-ghiscoding": "1.5.1",
     "lodash": "4.11.2",
     "moment": "2.13.0",
