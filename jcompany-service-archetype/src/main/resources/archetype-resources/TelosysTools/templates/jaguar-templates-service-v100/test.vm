@@ -1,0 +1,34 @@
+package ${target.javaPackageFromFolder($SRC)};
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import com.powerlogic.jcompany.model.test.PlcAbstractArquillianTestCase;
+
+/**
+ * A standard abstract Arquillian class 
+ *
+ * @author jCompany Generator
+ *
+ */
+
+public class AbstractArquillianTestCase extends PlcAbstractArquillianTestCase {
+
+	protected static void complementTestArchive(WebArchive j) {
+
+		PlcAbstractArquillianTestCase.complementTestArchive(j);
+
+	}
+
+	@Deployment
+	public static WebArchive createTestArchive() {
+
+		WebArchive j = ShrinkWrap.create(WebArchive.class);
+		complementTestArchive(j);
+
+		//Add resources here
+ 		
+		return j;
+	}	
+
+}
