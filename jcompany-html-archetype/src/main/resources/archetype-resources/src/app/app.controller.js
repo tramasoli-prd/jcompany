@@ -39,7 +39,7 @@
 
       vm.toggleSidebar = function() {
         vm.toggle = !vm.toggle;
-        $cookies.put('toggle', vm.toggle);
+        $cookies.put('toggle', 'vm.toggle');
       }
 
       window.onresize = function() {
