@@ -17,6 +17,14 @@
 			<groupId>powerlogic.jaguar.jcompany</groupId>
 			<artifactId>jcompany-service</artifactId>
 			<version>${version.jcompany}</version>
+		</dependency>		
+		
+		<!-- Testes -->
+		<dependency>
+			<groupId>powerlogic.jaguar.jcompany</groupId>
+			<artifactId>jcompany-unit-test</artifactId>
+			<version>${version.jcompany}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
