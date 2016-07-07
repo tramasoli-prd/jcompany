@@ -1,4 +1,4 @@
-#set( $uncapitalizedEntityName = $fn.uncapitalize($entity.name) )
+#set( $lowerCaseEntityName = $fn.toLowerCase($entity.name) )
 #set( $dollarSymbol= "$" )
 (function() {
   'use strict';
@@ -13,7 +13,7 @@
   	var Service = PlcInherit.createClass(PlcEntityService, {
         constructor: function() {
             PlcEntityService.call(this, {
-                 type: '${uncapitalizedEntityName}'
+                 type: '${lowerCaseEntityName}'
             });
         }
     });

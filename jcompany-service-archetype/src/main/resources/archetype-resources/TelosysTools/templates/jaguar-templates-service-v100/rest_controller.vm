@@ -34,11 +34,11 @@ import ${ENTITY_PKG}.${entity.name}Entity;
 public class ${entity.name}Rest extends PlcAbstractEntityRest<Long, ${entity.name}Entity, Object> {
 
    @Inject
-   private I${entity.name}Service $fn.toLowerCase(${entity.name})Service;
+   private I${entity.name}Service $fn.uncapitalize(${entity.name})Service;
 
    @Override
    protected I${entity.name}Service getEntityService() {
-      return $fn.toLowerCase(${entity.name})Service;
+      return $fn.uncapitalize(${entity.name})Service;
    }
 
 }
