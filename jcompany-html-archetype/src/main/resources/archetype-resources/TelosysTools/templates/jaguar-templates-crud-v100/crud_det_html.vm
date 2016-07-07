@@ -101,7 +101,7 @@
 	</div>
 	<br/>
 
-	<button type="button" class="btn btn-default" ng-click="${mestre}Controller.addItemDetail('${mestre}.${uncapitalizedEntityName}');" >Adicionar</button>
+	<button type="button" class="btn btn-default" ng-click="${mestre}Controller.addItemDetail('${mestre}.${uncapitalizedEntityName}');" >{{'label.adicionar' | translate}}</button>
 
 	
 </div>
