@@ -37,9 +37,9 @@
 
 	<div class="form-group">
 	    <div class="col-sm-4">
-	    	<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.find();" >Pesquisar</button>
-	    	<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.clear();" >Limpar</button>
-	    	<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.new();" >Novo</button>
+	    	<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.find();" >{{ 'label.pesquisar' | translate }}</button>
+	    	<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.clear();" >{{ 'label.limpar' | translate }}</button>
+	    	<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.new();" >{{ 'label.novo' | translate }}</button>
 	    </div>
 	</div>
 

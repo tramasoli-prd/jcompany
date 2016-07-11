@@ -97,10 +97,10 @@
 <br/>
 	<div class="form-group">
 		<div class="col-sm-4">
-			<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.new();">Novo</button>
-			<button type="submit" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.save();">Salvar</button>
-			<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.list();">Listar</button>
-			<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.remove();">Excluir</button>
+			<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.new();">{{ 'label.novo' | translate }}</button>
+			<button type="submit" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.save();">{{ 'label.salvar' | translate }}</button>
+			<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.list();">{{ 'label.listar' | translate }}</button>
+			<button type="button" class="btn btn-default" ng-click="${uncapitalizedEntityName}Controller.remove();">{{ 'label.excluir' | translate }}</button>
 		</div>
 	</div>
 </form>
