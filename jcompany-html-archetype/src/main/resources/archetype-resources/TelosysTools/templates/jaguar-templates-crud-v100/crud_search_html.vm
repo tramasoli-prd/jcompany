@@ -11,6 +11,7 @@
 ## All fields ( ordered fiels : 1) fields in Primary Key 2) fields not in primary key
 #set( $allFields = $fn.concatLists($keyFields, $dataFields) )
 ##--------------------------------------------------------------------------------------------------------
+#set($count = 0)
 
 <div class="container-fluid"  >
 <form name="form" class="form-validate" ng-controller="${entity.name}Controller as ${fn.uncapitalize($entity.name)}Controller" >
@@ -19,14 +20,26 @@
 	</div>
 
 	<div class="row">
+
+#foreach( $field in $allFields )
+	#if( $field.isSelected() )
+		#set($htmlId      = "${uncapitalizedEntityName}_${field.name}" )
+		#set($htmlName    = $field.name )
+#set($fields = [])
+#set($ttt = $fields.add($field))
+#set($referencedEntityTypes = $entity.referencedEntityTypes($fields) )
+
 		<div class="col-md-2">
-			<label>Nome:</label> <input type="text"
-				ng-model="${uncapitalizedEntityName}Arg.id" class="form-control">
+			<label>{{ 'label.${uncapitalizedEntityName}.${field.name}' | translate}}:</label> <input type="text"
+				ng-model="${uncapitalizedEntityName}Arg.${field.name}" class="form-control">
 		</div>
-		<!--div class="col-md-2">
-			<label>Nome:</label> <input type="text"
-				ng-model="${uncapitalizedEntityName}Arg.nome" class="form-control">
-		</div-->
+
+#end
+#set($count = $count + 1)
+#end
+
+		
+		
 	</div>
 
 	<br/>
