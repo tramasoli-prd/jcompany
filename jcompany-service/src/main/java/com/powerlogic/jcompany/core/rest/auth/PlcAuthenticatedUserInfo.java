@@ -11,17 +11,12 @@
 
 package com.powerlogic.jcompany.core.rest.auth;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
+import java.util.*;
 
 
 /**
@@ -243,8 +238,23 @@ public class PlcAuthenticatedUserInfo implements Serializable {
 		plcVerticalSecurity = new HashMap();
 	}
 
-	public PlcAuthenticatedUserInfo(String username, String host, List<String> roles)
-	{
+	/**
+	 *
+	 * @param username
+	 * @param host
+     */
+	public PlcAuthenticatedUserInfo(String username, String host){
+		this.login = username.toLowerCase();
+		this.host = host;
+	}
+
+	/**
+	 *
+	 * @param username
+	 * @param host
+	 * @param roles
+     */
+	public PlcAuthenticatedUserInfo(String username, String host, List<String> roles) {
 		this.login = username.toLowerCase();
 		this.host = host;
 		this.roles = roles;

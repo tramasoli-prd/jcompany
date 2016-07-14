@@ -18,8 +18,27 @@ import java.util.List;
 
 @ApplicationScoped
 public class PlcAuthenticationProvider {
-	
 
+	/**
+	 *
+	 * @param userPrincipal
+	 * @param host
+	 * @return
+	 * @throws PlcException
+     */
+	public PlcAuthenticatedUserInfo createUser(final Principal userPrincipal, final String host) throws PlcException {
+		PlcAuthenticatedUserInfo user = new PlcAuthenticatedUserInfo(userPrincipal.getName(), host);
+		return user;
+	}
+
+	/**
+	 *
+	 * @param userPrincipal
+	 * @param host
+	 * @param roles
+	 * @return
+	 * @throws PlcException
+     */
 	public PlcAuthenticatedUserInfo createUser(final Principal userPrincipal, final String host, final List<String> roles) throws PlcException {
 		PlcAuthenticatedUserInfo user = new PlcAuthenticatedUserInfo(userPrincipal.getName(), host, roles);
 		return user;
